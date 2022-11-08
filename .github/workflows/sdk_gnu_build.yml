@@ -15,7 +15,7 @@ on:
 env:
     CI: false
 jobs:
-    linux-mac--build:
+    linux-mac-build:
         strategy:
           fail-fast: true
           matrix:
@@ -35,7 +35,7 @@ jobs:
                   fetch-depth: 0
             - name: Build 
               run: |
-                  chmod 755 cli
+                  chmod 755 clitool
                   ./clitool build -b Debug -c gnu -t all
     windows-build:
         runs-on: [ self-hosted, Windows]
@@ -52,5 +52,5 @@ jobs:
                   fetch-depth: 0
             - name: Build 
               run: |
-                  msys2 -c 'chmod 755 cli'
-                  msys2 -c './clitool build -b Debug -c gnu -t all'
+                  C:/msys64/msys2 -c 'chmod 755 clitool'
+                  C:/msys64/msys2 -c './clitool build -b Debug -c gnu -t all'
