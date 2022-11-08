@@ -19,7 +19,7 @@ jobs:
         strategy:
           fail-fast: true
           matrix:
-          os: [Linux, macOS ]
+              os: [Linux, macOS ]
         runs-on: ${{matrix.os}}
         steps:
             - name: Basic info
