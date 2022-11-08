@@ -16,7 +16,10 @@ env:
     CI: false
 jobs:
     build:
-        runs-on: [self-hosted]
+        strategy:
+            matrix:
+                os: [Linux, macOS, Windows, self-hosted]
+        runs-on: ${{ matrix.os }}
         steps:
             - name: Basic info
               run: |
