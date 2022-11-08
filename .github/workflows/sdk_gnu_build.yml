@@ -18,7 +18,7 @@ jobs:
     build:
         strategy:
             matrix:
-                os: [Linux, macOS, Windows, self-hosted]
+                os: [Linux, macOS, Windows]
         runs-on: ${{ matrix.os }}
         steps:
             - name: Basic info
@@ -27,6 +27,7 @@ jobs:
                   echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
                     echo "Log level: ${{ github.event.inputs.logLevel }}"
                   echo "Tags: ${{ github.event.inputs.tags }}"
+                  echo ${{matrix.os}}
             - name: Check out repository
               uses: actions/checkout@v3
               with:
