@@ -98,7 +98,7 @@ build)
     echo "Compile the program"
     shift
 
-    if [[ ${system} == "linux" ]]; then
+    if [[ ${system} == "linux" ]] || [[ ${system} == "msys" ]]; then
         OPT=$(getopt -o t:c:b:h --long target:,compiler:,build:,help -n 'cli build' -- "$@")
     elif [[ ${system} == "mac" ]]; then
         OPT=$(getopt t:c:b:h "$@")
@@ -151,7 +151,7 @@ build)
     fi
 
     case "$system" in
-    "linux" | "mac")
+    "linux" | "mac" | "msys")
         cmake --preset="${system}-${compiler}-${build}" -S "."
         cmake --build --preset="${system}-${compiler}-${build}" --target ${target}
         ;;
