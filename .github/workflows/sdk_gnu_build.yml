@@ -16,7 +16,7 @@ env:
     CI: false
 jobs:
     build:
-        runs-on: [self-hosted, Linux, Mac, Windows]
+        runs-on: [self-hosted]
         steps:
             - name: Basic info
               run: |
