@@ -50,6 +50,4 @@ jobs:
                   fetch-depth: 0
             - name: Build 
               run: |
-                  C:/msys64/msys2_shell -lc 'ls'
-                  C:/msys64/msys2_shell -lc 'chmod 755 clitool'
-                  C:/msys64/msys2_shell -lc './clitool build -b Debug -c gnu -t all'
+                  C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash .github/sdk_msys_build.ps
