@@ -15,11 +15,12 @@ on:
 env:
     CI: false
 jobs:
-    build:
+    linux-mac--build:
         strategy:
-            matrix:
-                os: [Linux, macOS, Windows]
-        runs-on: ${{ matrix.os }}
+          fail-fast: true
+          matrix:
+          os: [Linux, macOS ]
+        runs-on: ${{matrix.os}}
         steps:
             - name: Basic info
               run: |
@@ -32,9 +33,24 @@ jobs:
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
-            - uses: msys2/setup-msys2@v2
-              if: ${{ matrix.os == 'Windows' }}
             - name: Build 
               run: |
                   chmod 755 cli
                   ./clitool build -b Debug -c gnu -t all
+    windows-build:
+        runs-on: [ self-hosted, Windows]
+        steps:
+            - name: Basic info
+              run: |
+                  echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+                  echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+                    echo "Log level: ${{ github.event.inputs.logLevel }}"
+                  echo "Tags: ${{ github.event.inputs.tags }}"
+            - name: Check out repository
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - name: Build 
+              run: |
+                  msys2 -c 'chmod 755 cli'
+                  msys2 -c './clitool build -b Debug -c gnu -t all'
