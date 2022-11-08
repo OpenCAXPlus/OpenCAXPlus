@@ -1,4 +1,4 @@
-name: Linux SDK GNU Build
+name: SDK GNU Build
 on:
     push:
         paths:
@@ -15,7 +15,7 @@ env:
     CI: false
 jobs:
     build:
-        runs-on: [self-hosted, Linux]
+        runs-on: [self-hosted, Linux, Mac, Windows]
         steps:
             - name: Basic info
               run: |
