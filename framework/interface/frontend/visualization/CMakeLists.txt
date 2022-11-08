@@ -1,0 +1,1 @@
+message(STATUS "Inside the framework's frontend visualization interface")
