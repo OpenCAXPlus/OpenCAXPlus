@@ -12,8 +12,6 @@ on:
     pull_request:
         branches:
             - 'main'
-env:
-    CI: false
 jobs:
     linux-mac-build:
         strategy:
@@ -52,6 +50,6 @@ jobs:
                   fetch-depth: 0
             - name: Build 
               run: |
-                  C:/msys64/usr/bin/bash -lc 'ls'
-                  C:/msys64/usr/bin/bash -lc 'chmod 755 clitool'
-                  C:/msys64/usr/bin/bash -lc './clitool build -b Debug -c gnu -t all'
+                  C:/msys64/msys2_shell -lc 'ls'
+                  C:/msys64/msys2_shell -lc 'chmod 755 clitool'
+                  C:/msys64/msys2_shell -lc './clitool build -b Debug -c gnu -t all'
