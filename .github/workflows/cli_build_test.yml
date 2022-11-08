@@ -1,4 +1,4 @@
-name: Linux cli Build and test
+name:  Cli Build and test
 on:
   push:
     paths:
@@ -11,6 +11,10 @@ on:
       - main
 jobs:
   build_test:
+    strategy:
+      fail-fast: true
+      matrix:
+          os: [Linux, macOS, Windows ]
     runs-on: [self-hosted, Linux]
     steps:
       - name: Basic info
