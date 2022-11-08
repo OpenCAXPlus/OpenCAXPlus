@@ -2,6 +2,7 @@ name: SDK GNU Build
 on:
     push:
         paths:
+            - '.github/workflows/sdk**'
             - 'framework/**'
             - 'starter/**'
             - 'toolkit/**'
