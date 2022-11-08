@@ -33,7 +33,7 @@ jobs:
               with:
                   fetch-depth: 0
             - uses: msys2/setup-msys2@v2
-              if: ${{ matrix.os == "Windows" }}
+              if: ${{ matrix.os == 'Windows' }}
             - name: Build 
               run: |
                   chmod 755 cli
