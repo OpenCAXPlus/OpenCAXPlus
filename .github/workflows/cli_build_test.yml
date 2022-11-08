@@ -4,6 +4,7 @@ on:
     paths:
       - 'cli/**'
       - 'go.mod'
+      - '.github/workflows/cli**'
     branches:
       - "*"
   pull_request:
