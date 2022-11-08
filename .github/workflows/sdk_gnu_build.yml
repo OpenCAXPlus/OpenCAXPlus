@@ -52,5 +52,5 @@ jobs:
                   fetch-depth: 0
             - name: Build 
               run: |
-                  C:/msys64/msys2 -c 'chmod 755 clitool'
-                  C:/msys64/msys2 -c './clitool build -b Debug -c gnu -t all'
+                  C:/msys64/usr/bin/bash -lc 'chmod 755 clitool'
+                  C:/msys64/usr/bin/bash -lc './clitool build -b Debug -c gnu -t all'
