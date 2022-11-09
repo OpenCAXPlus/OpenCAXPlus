@@ -110,18 +110,18 @@
             }
         },
         {
-            "name": "mac-gnu-Debug",
+            "name": "mac-gnu12-Debug",
             "inherits": "default",
             "displayName": "Mac x64 gnu Debug",
             "description": "Sets Ninja, gnu compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_C_COMPILER": "gcc-12",
+                "CMAKE_CXX_COMPILER": "g++-12"
             }
         },
         {
-            "name": "mac-gnu-Release",
-            "inherits": "mac-gnu-Debug",
+            "name": "mac-gnu12-Release",
+            "inherits": "mac-gnu12-Debug",
             "displayName": "Mac x64 gnu Release",
             "description": "Sets Ninja, gnu compilers, x64 architecture, release build, build/install directory",
             "cacheVariables": {
@@ -178,8 +178,8 @@
             "configurePreset": "mac-intel-Debug"
         },
         {
-            "name": "mac-gnu-Debug",
-            "configurePreset": "mac-gnu-Debug"
+            "name": "mac-gnu12-Debug",
+            "configurePreset": "mac-gnu12-Debug"
         },
         {
             "name": "mac-arm-Debug",
@@ -206,8 +206,8 @@
             "configurePreset": "mac-intel-Release"
         },
         {
-            "name": "mac-gnu-Release",
-            "configurePreset": "mac-gnu-Release"
+            "name": "mac-gnu12-Release",
+            "configurePreset": "mac-gnu12-Release"
         },
         {
             "name": "mac-arm-Release",
