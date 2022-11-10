@@ -6,4 +6,4 @@ include(FetchContent)
 #   GIT_TAG v1.11.0)
 # FetchContent_MakeAvailable(spdlog)
 
-add_subdirectory(spdlog)
+add_subdirectory(spdlog) # version 1.11.0
