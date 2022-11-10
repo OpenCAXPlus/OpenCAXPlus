@@ -1,9 +1,7 @@
 #ifndef _OCP_TOOLKIT_LOG_H_
 #define _OCP_TOOLKIT_LOG_H_
 
-#include "framework/interface/backend/log/log.h"
 #if !defined(__APPLE__) | !defined(__INTEL_COMPILER)
-
 #    include "spdlog/spdlog.h"
 #    ifndef NDEBUG
 // Release build
@@ -18,6 +16,8 @@
 #    define INFO(...)  spdlog::info(__VA_ARGS__)
 #    define WARN(...)  spdlog::warn(__VA_ARGS__)
 #    define ERRRO(...) spdlog::error(__VA_ARGS__)
+#else
+#    include <stdio.h>
 #endif
 void LoggerSetup();
 
