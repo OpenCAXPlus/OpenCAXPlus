@@ -1,4 +1,4 @@
-name:  Cli Build and test
+name:  Cli Build & test
 on:
   push:
     paths:
