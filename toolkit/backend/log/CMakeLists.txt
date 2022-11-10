@@ -10,9 +10,9 @@ set(OCP_TOOLKIT_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/log.h
     CACHE INTERNAL "")
 
-
-if(NOT APPLE AND NOT ${CMAKE_CXX_COMPILER_ID} MATCHES "Intel")
-    set(OCP_TOOLKIT_LINK
-        ${OCP_TOOLKIT_LINK} spdlog::spdlog
-        CACHE INTERNAL "")
+if((NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+   AND (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel"))
+  set(OCP_TOOLKIT_LINK
+      ${OCP_TOOLKIT_LINK} spdlog::spdlog
+      CACHE INTERNAL "")
 endif()
