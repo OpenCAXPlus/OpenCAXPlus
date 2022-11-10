@@ -2,7 +2,7 @@
 
 # OpenCAXPlusSDK
 
-[![SDK Build](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build.yml)
+[![SDK Build & Test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml)
 [![Cli Build and test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml)
 
 The sdk documentation [site](https://sdk.opencax.plus).
