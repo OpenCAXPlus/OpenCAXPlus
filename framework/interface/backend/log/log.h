@@ -43,4 +43,12 @@
 
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void print(const char* tp, const char* fmt, ...);
+
+#ifdef __cplusplus
+}
+#endif

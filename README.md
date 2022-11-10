@@ -12,6 +12,10 @@ This is a superbuild for framework, cli, plugins, toolkits
 For integerate all OpenCAXPlus projects and create an installer for user to use.
 For creating SDK landing page and user manual.
 
+## Dev environment
+
 ## For SDK developer
+
+The logging library (spdlog) does not work with intel oneapi (classic) on mac, so you are expected to see different logging style for mac+intel vs other OS compiler combinations.
 
 ## For SDK user

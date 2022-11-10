@@ -1,4 +1,7 @@
 #include "log.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 void print(const char* tp, const char* fmt, ...)
 {
     va_list args;
@@ -8,3 +11,7 @@ void print(const char* tp, const char* fmt, ...)
     vprintf(temp, args);
     va_end(args);
 }
+
+#ifdef __cplusplus
+}
+#endif
