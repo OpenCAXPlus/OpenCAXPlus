@@ -46,6 +46,7 @@
             "description": "Sets Ninja, intel compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
                 "FASP_DIR": "C:/Program Files (x86)/faspsolver",
+                "CMAKE_C_COMPILER": "icx",
                 "CMAKE_CXX_COMPILER": "icx"
             },
             "vendor": {
