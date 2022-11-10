@@ -10,5 +10,5 @@ set(OCP_TOOLKIT_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/log.h
     CACHE INTERNAL "")
 set(OCP_TOOLKIT_LINK
-    ${OCP_TOOLKIT_LINK} spdlog
+    ${OCP_TOOLKIT_LINK} spdlog::spdlog
     CACHE INTERNAL "")
