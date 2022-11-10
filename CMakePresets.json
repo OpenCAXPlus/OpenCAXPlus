@@ -277,6 +277,17 @@
             }
         },
         {
+            "name": "mac-gnu12-Release",
+            "configurePreset": "mac-gnu12-Release",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        },
+        {
             "name": "mac-arm-Release",
             "configurePreset": "mac-arm-Release",
             "output": {
@@ -334,6 +345,17 @@
         {
             "name": "mac-intel-Debug",
             "configurePreset": "mac-intel-Debug",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "mac-gnu12-Debug",
+            "configurePreset": "mac-gnu12-Debug",
             "output": {
                 "outputOnFailure": true
             },
