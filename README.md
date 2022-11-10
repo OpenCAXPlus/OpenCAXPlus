@@ -18,4 +18,7 @@ For creating SDK landing page and user manual.
 
 The logging library (spdlog) does not work with intel oneapi (classic) on mac, so you are expected to see different logging style for mac+intel vs other OS compiler combinations.
 
+You shouldn't use any toolkit code from the framework.
+Only use framework code from the toolkit if necessary, such as in the interface part of the toolkit. The core logic part of the toolkit should be as independent as possible.
+
 ## For SDK user
