@@ -37,9 +37,7 @@ jobs:
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Build 
-              run: |
-                source /opt/intel/oneapi/setvars.sh 
-                source clitool build -b Debug -c intel -t all
+              run: source clitool build -b Debug -c intel -t all
     mac-base:
         runs-on: [ self-hosted, macOS]
         steps:
@@ -64,9 +62,7 @@ jobs:
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Build 
-              run: |
-                source /opt/intel/oneapi/setvars.sh 
-                source clitool build -b Debug -c gnu12 -t all
+              run: source clitool build -b Debug -c gnu12 -t all
     windows-base:
         runs-on: [ self-hosted, Windows]
         steps:
