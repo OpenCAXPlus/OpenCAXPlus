@@ -1,7 +1,5 @@
 # OpenCAXPlusFramework
 
-[![Linux GNU Build](https://github.com/OpenCAEPlus/OpenCAXPlusFramework/actions/workflows/linux_gnu_build.yml/badge.svg)](https://github.com/OpenCAEPlus/OpenCAXPlusFramework/actions/workflows/linux_gnu_build.yml)
-
 The OpenCAXPlus Framework
 
 
