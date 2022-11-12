@@ -1,7 +1,5 @@
 # OpenCAXPlusCLI
 
-[![Linux Build and test](https://github.com/OpenCAEPlus/OpenCAXPlusCLI/actions/workflows/linux_build_test.yml/badge.svg)](https://github.com/OpenCAEPlus/OpenCAXPlusCLI/actions/workflows/linux_build_test.yml)
-
 The OpenCAXPlus CLI
 
 ### Common go command
