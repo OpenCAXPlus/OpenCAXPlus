@@ -8,12 +8,7 @@
 #   endif()
 # endif()
 
-set(OCP_TOOLKIT_SRC
-    ""
-    CACHE INTERNAL "" FORCE)
-set(OCP_TOOLKIT_LINK
-    ""
-    CACHE INTERNAL "" FORCE)
+
     
 add_subdirectory(backend)
 # add_subdirectory(frontend)

@@ -419,6 +419,7 @@ app)
         helperBuild
         ;;
     esac
+    rm CMakePresets.json
     cd -
 
     ;;

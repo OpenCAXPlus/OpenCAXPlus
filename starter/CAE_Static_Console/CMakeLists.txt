@@ -6,22 +6,26 @@ if(ENABLE_TEST)
   include(CTest)
 endif()
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake)
+message(STATUS "Cmake module path " ${CMAKE_MODULE_PATH})
+include(PrepareVariables)
+
 set(OCP_LIFECYCLE
     "CAE_Static_Console"
-    CACHE STRING "The program life cycle that user want to use")
+    CACHE INTERNAL "")
+
+set(OCP_BACKEND_LOG
+    "spdlog"
+    CACHE INTERNAL "")
 
 set(USER_PROGRAM
     CAEStatic
-    CACHE STRING "The user source program" FORCE)
+    CACHE INTERNAL "")
 
 set(OCP_ROOT
     ${CMAKE_CURRENT_SOURCE_DIR}/../..
-    CACHE FILEPATH "The OpenCAX+SDK root path" FORCE)
-message(STATUS "source dir" ${CMAKE_CURRENT_SOURCE_DIR} | ${OCP_ROOT})
-
-add_subdirectory(${OCP_ROOT}/framework/interface
-                 ${CMAKE_CURRENT_BINARY_DIR}/framework/interface)
-add_subdirectory(${OCP_ROOT}/toolkit ${CMAKE_CURRENT_BINARY_DIR}/toolkit)
+    CACHE INTERNAL "")
 
 set(USER_PROGRAM_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/InputRead.cpp
@@ -30,6 +34,8 @@ set(USER_PROGRAM_SRC
 set(USER_CXX
     ON
     CACHE BOOL "" FORCE)
+
+add_subdirectory(${OCP_ROOT}/toolkit ${CMAKE_CURRENT_BINARY_DIR}/toolkit)
 
 add_subdirectory(${OCP_ROOT}/framework/lifecycle
                  ${CMAKE_CURRENT_BINARY_DIR}/framework/lifecycle)

@@ -10,16 +10,7 @@ if(ENABLE_TEST)
   include(CTest)
 endif()
 
-set(OCP_ROOT
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    CACHE FILEPATH "The OpenCAX+SDK root path")
-
-set(OCP_SDK_SRC
-    ""
-    CACHE INTERNAL "")
-set(OCP_SDK_LINK
-    ""
-    CACHE INTERNAL "")
+include(PrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
