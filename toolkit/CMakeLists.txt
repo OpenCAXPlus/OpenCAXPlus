@@ -1,12 +1,12 @@
-if(PROJECT_IS_TOP_LEVEL)
-  cmake_minimum_required(VERSION 3.20)
+# if(PROJECT_IS_TOP_LEVEL)
+#   cmake_minimum_required(VERSION 3.20)
 
-  project(OpenCAXPlusToolkit)
-  option(ENABLE_TEST "Enable testing" ON)
-  if(ENABLE_TEST)
-    include(CTest)
-  endif()
-endif()
+#   project(OpenCAXPlusToolkit)
+#   option(ENABLE_TEST "Enable testing" ON)
+#   if(ENABLE_TEST)
+#     include(CTest)
+#   endif()
+# endif()
 
 set(OCP_TOOLKIT_SRC
     ""
@@ -14,6 +14,7 @@ set(OCP_TOOLKIT_SRC
 set(OCP_TOOLKIT_LINK
     ""
     CACHE INTERNAL "" FORCE)
+    
 add_subdirectory(backend)
 # add_subdirectory(frontend)
 

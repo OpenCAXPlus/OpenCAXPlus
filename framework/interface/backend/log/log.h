@@ -48,7 +48,7 @@ extern "C" {
 #endif
 
 void print(const char* tp, const char* fmt, ...);
-
+void LoggerSetup();
 #ifdef __cplusplus
 }
 #endif

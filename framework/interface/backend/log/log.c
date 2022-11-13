@@ -12,6 +12,9 @@ void print(const char* tp, const char* fmt, ...)
     va_end(args);
 }
 
+void LoggerSetup(){
+    
+}
 #ifdef __cplusplus
 }
 #endif

@@ -3,7 +3,7 @@
 
 # target_sources(ocp_fw_log PUBLIC log.c log.h)
 
-set(OCP_FRAMEWORK_SRC
-    ${OCP_FRAMEWORK_SRC} ${CMAKE_CURRENT_SOURCE_DIR}/log.c
+set(OCP_FRAMEWORK_BACKEND_LOG_SRC
+    ${CMAKE_CURRENT_SOURCE_DIR}/log.c
     ${CMAKE_CURRENT_SOURCE_DIR}/log.h
     CACHE INTERNAL "")

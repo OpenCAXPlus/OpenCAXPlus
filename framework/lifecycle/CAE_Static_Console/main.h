@@ -1,3 +1,5 @@
-#include "framework/interface/backend/log/log.h"
 
 void InputRead();
+void SimulationSetup();
+void SimulationRun();
+void ResultOutput();

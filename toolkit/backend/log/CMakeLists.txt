@@ -1,18 +1,7 @@
-add_subdirectory(external)
+add_library(log)
+add_library(OCP::Toolkit::Log ALIAS log)
 
-# add_library(ocp_tk_log STATIC) add_library(OCP::Toolkit::Log ALIAS ocp_tk_log)
+add_subdirectory(default)
 
-# target_sources(ocp_tk_log PUBLIC log.cpp log.h)
-# target_link_libraries(ocp_tk_log PUBLIC spdlog)
-
-set(OCP_TOOLKIT_SRC
-    ${OCP_TOOLKIT_SRC} ${CMAKE_CURRENT_SOURCE_DIR}/log.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/log.h
-    CACHE INTERNAL "")
-
-if(NOT ((${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-   AND (${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")))
-   set(OCP_TOOLKIT_LINK
-   ${OCP_TOOLKIT_LINK} spdlog::spdlog
-   CACHE INTERNAL "")
-endif()
+# if(NOT ((${CMAKE_SYSTEM_NAME} STREQUAL "Darwin") AND (${CMAKE_CXX_COMPILER_ID}
+# STREQUAL "Intel"))) add_subdirectory(spdlog) endif()
