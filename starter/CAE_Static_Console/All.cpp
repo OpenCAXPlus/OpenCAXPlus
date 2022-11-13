@@ -11,3 +11,4 @@ void InputRead()
 void SimulationSetup() { INFO("User Setup simulation"); }
 void SimulationRun() { INFO("User Run simulation"); }
 void ResultOutput() { INFO("User Output results"); }
+void Cleanup() { INFO("User Cleanup"); }

@@ -12,10 +12,10 @@ int main(int _argc, const char* _argv[])
     int status = 0;
 
     argc = _argc;
-    argv = malloc((_argc + 1) * sizeof *argv);
+    argv = (char**)malloc((_argc + 1) * sizeof *argv);
     for (int i = 0; i < argc; ++i) {
         size_t length = strlen(_argv[i]) + 1;
-        argv[i]       = malloc(length);
+        argv[i]       = (char*)malloc(length);
         memcpy(argv[i], _argv[i], length);
     }
     argv[argc] = NULL;

@@ -48,3 +48,7 @@ set(OCP_TOOLKIT_LINK
 set(USER_PROGRAM
     "CAEStaticConsole"
     CACHE STRING "The user program's name" FORCE)
+
+set(USER_PROGRAM_TARGET
+    ""
+    CACHE STRING "The user program's target" FORCE)
