@@ -9,6 +9,8 @@
     },
     "files.associations": {
         "*.f90": "FortranFreeForm",
-        "log.h": "c"
+        "log.h": "c",
+        "stdio.h": "c",
+        "fasp.h": "c"
     },
 }

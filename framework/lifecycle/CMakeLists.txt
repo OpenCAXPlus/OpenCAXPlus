@@ -1,3 +1,3 @@
 
 
-add_subdirectory(${OCP_LIFECYCLE})
+add_subdirectory(${OCP_LIFECYCLE} ${PROJECT_BINARY_DIR}/${USER_PROGRAM})

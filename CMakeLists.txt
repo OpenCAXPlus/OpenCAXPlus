@@ -18,4 +18,4 @@ option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 # his/her own functions")
 
 add_subdirectory(toolkit)
-add_subdirectory(framework)
+add_subdirectory(framework/lifecycle)

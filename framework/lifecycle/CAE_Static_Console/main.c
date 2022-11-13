@@ -1,8 +1,27 @@
 
-#include "main.h"
+#include "global.h"
 #include <stdio.h>
-int main(int argc, const char* argv[])
+#include <stdlib.h>
+#include <string.h>
+
+int    argc;
+char** argv;
+
+int main(int _argc, const char* _argv[])
 {
+    int status = 0;
+
+    argc = _argc;
+    argv = malloc((_argc + 1) * sizeof *argv);
+    for (int i = 0; i < argc; ++i) {
+        size_t length = strlen(_argv[i]) + 1;
+        argv[i]       = malloc(length);
+        memcpy(argv[i], _argv[i], length);
+    }
+    argv[argc] = NULL;
+    for (int i = 0; i < argc; ++i) {
+        printf("%s\n", argv[i]);
+    }
 
 #ifdef PREEVERYTHING
     PreEverything();
@@ -10,13 +29,15 @@ int main(int argc, const char* argv[])
     // INFO("CAE Static console application starting");
 #endif
 
-    InputRead(); // user defined input parameter
+    status = InputRead(); // user defined input parameter
 
-    SimulationSetup(); // user defined setup simulation
+    status = SimulationSetup(); // user defined setup simulation
 
-    SimulationRun(); // user defined run simulation
+    status = SimulationRun(); // user defined run simulation
 
-    ResultOutput(); // user defined output result
+    status = ResultOutput(); // user defined output result
+
+    status = Cleanup(); //
 
 #ifdef POSTEVERYTHING
     PostEverything();
@@ -24,5 +45,6 @@ int main(int argc, const char* argv[])
     // INFO("CAE Static console application finishing");
 #endif
 
-    return 0;
+    free(argv);
+    return status;
 }

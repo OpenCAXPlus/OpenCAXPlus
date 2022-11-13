@@ -1,7 +1,8 @@
-#include "main.h"
 #include "framework/interface/backend/log/log.h"
+#include "global.h"
 
-void InputRead() { INFO("Reading input"); }
-void SimulationSetup() { INFO("Setup simulation"); }
-void SimulationRun() { INFO("Run simulation"); }
-void ResultOutput() { INFO("Output results"); }
+int InputRead() { INFO("Reading input"); }
+int SimulationSetup() { INFO("Setup simulation"); }
+int SimulationRun() { INFO("Run simulation"); }
+int ResultOutput() { INFO("Output results"); }
+int Cleanup() { INFO("Cleanup"); }

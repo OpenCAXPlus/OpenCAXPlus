@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(CAESCStarter)
+project(FASPStarter)
 option(ENABLE_TEST "Enable testing" ON)
 if(ENABLE_TEST)
   include(CTest)
@@ -16,11 +16,15 @@ set(OCP_LIFECYCLE
     CACHE INTERNAL "")
 
 set(OCP_BACKEND_LOG
-    "spdlog"
+    "default"
+    CACHE INTERNAL "")
+
+set(OCP_BACKEND_SOLVER
+    "faspsolver"
     CACHE INTERNAL "")
 
 set(USER_PROGRAM
-    CAEStatic
+    ocpfaspstarter
     CACHE INTERNAL "")
 
 set(OCP_ROOT
@@ -28,11 +32,11 @@ set(OCP_ROOT
     CACHE INTERNAL "")
 
 set(USER_PROGRAM_SRC
-    ${CMAKE_CURRENT_SOURCE_DIR}/InputRead.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/fasp.c
     CACHE INTERNAL "")
 
 set(USER_CXX
-    ON
+    OFF
     CACHE BOOL "" FORCE)
 
 add_subdirectory(${OCP_ROOT}/toolkit ${PROJECT_BINARY_DIR}/toolkit)
