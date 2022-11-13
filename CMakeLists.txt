@@ -20,13 +20,11 @@ set(OCP_SDK_SRC
 set(OCP_SDK_LINK
     ""
     CACHE INTERNAL "")
-set(USER_SRC_PATH
-    "starter"
-    CACHE FILEPATH "The location where user defined his/her own functions")
+
+option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
+
+# set(USER_SRC_PATH "starter" CACHE FILEPATH "The location where user defined
+# his/her own functions")
 
 add_subdirectory(toolkit)
-add_subdirectory(framework/interface)
-
-add_subdirectory(${USER_SRC_PATH})
-
-add_subdirectory(framework/lifecycle)
+add_subdirectory(framework)
