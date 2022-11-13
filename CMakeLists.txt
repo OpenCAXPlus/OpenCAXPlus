@@ -9,7 +9,7 @@ option(ENABLE_TEST "Enable testing" ON)
 if(ENABLE_TEST)
   include(CTest)
 endif()
-
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(PrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)

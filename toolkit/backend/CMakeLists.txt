@@ -1,2 +1,2 @@
 add_subdirectory(log)
-# add_subdirectory(solver)
+add_subdirectory(solver)

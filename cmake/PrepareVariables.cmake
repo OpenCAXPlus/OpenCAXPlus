@@ -33,6 +33,11 @@ set(OCP_BACKEND_LOG
     CACHE STRING "The choice of OCP SDK backend log")
 set_property(CACHE OCP_BACKEND_LOG PROPERTY STRINGS default spdlog)
 
+set(OCP_BACKEND_SOLVER
+    "faspsolver"
+    CACHE STRING "The choice of OCP SDK backend solver")
+set_property(CACHE OCP_BACKEND_SOLVER PROPERTY STRINGS faspsolver)
+
 set(OCP_TOOLKIT_SRC
     ""
     CACHE INTERNAL "" FORCE)
