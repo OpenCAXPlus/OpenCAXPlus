@@ -21,4 +21,13 @@ The logging library (spdlog) does not work with intel oneapi (classic) on mac, s
 You shouldn't use any toolkit code from the framework.
 Only use framework code from the toolkit if necessary, such as in the interface part of the toolkit. The core logic part of the toolkit should be as independent as possible.
 
+Use devtool.py to 
+- build 
+- test
+- doc
+- package
+
 ## For SDK user
+Use provided cli to
+- initiate
+- build 
