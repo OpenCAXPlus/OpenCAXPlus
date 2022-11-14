@@ -31,13 +31,13 @@ jobs:
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Build 
-              run: source clitool build -b Debug -c gnu -t all
+              run: python3 devtool.py build -b Debug -c gnu -t all
     linux-gnu-test:
         needs: linux-gnu-build
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Test 
-              run: source clitool test -b Debug -c gnu
+              run: python3 devtool.py test -b Debug -c gnu
     linux-intel-build:
         needs: linux-base
         runs-on: [ self-hosted, Linux]
@@ -68,7 +68,7 @@ jobs:
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Build 
-              run: source clitool build -b Debug -c gnu12 -t all
+              run: python devtool.py build -b Debug -c gnu12 -t all
     mac-gnu-test:
         needs: mac-gnu-build
         runs-on: [ self-hosted, macOS]
@@ -105,7 +105,7 @@ jobs:
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Build 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash .github/sdk_msys_build.ps
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell python devtool.py build -b Debug -c intel -t all
     windows-mingw64-test:
         needs: windows-mingw64-build
         runs-on: [ self-hosted, Windows]
@@ -120,7 +120,7 @@ jobs:
                 shell: cmd
         steps:
             - name: Build 
-              run: clitool.bat build -b Debug -c intel -t all
+              run: python devtool.py build -b Debug -c intel -t all
     windows-intel-test:
         needs: windows-intel-build
         runs-on: [ self-hosted, Windows]
