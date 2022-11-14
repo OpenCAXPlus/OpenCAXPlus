@@ -1,15 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(FASPStarter)
-option(ENABLE_TEST "Enable testing" ON)
-if(ENABLE_TEST)
-  include(CTest)
-endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-                      ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake)
-message(STATUS "Cmake module path " ${CMAKE_MODULE_PATH})
-include(OCPEmbedUserProgram)
+
+set(OpenCAXPlusSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+find_package(OpenCAXPlusSDK)
+
 
 add_library(faspstarter STATIC)
 target_sources(faspstarter PUBLIC fasp.c)
@@ -26,4 +22,4 @@ ocp_embed_user_program(
   TARGET
   faspstarter
   ROOT
-  "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+  "${OCP_ROOT}")

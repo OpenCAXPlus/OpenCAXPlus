@@ -11,6 +11,11 @@ macro(OCP_Embed_User_Program)
   message(STATUS " SOLVER: ${OCPUser_SOLVER}")
   message(STATUS " LIFECYCLE: ${OCPUser_LIFECYCLE}")
 
+  option(ENABLE_TEST "Enable testing" ON)
+  if(ENABLE_TEST)
+    include(CTest)
+  endif()
+
   include(OCPPrepareVariables)
 
   set(OCP_LIFECYCLE
