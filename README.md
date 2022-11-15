@@ -25,7 +25,7 @@ Use devtool.py to
 - build: `python3 devtool.py build -c gnu -b Debug -t all`
 - test: `python3 devtool.py test -c gnu -b Debug `
 - doc
-- package
+- package: `python3 devtool.py test -c gnu -b Debug -t package`
 
 ## For SDK user
 Use provided cli to
