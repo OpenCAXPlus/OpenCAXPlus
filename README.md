@@ -22,8 +22,8 @@ You shouldn't use any toolkit code from the framework.
 Only use framework code from the toolkit if necessary, such as in the interface part of the toolkit. The core logic part of the toolkit should be as independent as possible.
 
 Use devtool.py to 
-- build 
-- test
+- build: `python3 devtool.py build -c gnu -b Debug -t all`
+- test: `python3 devtool.py test -c gnu -b Debug `
 - doc
 - package
 
