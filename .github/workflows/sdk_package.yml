@@ -19,13 +19,13 @@ jobs:
         with:
           fetch-depth: 0
   linux-gnu-package:
-    needs: linux-gnu-test
+    needs: linux-base
     runs-on: [self-hosted, Linux]
     steps:
       - name: Package
         run: python3 devtool.py test -b Debug -c gnu -t package
   linux-intel-package:
-    needs: linux-intel-test
+    needs: linux-base
     runs-on: [self-hosted, Linux]
     steps:
       - name: Test
