@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 project(
   OpenCAXPlusSDK
   DESCRIPTION "The OpenCAXPlus SDK"
+  VERSION 0.0.1
   LANGUAGES C CXX Fortran)
 
 option(ENABLE_TEST "Enable testing" ON)
@@ -19,3 +20,8 @@ option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
 add_subdirectory(toolkit)
 add_subdirectory(framework/lifecycle)
+add_subdirectory(starter)
+
+include(CPackConfig)
+
+install(DIRECTORY framework DESTINATION .)

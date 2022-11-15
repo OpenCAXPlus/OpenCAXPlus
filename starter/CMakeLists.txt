@@ -1,10 +1,15 @@
-cmake_minimum_required(VERSION 3.20)
+# fasp solver
+install(
+  DIRECTORY FASPSolver
+  DESTINATION ./starter
+  PATTERN out EXCLUDE)
+install(DIRECTORY .github DESTINATION ./starter/FASPSolver)
+install(FILES ../CMakePresets.json DESTINATION ./starter/FASPSolver)
 
-project(OpenCAXPlusStarter)
-option(ENABLE_TEST "Enable testing" ON)
-if(ENABLE_TEST)
-  include(CTest)
-endif()
-
-
-add_subdirectory(CAE_Static_Console)
+# CAE_Static_Console
+install(
+  DIRECTORY CAE_Static_Console
+  DESTINATION ./starter
+  PATTERN out EXCLUDE)
+install(DIRECTORY .github DESTINATION ./starter/CAE_Static_Console)
+install(FILES ../CMakePresets.json DESTINATION ./starter/CAE_Static_Console)
