@@ -12,10 +12,14 @@ target_sources(log_spdlog PUBLIC log.cpp log.h ${OCP_FRAMEWORK_BACKEND_LOG_SRC})
 target_include_directories(log_spdlog PUBLIC ${OCP_ROOT}/framework)
 target_link_libraries(log_spdlog PUBLIC spdlog::spdlog)
 
+# install( TARGETS log_spdlog LIBRARY DESTINATION
+# ./toolkit/backend/log/spdlog/lib ARCHIVE DESTINATION
+# ./toolkit/backend/log/spdlog/lib RUNTIME DESTINATION
+# ./toolkit/backend/log/spdlog/bin INCLUDES DESTINATION
+# ./toolkit/backend/log/spdlog/include)
+
 install(
-  TARGETS log_spdlog
-  LIBRARY DESTINATION ./toolkit/backend/log/spdlog/lib
-  ARCHIVE DESTINATION ./toolkit/backend/log/spdlog/lib
-  RUNTIME DESTINATION ./toolkit/backend/log/spdlog/bin
-  INCLUDES
-  DESTINATION ./toolkit/backend/log/spdlog/include)
+  DIRECTORY .
+  DESTINATION toolkit/backend/log/spdlog
+  COMPONENT ${PROJECT_NAME}
+  PATTERN "external" EXCLUDE)

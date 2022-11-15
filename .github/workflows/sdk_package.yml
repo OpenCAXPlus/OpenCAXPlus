@@ -1,0 +1,85 @@
+name: SDK Package
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  linux-base:
+    runs-on: [self-hosted, Linux]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+            echo "Log level: ${{ github.event.inputs.logLevel }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+  linux-gnu-package:
+    needs: linux-gnu-test
+    runs-on: [self-hosted, Linux]
+    steps:
+      - name: Package
+        run: python3 devtool.py test -b Debug -c gnu -t package
+  linux-intel-package:
+    needs: linux-intel-test
+    runs-on: [self-hosted, Linux]
+    steps:
+      - name: Test
+        run: python3 devtool.py test -b Debug -c intel -t package
+  mac-base:
+    runs-on: [self-hosted, macOS]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+            echo "Log level: ${{ github.event.inputs.logLevel }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+  mac-gnu-package:
+    needs: mac-base
+    runs-on: [self-hosted, macOS]
+    steps:
+      - name: Build
+        run: python3 devtool.py build -b Debug -c gnu12 -t package
+  mac-intel-package:
+    needs: mac-base
+    runs-on: [self-hosted, macOS]
+    steps:
+      - name: Build
+        run: python3 devtool.py build -b Debug -c intel -t package
+  windows-base:
+    runs-on: [self-hosted, Windows]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+            echo "Log level: ${{ github.event.inputs.logLevel }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+  windows-mingw64-package:
+    needs: windows-base
+    runs-on: [self-hosted, Windows]
+    steps:
+      - name: Build
+        run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c python3 devtool.py build -b Debug -c gnu -t package
+  windows-intel-package:
+    needs: windows-base
+    runs-on: [self-hosted, Windows]
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      - name: Build
+        run: python devtool.py build -b Debug -c intel -t package

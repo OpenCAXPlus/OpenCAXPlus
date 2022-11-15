@@ -108,10 +108,14 @@ def prepare_intel(args):
 
 def cmake_cmd(args, bin):
     cmakedir = ''
-    if args.system == "win32" and args.system == "intel" and args.cmake == "NotUsed":
-        cmakedir = "C:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\COMMON7\\IDE\\COMMONEXTENSIONS\\MICROSOFT\\CMAKE\\CMake\\bin"
+    if args.cmakedir == "NotUsed":
+        if args.system == "win32" and args.system == "intel":
+            cmakedir = "C:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\COMMON7\\IDE\\COMMONEXTENSIONS\\MICROSOFT\\CMAKE\\CMake\\bin"
+        else:
+            cmakedir = ''
     else:
         cmakedir = args.cmakedir
+
     return os.path.join(cmakedir, bin)
 
 
@@ -121,12 +125,14 @@ def command_test(args):
     {ctest} --preset="{args.system}-{args.compiler}-{args.build}"
     """
 
+
 def command_build(args):
     cmake = cmake_cmd(args, 'cmake')
     return f"""
     {cmake} --preset="{args.system}-{args.compiler}-{args.build}" -S "."
     {cmake} --build --preset="{args.system}-{args.compiler}-{args.build}" --target {args.target}
     """
+
 
 def command_app(app_location, args):
     return f"""

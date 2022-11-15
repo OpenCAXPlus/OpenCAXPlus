@@ -10,10 +10,13 @@ add_library(OCP::Toolkit::Log::default ALIAS log_default)
 target_sources(log_default PUBLIC log.h ${OCP_FRAMEWORK_BACKEND_LOG_SRC})
 target_include_directories(log_default PUBLIC ${OCP_ROOT}/framework)
 
+# install( TARGETS log_default LIBRARY DESTINATION
+# ./toolkit/backend/log/default/lib ARCHIVE DESTINATION
+# ./toolkit/backend/log/default/lib RUNTIME DESTINATION
+# ./toolkit/backend/log/default/bin INCLUDES DESTINATION
+# ./toolkit/backend/log/default/include)
+
 install(
-  TARGETS log_default
-  LIBRARY DESTINATION ./toolkit/backend/log/default/lib
-  ARCHIVE DESTINATION ./toolkit/backend/log/default/lib
-  RUNTIME DESTINATION ./toolkit/backend/log/default/bin
-  INCLUDES
-  DESTINATION ./toolkit/backend/log/default/include)
+  DIRECTORY .
+  DESTINATION toolkit/backend/log/default
+  COMPONENT ${PROJECT_NAME})

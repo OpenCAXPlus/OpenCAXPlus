@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.20)
-
 project(
   OpenCAXPlusSDK
   DESCRIPTION "The OpenCAXPlus SDK"
@@ -21,7 +20,15 @@ option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 add_subdirectory(toolkit)
 add_subdirectory(framework/lifecycle)
 add_subdirectory(starter)
+add_subdirectory(cli)
 
 include(CPackConfig)
 
-install(DIRECTORY framework DESTINATION .)
+install(
+  DIRECTORY framework
+  DESTINATION .
+  COMPONENT ${PROJECT_NAME})
+install(
+  DIRECTORY cmake
+  DESTINATION .
+  COMPONENT ${PROJECT_NAME})
