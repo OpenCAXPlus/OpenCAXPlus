@@ -31,3 +31,8 @@ Use devtool.py to
 Use provided cli to
 - initiate
 - build 
+
+
+## To use the SDK
+1.  fork this repository
+2.  (not fully ready yet) use our PPA at https://github.com/OpenCAXPlus/ppa
