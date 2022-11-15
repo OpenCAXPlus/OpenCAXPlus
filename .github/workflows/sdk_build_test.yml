@@ -105,13 +105,13 @@ jobs:
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Build 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell python devtool.py build -b Debug -c gnu -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash python3 devtool.py build -b Debug -c gnu -t all
     windows-mingw64-test:
         needs: windows-mingw64-build
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Test 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell python devtool.py test -b Debug -c gnu -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash python3 devtool.py test -b Debug -c gnu -t all
     windows-intel-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
