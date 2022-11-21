@@ -59,7 +59,26 @@ def parse_arguments():
         '-s', "--system", default=sys.platform, help="Choose test system, default to current system"
     )
     test_parser.add_argument(
-        '-d', "--cmakedir", default="NotUsed", help="Choose test cmake bin directory, default to 'NotUsed'"
+        '-d', "--cmakedir", default="", help="Choose test cmake bin directory, default to 'NotUsed'"
+    )
+
+    app_parser = subparsers.add_parser('app', help="app subcommand help")
+    app_parser.add_argument(
+        "-p", "--path", default='starter/FASPSolver',
+        help="Provide the path to the application. Either absolute path or relative to the SDK root")
+    app_parser.add_argument(
+        "-c", "--compiler", default='gnu', help="Choose compiler, could be 'intel', 'gnu'. Default gnu")
+    app_parser.add_argument(
+        "-b", "--build", default='Debug', help="Choose build type, could be 'Debug', 'Release'. Default Debug"
+    )
+    app_parser.add_argument(
+        '-t', "--target", default='all', help="Choose build target, default 'all'"
+    )
+    app_parser.add_argument(
+        '-s', "--system", default=sys.platform, help="Choose build system, default to current system"
+    )
+    app_parser.add_argument(
+        '-d', "--cmakedir", default="", help="Choose build cmake bin directory, default to ''"
     )
 
     # parse the args
@@ -128,17 +147,22 @@ def command_test(args):
 
 def command_build(args):
     cmake = cmake_cmd(args, 'cmake')
+    print(f"""
+    {cmake} --preset="{args.system}-{args.compiler}-{args.build}" -S "."
+    {cmake} --build --preset="{args.system}-{args.compiler}-{args.build}" --target {args.target}
+    """)
     return f"""
     {cmake} --preset="{args.system}-{args.compiler}-{args.build}" -S "."
     {cmake} --build --preset="{args.system}-{args.compiler}-{args.build}" --target {args.target}
     """
 
 
-def command_app(app_location, args):
+def command_app(args):
+    app_location = args.path
     return f"""
     cp CMakePresets.json {app_location}/
-    cp -r 
     cd {app_location}
+    echo "before build"
     """+command_build(args)+f"""
     rm CMakePresets.json
     cd -

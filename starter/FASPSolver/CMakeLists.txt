@@ -18,8 +18,10 @@ ocp_embed_user_program(
   SOLVER
   "faspsolver"
   NAME
-  "ocpfaspstarter"
+  "FASPSolver"
   TARGET
   faspstarter
   ROOT
-  "${OCP_ROOT}")
+  "${OCP_ROOT}"
+  COPYFILES
+  input.dat)

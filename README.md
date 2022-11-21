@@ -27,6 +27,29 @@ Use devtool.py to
 - doc
 - package: `python3 devtool.py test -c gnu -b Debug -t package`
 
+### Basic usage
+First, clone the repository
+```sh
+git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
+```
+Then, use the devtool.py script to for basic usages, such as:
+- build for all target
+```sh
+python3 devtool.py build -d Debug -c gnu -t all
+```
+- run test
+```sh
+python3 devtool.py test -d Release -c gnu
+```
+- build a starter, such as the FASPSolver
+```sh
+python3 devtool.py app -d Debug -c gnu -t all -p starter/FASPSolver
+```
+- run the built starter
+```sh
+python3 devtool.py app -d Debug -c gnu -t run -p starter/FASPSolver
+```
+
 ## For SDK user
 Use provided cli to
 - initiate

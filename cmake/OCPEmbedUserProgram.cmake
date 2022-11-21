@@ -1,6 +1,7 @@
 macro(OCP_Embed_User_Program)
   set(options USE_CXX)
   set(oneValueArgs LIFECYCLE LOG SOLVER TARGET NAME ROOT)
+  set(multiValueArgs COPYFILES)
   cmake_parse_arguments(OCPUser "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
@@ -10,6 +11,7 @@ macro(OCP_Embed_User_Program)
   message(STATUS " LOG: ${OCPUser_LOG}")
   message(STATUS " SOLVER: ${OCPUser_SOLVER}")
   message(STATUS " LIFECYCLE: ${OCPUser_LIFECYCLE}")
+  message(STATUS " COPYFILES: ${OCPUser_COPYFILES}")
 
   option(ENABLE_TEST "Enable testing" ON)
   if(ENABLE_TEST)
@@ -55,4 +57,21 @@ macro(OCP_Embed_User_Program)
                                                  OCP::Toolkit::Solver)
   add_subdirectory(${OCP_ROOT}/framework/lifecycle
                    ${PROJECT_BINARY_DIR}/framework/lifecycle)
+
+  add_custom_target(
+    run
+    DEPENDS ${USER_PROGRAM}
+    COMMENT "Run the ${USER_PROGRAM}")
+
+  add_custom_command(
+    TARGET run
+    COMMAND ${PROJECT_BINARY_DIR}/${USER_PROGRAM}/${USER_PROGRAM}
+    VERBATIM)
+
+  foreach(file IN LISTS ${OCPUser_COPYFILES})
+    message(STATUS "Copy file "${file} " to "
+                   ${PROJECT_BINARY_DIR}/${USER_PROGRAM}/${file})
+    configure_file(${file} ${PROJECT_BINARY_DIR}/${USER_PROGRAM}/${file}
+                   COPYONLY)
+  endforeach()
 endmacro(OCP_Embed_User_Program)
