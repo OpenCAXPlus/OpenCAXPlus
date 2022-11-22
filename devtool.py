@@ -128,7 +128,7 @@ def prepare_intel(args):
 def cmake_cmd(args, bin):
     cmakedir = ''
     if args.cmakedir == "NotUsed":
-        if args.system == "win32" and args.system == "intel":
+        if args.system == "win32" and args.compiler == "intel":
             cmakedir = "C:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\COMMON7\\IDE\\COMMONEXTENSIONS\\MICROSOFT\\CMAKE\\CMake\\bin"
         else:
             cmakedir = ''

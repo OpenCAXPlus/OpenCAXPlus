@@ -18,6 +18,15 @@ go test -coverprofile=ignore.out
 go tool cover -html=ignore.out
 ```
 
+```sh
+cobra-cli init --author "Xiaoxing Cheng hello@chengxiaoxing.me" --viper
+cobra-cli add app
+cobra-cli add create -p 'appCmd'
+cobra-cli add build -p 'appCmd'
+cobra-cli add run -p 'appCmd'
+cobra-cli add test -p 'appCmd'
+cobra-cli add pack -p 'appCmd'
+```
 ### Design
 
 The cli has three subcommends:

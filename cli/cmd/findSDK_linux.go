@@ -1,0 +1,25 @@
+package cmd
+
+import (
+	"OpenCAXPlus/cli/pkg"
+	"os"
+	"path/filepath"
+)
+
+func findSDK() string {
+	path := ""
+	cwd, _ := os.Getwd()
+	paths := [5]string{
+		"/opt/opencaxplus/sdk",
+		"/opt/opencaxplussdk",
+		filepath.Join(os.Getenv("HOME"), "opencaxplus", "sdk"),
+		filepath.Join(os.Getenv("HOME"), "opencaxplussdk"),
+		filepath.Join(cwd, "..", "..", "OpenCAXPlusSDK"),
+	}
+	for i := 0; i < len(paths); i++ {
+		if pkg.FindFolder(paths[i]) {
+			path = paths[i]
+		}
+	}
+	return path
+}

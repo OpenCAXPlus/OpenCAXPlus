@@ -113,7 +113,7 @@
             }
         },
         {
-            "name": "mac-gnu12-Debug",
+            "name": "darwin-gnu-Debug",
             "inherits": "default",
             "displayName": "Mac x64 gnu Debug",
             "description": "Sets Ninja, gnu compilers, x64 architecture, debug build, build/install directory",
@@ -123,8 +123,8 @@
             }
         },
         {
-            "name": "mac-gnu12-Release",
-            "inherits": "mac-gnu12-Debug",
+            "name": "darwin-gnu-Release",
+            "inherits": "darwin-gnu-Debug",
             "displayName": "Mac x64 gnu Release",
             "description": "Sets Ninja, gnu compilers, x64 architecture, release build, build/install directory",
             "cacheVariables": {
@@ -132,7 +132,7 @@
             }
         },
         {
-            "name": "mac-intel-Debug",
+            "name": "darwin-intel-Debug",
             "inherits": "default",
             "displayName": "Mac x64 intel Debug",
             "description": "Sets Ninja, intel compilers, x64 architecture, debug build, build/install directory",
@@ -142,8 +142,8 @@
             }
         },
         {
-            "name": "mac-intel-Release",
-            "inherits": "mac-intel-Debug",
+            "name": "darwin-intel-Release",
+            "inherits": "darwin-intel-Debug",
             "displayName": "Mac x64 intel Release",
             "description": "Sets Ninja, intel compilers, x64 architecture, release build, build/install directory",
             "cacheVariables": {
@@ -151,7 +151,7 @@
             }
         },
         {
-            "name": "mac-arm-Debug",
+            "name": "darwin-arm-Debug",
             "inherits": "default",
             "displayName": "Mac arm clang Debug",
             "description": "Sets Ninja, clang compilers, arm architecture, debug build, build/install directory",
@@ -162,8 +162,8 @@
             }
         },
         {
-            "name": "mac-arm-Release",
-            "inherits": "mac-arm-Debug",
+            "name": "darwin-arm-Release",
+            "inherits": "darwin-arm-Debug",
             "displayName": "Mac arm clang Release",
             "description": "Sets Ninja, clang compilers, arm architecture, release build, build/install directory",
             "cacheVariables": {
@@ -177,16 +177,16 @@
             "configurePreset": "default"
         },
         {
-            "name": "mac-intel-Debug",
-            "configurePreset": "mac-intel-Debug"
+            "name": "darwin-intel-Debug",
+            "configurePreset": "darwin-intel-Debug"
         },
         {
-            "name": "mac-gnu12-Debug",
-            "configurePreset": "mac-gnu12-Debug"
+            "name": "darwin-gnu-Debug",
+            "configurePreset": "darwin-gnu-Debug"
         },
         {
-            "name": "mac-arm-Debug",
-            "configurePreset": "mac-arm-Debug"
+            "name": "darwin-arm-Debug",
+            "configurePreset": "darwin-arm-Debug"
         },
         {
             "name": "linux-intel-Debug",
@@ -205,16 +205,16 @@
             "configurePreset": "windows-intel-Debug"
         },
         {
-            "name": "mac-intel-Release",
-            "configurePreset": "mac-intel-Release"
+            "name": "darwin-intel-Release",
+            "configurePreset": "darwin-intel-Release"
         },
         {
-            "name": "mac-gnu12-Release",
-            "configurePreset": "mac-gnu12-Release"
+            "name": "darwin-gnu-Release",
+            "configurePreset": "darwin-gnu-Release"
         },
         {
-            "name": "mac-arm-Release",
-            "configurePreset": "mac-arm-Release"
+            "name": "darwin-arm-Release",
+            "configurePreset": "darwin-arm-Release"
         },
         {
             "name": "linux-intel-Release",
@@ -268,8 +268,8 @@
             }
         },
         {
-            "name": "mac-intel-Release",
-            "configurePreset": "mac-intel-Release",
+            "name": "darwin-intel-Release",
+            "configurePreset": "darwin-intel-Release",
             "output": {
                 "outputOnFailure": true
             },
@@ -279,8 +279,8 @@
             }
         },
         {
-            "name": "mac-gnu12-Release",
-            "configurePreset": "mac-gnu12-Release",
+            "name": "darwin-gnu-Release",
+            "configurePreset": "darwin-gnu-Release",
             "output": {
                 "outputOnFailure": true
             },
@@ -290,8 +290,8 @@
             }
         },
         {
-            "name": "mac-arm-Release",
-            "configurePreset": "mac-arm-Release",
+            "name": "darwin-arm-Release",
+            "configurePreset": "darwin-arm-Release",
             "output": {
                 "outputOnFailure": true
             },
@@ -345,8 +345,8 @@
             }
         },
         {
-            "name": "mac-intel-Debug",
-            "configurePreset": "mac-intel-Debug",
+            "name": "darwin-intel-Debug",
+            "configurePreset": "darwin-intel-Debug",
             "output": {
                 "outputOnFailure": true
             },
@@ -356,8 +356,8 @@
             }
         },
         {
-            "name": "mac-gnu12-Debug",
-            "configurePreset": "mac-gnu12-Debug",
+            "name": "darwin-gnu-Debug",
+            "configurePreset": "darwin-gnu-Debug",
             "output": {
                 "outputOnFailure": true
             },
@@ -367,8 +367,8 @@
             }
         },
         {
-            "name": "mac-arm-Debug",
-            "configurePreset": "mac-arm-Debug",
+            "name": "darwin-arm-Debug",
+            "configurePreset": "darwin-arm-Debug",
             "output": {
                 "outputOnFailure": true
             },
