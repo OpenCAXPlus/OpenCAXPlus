@@ -10,6 +10,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // buildCmd represents the build command
@@ -21,12 +22,14 @@ var sdkBuildCmd = &cobra.Command{
 	current system type, and the cmake bin directory.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// build, _ := cmd.Flags().GetString("build")
-		build := pkg.GetFlag(cmd, "build")
-		compiler := pkg.GetFlag(cmd, "compiler")
-		target := pkg.GetFlag(cmd, "target")
-		system := pkg.GetFlag(cmd, "system")
-		cmakedir := pkg.GetFlag(cmd, "cmakedir")
-		log.Debug("build called", build, compiler, target, system, cmakedir)
+
+		// build := pkg.GetFlag(cmd, "sdk.build")
+		build := viper.GetString("sdk.build")
+		compiler := viper.GetString("sdk.compiler")
+		target := viper.GetString("sdk.target")
+		system := viper.GetString("sdk.system")
+		cmakedir := viper.GetString("sdk.cmakedir")
+		log.Debug("sdk build called ", build, compiler, target, system, cmakedir)
 		pkg.SdkBuild(build, compiler, target, system, cmakedir)
 	},
 }
@@ -45,9 +48,18 @@ func init() {
 	// buildCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 	sdkBuildCmd.Flags().StringP("build", "b", "Debug", "Set the build type for your OpenCAXPlus app. Default is Debug.")
+	viper.BindPFlag("sdk.build", sdkBuildCmd.Flags().Lookup("build"))
+	viper.SetDefault("sdk.build", "Debug")
 	sdkBuildCmd.Flags().StringP("compiler", "c", "gnu", "Set the compiler for your OpenCAXPlus app. Default is gnu.")
+	viper.BindPFlag("sdk.compiler", sdkBuildCmd.Flags().Lookup("compiler"))
+	viper.SetDefault("sdk.compiler", "gnu")
 	sdkBuildCmd.Flags().StringP("target", "t", "all", "Set the build target for your OpenCAXPlus app. Default is all.")
+	viper.BindPFlag("sdk.target", sdkBuildCmd.Flags().Lookup("target"))
+	viper.SetDefault("sdk.target", "all")
 	sdkBuildCmd.Flags().StringP("system", "s", runtime.GOOS, "Set the system for your OpenCAXPlus app. Default is the current system.")
+	viper.BindPFlag("sdk.system", sdkBuildCmd.Flags().Lookup("system"))
+	viper.SetDefault("sdk.system", runtime.GOOS)
 	sdkBuildCmd.Flags().StringP("cmakedir", "d", "", "Set the cmake command directory. Default is system path.")
-
+	viper.BindPFlag("sdk.cmakedir", sdkBuildCmd.Flags().Lookup("cmakedir"))
+	viper.SetDefault("sdk.cmakedir", "")
 }
