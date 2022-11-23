@@ -7,8 +7,7 @@ macro(OCP_Custom_User_Program)
   message(STATUS " Adding your program ...")
   message(STATUS " ROOT: ${OCPUser_ROOT}")
   message(STATUS " PROGRAM_NAME: ${OCPUser_NAME}")
-  message(STATUS " LOG: ${OCPUser_LOG}")
-  message(STATUS " SOLVER: ${OCPUser_SOLVER}")
+  message(STATUS " TOOLS: ${OCPUser_TOOLS}")
 
   option(ENABLE_TEST "Enable testing" ON)
   if(ENABLE_TEST)
@@ -21,12 +20,8 @@ macro(OCP_Custom_User_Program)
       Custom_Console
       CACHE INTERNAL "")
 
-  set(OCP_BACKEND_LOG
-      ${OCPUser_LOG}
-      CACHE INTERNAL "")
-
-  set(OCP_BACKEND_SOLVER
-      ${OCPUser_SOLVER}
+  set(OCP_TOOLS
+      ${OCPUser_TOOLS}
       CACHE INTERNAL "")
 
   set(USER_PROGRAM
@@ -42,8 +37,7 @@ macro(OCP_Custom_User_Program)
   target_include_directories(
     ${OCPUser_TARGET} PUBLIC ${OCP_ROOT}/toolkit
                              ${OCP_ROOT}/framework/lifecycle/${OCP_LIFECYCLE})
-  target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::Toolkit::Log
-                                                 OCP::Toolkit::Solver)
+  target_link_libraries(${OCPUser_TARGET} PUBLIC ${OCP_TOOLS})
   add_subdirectory(${OCP_ROOT}/framework/lifecycle
                    ${PROJECT_BINARY_DIR}/framework/lifecycle)
 

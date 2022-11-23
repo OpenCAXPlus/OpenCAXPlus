@@ -4,11 +4,11 @@
 # set(OCP_TOOLKIT_INCLUDE ${OCP_TOOLKIT_INCLUDE} ${OCP_ROOT} CACHE INTERNAL "")
 
 message(STATUS log src "${OCP_FRAMEWORK_BACKEND_LOG_SRC}")
-add_library(log_default)
-add_library(OCP::Toolkit::Log::default ALIAS log_default)
+add_library(default_log)
+add_library(OCP::Toolkit::default_log ALIAS default_log)
 
-target_sources(log_default PUBLIC log.h ${OCP_FRAMEWORK_BACKEND_LOG_SRC})
-target_include_directories(log_default PUBLIC ${OCP_ROOT}/framework)
+target_sources(default_log PUBLIC log.h ${OCP_FRAMEWORK_BACKEND_LOG_SRC})
+target_include_directories(default_log PUBLIC ${OCP_ROOT}/framework)
 
 # install( TARGETS log_default LIBRARY DESTINATION
 # ./toolkit/backend/log/default/lib ARCHIVE DESTINATION
@@ -18,5 +18,5 @@ target_include_directories(log_default PUBLIC ${OCP_ROOT}/framework)
 
 install(
   DIRECTORY .
-  DESTINATION toolkit/backend/log/default
+  DESTINATION toolkit/default_log
   COMPONENT ${PROJECT_NAME})

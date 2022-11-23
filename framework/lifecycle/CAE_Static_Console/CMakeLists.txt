@@ -1,9 +1,9 @@
 if(OCP_SDK_INSIDE)
   # set(USER_PROGRAM_SRC dummy.c) set(USER_INCLUDE ${OCP_ROOT})
+  message(STATUS "Inside ocp sdk, user target" ${OCP_LIFECYCLE} ${OCP_ROOT})
   add_library(user_target STATIC)
   target_sources(user_target PUBLIC dummy.c)
-  target_link_libraries(user_target PUBLIC OCP::Toolkit::Log
-                                           OCP::Toolkit::Solver)
+  target_link_libraries(user_target PUBLIC OCP::Toolkit)
   target_include_directories(
     user_target PUBLIC ${OCP_ROOT}
                        ${OCP_ROOT}/framework/lifecycle/${OCP_LIFECYCLE})

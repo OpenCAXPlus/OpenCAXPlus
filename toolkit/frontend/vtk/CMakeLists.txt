@@ -1,1 +1,0 @@
-message(STATUS "Inside the vtk plugin")
