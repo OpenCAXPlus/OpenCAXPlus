@@ -5,7 +5,7 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"OpenCAXPlus/cli/pkg/app"
+	"OpenCAXPlus/cli/pkg"
 	"os"
 	"path/filepath"
 
@@ -32,7 +32,7 @@ To get all available starter templates, you can use the command:
 		}
 		sdk := findSDK()
 		log.Debug("create called", sdk, template, path)
-		app.Create(sdk, template, path)
+		pkg.AppCreate(sdk, template, path)
 	},
 }
 

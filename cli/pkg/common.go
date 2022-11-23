@@ -1,6 +1,7 @@
-package app
+package pkg
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
@@ -62,4 +63,20 @@ func executeCommand(system string, compiler string, commands string) {
 	cmdIn.Close()
 	cmd.Wait()
 	log.Info("Command finished")
+}
+
+func commandBuild(build string, compiler string, target string, system string, cmakedir string) string {
+	cmake := cmakeCmd(compiler, system, cmakedir)
+	cmd := fmt.Sprintf(`%s --preset="%s-%s-%s" -S "."
+%s --build --preset="%s-%s-%s" --target %s
+`, cmake, system, compiler, build, cmake, system, compiler, build, target)
+	return cmd
+}
+
+func commandTest(build string, compiler string, target string, system string, cmakedir string) string {
+	cmake := cmakeCmd(compiler, system, cmakedir)
+	cmd := fmt.Sprintf(`%s --preset="%s-%s-%s" -S "."
+%s --build --preset="%s-%s-%s" --target %s
+`, cmake, system, compiler, build, cmake, system, compiler, build, target)
+	return cmd
 }

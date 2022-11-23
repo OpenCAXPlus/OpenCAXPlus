@@ -11,7 +11,7 @@ go mod tidy
 go get ...
 go work init ...
 go work use ./test
-go build -o ...
+go build -o ../ocp
 go test
 go test -cover
 go test -coverprofile=ignore.out
@@ -26,6 +26,8 @@ cobra-cli add build -p 'appCmd'
 cobra-cli add run -p 'appCmd'
 cobra-cli add test -p 'appCmd'
 cobra-cli add pack -p 'appCmd'
+cobra-cli add sdk
+cobra-cli add build -p 'sdkCmd'
 ```
 ### Design
 

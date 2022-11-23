@@ -13,13 +13,10 @@ import (
 // appCmd represents the app command
 var appCmd = &cobra.Command{
 	Use:   "app",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Manage your OpenCAXPlus application",
+	Long: `You can use this command to create, build, test and run your application.
+Run app --help for more information.
+	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("app called")
 	},

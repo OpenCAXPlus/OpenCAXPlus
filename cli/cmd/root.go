@@ -49,7 +49,6 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -59,13 +58,13 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	} else {
 		// Find home directory.
-		home, err := os.UserHomeDir()
+		cwd, err := os.Getwd()
 		cobra.CheckErr(err)
 
 		// Search config in home directory with name ".cli" (without extension).
-		viper.AddConfigPath(home)
+		viper.AddConfigPath(cwd)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".cli")
+		viper.SetConfigName("ocp")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
