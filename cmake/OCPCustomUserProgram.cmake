@@ -37,7 +37,7 @@ macro(OCP_Custom_User_Program)
   target_include_directories(
     ${OCPUser_TARGET} PUBLIC ${OCP_ROOT}/toolkit
                              ${OCP_ROOT}/framework/lifecycle/${OCP_LIFECYCLE})
-  target_link_libraries(${OCPUser_TARGET} PUBLIC ${OCP_TOOLS})
+  target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::Toolkit)
   add_subdirectory(${OCP_ROOT}/framework/lifecycle
                    ${PROJECT_BINARY_DIR}/framework/lifecycle)
 

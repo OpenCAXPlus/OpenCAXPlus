@@ -10,7 +10,7 @@ add_library(OCP::Toolkit::spdlog ALIAS log_spdlog)
 
 target_sources(log_spdlog PUBLIC log.cpp log.h ${OCP_FRAMEWORK_BACKEND_LOG_SRC})
 target_include_directories(log_spdlog PUBLIC ${OCP_ROOT}/framework)
-target_link_libraries(log_spdlog PUBLIC spdlog::spdlog)
+target_link_libraries(log_spdlog PUBLIC OCP::External::spdlog)
 
 # install( TARGETS log_spdlog LIBRARY DESTINATION
 # ./toolkit/backend/log/spdlog/lib ARCHIVE DESTINATION

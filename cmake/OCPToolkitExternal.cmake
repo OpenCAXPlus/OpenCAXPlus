@@ -1,13 +1,12 @@
 macro(OCP_Toolkit_External)
   set(options)
-  set(oneValueArgs SOFTWARE VERSION TYPE)
+  set(oneValueArgs SOFTWARE VERSION)
   cmake_parse_arguments(OCPUser "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
   message(STATUS " Adding external library ...")
   message(STATUS " Software : ${OCPUser_SOFTWARE}")
   message(STATUS " Version  : ${OCPUser_VERSION}")
-  message(STATUS " Type     : ${OCPUser_TYPE}")
 
   if(NOT EXISTS
      ${CMAKE_CURRENT_SOURCE_DIR}/${OCPUser_SOFTWARE}-${OCPUser_VERSION})
@@ -24,7 +23,7 @@ macro(OCP_Toolkit_External)
 
   install(
     DIRECTORY .
-    DESTINATION toolkit/${OCPUser_TYPE}/${OCPUser_SOFTWARE}/external
+    DESTINATION toolkit/${OCPUser_SOFTWARE}/external
     COMPONENT ${PROJECT_NAME}
     PATTERN "${OCPUser_SOFTWARE}-${OCPUser_VERSION}" EXCLUDE)
 
