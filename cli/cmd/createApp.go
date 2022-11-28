@@ -13,9 +13,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// createCmd represents the create command
-var createCmd = &cobra.Command{
-	Use:   "create",
+// appCmd represents the app command
+var appCmd = &cobra.Command{
+	Use:   "app",
 	Short: "Create a new OpenCAXPlus application",
 	Long: `Create a new OpenCAXPlus application from the starter template in the OpenCAXPlusSDK.
 You can create a new application using a specific starter template. For example:
@@ -32,23 +32,23 @@ To get all available starter templates, you can use the command:
 		}
 		sdk := findSDK()
 		log.Debug("create called", sdk, template, path)
-		pkg.AppCreate(sdk, template, path)
+		pkg.CreateApp(sdk, template, path)
 	},
 }
 
 func init() {
-	appCmd.AddCommand(createCmd)
+	createCmd.AddCommand(appCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// createCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// appCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// createCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	createCmd.Flags().BoolP("list", "l", false, "List all available starter templates")
-	createCmd.Flags().StringP("template", "t", "Custom_Console", "Choose the starter template you want to use")
-	createCmd.Flags().StringP("path", "p", "", "Set the path for your OpenCAXPlus app. If it is empty then the template name will be used as folder name.")
+	// appCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	appCmd.Flags().BoolP("list", "l", false, "List all available starter templates")
+	appCmd.Flags().StringP("template", "t", "Custom_Console", "Choose the starter template you want to use")
+	appCmd.Flags().StringP("path", "p", "", "Set the path for your OpenCAXPlus app. If it is empty then the template name will be used as folder name.")
 }

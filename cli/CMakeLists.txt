@@ -1,4 +1,4 @@
-set(cliname pax)
+set(cliname ocp)
 add_custom_target(
   cli ALL
   DEPENDS ${cliname}
@@ -7,11 +7,11 @@ add_custom_target(
 add_custom_command(
   OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${cliname}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  COMMAND go build -o ${cliname}
+  COMMAND go build -o ../${cliname}
   COMMENT "Build the OpenCAXPlusSDK cli"
   VERBATIM)
 
 install(
-  FILES ${cliname}
+  FILES ../${cliname}
   DESTINATION cli
   COMPONENT ${PROJECT_NAME})
