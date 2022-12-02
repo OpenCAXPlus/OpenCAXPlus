@@ -11,6 +11,8 @@
         "*.f90": "FortranFreeForm",
         "log.h": "c",
         "stdio.h": "c",
-        "fasp.h": "c"
+        "fasp.h": "c",
+        "csr.h": "c",
+        "vec.h": "c"
     },
 }
