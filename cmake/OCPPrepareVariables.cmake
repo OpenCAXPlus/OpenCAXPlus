@@ -10,10 +10,10 @@ set(OCP_ROOT
 option(USER_CXX "The user program is using C++" OFF)
 
 set(OCP_LIFECYCLE
-    "Console"
+    "BasicConsole"
     CACHE STRING "The program life cycle that user want to use" FORCE)
 
-set_property(CACHE OCP_LIFECYCLE PROPERTY STRINGS Console GUI)
+set_property(CACHE OCP_LIFECYCLE PROPERTY STRINGS BasicConsole GUI)
 
 # set(OCP_TOOLKIT_SRC "" CACHE INTERNAL "" FORCE) set(OCP_TOOLKIT_LINK "" CACHE
 # INTERNAL "" FORCE)

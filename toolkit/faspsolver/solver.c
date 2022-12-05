@@ -1,9 +1,5 @@
 #include "solver.h"
-void solve() {}
 
-void CSR_transform(OCPCSR, faspCSR){
-
-}
 void CSR_solve(ocpCSRSolverContextPtr context)
 {
     // convert OCPCSRMat format to the fasp CSR format

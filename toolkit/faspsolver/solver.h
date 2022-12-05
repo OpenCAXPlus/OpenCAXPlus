@@ -1,6 +1,8 @@
-#include "interface/backend/solver.h"
+#include "backend/solver.h"
 
 #include "fasp.h"
+#include "fasp_functs.h"
+
 void solve();
 
 // OCPCSRSolverPtr FASP_OCPCSRSolver;

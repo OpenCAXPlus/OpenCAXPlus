@@ -7,10 +7,10 @@ typedef enum {
 
 typedef char ocpName[128];
 
-typedef void* ocpContext;
+typedef void*       ocpContext;
 typedef ocpContext* ocpContextPtr;
 
 // typedef void* ocpCallback;
 
-typedef ocpStatus  ocpCallback(ocpContext a);
+typedef ocpStatus    ocpCallback(ocpContext a);
 typedef ocpCallback* ocpCallbackPtr;

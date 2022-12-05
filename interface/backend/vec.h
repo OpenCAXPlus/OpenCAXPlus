@@ -1,5 +1,5 @@
-#ifndef _OCP_FRAMEWORK_VEC_H_
-#define _OCP_FRAMEWORK_VEC_H_
+#ifndef _OCP_FRAMEWORK_BACKEND_VEC_H_
+#define _OCP_FRAMEWORK_BACKEND_VEC_H_
 
 /**
  * @brief simple vector

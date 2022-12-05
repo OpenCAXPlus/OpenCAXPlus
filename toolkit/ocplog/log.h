@@ -1,4 +1,4 @@
-#include "interface/backend/log.h"
+#include "backend/log.h"
 
 void ocplog_Info(const char* fmt, ...);
 void ocplog_Debug(const char* fmt, ...);

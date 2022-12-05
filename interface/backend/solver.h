@@ -1,9 +1,9 @@
 #ifndef _OCP_FRAMEWORK_BACKEND_SOLVER_H_
 #define _OCP_FRAMEWORK_BACKEND_SOLVER_H_
 
-#include "interface/backend/csr.h"
-#include "interface/backend/vec.h"
-#include "interface/common.h"
+#include "backend/csr.h"
+#include "backend/vec.h"
+#include "common/common.h"
 /**
  * @brief The CSR solver context for Ax=b
  */
@@ -29,4 +29,4 @@ ocpStatus OCPSolve(OCPCSRSolverPtr s, ocpCSRSolverContextPtr c){
     return s(c);
 }
 
-#endif _OCP_FRAMEWORK_BACKEND_SOLVER_H_
+#endif 

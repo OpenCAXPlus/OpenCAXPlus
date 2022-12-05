@@ -9,7 +9,7 @@
  * The column indices for row i are stored in colIndex from i(inclusive),
  * i+1 (exclusive).
  */
-typedef struct _ocpCSRMatFloat64{
+typedef struct _ocpCSRMatFloat64 {
     int     nrow;     // number of rows
     int     ncol;     // number of columns, this is not necessary for data storage
     int     n;        // number of non zero values
@@ -20,4 +20,4 @@ typedef struct _ocpCSRMatFloat64{
 typedef ocpCSRMatFloat64* ocpCSRMatFloat64Ptr;
 
 // ocpStatus OCPContextCreate(ocpContextPtr a, ocpName name);
-#endif _OCP_FRAMEWORK_BACKEND_CSR_H_
+#endif 

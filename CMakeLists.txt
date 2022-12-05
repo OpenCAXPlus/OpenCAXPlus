@@ -14,16 +14,20 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
-# set(USER_SRC_PATH "starter" CACHE FILEPATH "The location where user defined
-# his/her own functions")
-
-
+add_subdirectory(interface)
 add_subdirectory(toolkit)
-add_subdirectory(framework/lifecycle)
+add_subdirectory(lifecycle)
 add_subdirectory(starter)
 add_subdirectory(cli)
 
 include(CPackConfig)
+# include(GNUInstallDirs)
+
+# include(CMakePackageConfigHelpers)
+# write_basic_package_version_file(
+#   "OpenCAXPlusSDKConfigVersion.cmake"
+#   VERSION ${PROJECT_VERSION}
+#   COMPATIBILITY SameMajorVersion)
 
 install(
   DIRECTORY framework
@@ -33,3 +37,8 @@ install(
   DIRECTORY cmake
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
+
+# if(PROJECT_IS_TOP_LEVEL) cmake_minimum_required(VERSION 3.20)
+
+# project(OpenCAXPlusFramework) option(ENABLE_TEST "Enable testing" ON)
+# if(ENABLE_TEST) include(CTest) endif() endif()

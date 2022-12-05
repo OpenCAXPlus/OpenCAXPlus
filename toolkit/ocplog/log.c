@@ -1,5 +1,5 @@
 #include <stdarg.h>
-
+#include <stdio.h>
 
 void ocplog_Info(const char* fmt, ...)
 {

@@ -6,16 +6,15 @@ if(OCP_SDK_INSIDE)
   target_sources(${USER_PROGRAM} PUBLIC main.c dummy.c)
   foreach(target ${OCP_TOOLS})
     message(STATUS "Adding tool " ${target})
-    add_subdirectory(${OCP_ROOT}/toolkit/${target}
-                     ${PROJECT_BINARY_DIR}/toolkit/${target})
+    # add_subdirectory(${OCP_ROOT}/toolkit/${target})
     set_property(
       TARGET ${OCPUser_TARGET}
       APPEND
       PROPERTY INTERFACE_LINK_LIBRARIES OCP::Toolkit::${target})
   endforeach()
-  target_include_directories(
-    ${USER_PROGRAM} PUBLIC ${OCP_ROOT}/framework
-                           ${OCP_ROOT}/framework/lifecycle/${OCP_LIFECYCLE})
+  target_link_libraries(${USER_PROGRAM} PUBLIC OCP::Interface)
+  target_include_directories(${USER_PROGRAM}
+                             PUBLIC ${OCP_ROOT}/lifecycle/${OCP_LIFECYCLE})
 endif()
 
 if(ENABLE_TEST)

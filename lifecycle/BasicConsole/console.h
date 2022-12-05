@@ -1,4 +1,4 @@
-#include "interface/backend/log.h"
+#include "backend/log.h"
 
 extern int    argc;
 extern char** argv;
