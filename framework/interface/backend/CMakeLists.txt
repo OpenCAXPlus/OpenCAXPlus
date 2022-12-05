@@ -1,4 +1,4 @@
-
-add_subdirectory(log)
-add_subdirectory(data)
-add_subdirectory(context)
+set(OCP_FRAMEWORK_BACKEND_SRC
+    ${CMAKE_CURRENT_SOURCE_DIR}/csr.h ${CMAKE_CURRENT_SOURCE_DIR}/log.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/vec.h ${CMAKE_CURRENT_SOURCE_DIR}/solver.h
+    CACHE INTERNAL "")

@@ -1,7 +1,10 @@
 #include "solver.h"
 void solve() {}
 
-void CSR_solve(OCPContextCSRSolverPtr context)
+void CSR_transform(OCPCSR, faspCSR){
+
+}
+void CSR_solve(ocpCSRSolverContextPtr context)
 {
     // convert OCPCSRMat format to the fasp CSR format
     dCSRmat faspCSR;
@@ -12,6 +15,8 @@ void CSR_solve(OCPContextCSRSolverPtr context)
     faspCSR.IA  = context->A->indexPtr;
     faspCSR.JA  = context->A->colIndex;
 
+    // CSR_transform();
+    // vector_transform();
     dvector b;
     b.row = context->b->nrow;
     b.val = context->b->data;

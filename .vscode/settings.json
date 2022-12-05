@@ -13,6 +13,13 @@
         "stdio.h": "c",
         "fasp.h": "c",
         "csr.h": "c",
-        "vec.h": "c"
+        "vec.h": "c",
+        "Algebra.C": "cpp",
+        "Discretization.C": "cpp",
+        "Cell.C": "cpp",
+        "Parallel.C": "cpp",
+        "Main.C": "cpp",
+        "Poisson.C": "cpp",
+        "PoissonProblems.C": "cpp"
     },
 }

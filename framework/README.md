@@ -1,18 +1,12 @@
-# OpenCAXPlusFramework
+# Framework
 
-The OpenCAXPlus Framework
+Framework is the core part of the SDK which defines the rules for both library developers and application developers. 
 
+The rules come in two aspects:
+1. header files in the [**interface**](/framework/interface/README) folder that defines the function interfaces, data structures to connect any external libraries to the SDK.
+2. main functions in the [**lifecycle**](/framework/lifecycle/README) folder that defines various application execution procedures.
 
-- framework contains the core framework part
-    - apps contains several example main programs using the OpenCAXPlus Framework
-        - gui, example gui program
-        - console, example console program
-    - frontend, the gui part of the framework
-    - backend, the calculation part of the framework
-    - communication, the networking part of the framework
-    - pbs, the portable batch system which performs job scheduling 
-- plugins contains the official plugins for the OpenCAXPlus Framework
-    - backend, plugins for the backend including IO, mesh, FEM, solver, etc.
-    - frontend, plugins for the frontend including CAD, qt, vtk, etc.
-- docs contains the documentation
-- dev is to be used by external developers and define the necessary functions 
+By following these rules,
+- library developers no longer need to worry about how to connect with other libraries
+- smoothen the learning curve for using a new libraries by giving the same type of library a uniform calling interface
+- application developers can easily connect different libraries and switch between alternative libraries 

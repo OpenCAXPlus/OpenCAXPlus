@@ -1,13 +1,7 @@
-# set(OCP_SDK_SRC
-#     ""
-#     CACHE INTERNAL "" FORCE)
-# set(OCP_SDK_LINK
-#     ""
-#     CACHE INTERNAL "" FORCE)
+# set(OCP_SDK_SRC "" CACHE INTERNAL "" FORCE) set(OCP_SDK_LINK "" CACHE INTERNAL
+# "" FORCE)
 
-# set(OCP_FRAMEWORK_SRC
-#     ""
-#     CACHE INTERNAL "" FORCE)
+# set(OCP_FRAMEWORK_SRC "" CACHE INTERNAL "" FORCE)
 
 set(OCP_ROOT
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -16,27 +10,20 @@ set(OCP_ROOT
 option(USER_CXX "The user program is using C++" OFF)
 
 set(OCP_LIFECYCLE
-    "CAE_Static_Console"
+    "Console"
     CACHE STRING "The program life cycle that user want to use" FORCE)
-set_property(
-  CACHE OCP_LIFECYCLE
-  PROPERTY STRINGS
-           CAE_Static_Console
-           CAE_Static_GUI
-           CAE_Dynamic_Console
-           CAE_Dynamic_GUI
-           CAM_Console
-           CAM_GUI)
+
+set_property(CACHE OCP_LIFECYCLE PROPERTY STRINGS Console GUI)
 
 # set(OCP_TOOLKIT_SRC "" CACHE INTERNAL "" FORCE) set(OCP_TOOLKIT_LINK "" CACHE
 # INTERNAL "" FORCE)
 
 set(OCP_TOOLS
-    default_log
+    ocplog faspsolver
     CACHE INTERNAL "" FORCE)
 
 set(USER_PROGRAM
-    "CAEStaticConsole"
+    "BasicConsole"
     CACHE STRING "The user program's name" FORCE)
 
 set(USER_PROGRAM_TARGET

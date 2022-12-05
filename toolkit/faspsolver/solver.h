@@ -1,5 +1,8 @@
-#include "interface/backend/context/solver.h"
+#include "interface/backend/solver.h"
 
 #include "fasp.h"
 void solve();
-void CSR_solve(dOCPContextCSRSolverPtr context);
+
+// OCPCSRSolverPtr FASP_OCPCSRSolver;
+
+ocpStatus FASP_OCPCSRSolver(ocpCSRSolverContextPtr context);

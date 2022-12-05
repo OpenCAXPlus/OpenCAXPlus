@@ -15,12 +15,12 @@ add_library(ocp_toolkit INTERFACE IMPORTED GLOBAL)
 add_library(OCP::Toolkit ALIAS ocp_toolkit)
 
 # message(STATUS "The OCP backend logging library " ${OCP_BACKEND_LOG})
-message(STATUS "The toolkit to be linked " ${OCP_TOOLS})
-foreach(target ${OCP_TOOLS})
-  message(STATUS "Adding tool " ${target})
-  add_subdirectory(${target})
-  set_property(
-    TARGET ocp_toolkit
-    APPEND
-    PROPERTY INTERFACE_LINK_LIBRARIES OCP::Toolkit::${target})
-endforeach()
+# message(STATUS "The toolkit to be linked " ${OCP_TOOLS})
+# foreach(target ${OCP_TOOLS})
+#   message(STATUS "Adding tool " ${target})
+#   add_subdirectory(${target})
+#   set_property(
+#     TARGET ocp_toolkit
+#     APPEND
+#     PROPERTY INTERFACE_LINK_LIBRARIES OCP::Toolkit::${target})
+# endforeach()
