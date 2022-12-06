@@ -1,11 +1,6 @@
-#include "console.h"
-#include "spdlog/log.h"
+#include "App.h"
 
-OCPInfoTypePtr        OCPInfo        = spdlog_Info;
-OCPDebugTypePtr       OCPDebug       = spdlog_Null;
-// OCPSetLogLevelTypePtr OCPSetLogLevel = spdlog_set_level;
+OCPInfoType  OCPInfo  = spdlog_Info;
+OCPDebugType OCPDebug = spdlog_Null;
 
-// OCPInfoTypePtr  OCPInfo  = info;
-// OCPDebugTypePtr OCPDebug = debug;
-// #define OCPInfo(...)  spdlog::info(__VA_ARGS__)
-// #define OCPDebug(...) spdlog::debug(__VA_ARGS__)
+OCPCSRSolverType OCPCSRSolver = FASP_CSRSolver;

@@ -1,3 +1,4 @@
+#include "ocp/backend/log.h"
 #include "ocp/backend/solver.h"
 
 #include "fasp.h"
@@ -7,11 +8,9 @@
 extern "C" {
 #endif
 
-void solve();
+ocpStatus FASP_CSRSolver(ocpCSRSolverContextTypePtr context);
 
-// OCPCSRSolverPtr FASP_OCPCSRSolver;
-
-ocpStatus FASP_OCPCSRSolver(ocpCSRSolverContextPtr context);
+extern OCPInfoType OCPInfo;
 
 #ifdef __cplusplus
 }

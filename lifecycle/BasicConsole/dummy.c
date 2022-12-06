@@ -1,6 +1,6 @@
 #include "console.h"
 #include <stdio.h>
-OCPInfoTypePtr  OCPInfo  = printf;
-OCPDebugTypePtr OCPDebug = printf;
+OCPInfoType  OCPInfo  = printf;
+OCPDebugType OCPDebug = printf;
 
 int App() { OCPInfo("Reading input"); }

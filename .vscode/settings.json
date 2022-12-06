@@ -20,6 +20,7 @@
         "Parallel.C": "cpp",
         "Main.C": "cpp",
         "Poisson.C": "cpp",
-        "PoissonProblems.C": "cpp"
+        "PoissonProblems.C": "cpp",
+        "solver.h": "c"
     },
 }

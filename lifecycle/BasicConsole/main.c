@@ -9,7 +9,7 @@ char** argv;
 
 int main(int _argc, const char* _argv[])
 {
-    // OCPInfo("The custom user program");
+    OCPInfo("The Basic Console program");
     // printf("The program");
     int status = 0;
 
@@ -21,9 +21,9 @@ int main(int _argc, const char* _argv[])
         memcpy(argv[i], _argv[i], length);
     }
     argv[argc] = NULL;
-    for (int i = 0; i < argc; ++i) {
-        printf("%s\n", argv[i]);
-    }
+    // for (int i = 0; i < argc; ++i) {
+    //     printf("%s\n", argv[i]);
+    // }
 
     // get command line options
 

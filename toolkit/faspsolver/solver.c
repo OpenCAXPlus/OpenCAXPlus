@@ -1,7 +1,8 @@
 #include "solver.h"
 
-void CSR_solve(ocpCSRSolverContextPtr context)
+ocpStatus FASP_CSRSolver(ocpCSRSolverContextTypePtr context)
 {
+    OCPInfo("Using the fasp csr solver through OCP wrapper");
     // convert OCPCSRMat format to the fasp CSR format
     dCSRmat faspCSR;
     faspCSR.col = context->A->ncol;

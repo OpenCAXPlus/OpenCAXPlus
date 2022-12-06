@@ -1,10 +1,11 @@
-#include "console.h"
-#include <stdio.h>
+#include "App.h"
+
 int App()
 {
-    // OCPSetLogLevel("Debug");
-    printf("%s", "What\n");
     OCPInfo("Testing info");
     OCPDebug("Testing debug");
+
+    ocpCSRSolverContextTypePtr context;
+    OCPCSRSolver(context);
     return 0;
 }
