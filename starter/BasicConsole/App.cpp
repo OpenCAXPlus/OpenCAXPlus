@@ -1,10 +1,10 @@
 #include "console.h"
-
-OCPInfo  = ocplog_Info;
-OCPDebug = ocplog_Debug;
+#include <stdio.h>
 int App()
 {
-    OCPInfo("Testing");
-    OCPDebug("Testing");
+    // OCPSetLogLevel("Debug");
+    printf("%s", "What\n");
+    OCPInfo("Testing info");
+    OCPDebug("Testing debug");
     return 0;
 }

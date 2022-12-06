@@ -5,12 +5,13 @@ macro(OCP_Embed_User_Program)
   cmake_parse_arguments(OCPUser "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
-  message(STATUS " Adding your program ...")
-  message(STATUS " ROOT: ${OCPUser_ROOT}")
-  message(STATUS " PROGRAM_NAME: ${OCPUser_NAME}")
-  message(STATUS " TOOLS: ${OCPUser_TOOLS}")
-  message(STATUS " LIFECYCLE: ${OCPUser_LIFECYCLE}")
-  message(STATUS " COPYFILES: ${OCPUser_COPYFILES}")
+  message(
+    STATUS "Adding your app ${OCPUser_NAME}, "
+           "using lifecycle ${OCPUser_LIFECYCLE}, "
+           "calling target ${OCPUser_TARGET}"
+           "copying files ${OCPUser_COPYFILES}"
+           "with tools ${OCPUser_TOOLS}, "
+           "OCP root at ${OCPUser_ROOT}")
 
   option(ENABLE_TEST "Enable testing" ON)
   if(ENABLE_TEST)
@@ -45,21 +46,19 @@ macro(OCP_Embed_User_Program)
 
   # add_subdirectory(${OCP_ROOT}/toolkit ${PROJECT_BINARY_DIR}/toolkit)
 
-  target_include_directories(
-    ${OCPUser_TARGET} PUBLIC ${OCP_ROOT}/toolkit
-                             ${OCP_ROOT}/framework/lifecycle/${OCP_LIFECYCLE})
+  add_subdirectory(${OCP_ROOT}/interface ${PROJECT_BINARY_DIR}/interface)
+
+  target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::Interface)
 
   foreach(target ${OCP_TOOLS})
     message(STATUS "Adding tool " ${target})
-    add_subdirectory(${OCP_ROOT}/toolkit/${target} ${PROJECT_BINARY_DIR}/toolkit/${target})
-    set_property(
-      TARGET ${OCPUser_TARGET}
-      APPEND
-      PROPERTY INTERFACE_LINK_LIBRARIES OCP::Toolkit::${target})
+    add_subdirectory(${OCP_ROOT}/toolkit/${target}
+                     ${PROJECT_BINARY_DIR}/toolkit/${target})
+    target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::Toolkit::${target})
   endforeach()
 
-  add_subdirectory(${OCP_ROOT}/framework/lifecycle
-                   ${PROJECT_BINARY_DIR}/framework/lifecycle)
+  add_subdirectory(${OCP_ROOT}/lifecycle/${OCP_LIFECYCLE}
+                   ${PROJECT_BINARY_DIR}/lifecycle/${OCP_LIFECYCLE})
 
   add_custom_target(
     run

@@ -6,11 +6,13 @@ set(OpenCAXPlusSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 find_package(OpenCAXPlusSDK)
 
 add_library(CAEStatic STATIC)
-target_sources(CAEStatic PUBLIC App.cpp)
+target_sources(CAEStatic PUBLIC App.cpp Define.cpp)
+target_include_directories(CAEStatic PUBLIC ${OCP_ROOT}/toolkit
+                                            ${OCP_ROOT}/lifecycle/BasicConsole)
 
 ocp_embed_user_program(
   LIFECYCLE
-  "Console"
+  "BasicConsole"
   TOOLS
   "spdlog;faspsolver"
   NAME

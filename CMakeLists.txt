@@ -23,16 +23,20 @@ add_subdirectory(cli)
 include(CPackConfig)
 # include(GNUInstallDirs)
 
-# include(CMakePackageConfigHelpers)
-# write_basic_package_version_file(
-#   "OpenCAXPlusSDKConfigVersion.cmake"
-#   VERSION ${PROJECT_VERSION}
-#   COMPATIBILITY SameMajorVersion)
+# include(CMakePackageConfigHelpers) write_basic_package_version_file(
+# "OpenCAXPlusSDKConfigVersion.cmake" VERSION ${PROJECT_VERSION} COMPATIBILITY
+# SameMajorVersion)
 
 install(
-  DIRECTORY framework
+  DIRECTORY interface
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
+
+install(
+  DIRECTORY lifecycle
+  DESTINATION .
+  COMPONENT ${PROJECT_NAME})
+
 install(
   DIRECTORY cmake
   DESTINATION .

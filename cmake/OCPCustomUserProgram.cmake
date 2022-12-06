@@ -4,10 +4,8 @@ macro(OCP_Custom_User_Program)
   cmake_parse_arguments(OCPUser "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
-  message(STATUS " Adding your program ...")
-  message(STATUS " ROOT: ${OCPUser_ROOT}")
-  message(STATUS " PROGRAM_NAME: ${OCPUser_NAME}")
-  message(STATUS " TOOLS: ${OCPUser_TOOLS}")
+  message(STATUS " Adding your app ${OCPUser_NAME}, "
+                 "with tools ${OCPUser_TOOLS}, " "OCP root at ${OCPUser_ROOT}")
 
   option(ENABLE_TEST "Enable testing" ON)
   if(ENABLE_TEST)

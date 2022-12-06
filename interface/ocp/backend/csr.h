@@ -19,5 +19,4 @@ typedef struct _ocpCSRMatFloat64 {
 } ocpCSRMatFloat64;
 typedef ocpCSRMatFloat64* ocpCSRMatFloat64Ptr;
 
-// ocpStatus OCPContextCreate(ocpContextPtr a, ocpName name);
 #endif 

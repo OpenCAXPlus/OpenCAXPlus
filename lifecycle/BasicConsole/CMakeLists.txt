@@ -1,20 +1,18 @@
 add_executable(${USER_PROGRAM})
+target_link_libraries(${USER_PROGRAM} PUBLIC OCP::Interface)
+target_include_directories(${USER_PROGRAM} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_sources(${USER_PROGRAM} PUBLIC main.c)
 
 if(OCP_SDK_INSIDE)
-  # set(USER_PROGRAM_SRC dummy.c) set(USER_INCLUDE ${OCP_ROOT})
-  # add_library(${USER_PROGRAM} STATIC)
-  target_sources(${USER_PROGRAM} PUBLIC main.c dummy.c)
+  target_sources(${USER_PROGRAM} PUBLIC dummy.c)
   foreach(target ${OCP_TOOLS})
-    message(STATUS "Adding tool " ${target})
-    # add_subdirectory(${OCP_ROOT}/toolkit/${target})
     set_property(
-      TARGET ${OCPUser_TARGET}
+      TARGET ${USER_PROGRAM}
       APPEND
-      PROPERTY INTERFACE_LINK_LIBRARIES OCP::Toolkit::${target})
+      PROPERTY LINK_LIBRARIES OCP::Toolkit::${target})
   endforeach()
-  target_link_libraries(${USER_PROGRAM} PUBLIC OCP::Interface)
-  target_include_directories(${USER_PROGRAM}
-                             PUBLIC ${OCP_ROOT}/lifecycle/${OCP_LIFECYCLE})
+else()
+  target_link_libraries(${USER_PROGRAM} PUBLIC ${USER_PROGRAM_TARGET})
 endif()
 
 if(ENABLE_TEST)

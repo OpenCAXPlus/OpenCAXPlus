@@ -1,7 +1,40 @@
 #include "log.h"
+#include <stdarg.h>
+#include <stdio.h>
 
-#if !defined(__APPLE__) | !defined(__INTEL_COMPILER)
-void LoggerSetup() { spdlog::info("Logger Setup"); }
-#else
-void LoggerSetup() { printf("Logger Setup"); }
-#endif
+// #define SPDLOGINFO(...)  spdlog::info(__VA_ARGS__)
+// #define SPDLOGDEBUG(...) spdlog::debug(__VA_ARGS__)
+
+// void spdlog_set_level(const char* lvl)
+// {
+//     if (strcmp(lvl, "Debug")) {
+//         spdlog::set_level(spdlog::level::debug);
+//     } else if (strcmp(lvl, "Info")) {
+//         spdlog::set_level(spdlog::level::debug);
+//     }
+// }
+
+void spdlog_Info(const char* fmt, ...)
+{
+    char formatted[1024] = {'\0'};
+
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(formatted, 1024, fmt, args);
+    va_end(args);
+    spdlog::info("{}", formatted);
+}
+
+void spdlog_Null(const char* fmt,...){
+
+}
+
+void spdlog_Debug(const char* fmt, ...)
+{
+    char    formatted[1024] = {'\0'};
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(formatted, 1024, fmt, args);
+    va_end(args);
+    spdlog::debug("{}", formatted);
+}

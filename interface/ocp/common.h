@@ -1,8 +1,8 @@
 typedef enum {
-    ocpOK,
-    ocpWarning,
-    ocpError,
-    ocpFatal,
+    ocpOK      = 0,
+    ocpWarning = 1,
+    ocpError   = 2,
+    ocpFatal   = 3,
 } ocpStatus;
 
 typedef char ocpName[128];

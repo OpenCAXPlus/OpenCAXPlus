@@ -1,6 +1,17 @@
-#include "backend/log.h"
+#include "ocp/backend/log.h"
 
-extern int    argc;
-extern char** argv;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-int App();
+extern int                   argc;
+extern char**                argv;
+extern OCPInfoTypePtr        OCPInfo;
+extern OCPDebugTypePtr       OCPDebug;
+// extern OCPSetLogLevelTypePtr OCPSetLogLevel;
+extern int                   App();
+// extern void                  OCPLog_Null(const char* fmt, ...);
+
+#ifdef __cplusplus
+}
+#endif

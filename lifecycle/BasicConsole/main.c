@@ -6,10 +6,11 @@
 
 int    argc;
 char** argv;
+
 int main(int _argc, const char* _argv[])
 {
     // OCPInfo("The custom user program");
-    printf("The program");
+    // printf("The program");
     int status = 0;
 
     argc = _argc;

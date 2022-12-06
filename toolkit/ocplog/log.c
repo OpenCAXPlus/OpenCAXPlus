@@ -1,3 +1,4 @@
+#include "log.h"
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -20,3 +21,5 @@ void ocplog_Debug(const char* fmt, ...)
     vprintf(temp, args);
     va_end(args);
 }
+
+void ocplog_Null(const char* fmt, ...){}
