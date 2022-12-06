@@ -21,8 +21,8 @@
                 "BUILD_TEST": "ON",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "FASP_DIR": "$env{FASP_DIR}",
-                "CMAKE_C_COMPILER": "icx",
-                "CMAKE_CXX_COMPILER": "icpx",
+                "CMAKE_C_COMPILER": "icc",
+                "CMAKE_CXX_COMPILER": "icpc",
                 "CPACK_GENERATOR": "TGZ",
                 "CPACK_COMPONENTS_ALL": "OpenCAXPlusSDK"
             },
@@ -80,8 +80,8 @@
             "displayName": "Linux x64 gnu Debug",
             "description": "Sets Ninja, gnu compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_C_COMPILER": "mpicc",
+                "CMAKE_CXX_COMPILER": "mpicxx"
             }
         },
         {

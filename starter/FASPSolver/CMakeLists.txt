@@ -6,13 +6,15 @@ set(OpenCAXPlusSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 find_package(OpenCAXPlusSDK)
 
 add_library(faspstarter STATIC)
-target_sources(faspstarter PUBLIC fasp.c)
+target_sources(faspstarter PUBLIC App.c App.h Define.c)
+target_include_directories(faspstarter PUBLIC ${OCP_ROOT}/toolkit
+                                            ${OCP_ROOT}/lifecycle/BasicConsole)
 
 ocp_embed_user_program(
   LIFECYCLE
-  "CAE_Static_Console"
+  "BasicConsole"
   TOOLS
-  "default_log;faspsolver"
+  "ocplog;faspsolver"
   NAME
   "FASPSolver"
   TARGET

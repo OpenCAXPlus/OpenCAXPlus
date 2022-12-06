@@ -3,4 +3,4 @@
 OCPInfoType  OCPInfo  = printf;
 OCPDebugType OCPDebug = printf;
 
-int App() { OCPInfo("Reading input"); }
+int App(int _argc, const char* _argv[]) { OCPInfo("Reading input"); }

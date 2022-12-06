@@ -58,7 +58,7 @@ macro(OCP_Embed_User_Program)
   endforeach()
 
   add_subdirectory(${OCP_ROOT}/lifecycle/${OCP_LIFECYCLE}
-                   ${PROJECT_BINARY_DIR}/lifecycle/${OCP_LIFECYCLE})
+                   ${PROJECT_BINARY_DIR}/${USER_PROGRAM})
 
   add_custom_target(
     run

@@ -4,15 +4,19 @@ project(mppstarter)
 
 set(OpenCAXPlusSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 find_package(OpenCAXPlusSDK)
+# find_package(MPI REQUIRED)
 
 add_library(mppstarter STATIC)
-target_sources(mppstarter PUBLIC src/Main.C src/Poisson.C src/PoissonProblems.C)
-
+target_sources(mppstarter PUBLIC src/App.cpp src/Poisson.cpp
+                                 src/PoissonProblems.cpp src/Define.cpp)
+target_include_directories(mppstarter PUBLIC ${OCP_ROOT}/toolkit
+                                             ${OCP_ROOT}/lifecycle/BasicConsole)
+# add_compile_options(-diag-disable=10441)
 ocp_embed_user_program(
   LIFECYCLE
-  "CAE_Static_Console"
+  "BasicConsole"
   TOOLS
-  "default_log;M++"
+  "spdlog;M++"
   NAME
   "Mpp"
   TARGET
@@ -20,4 +24,5 @@ ocp_embed_user_program(
   ROOT
   "${OCP_ROOT}"
   COPYFILES
-  conf/poisson.conf)
+  conf/poisson.conf
+  USE_CXX)

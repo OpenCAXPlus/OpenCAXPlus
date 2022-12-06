@@ -4,11 +4,11 @@
 extern "C" {
 #endif
 
-extern int          argc;
-extern char**       argv;
+// extern int          argc;
+// extern char**       argv;
 extern OCPInfoType  OCPInfo;
 extern OCPDebugType OCPDebug;
-extern int          App();
+extern int          App(int _argc, char* _argv[]);
 
 #ifdef __cplusplus
 }

@@ -1,5 +1,5 @@
 #include "console.h"
-#include "faspsolver/solver.h"
 #include "spdlog/log.h"
-
+#include "m++.h"
+#include "mpi.h"
 // extern OCPCSRSolverType OCPCSRSolver;
