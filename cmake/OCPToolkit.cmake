@@ -1,7 +1,7 @@
 macro(OCP_Toolkit)
   set(options NO_EXTERNAL)
   set(oneValueArgs)
-  set(multiValueArgs FILES)
+  set(multiValueArgs FILES TOOLS)
   cmake_parse_arguments(OCPToolkit "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
@@ -10,23 +10,35 @@ macro(OCP_Toolkit)
 
   cmake_path(GET CMAKE_CURRENT_SOURCE_DIR STEM OCPToolkit_NAME)
 
-  add_library(toolkit_${OCPToolkit_NAME})
-  add_library(OCP::Toolkit::${OCPToolkit_NAME} ALIAS toolkit_${OCPToolkit_NAME})
+  set(tkname toolkit_${OCPToolkit_NAME})
+  add_library(${tkname})
+  add_library(OCP::${tkname} ALIAS ${tkname})
 
-  target_sources(toolkit_${OCPToolkit_NAME} PUBLIC ${OCPToolkit_FILES})
-  target_link_libraries(toolkit_${OCPToolkit_NAME} PUBLIC OCP::Interface)
-  target_include_directories(toolkit_${OCPToolkit_NAME}
-                             PUBLIC ${OCP_ROOT}/toolkit)
+  target_sources(${tkname} PUBLIC ${OCPToolkit_FILES})
+  target_link_libraries(${tkname} PUBLIC OCP::Interface)
+  target_include_directories(${tkname} PUBLIC ${OCP_ROOT}/toolkit)
+
+  foreach(target ${OCPToolkit_TOOLS})
+    # set(toolkit_${target}_DIR ${PROJECT_BINARY_DIR}/toolkit/${target})
+    message(STATUS "Using tool " ${target} " " ${toolkit_${target}_DIR})
+    if(NOT TARGET toolkit_${target})
+      add_subdirectory(${OCP_ROOT}/toolkit/${target}
+                       ${PROJECT_BINARY_DIR}/toolkit/${target})
+    endif()
+    target_link_libraries(${tkname} PUBLIC OCP::toolkit_${target})
+  endforeach()
 
   if(NOT ${OCPToolkit_NO_EXTERNAL})
-    target_link_libraries(toolkit_${OCPToolkit_NAME}
-                          PUBLIC OCP::External::${OCPToolkit_NAME})
+    target_link_libraries(${tkname} PUBLIC OCP::External::${OCPToolkit_NAME})
     message(STATUS "Using toolkit ${OCPToolkit_NAME}, " "has external, "
-                   "source files ${OCPToolkit_FILES}")
+                   "source files ${OCPToolkit_FILES}"
+                   "link with tools ${OCPToolkit_TOOLS}")
+
     add_subdirectory(external)
   else()
     message(STATUS "Using toolkit ${OCPToolkit_NAME}, " "no external, "
-                   "source files ${OCPToolkit_FILES}")
+                   "source files ${OCPToolkit_FILES}, "
+                   "link with tools ${OCPToolkit_TOOLS}")
   endif()
 
   install(
@@ -34,5 +46,10 @@ macro(OCP_Toolkit)
     DESTINATION toolkit/${OCPToolkit_NAME}
     COMPONENT ${PROJECT_NAME}
     PATTERN "external" EXCLUDE)
+
+  export(
+    TARGETS ${tkname}
+    NAMESPACE OCP::
+    FILE ${tkname}Targets.cmake)
 
 endmacro(OCP_Toolkit)

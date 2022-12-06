@@ -8,8 +8,8 @@ macro(OCP_Embed_User_Program)
   message(
     STATUS "Adding your app ${OCPUser_NAME}, "
            "using lifecycle ${OCPUser_LIFECYCLE}, "
-           "calling target ${OCPUser_TARGET}"
-           "copying files ${OCPUser_COPYFILES}"
+           "calling target ${OCPUser_TARGET}, "
+           "copying files ${OCPUser_COPYFILES}, "
            "with tools ${OCPUser_TOOLS}, "
            "OCP root at ${OCPUser_ROOT}")
 
@@ -52,9 +52,11 @@ macro(OCP_Embed_User_Program)
 
   foreach(target ${OCP_TOOLS})
     message(STATUS "Adding tool " ${target})
-    add_subdirectory(${OCP_ROOT}/toolkit/${target}
-                     ${PROJECT_BINARY_DIR}/toolkit/${target})
-    target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::Toolkit::${target})
+    if(NOT TARGET toolkit_${target})
+      add_subdirectory(${OCP_ROOT}/toolkit/${target}
+                       ${PROJECT_BINARY_DIR}/toolkit/${target})
+    endif()
+    target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::toolkit_${target})
   endforeach()
 
   add_subdirectory(${OCP_ROOT}/lifecycle/${OCP_LIFECYCLE}

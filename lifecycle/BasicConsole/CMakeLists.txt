@@ -9,7 +9,7 @@ if(OCP_SDK_INSIDE)
     set_property(
       TARGET ${USER_PROGRAM}
       APPEND
-      PROPERTY LINK_LIBRARIES OCP::Toolkit::${target})
+      PROPERTY LINK_LIBRARIES OCP::toolkit_${target})
   endforeach()
 else()
   target_link_libraries(${USER_PROGRAM} PUBLIC ${USER_PROGRAM_TARGET})

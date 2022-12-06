@@ -32,3 +32,9 @@ Following run
 ```
 ./ocp build
 ```
+
+To build a starter, such as the BasicConsole starter
+
+```
+./ocp build -p starter/BasicConsole
+```

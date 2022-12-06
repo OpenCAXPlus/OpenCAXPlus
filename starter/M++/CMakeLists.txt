@@ -7,8 +7,8 @@ find_package(OpenCAXPlusSDK)
 # find_package(MPI REQUIRED)
 
 add_library(mppstarter STATIC)
-target_sources(mppstarter PUBLIC src/App.cpp src/Poisson.cpp
-                                 src/PoissonProblems.cpp src/Define.cpp)
+target_sources(mppstarter PUBLIC App.cpp Poisson.cpp PoissonProblems.cpp
+                                 Define.cpp)
 target_include_directories(mppstarter PUBLIC ${OCP_ROOT}/toolkit
                                              ${OCP_ROOT}/lifecycle/BasicConsole)
 # add_compile_options(-diag-disable=10441)

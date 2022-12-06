@@ -1,5 +1,5 @@
 #include "App.h"
-int App(int argc, const char* argv[])
+int App(int argc, char* argv[])
 {
     //---------------------//
     // Step 0. Preparation //
