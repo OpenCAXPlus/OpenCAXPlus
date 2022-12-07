@@ -129,8 +129,11 @@ jobs:
             - name: build 
               run: |
                 "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+                where cmake
+                where ninja
                 cmake --preset="windows-intel-Debug" -S "."
                 cmake --build --preset="windows-intel-Debug" --target all
+                ls out
     windows-intel-test:
         needs: windows-intel-build
         runs-on: [ self-hosted, Windows]
@@ -140,4 +143,6 @@ jobs:
         steps:
             - name: Test 
               run: |
+                "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+                where ctest
                 ctest --preset="windows-intel-Debug" 
