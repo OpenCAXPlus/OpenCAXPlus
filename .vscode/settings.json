@@ -22,6 +22,7 @@
         "Poisson.C": "cpp",
         "PoissonProblems.C": "cpp",
         "solver.h": "c",
-        "App.C": "cpp"
+        "App.C": "cpp",
+        "string.h": "c"
     },
 }

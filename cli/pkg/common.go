@@ -75,9 +75,9 @@ func executeCommand(commands string) {
 	cmdIn.Close()
 	if err := cmd.Wait(); err != nil {
 		if exiterr, ok := err.(*exec.ExitError); ok {
-			log.Printf("Exit Status: %d", exiterr.ExitCode())
+			log.Infof("Exit Status: %d", exiterr.ExitCode())
 		} else {
-			log.Fatalf("cmd.Wait: %v", err)
+			log.Errorf("cmd.Wait: %v", err)
 		}
 	}
 	log.Info("Command finished")
