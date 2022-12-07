@@ -16,7 +16,9 @@ jobs:
       fail-fast: true
       matrix:
           os: [Linux, macOS, Windows ]
-    runs-on: [self-hosted, Linux]
+          include:
+            - provider: self-hosted
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Basic info
         run: |
