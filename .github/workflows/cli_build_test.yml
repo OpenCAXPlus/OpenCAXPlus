@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
           echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
-          whoami
+          echo $PATH
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Build
