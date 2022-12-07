@@ -30,19 +30,19 @@ export CXX=icpc
 }
 
 func cmakeCmd(compiler string, cmakedir string, bin string) string {
-	system := runtime.GOOS
+	// system := runtime.GOOS
 	cmake := "cmake"
-	if system == "windows" {
-		if cmakedir == "default" {
-			cmakedir = "C:\\PROGRAM FILES\\CMAKE\\bin"
-		}
-		cmake = "\"" + filepath.Join(cmakedir, bin) + "\""
-	} else {
-		if cmakedir == "default" {
-			cmakedir = ""
-		}
-		cmake = filepath.Join(cmakedir, bin)
+	// if system == "windows" {
+	// 	if cmakedir == "default" {
+	// 		cmakedir = "C:\\PROGRAM FILES\\CMAKE\\bin"
+	// 	}
+	// 	cmake = "\"" + filepath.Join(cmakedir, bin) + "\""
+	// } else {
+	// }
+	if cmakedir == "default" {
+		cmakedir = ""
 	}
+	cmake = filepath.Join(cmakedir, bin)
 	return cmake
 }
 

@@ -23,7 +23,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Build
-        run: go build -o ocp cli/main.go
+        run: |
+          go build -o ocp cli/main.go
+          ls
   build_test_Mac:
     runs-on: [self-hosted, macOS]
     steps:
@@ -39,6 +41,7 @@ jobs:
         run: |
           export PATH=$PATH:/usr/local/go/bin
           go build -o ocp cli/main.go
+          ls
   build_test_Windows:
     runs-on: [self-hosted, Windows]
     steps:
@@ -54,3 +57,4 @@ jobs:
         run: |
           $env:PATH+=";C:\Program Files\Go\bin"
           go build -o ocp cli/main.go
+          ls
