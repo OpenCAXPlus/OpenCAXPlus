@@ -126,9 +126,11 @@ jobs:
             run:
                 shell: cmd
         steps:
-            - name: Build 
+            - name: setvars 
               run: |
                 "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+            - name: build
+              run: |
                 "C:\Program Files\cmake\bin\cmake" --preset="windows-intel-Debug" -S "."
                 "C:\Program Files\cmake\bin\cmake" --build --preset="windows-intel-Debug" --target all
     windows-intel-test:
