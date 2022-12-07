@@ -27,11 +27,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Build
         run: go build -o ocp cli/main.go
-      - name: Test cmd
-        run: |
-          cd cli/cmd
-          go test -cover
-      - name: Test pkg
-        run: |
-          cd cli/pkg
-          go test -cover
+      # - name: Test cmd
+      #   run: |
+      #     cd cli/cmd
+      #     go test -cover
+      # - name: Test pkg
+      #   run: |
+      #     cd cli/pkg
+      #     go test -cover
