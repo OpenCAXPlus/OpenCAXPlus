@@ -10,10 +10,10 @@ func commandPack(build string, compiler string, cmakedir string) string {
 	cpack := cmakeCmd(compiler, cmakedir, "cmake")
 	if runtime.GOOS == "windows" {
 		return fmt.Sprintf(`%s --build --preset="%s-%s-%s" --target package\r
-		`, cpack, system, compiler, build)
+`, cpack, system, compiler, build)
 	} else {
 		return fmt.Sprintf(`%s --build --preset="%s-%s-%s" --target package
-		`, cpack, system, compiler, build)
+`, cpack, system, compiler, build)
 	}
 }
 

@@ -25,10 +25,15 @@ current system type, and the cmake bin directory.`,
 		target := viper.GetString("build.target")
 		// system := viper.GetString("build.system")
 		cmake_dir := viper.GetString("cmake_dir")
-		path := viper.GetString("path")
-		log.Debug("build called", build_type, compiler, target, cmake_dir, path)
+		app_path := viper.GetString("app_path")
+		log.Debug("build called")
+		log.Debug("Build type is ", build_type)
+		log.Debug("Compiler is ", compiler)
+		log.Debug("Target is ", target)
+		log.Debug("Cmake dir is ", cmake_dir)
+		log.Debug("App Path is ", app_path)
 
-		pkg.Build(build_type, compiler, target, cmake_dir, path)
+		pkg.Build(build_type, compiler, target, cmake_dir, app_path)
 
 	},
 }
@@ -54,9 +59,9 @@ func init() {
 	buildCmd.Flags().StringP("target", "t", "all", "Set the build target for your OpenCAXPlus app. ")
 	viper.BindPFlag("build.target", buildCmd.Flags().Lookup("target"))
 	viper.SetDefault("build.target", "all")
-	buildCmd.Flags().StringP("path", "p", ".", "Set the path for your OpenCAXPlus app to be built. ")
-	viper.BindPFlag("path", buildCmd.Flags().Lookup("path"))
-	viper.SetDefault("path", "all")
+	buildCmd.Flags().StringP("app_path", "p", ".", "Set the path for your OpenCAXPlus app to be built. ")
+	viper.BindPFlag("app_path", buildCmd.Flags().Lookup("app_path"))
+	viper.SetDefault("app_path", ".")
 	buildCmd.Flags().StringP("cmake_dir", "d", "", "Set the cmake command directory. Default is system path.")
 	viper.BindPFlag("cmake_dir", buildCmd.Flags().Lookup("cmake_dir"))
 	viper.SetDefault("cmake_dir", "")

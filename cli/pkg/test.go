@@ -10,10 +10,10 @@ func commandTest(build string, compiler string, cmakedir string) string {
 	ctest := cmakeCmd(compiler, cmakedir, "ctest")
 	if runtime.GOOS == "windows" {
 		return fmt.Sprintf(`%s --preset="%s-%s-%s"\r
-		`, ctest, system, compiler, build)
+`, ctest, system, compiler, build)
 	} else {
 		return fmt.Sprintf(`%s --preset="%s-%s-%s"
-		`, ctest, system, compiler, build)
+`, ctest, system, compiler, build)
 	}
 }
 
