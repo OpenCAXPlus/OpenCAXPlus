@@ -24,7 +24,7 @@ export CC=icc
 export CXX=icpc
 `
 	case "windows":
-		source_intel = "\"C:/Program Files (x86)/Intel/oneAPI/setvars.bat\"\r\n"
+		source_intel = "\"C:/Program Files (x86)/Intel/oneAPI/setvars.bat\"" + newline()
 	}
 	return source_intel
 }
@@ -46,6 +46,13 @@ func cmakeCmd(compiler string, cmakedir string, bin string) string {
 	return cmake
 }
 
+func newline() string {
+	if runtime.GOOS == "windows" {
+		return "\r\n"
+	} else {
+		return "\n"
+	}
+}
 func executeCommand(commands string) {
 	system := runtime.GOOS
 	shell := "bash"
@@ -58,7 +65,7 @@ func executeCommand(commands string) {
 		shell = "cmd.exe"
 	}
 	log.Info("Start a new command ")
-	log.Info("\n" + commands)
+	log.Info(newline() + commands)
 	cmd := exec.Command(shell)
 	cmdIn, _ := cmd.StdinPipe()
 	cmd.Stdout = os.Stdout
@@ -66,6 +73,12 @@ func executeCommand(commands string) {
 	cmd.Start()
 	io.WriteString(cmdIn, commands)
 	cmdIn.Close()
-	cmd.Wait()
+	if err := cmd.Wait(); err != nil {
+		if exiterr, ok := err.(*exec.ExitError); ok {
+			log.Printf("Exit Status: %d", exiterr.ExitCode())
+		} else {
+			log.Fatalf("cmd.Wait: %v", err)
+		}
+	}
 	log.Info("Command finished")
 }

@@ -71,30 +71,30 @@ jobs:
               run: |
                 export PATH=$PATH:/usr/local/go/bin
                 go build -o ocp cli/main.go
-    # mac-gnu-build:
-    #     needs: mac-base
-    #     runs-on: [ self-hosted, macOS]
-    #     steps:
-    #         - name: Build 
-    #           run: ./ocp build -b Debug -c gnu -t all
-    # mac-gnu-test:
-    #     needs: mac-gnu-build
-    #     runs-on: [ self-hosted, macOS]
-    #     steps:
-    #         - name: Test 
-    #           run: ./ocp test -b Debug -c gnu
-    mac-intel-build:
+    mac-gnu-build:
         needs: mac-base
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Build 
-              run: ./ocp build -b Debug -c intel -t all
-    mac-intel-test:
-        needs: mac-intel-build
+              run: ./ocp build -b Debug -c gnu -t all
+    mac-gnu-test:
+        needs: mac-gnu-build
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Test 
-              run: ./ocp test -b Debug -c intel
+              run: ./ocp test -b Debug -c gnu
+    # mac-intel-build:
+    #     needs: mac-base
+    #     runs-on: [ self-hosted, macOS]
+    #     steps:
+    #         - name: Build 
+    #           run: ./ocp build -b Debug -c intel -t all
+    # mac-intel-test:
+    #     needs: mac-intel-build
+    #     runs-on: [ self-hosted, macOS]
+    #     steps:
+    #         - name: Test 
+    #           run: ./ocp test -b Debug -c intel
     windows-base:
         runs-on: [ self-hosted, Windows]
         steps:
