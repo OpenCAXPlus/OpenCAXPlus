@@ -69,18 +69,18 @@ jobs:
               run: |
                 export PATH=$PATH:/usr/local/go/bin
                 go build -o ocp cli/main.go
-    mac-gnu-build:
-        needs: mac-base
-        runs-on: [ self-hosted, macOS]
-        steps:
-            - name: Build 
-              run: ./ocp build -b Debug -c gnu12 -t all
-    mac-gnu-test:
-        needs: mac-gnu-build
-        runs-on: [ self-hosted, macOS]
-        steps:
-            - name: Test 
-              run: ./ocp test -b Debug -c gnu12
+    # mac-gnu-build:
+    #     needs: mac-base
+    #     runs-on: [ self-hosted, macOS]
+    #     steps:
+    #         - name: Build 
+    #           run: ./ocp build -b Debug -c gnu -t all
+    # mac-gnu-test:
+    #     needs: mac-gnu-build
+    #     runs-on: [ self-hosted, macOS]
+    #     steps:
+    #         - name: Test 
+    #           run: ./ocp test -b Debug -c gnu
     mac-intel-build:
         needs: mac-base
         runs-on: [ self-hosted, macOS]
@@ -110,18 +110,18 @@ jobs:
               run: |
                 $env:PATH+=";C:\Program Files\Go\bin"
                 go build -o ocp.exe cli/main.go
-    windows-mingw64-build:
-        needs: windows-base
-        runs-on: [ self-hosted, Windows]
-        steps:
-            - name: Build 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp build -b Debug -c gnu -t all"
-    windows-mingw64-test:
-        needs: windows-mingw64-build
-        runs-on: [ self-hosted, Windows]
-        steps:
-            - name: Test 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp test -b Debug -c gnu -t all"
+    # windows-mingw64-build:
+    #     needs: windows-base
+    #     runs-on: [ self-hosted, Windows]
+    #     steps:
+    #         - name: Build 
+    #           run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp build -b Debug -c gnu -t all"
+    # windows-mingw64-test:
+    #     needs: windows-mingw64-build
+    #     runs-on: [ self-hosted, Windows]
+    #     steps:
+    #         - name: Test 
+    #           run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp test -b Debug -c gnu -t all"
     windows-intel-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
