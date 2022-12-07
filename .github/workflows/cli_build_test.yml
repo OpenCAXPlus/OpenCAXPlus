@@ -11,14 +11,8 @@ on:
     branches:
       - main
 jobs:
-  build_test:
-    strategy:
-      fail-fast: true
-      matrix:
-          os: [Linux, macOS, Windows ]
-          include:
-            - provider: self-hosted
-    runs-on: ${{ matrix.os }}
+  build_test_Linux:
+    runs-on: [self-hosted, Linux]
     steps:
       - name: Basic info
         run: |
@@ -26,16 +20,37 @@ jobs:
           echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
           whoami
           echo $PATH
-          echo $env:PATH
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Build
         run: go build -o ocp cli/main.go
-      # - name: Test cmd
-      #   run: |
-      #     cd cli/cmd
-      #     go test -cover
-      # - name: Test pkg
-      #   run: |
-      #     cd cli/pkg
-      #     go test -cover
+  build_test_Mac:
+    runs-on: [self-hosted, macOS]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+          whoami
+          echo $PATH
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Build
+        run: |
+          export PATH=$PATH:/usr/local/go/bin
+          go build -o ocp cli/main.go
+  build_test_Windows:
+    runs-on: [self-hosted, Windows]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+          whoami
+          echo $env:PATH
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Build
+        run: |
+          $env:PATH+=";C:\Program Files\Go\bin"
+          go build -o ocp cli/main.go
