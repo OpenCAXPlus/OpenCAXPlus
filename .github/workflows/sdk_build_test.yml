@@ -133,7 +133,6 @@ jobs:
                 where ninja
                 cmake --preset="windows-intel-Debug" -S "."
                 cmake --build --preset="windows-intel-Debug" --target all
-                ls out
     windows-intel-test:
         needs: windows-intel-build
         runs-on: [ self-hosted, Windows]
