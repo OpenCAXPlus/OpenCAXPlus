@@ -24,7 +24,7 @@ export CC=icc
 export CXX=icpc
 `
 	case "windows":
-		source_intel = `C:/Program Files(x86)/Intel/oneAPI/setvars.bat
+		source_intel = `C:/Program Files(x86)/Intel/oneAPI/setvars.bat\r
 `
 	}
 	return source_intel
@@ -49,7 +49,7 @@ func executeCommand(commands string) {
 	case "darwin":
 		shell = "zsh"
 	case "windows":
-		shell = "mingw64.exe"
+		shell = "cmd.exe"
 	}
 	log.Info("Start a new command ")
 	log.Info("\n" + commands)
