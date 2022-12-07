@@ -26,22 +26,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Build
-        run: |
-          cd cli/cmd
-          go build -o pax
+        run: go build -o ocp cli/main.go
       - name: Test cmd
         run: |
           cd cli/cmd
           go test -cover
-      - name: Test app
+      - name: Test pkg
         run: |
-          cd cli/pkg/app
+          cd cli/pkg
           go test -cover
-      - name: Test plugin
-        run: |
-          cd cli/pkg/plugin
-          go test -cover
-      - name: Test tool
-        run: |
-          cd cli/pkg/tool
-          go test -cover    
