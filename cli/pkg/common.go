@@ -15,8 +15,7 @@ func prepareIntel() string {
 	source_intel := ""
 	switch system {
 	case "linux":
-		source_intel = `source /opt/intel/oneapi/setvars.sh
-`
+		source_intel = "source /opt/intel/oneapi/setvars.sh" + newline()
 		log.Debug("inside linux")
 	case "darwin":
 		source_intel = `source /opt/intel/oneapi/setvars.sh
@@ -24,25 +23,22 @@ export CC=icc
 export CXX=icpc
 `
 	case "windows":
-		source_intel = "\"C:/Program Files (x86)/Intel/oneAPI/setvars.bat\"" + newline()
+		source_intel = "call \"C:/Program Files (x86)/Intel/oneAPI/setvars.bat\"" + newline()
 	}
 	return source_intel
 }
 
 func cmakeCmd(compiler string, cmakedir string, bin string) string {
-	// system := runtime.GOOS
+	system := runtime.GOOS
 	cmake := "cmake"
-	// if system == "windows" {
-	// 	if cmakedir == "default" {
-	// 		cmakedir = "C:\\PROGRAM FILES\\CMAKE\\bin"
-	// 	}
-	// 	cmake = "\"" + filepath.Join(cmakedir, bin) + "\""
-	// } else {
-	// }
 	if cmakedir == "default" {
 		cmakedir = ""
 	}
-	cmake = filepath.Join(cmakedir, bin)
+	if system == "windows" {
+		cmake = "\"" + filepath.Join(cmakedir, bin) + "\""
+	} else {
+		cmake = filepath.Join(cmakedir, bin)
+	}
 	return cmake
 }
 
