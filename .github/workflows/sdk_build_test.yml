@@ -66,7 +66,9 @@ jobs:
               with:
                   fetch-depth: 0
             - name: Build go cli
-              run: go build -o ocp cli/main.go
+              run: |
+                export PATH=$PATH:/usr/local/go/bin
+                go build -o ocp cli/main.go
     mac-gnu-build:
         needs: mac-base
         runs-on: [ self-hosted, macOS]
@@ -105,7 +107,9 @@ jobs:
               with:
                   fetch-depth: 0
             - name: Build go cli
-              run: go build -o ocp cli/main.go
+              run: |
+                $env:PATH+=";C:\Program Files\Go\bin"
+                go build -o ocp cli/main.go
     windows-mingw64-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
