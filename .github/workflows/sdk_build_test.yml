@@ -26,30 +26,32 @@ jobs:
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
+            - name: Build go cli
+              run: go build -o ocp cli/main.go
     linux-gnu-build:
         needs: linux-base
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Build 
-              run: python3 devtool.py build -b Debug -c gnu -t all
+              run: ./ocp build -b Debug -c gnu -t all
     linux-gnu-test:
         needs: linux-gnu-build
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Test 
-              run: python3 devtool.py test -b Debug -c gnu
+              run: ./ocp test -b Debug -c gnu
     linux-intel-build:
         needs: linux-base
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Build 
-              run: python3 devtool.py build -b Debug -c intel -t all
+              run: ./ocp build -b Debug -c intel -t all
     linux-intel-test:
         needs: linux-intel-build
         runs-on: [ self-hosted, Linux]
         steps:
             - name: Test 
-              run: python3 devtool.py test -b Debug -c intel
+              run: ./ocp test -b Debug -c intel
     mac-base:
         runs-on: [ self-hosted, macOS]
         steps:
@@ -63,30 +65,32 @@ jobs:
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
+            - name: Build go cli
+              run: go build -o ocp cli/main.go
     mac-gnu-build:
         needs: mac-base
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Build 
-              run: python3 devtool.py build -b Debug -c gnu12 -t all
+              run: ./ocp build -b Debug -c gnu12 -t all
     mac-gnu-test:
         needs: mac-gnu-build
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Test 
-              run: python3 devtool.py test -b Debug -c gnu12
+              run: ./ocp test -b Debug -c gnu12
     mac-intel-build:
         needs: mac-base
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Build 
-              run: python3 devtool.py build -b Debug -c intel -t all
+              run: ./ocp build -b Debug -c intel -t all
     mac-intel-test:
         needs: mac-intel-build
         runs-on: [ self-hosted, macOS]
         steps:
             - name: Test 
-              run: python3 devtool.py test -b Debug -c intel
+              run: ./ocp test -b Debug -c intel
     windows-base:
         runs-on: [ self-hosted, Windows]
         steps:
@@ -100,18 +104,20 @@ jobs:
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
+            - name: Build go cli
+              run: go build -o ocp cli/main.go
     windows-mingw64-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Build 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c python3 devtool.py build -b Debug -c gnu -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp build -b Debug -c gnu -t all
     windows-mingw64-test:
         needs: windows-mingw64-build
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Test 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c python3 devtool.py test -b Debug -c gnu -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp test -b Debug -c gnu -t all
     windows-intel-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
@@ -120,7 +126,7 @@ jobs:
                 shell: cmd
         steps:
             - name: Build 
-              run: python devtool.py build -b Debug -c intel -t all
+              run: ./ocp build -b Debug -c intel -t all
     windows-intel-test:
         needs: windows-intel-build
         runs-on: [ self-hosted, Windows]
@@ -129,4 +135,4 @@ jobs:
                 shell: cmd
         steps:
             - name: Test 
-              run: python devtool.py test -b Debug -c intel -t all
+              run: ./ocp test -b Debug -c intel -t all
