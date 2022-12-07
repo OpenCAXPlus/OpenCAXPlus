@@ -109,7 +109,7 @@ jobs:
             - name: Build go cli
               run: |
                 $env:PATH+=";C:\Program Files\Go\bin"
-                go build -o ocp cli/main.go
+                go build -o ocp.exe cli/main.go
     windows-mingw64-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
@@ -130,7 +130,7 @@ jobs:
                 shell: cmd
         steps:
             - name: Build 
-              run: ./ocp build -b Debug -c intel -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp build -b Debug -c intel -t all
     windows-intel-test:
         needs: windows-intel-build
         runs-on: [ self-hosted, Windows]
@@ -139,4 +139,4 @@ jobs:
                 shell: cmd
         steps:
             - name: Test 
-              run: ./ocp test -b Debug -c intel -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp test -b Debug -c intel -t all
