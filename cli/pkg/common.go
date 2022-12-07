@@ -24,7 +24,7 @@ export CC=icc
 export CXX=icpc
 `
 	case "windows":
-		source_intel = "C:/Program Files (x86)/Intel/oneAPI/setvars.bat\r\n"
+		source_intel = "\"C:/Program Files (x86)/Intel/oneAPI/setvars.bat\"\r\n"
 	}
 	return source_intel
 }
@@ -36,10 +36,13 @@ func cmakeCmd(compiler string, cmakedir string, bin string) string {
 		if cmakedir == "default" {
 			cmakedir = "C:\\PROGRAM FILES\\CMAKE\\bin"
 		}
+		cmake = "\"" + filepath.Join(cmakedir, bin) + "\""
 	} else {
-		cmakedir = ""
+		if cmakedir == "default" {
+			cmakedir = ""
+		}
+		cmake = filepath.Join(cmakedir, bin)
 	}
-	cmake = filepath.Join(cmakedir, bin)
 	return cmake
 }
 
