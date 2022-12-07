@@ -24,8 +24,7 @@ export CC=icc
 export CXX=icpc
 `
 	case "windows":
-		source_intel = `C:/Program Files(x86)/Intel/oneAPI/setvars.bat\r
-`
+		source_intel = "C:/Program Files (x86)/Intel/oneAPI/setvars.bat\r\n"
 	}
 	return source_intel
 }
@@ -33,8 +32,12 @@ export CXX=icpc
 func cmakeCmd(compiler string, cmakedir string, bin string) string {
 	system := runtime.GOOS
 	cmake := "cmake"
-	if cmakedir == "" && system == "windows" && compiler == "intel" {
-		cmakedir = "C:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\COMMON7\\IDE\\COMMONEXTENSIONS\\MICROSOFT\\CMAKE\\CMake\\bin"
+	if system == "windows" {
+		if cmakedir == "default" {
+			cmakedir = "C:\\PROGRAM FILES\\CMAKE\\bin"
+		}
+	} else {
+		cmakedir = ""
 	}
 	cmake = filepath.Join(cmakedir, bin)
 	return cmake
