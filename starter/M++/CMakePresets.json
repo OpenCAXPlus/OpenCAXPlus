@@ -23,6 +23,9 @@
                 "FASP_DIR": "$env{FASP_DIR}",
                 "CMAKE_C_COMPILER": "icc",
                 "CMAKE_CXX_COMPILER": "icpc",
+                "CMAKE_Fortran_COMPILER": "ifort",
+                "CMAKE_C_FLAGS": "-diag-disable=10441",
+                "CMAKE_CXX_FLAGS": "-diag-disable=10441",
                 "CPACK_GENERATOR": "TGZ",
                 "CPACK_COMPONENTS_ALL": "OpenCAXPlusSDK"
             },
@@ -48,8 +51,9 @@
             "description": "Sets Ninja, intel compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
                 "FASP_DIR": "C:/Program Files (x86)/faspsolver",
-                "CMAKE_C_COMPILER": "icx",
-                "CMAKE_CXX_COMPILER": "icx"
+                "CMAKE_C_COMPILER": "icl",
+                "CMAKE_CXX_COMPILER": "icl",
+                "CMAKE_Fortran_COMPILER": "ifort"
             },
             "vendor": {
                 "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -80,8 +84,11 @@
             "displayName": "Linux x64 gnu Debug",
             "description": "Sets Ninja, gnu compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "mpicc",
-                "CMAKE_CXX_COMPILER": "mpicxx"
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_Fortran_COMPILER": "gfortran",
+                "CMAKE_C_FLAGS": "",
+                "CMAKE_CXX_FLAGS": ""
             }
         },
         {
@@ -91,7 +98,10 @@
             "description": "Sets Ninja, gnu compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_Fortran_COMPILER": "gfortran",
+                "CMAKE_C_FLAGS": "",
+                "CMAKE_CXX_FLAGS": ""
             }
         },
         {
@@ -119,7 +129,10 @@
             "description": "Sets Ninja, gnu compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc-12",
-                "CMAKE_CXX_COMPILER": "g++-12"
+                "CMAKE_CXX_COMPILER": "g++-12",
+                "CMAKE_Fortran_COMPILER": "gfortran-12",
+                "CMAKE_C_FLAGS": "",
+                "CMAKE_CXX_FLAGS": ""
             }
         },
         {
@@ -138,7 +151,8 @@
             "description": "Sets Ninja, intel compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "icc",
-                "CMAKE_CXX_COMPILER": "icpc"
+                "CMAKE_CXX_COMPILER": "icpc",
+                "CMAKE_Fortran_COMPILER": "ifort"
             }
         },
         {
@@ -151,21 +165,23 @@
             }
         },
         {
-            "name": "darwin-arm-Debug",
+            "name": "darwin-clang-Debug",
             "inherits": "default",
-            "displayName": "Mac arm clang Debug",
-            "description": "Sets Ninja, clang compilers, arm architecture, debug build, build/install directory",
+            "displayName": "Mac clang Debug",
+            "description": "Sets Ninja, clang compilers, clang architecture, debug build, build/install directory",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++",
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_FLAGS": "",
+                "CMAKE_CXX_FLAGS": ""
             }
         },
         {
-            "name": "darwin-arm-Release",
-            "inherits": "darwin-arm-Debug",
-            "displayName": "Mac arm clang Release",
-            "description": "Sets Ninja, clang compilers, arm architecture, release build, build/install directory",
+            "name": "darwin-clang-Release",
+            "inherits": "darwin-clang-Debug",
+            "displayName": "Mac clang clang Release",
+            "description": "Sets Ninja, clang compilers, clang architecture, release build, build/install directory",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
@@ -185,8 +201,8 @@
             "configurePreset": "darwin-gnu-Debug"
         },
         {
-            "name": "darwin-arm-Debug",
-            "configurePreset": "darwin-arm-Debug"
+            "name": "darwin-clang-Debug",
+            "configurePreset": "darwin-clang-Debug"
         },
         {
             "name": "linux-intel-Debug",
@@ -213,8 +229,8 @@
             "configurePreset": "darwin-gnu-Release"
         },
         {
-            "name": "darwin-arm-Release",
-            "configurePreset": "darwin-arm-Release"
+            "name": "darwin-clang-Release",
+            "configurePreset": "darwin-clang-Release"
         },
         {
             "name": "linux-intel-Release",
@@ -290,8 +306,8 @@
             }
         },
         {
-            "name": "darwin-arm-Release",
-            "configurePreset": "darwin-arm-Release",
+            "name": "darwin-clang-Release",
+            "configurePreset": "darwin-clang-Release",
             "output": {
                 "outputOnFailure": true
             },
@@ -310,7 +326,7 @@
                 "noTestsAction": "error",
                 "stopOnFailure": true
             }
-        },  
+        },
         {
             "name": "linux-gnu-Debug",
             "configurePreset": "linux-gnu-Debug",
@@ -367,8 +383,8 @@
             }
         },
         {
-            "name": "darwin-arm-Debug",
-            "configurePreset": "darwin-arm-Debug",
+            "name": "darwin-clang-Debug",
+            "configurePreset": "darwin-clang-Debug",
             "output": {
                 "outputOnFailure": true
             },

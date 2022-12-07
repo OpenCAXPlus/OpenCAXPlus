@@ -23,6 +23,7 @@
                 "FASP_DIR": "$env{FASP_DIR}",
                 "CMAKE_C_COMPILER": "icc",
                 "CMAKE_CXX_COMPILER": "icpc",
+                "CMAKE_Fortran_COMPILER": "ifort",
                 "CMAKE_C_FLAGS": "-diag-disable=10441",
                 "CMAKE_CXX_FLAGS": "-diag-disable=10441",
                 "CPACK_GENERATOR": "TGZ",
@@ -51,7 +52,8 @@
             "cacheVariables": {
                 "FASP_DIR": "C:/Program Files (x86)/faspsolver",
                 "CMAKE_C_COMPILER": "icl",
-                "CMAKE_CXX_COMPILER": "icl"
+                "CMAKE_CXX_COMPILER": "icl",
+                "CMAKE_Fortran_COMPILER": "ifort"
             },
             "vendor": {
                 "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -84,6 +86,7 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_Fortran_COMPILER": "gfortran",
                 "CMAKE_C_FLAGS": "",
                 "CMAKE_CXX_FLAGS": ""
             }
@@ -96,6 +99,7 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_Fortran_COMPILER": "gfortran",
                 "CMAKE_C_FLAGS": "",
                 "CMAKE_CXX_FLAGS": ""
             }
@@ -126,6 +130,7 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc-12",
                 "CMAKE_CXX_COMPILER": "g++-12",
+                "CMAKE_Fortran_COMPILER": "gfortran-12",
                 "CMAKE_C_FLAGS": "",
                 "CMAKE_CXX_FLAGS": ""
             }
@@ -146,7 +151,8 @@
             "description": "Sets Ninja, intel compilers, x64 architecture, debug build, build/install directory",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "icc",
-                "CMAKE_CXX_COMPILER": "icpc"
+                "CMAKE_CXX_COMPILER": "icpc",
+                "CMAKE_Fortran_COMPILER": "ifort"
             }
         },
         {
