@@ -16,7 +16,7 @@ ocp_embed_user_program(
   LIFECYCLE
   "BasicConsole"
   TOOLS
-  "spdlog;M++"
+  "spdlog;M++;faspsolver"
   NAME
   "Mpp"
   TARGET
@@ -24,5 +24,6 @@ ocp_embed_user_program(
   ROOT
   "${OCP_ROOT}"
   COPYFILES
-  conf/poisson.conf
+  poisson.conf
+  example2.geo
   USE_CXX)
