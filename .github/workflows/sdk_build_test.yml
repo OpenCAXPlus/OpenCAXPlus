@@ -115,13 +115,13 @@ jobs:
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Build 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp build -b Debug -c gnu -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp build -b Debug -c gnu -t all"
     windows-mingw64-test:
         needs: windows-mingw64-build
         runs-on: [ self-hosted, Windows]
         steps:
             - name: Test 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp test -b Debug -c gnu -t all
+              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp test -b Debug -c gnu -t all"
     windows-intel-build:
         needs: windows-base
         runs-on: [ self-hosted, Windows]
@@ -130,7 +130,7 @@ jobs:
                 shell: cmd
         steps:
             - name: Build 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp build -b Debug -c intel -t all
+              run: ocp.exe build -b Debug -c intel -t all
     windows-intel-test:
         needs: windows-intel-build
         runs-on: [ self-hosted, Windows]
@@ -139,4 +139,4 @@ jobs:
                 shell: cmd
         steps:
             - name: Test 
-              run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c ./ocp test -b Debug -c intel -t all
+              run: ocp.exe test -b Debug -c intel -t all
