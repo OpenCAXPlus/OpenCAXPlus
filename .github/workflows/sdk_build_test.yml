@@ -3,8 +3,6 @@ on:
     push:
         paths:
             - '.github/workflows/sdk**'
-            - '.github/workflows/cli**'
-            - 'cli/**'
             - 'framework/**'
             - 'starter/**'
             - 'toolkit/**'
