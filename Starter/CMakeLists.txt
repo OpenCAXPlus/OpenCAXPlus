@@ -27,3 +27,5 @@ install(
   FILES ../CMakePresets.json
   DESTINATION ./starter/CAE_Static_Console
   COMPONENT ${PROJECT_NAME})
+
+add_subdirectory(M++)

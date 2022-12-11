@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.16)
 project(
   OpenCAXPlusSDK
   DESCRIPTION "The OpenCAXPlus SDK"
@@ -14,10 +14,10 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
-add_subdirectory(framework/interface)
-add_subdirectory(toolkit)
-add_subdirectory(framework/lifecycle)
-add_subdirectory(starter)
+add_subdirectory(Framework/interface)
+add_subdirectory(Toolkit)
+add_subdirectory(Framework/lifecycle)
+add_subdirectory(Starter)
 
 option(OCP_Cli "Should Cli be built?" OFF)
 if(OCP_Cli) 
