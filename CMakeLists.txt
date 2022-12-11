@@ -32,12 +32,12 @@ include(CPackConfig)
 # SameMajorVersion)
 
 install(
-  DIRECTORY interface
+  DIRECTORY Framework/interface
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
 
 install(
-  DIRECTORY lifecycle
+  DIRECTORY Framework/lifecycle
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
 

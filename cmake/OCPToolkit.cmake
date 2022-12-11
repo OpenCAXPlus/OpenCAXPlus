@@ -17,14 +17,14 @@ macro(OCP_Toolkit)
 
   target_sources(${tkname} PUBLIC ${OCPToolkit_FILES})
   target_link_libraries(${tkname} PUBLIC OCP::Interface)
-  target_include_directories(${tkname} PUBLIC ${OCP_ROOT}/toolkit)
+  target_include_directories(${tkname} PUBLIC ${OCP_ROOT}/Toolkit)
 
   foreach(target ${OCPToolkit_TOOLS})
     # set(toolkit_${target}_DIR ${PROJECT_BINARY_DIR}/toolkit/${target})
     message(STATUS "Using tool " ${target} " " ${toolkit_${target}_DIR})
     if(NOT TARGET toolkit_${target})
-      add_subdirectory(${OCP_ROOT}/toolkit/${target}
-                       ${PROJECT_BINARY_DIR}/toolkit/${target})
+      add_subdirectory(${OCP_ROOT}/Toolkit/${target}
+                       ${PROJECT_BINARY_DIR}/Toolkit/${target})
     endif()
     target_link_libraries(${tkname} PUBLIC OCP::toolkit_${target})
   endforeach()
@@ -44,7 +44,7 @@ macro(OCP_Toolkit)
 
   install(
     DIRECTORY .
-    DESTINATION toolkit/${OCPToolkit_NAME}
+    DESTINATION Toolkit/${OCPToolkit_NAME}
     COMPONENT ${PROJECT_NAME}
     PATTERN "external" EXCLUDE)
 

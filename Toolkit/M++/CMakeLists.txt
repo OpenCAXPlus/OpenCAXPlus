@@ -13,11 +13,10 @@ if(MPI_FOUND)
 endif()
 
 
-include_directories("src")
 
-aux_source_directory(solver/src solver_DIR_SRCS)
 add_library(
   M++ 
+  STATIC
   src/Identify.C
   src/MatrixGraph.C
   src/Algebra.C
@@ -58,8 +57,9 @@ add_library(
 #         lapack
 #         ${MPI_LIBRARIES}
 #         superlu)
+target_include_directories(M++ PUBLIC "src")
 
-target_link_libraries (M++ /usr/local/lib/libblas.so /usr/local/lib/liblapack.so ${MPI_LIBRARIES} /usr/local/lib/libsuperlu.a)
+target_link_libraries (M++ PUBLIC /usr/local/lib/libblas.so /usr/local/lib/liblapack.so ${MPI_LIBRARIES} /usr/local/lib/libsuperlu.a)
 
 #target_compile_options(M++ PRIVATE -Wno-deprecated)
 # file(COPY "log" DESTINATION "./../../") file(COPY "data/vtk" DESTINATION

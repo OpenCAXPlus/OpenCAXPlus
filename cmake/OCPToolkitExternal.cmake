@@ -37,7 +37,7 @@ macro(OCP_Toolkit_External)
 
   install(
     DIRECTORY .
-    DESTINATION toolkit/${OCPExternal_SOFTWARE}/external
+    DESTINATION Toolkit/${OCPExternal_SOFTWARE}/external
     COMPONENT ${PROJECT_NAME}
     PATTERN "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" EXCLUDE)
 
