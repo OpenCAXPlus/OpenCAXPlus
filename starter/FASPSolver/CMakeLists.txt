@@ -7,8 +7,8 @@ find_package(OpenCAXPlusSDK)
 
 add_library(faspstarter STATIC)
 target_sources(faspstarter PUBLIC App.c App.h Define.c)
-target_include_directories(faspstarter PUBLIC ${OCP_ROOT}/toolkit
-                                            ${OCP_ROOT}/lifecycle/BasicConsole)
+# target_include_directories(faspstarter PUBLIC ${OCP_ROOT}/toolkit
+#                                             ${OCP_ROOT}/framework/lifecycle/BasicConsole)
 
 ocp_embed_user_program(
   LIFECYCLE

@@ -9,8 +9,7 @@ find_package(OpenCAXPlusSDK)
 add_library(mppstarter STATIC)
 target_sources(mppstarter PUBLIC App.cpp Poisson.cpp PoissonProblems.cpp
                                  Define.cpp)
-target_include_directories(mppstarter PUBLIC ${OCP_ROOT}/toolkit
-                                             ${OCP_ROOT}/lifecycle/BasicConsole)
+
 # add_compile_options(-diag-disable=10441)
 ocp_embed_user_program(
   LIFECYCLE

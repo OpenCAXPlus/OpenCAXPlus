@@ -14,9 +14,9 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
-add_subdirectory(interface)
+add_subdirectory(framework/interface)
 add_subdirectory(toolkit)
-add_subdirectory(lifecycle)
+add_subdirectory(framework/lifecycle)
 add_subdirectory(starter)
 add_subdirectory(cli)
 

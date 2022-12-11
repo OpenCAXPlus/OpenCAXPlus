@@ -44,9 +44,13 @@ macro(OCP_Embed_User_Program)
       ${OCPUser_USE_CXX}
       CACHE BOOL "" FORCE)
 
+  target_include_directories(
+    ${OCPUser_TARGET} PUBLIC ${OCP_ROOT}/toolkit
+                             ${OCP_ROOT}/framework/lifecycle/${OCPUser_LIFECYCLE})
+
   # add_subdirectory(${OCP_ROOT}/toolkit ${PROJECT_BINARY_DIR}/toolkit)
 
-  add_subdirectory(${OCP_ROOT}/interface ${PROJECT_BINARY_DIR}/interface)
+  add_subdirectory(${OCP_ROOT}/framework/interface ${PROJECT_BINARY_DIR}/interface)
 
   target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::Interface)
 
@@ -59,7 +63,7 @@ macro(OCP_Embed_User_Program)
     target_link_libraries(${OCPUser_TARGET} PUBLIC OCP::toolkit_${target})
   endforeach()
 
-  add_subdirectory(${OCP_ROOT}/lifecycle/${OCP_LIFECYCLE}
+  add_subdirectory(${OCP_ROOT}/framework/lifecycle/${OCP_LIFECYCLE}
                    ${PROJECT_BINARY_DIR}/${USER_PROGRAM})
 
   add_custom_target(
