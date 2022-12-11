@@ -15,17 +15,17 @@ install(
 
 # CAE_Static_Console
 install(
-  DIRECTORY CAE_Static_Console
+  DIRECTORY BasicConsole
   COMPONENT ${PROJECT_NAME}
   DESTINATION ./starter
   PATTERN out EXCLUDE)
 install(
   DIRECTORY .github
-  DESTINATION ./starter/CAE_Static_Console
+  DESTINATION ./starter/BasicConsole
   COMPONENT ${PROJECT_NAME})
 install(
   FILES ../CMakePresets.json
-  DESTINATION ./starter/CAE_Static_Console
+  DESTINATION ./starter/BasicConsole
   COMPONENT ${PROJECT_NAME})
 
 add_subdirectory(M++)
