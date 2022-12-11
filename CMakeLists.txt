@@ -18,7 +18,11 @@ add_subdirectory(framework/interface)
 add_subdirectory(toolkit)
 add_subdirectory(framework/lifecycle)
 add_subdirectory(starter)
-add_subdirectory(cli)
+
+option(OCP_Cli "Should Cli be built?" OFF)
+if(OCP_Cli) 
+  add_subdirectory(cli)
+endif()
 
 include(CPackConfig)
 # include(GNUInstallDirs)
