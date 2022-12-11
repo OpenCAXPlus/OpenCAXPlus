@@ -5,10 +5,11 @@ macro(OCP_Toolkit)
   cmake_parse_arguments(OCPToolkit "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
-  # file(RELATIVE_PATH OCPToolkit_NAME ${CMAKE_SOURCE_DIR}/toolkit
-  # ${CMAKE_CURRENT_SOURCE_DIR})
-
-  cmake_path(GET CMAKE_CURRENT_SOURCE_DIR STEM OCPToolkit_NAME)
+  if (${CMAKE_VERSION} VERSION_LESS 3.20)
+	file(RELATIVE_PATH OCPToolkit_NAME ${CMAKE_SOURCE_DIR}/toolkit ${CMAKE_CURRENT_SOURCE_DIR})
+  else ()
+	cmake_path(GET CMAKE_CURRENT_SOURCE_DIR STEM OCPToolkit_NAME)
+  endif()
 
   set(tkname toolkit_${OCPToolkit_NAME})
   add_library(${tkname})
