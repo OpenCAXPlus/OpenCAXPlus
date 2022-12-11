@@ -1,22 +1,29 @@
-![logo_title](images/ocp.png)
+![logo_title](docs/_static/ocp.png)
 
 # OpenCAXPlus-SDK
 
 [![SDK Build & Test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml)
 [![Cli Build and test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml)
 
-Checkout the sdk [site](https://sdk.opencax.plus) for developer guide, user manuals and some examples.
+The main goal of this project to provide a SDK (software development kit) that does the tedious works in building an CAX application for you, such as
+- create wrapper functions that allow the developer to use multiple open source libraries seamlessly
+- installing and linking necessary libraries
+- GUI interface
+- cross platform project setup
+- documentation/landing page setup
+- automated CICD setup
+- automated packaging and publishing
+
+The SDK also aims to impose no rules on how the developers should write their application, developers still have full control of the core logic of your application.
+
+Starting from our starter templates, developers are able to spawn an production ready application in no time.
+
+Checkout the sdk [site](https://sdk.opencax.plus) for developer guide, user manuals and examples.
 Also, checkout our organization [landing page](https://opencax.plus) for more of our projects.
 
-Our aim is to provide a SDK (software development kit) that does the tedious works in building an CAX application, while still grants developers full control of the core logic and being able to spawn an production ready application in no time.
 
-## Definition
-
-- **Framework**: In our case, framework is a skeleton of application. It defines rules for the SDK, so that various parts can be connected easily. It defines the procedures of how an application should be called. It setup the routine parts of an application for the users and expose certain slots to the user to customize, in other words, framework calls your function to build an executable. Framework is a combination of interface and lifecycle.
-- **Toolkit**: Toolkit is a collection of software libraries. These are handy functions that you can call to save your developing time. Libraries in the toolkit must conform (at least partially) to the framework interface.
-
-<div align="center"><img src="docs/_static/airfoil.jpg" alt="FENGSim" width="800"/></div>
-<div align="center"><img src="docs/_static/cad.jpg" alt="FENGSim" width="800"/></div>
+![air foil](docs/_static/airfoil.jpg)
+![cad](docs/_static/cad.jpg)
 
 <!-- The logging library (spdlog) does not work with intel oneapi (classic) on mac, so you are expected to see different logging style for mac+intel vs other OS compiler combinations.
 
