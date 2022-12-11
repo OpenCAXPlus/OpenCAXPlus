@@ -5,8 +5,10 @@
 [![SDK Build & Test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml)
 [![Cli Build and test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml)
 
-The sdk manual [site](https://sdk.opencax.plus).
-Our [landing page](https://opencax.plus).
+Checkout the sdk [site](https://sdk.opencax.plus) for developer guide, user manuals and some examples.
+Also, checkout our organization [landing page](https://opencax.plus) for more of our projects.
+
+Our aim is to provide a SDK (software development kit) that does the tedious works in building an CAX application, while still grants developers full control of the core logic and being able to spawn an production ready application in no time.
 
 ## Definition
 
