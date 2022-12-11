@@ -5,7 +5,7 @@ Copyright © 2022 Xiaoxing Cheng hello@chengxiaoxing.me
 package main
 
 import (
-	"OpenCAXPlus/Cli/cmd"
+	"OpenCAXPlusCli/cmd"
 
 	log "github.com/sirupsen/logrus"
 )

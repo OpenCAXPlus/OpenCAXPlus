@@ -1,4 +1,4 @@
-module OpenCAXPlus
+module OpenCAXPlusCli
 
 go 1.18
 

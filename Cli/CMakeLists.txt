@@ -8,10 +8,11 @@ add_custom_command(
   OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${cliname}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   COMMAND go build -o ../${cliname}
+  # COMMAND mv ${cliname} ..
   COMMENT "Build the OpenCAXPlusSDK cli"
   VERBATIM)
 
 install(
   FILES ../${cliname}
-  DESTINATION cli
+  DESTINATION Cli
   COMPONENT ${PROJECT_NAME})

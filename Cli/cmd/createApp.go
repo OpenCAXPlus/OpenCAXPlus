@@ -5,7 +5,7 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"OpenCAXPlus/Cli/pkg"
+	"OpenCAXPlusCli/pkg"
 	"os"
 	"path/filepath"
 
