@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"OpenCAXPlus/cli/pkg"
+	"OpenCAXPlus/Cli/pkg"
 	"os"
 	"path/filepath"
 	"runtime"

@@ -5,7 +5,7 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"OpenCAXPlus/cli/pkg"
+	"OpenCAXPlus/Cli/pkg"
 	"runtime"
 
 	log "github.com/sirupsen/logrus"
