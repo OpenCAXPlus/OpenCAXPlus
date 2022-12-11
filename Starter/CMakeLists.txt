@@ -28,4 +28,5 @@ install(
   DESTINATION ./starter/BasicConsole
   COMPONENT ${PROJECT_NAME})
 
-add_subdirectory(M++)
+# add_subdirectory(M++ EXCLUDE_FROM_ALL)
+# add_subdirectory(FASPSolver)
