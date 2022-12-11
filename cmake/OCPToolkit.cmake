@@ -6,7 +6,7 @@ macro(OCP_Toolkit)
                         "${multiValueArgs}" ${ARGN})
 
   if (${CMAKE_VERSION} VERSION_LESS 3.20)
-	file(RELATIVE_PATH OCPToolkit_NAME ${CMAKE_SOURCE_DIR}/toolkit ${CMAKE_CURRENT_SOURCE_DIR})
+	file(RELATIVE_PATH OCPToolkit_NAME ${CMAKE_SOURCE_DIR}/Toolkit ${CMAKE_CURRENT_SOURCE_DIR})
   else ()
 	cmake_path(GET CMAKE_CURRENT_SOURCE_DIR STEM OCPToolkit_NAME)
   endif()
