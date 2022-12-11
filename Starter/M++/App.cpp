@@ -11,7 +11,7 @@
 
 void PoissonMain ();
 
-int main (int argv, char** argc) {
+int App (int argv, char** argc) {
 	DPO dpo(&argv,&argc);
 	string Model = "test";
 	ReadConfig(Settings,"Model",Model);
