@@ -1,6 +1,6 @@
-![logo_title](https://user-images.githubusercontent.com/3356113/200965446-ec2a683a-620c-4f6a-83dc-ecb56cff38d1.png)
+![logo_title](images/ocp.png)
 
-# OpenCAXPlusSDK
+# OpenCAXPlus-SDK
 
 [![SDK Build & Test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml)
 [![Cli Build and test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml)
