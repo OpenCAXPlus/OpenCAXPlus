@@ -30,7 +30,7 @@ macro(OCP_Toolkit)
   endforeach()
 
   if(NOT ${OCPToolkit_NO_EXTERNAL})
-    target_link_libraries(${tkname} PUBLIC OCP::External::${OCPToolkit_NAME})
+    target_link_libraries(${tkname} PUBLIC OCP::external_${OCPToolkit_NAME})
     message(STATUS "Using toolkit ${OCPToolkit_NAME}, " "has external, "
                    "source files ${OCPToolkit_FILES}"
                    "link with tools ${OCPToolkit_TOOLS}")
