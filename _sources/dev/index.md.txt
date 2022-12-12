@@ -1,4 +1,8 @@
-```{include} ../../README_dev.md
-:relative-docs: docs/
-:relative-images:
+# Dev Guide
+
+```{toctree}
+
+quick_starter.md
+folders.md
+relationship.md
 ```

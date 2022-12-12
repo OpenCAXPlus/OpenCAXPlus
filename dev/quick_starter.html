@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; OpenCAXPlus SDK</title>
+    <title>Quick starter &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -35,10 +35,11 @@
     <script src="../_static/design-tabs.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="faspsolver/index.html" />
-    <link rel="prev" title="System" href="../user/index.html" />
+    <link rel="next" title="Understand the folder structure" href="folders.html" />
+    <link rel="prev" title="Dev Guide" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -75,6 +76,11 @@
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ocp.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">OpenCAXPlus SDK</h1>
@@ -89,32 +95,98 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    Overview
+                    Home
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Developer Guide
- </span>
-</p>
-<ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../dev/index.html">
-   Contribute to the OpenCAXPlus SDK
+  <a class="reference internal" href="../overview.html">
+   Overview
   </a>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  User Manual
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../user/index.html">
-   System
+   User Manual
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../user/quick_starter.html">
+     Quick starter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../user/cli.html">
+     The ocp cli tool
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../user/toolkit/index.html">
+     Using Toolkits
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../user/toolkit/faspsolver/index.html">
+       The fasp toolkit
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../user/starter/index.html">
+     Using Starters
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../user/starter/BasicConsole/index.html">
+       Basic console application starter
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Dev Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Quick starter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="folders.html">
+     Understand the folder structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="relationship.html">
+     Relationship between the components
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -218,7 +290,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OpenCAXPlus/OpenCAXPlusSDK/edit/main/docs/toolkit/index.md"
+        <a href="https://github.com/OpenCAXPlus/OpenCAXPlusSDK/edit/main/docs/dev/quick_starter.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -246,7 +318,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/toolkit/index.md.txt"
+        <a href="../_sources/dev/quick_starter.md.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -283,23 +355,80 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dev-environment">
+   Dev environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initial-run">
+   Initial run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#following-runs">
+   Following runs
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><no title></h1>
+                <h1>Quick starter</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dev-environment">
+   Dev environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initial-run">
+   Initial run
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#following-runs">
+   Following runs
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -307,8 +436,36 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="quick-starter">
+<span id="dev-doc"></span><h1>Quick starter<a class="headerlink" href="#quick-starter" title="Permalink to this headline">#</a></h1>
+<section id="dev-environment">
+<h2>Dev environment<a class="headerlink" href="#dev-environment" title="Permalink to this headline">#</a></h2>
+<p>Need to have golang and cmake installed.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install golang-go cmake
+</pre></div>
 </div>
+</section>
+<section id="initial-run">
+<h2>Initial run<a class="headerlink" href="#initial-run" title="Permalink to this headline">#</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
+<span class="nb">cd</span> OpenCAXPlusSDK
+cmake --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
+cmake --build --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span>
+</pre></div>
+</div>
+<p>The initial run will build the OpenCAXPlus command line tool “ocp”, you can use the ocp command to manage the SDK from now on.</p>
+</section>
+<section id="following-runs">
+<h2>Following runs<a class="headerlink" href="#following-runs" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">ocp</span> <span class="n">build</span>
+</pre></div>
+</div>
+<p>To build a starter, such as the BasicConsole starter</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">ocp</span> <span class="n">build</span> <span class="o">-</span><span class="n">p</span> <span class="n">starter</span><span class="o">/</span><span class="n">BasicConsole</span>
+</pre></div>
+</div>
+</section>
+</section>
 
 
               </div>
@@ -318,17 +475,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../user/index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">System</p>
+            <p class="prev-next-title">Dev Guide</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="faspsolver/index.html" title="next page">
+    <a class='right-next' id="next-link" href="folders.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Understand the folder structure</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
