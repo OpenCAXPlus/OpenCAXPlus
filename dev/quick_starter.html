@@ -38,7 +38,7 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Understand the folder structure" href="folders.html" />
+    <link rel="next" title="Development environment" href="dev_env.html" />
     <link rel="prev" title="Dev Guide" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -177,13 +177,28 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="dev_env.html">
+     Development environment
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="folders.html">
      Understand the folder structure
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="relationship.html">
-     Relationship between the components
+    <a class="reference internal" href="build_system.html">
+     Build system
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="starter.html">
+     starter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="toolkit.html">
+     toolkit
     </a>
    </li>
   </ul>
@@ -378,18 +393,40 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dev-environment">
-   Dev environment
+  <a class="reference internal nav-link" href="#step-1-clone-the-source-code">
+   Step 1: Clone the source code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initial-run">
-   Initial run
+  <a class="reference internal nav-link" href="#step-2-build-the-sdk">
+   Step 2: Build the SDK
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-build">
+     Initial build
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#following-builds">
+     Following builds
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-add-new-toolkit">
+   Step 3: Add new toolkit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#following-runs">
-   Following runs
+  <a class="reference internal nav-link" href="#step-4-add-new-starter">
+   Step 4: Add new starter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-build-the-doc">
+   Step 5: Build the doc
   </a>
  </li>
 </ul>
@@ -412,18 +449,40 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dev-environment">
-   Dev environment
+  <a class="reference internal nav-link" href="#step-1-clone-the-source-code">
+   Step 1: Clone the source code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initial-run">
-   Initial run
+  <a class="reference internal nav-link" href="#step-2-build-the-sdk">
+   Step 2: Build the SDK
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-build">
+     Initial build
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#following-builds">
+     Following builds
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-add-new-toolkit">
+   Step 3: Add new toolkit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#following-runs">
-   Following runs
+  <a class="reference internal nav-link" href="#step-4-add-new-starter">
+   Step 4: Add new starter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-build-the-doc">
+   Step 5: Build the doc
   </a>
  </li>
 </ul>
@@ -438,30 +497,82 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="quick-starter">
 <span id="dev-doc"></span><h1>Quick starter<a class="headerlink" href="#quick-starter" title="Permalink to this headline">#</a></h1>
-<section id="dev-environment">
-<h2>Dev environment<a class="headerlink" href="#dev-environment" title="Permalink to this headline">#</a></h2>
-<p>Need to have golang and cmake installed.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install golang-go cmake
+<div class="important admonition">
+<p class="admonition-title">Important: Check environment</p>
+<p>Please check the <a class="reference internal" href="dev_env.html"><span class="doc std std-doc">development environment</span></a> requirement before running the following commands.</p>
+</div>
+<section id="step-1-clone-the-source-code">
+<h2>Step 1: Clone the source code<a class="headerlink" href="#step-1-clone-the-source-code" title="Permalink to this headline">#</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
+<span class="nb">cd</span> OpenCAXPlusSDK
 </pre></div>
 </div>
 </section>
-<section id="initial-run">
-<h2>Initial run<a class="headerlink" href="#initial-run" title="Permalink to this headline">#</a></h2>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
-<span class="nb">cd</span> OpenCAXPlusSDK
-cmake --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
+<section id="step-2-build-the-sdk">
+<h2>Step 2: Build the SDK<a class="headerlink" href="#step-2-build-the-sdk" title="Permalink to this headline">#</a></h2>
+<section id="initial-build">
+<h3>Initial build<a class="headerlink" href="#initial-build" title="Permalink to this headline">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;windows-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
+cmake --build --preset<span class="o">=</span><span class="s2">&quot;windows-gnu-Debug&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Mac</label><div class="sd-tab-content docutils">
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;darwin-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
+cmake --build --preset<span class="o">=</span><span class="s2">&quot;darwin-gnu-Debug&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
 cmake --build --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span>
 </pre></div>
 </div>
-<p>The initial run will build the OpenCAXPlus command line tool “ocp”, you can use the ocp command to manage the SDK from now on.</p>
+</div>
+</div>
+<p>Cmake will perform out of source build in the folder out/build/. You should also see an executable file <strong>ocp</strong> been created in the root of the repository.
+This is the compiled executable of the golang OpenCAXPlus command line tool, you can use the <strong>ocp</strong> command to manage the SDK from now on.</p>
 </section>
-<section id="following-runs">
-<h2>Following runs<a class="headerlink" href="#following-runs" title="Permalink to this headline">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">ocp</span> <span class="n">build</span>
+<section id="following-builds">
+<h3>Following builds<a class="headerlink" href="#following-builds" title="Permalink to this headline">#</a></h3>
+<p>We will use the <strong>ocp</strong> executable for all following builds.
+To make it easier using the <strong>ocp</strong> tool, you probably want to add the SDK repository root directory to your PATH variable.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;export PATH=\$PATH:</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span> &gt;&gt; ~/.bashrc
 </pre></div>
 </div>
-<p>To build a starter, such as the BasicConsole starter</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">ocp</span> <span class="n">build</span> <span class="o">-</span><span class="n">p</span> <span class="n">starter</span><span class="o">/</span><span class="n">BasicConsole</span>
+<p>Then, to build the SDK.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp build
+</pre></div>
+</div>
+<p>To build a starter, you just need to pass the <code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--path</span></code> option with the location to the starter, such as the BasicConsole starter</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp build -p starter/BasicConsole
+</pre></div>
+</div>
+<p>For more information of how the build system is setup, please read the <a class="reference internal" href="build_system.html"><span class="doc std std-doc">build system</span></a> section.</p>
+</section>
+</section>
+<section id="step-3-add-new-toolkit">
+<h2>Step 3: Add new toolkit<a class="headerlink" href="#step-3-add-new-toolkit" title="Permalink to this headline">#</a></h2>
+<p>Not ready</p>
+<p>Please read the <a class="reference internal" href="toolkit.html"><span class="doc std std-doc">toolkit</span></a> section for more guidance on how to work with toolkit development.</p>
+</section>
+<section id="step-4-add-new-starter">
+<h2>Step 4: Add new starter<a class="headerlink" href="#step-4-add-new-starter" title="Permalink to this headline">#</a></h2>
+<p>Not ready</p>
+<p>Please read the <a class="reference internal" href="starter.html"><span class="doc std std-doc">starter</span></a> section for more guidance on how to work with starter development.</p>
+</section>
+<section id="step-5-build-the-doc">
+<h2>Step 5: Build the doc<a class="headerlink" href="#step-5-build-the-doc" title="Permalink to this headline">#</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp build -t html
+ocp build -t latexpdf
 </pre></div>
 </div>
 </section>
@@ -482,10 +593,10 @@ cmake --build --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-D
             <p class="prev-next-title">Dev Guide</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="folders.html" title="next page">
+    <a class='right-next' id="next-link" href="dev_env.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Understand the folder structure</p>
+        <p class="prev-next-title">Development environment</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
