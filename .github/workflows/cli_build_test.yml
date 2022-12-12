@@ -2,8 +2,7 @@ name:  Cli Build & test
 on:
   push:
     paths:
-      - 'cli/**'
-      - 'go.mod'
+      - 'Cli/**'
       - '.github/workflows/cli**'
     branches:
       - "*"
@@ -24,7 +23,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Build
         run: |
-          go build -o ocp cli/main.go
+          cd Cli
+          go build -o ocp main.go
           ls
   build_test_Mac:
     runs-on: [self-hosted, macOS]
@@ -40,7 +40,8 @@ jobs:
       - name: Build
         run: |
           export PATH=$PATH:/usr/local/go/bin
-          go build -o ocp cli/main.go
+          cd Cli
+          go build -o ocp main.go
           ls
   build_test_Windows:
     runs-on: [self-hosted, Windows]
@@ -56,5 +57,6 @@ jobs:
       - name: Build
         run: |
           $env:PATH+=";C:\Program Files\Go\bin"
-          go build -o ocp cli/main.go
+          cd Cli
+          go build -o ocp main.go
           ls
