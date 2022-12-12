@@ -1,10 +1,10 @@
-```{include} ../../toolkit/README.md
+```{include} ../../../Toolkit/README.md
 :relative-docs: docs/
 :relative-images:
 ```
 
 ```{toctree}
-:caption: Using Toolkit
+:caption: Toolkits
 
 faspsolver/index.md
 ```

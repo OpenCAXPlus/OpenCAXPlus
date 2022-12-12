@@ -1,0 +1,1 @@
+# Basic console application starter

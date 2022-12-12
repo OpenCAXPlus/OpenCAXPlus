@@ -62,8 +62,8 @@ html_theme_options = {
     "path_to_docs": "docs",
     "use_edit_page_button": True,
 }
-html_logo = ""
-html_favicon = "_static/icon.png"
+html_logo = "_static/ocp.png"
+html_favicon = "_static/logo.png"
 html_title = "OpenCAXPlus SDK"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -122,4 +122,4 @@ myst_dmath_double_inline = True
 
 # numfig = True
 
-bibtex_bibfiles = ['../references/refs.bib']
+bibtex_bibfiles = ['references/refs.bib']

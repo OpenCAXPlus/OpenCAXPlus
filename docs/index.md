@@ -2,10 +2,8 @@
 sd_hide_title: true
 ---
 
+# Home
 ````{only} html
-# Overview
-
-
 
 ::::{grid}
 :gutter: 3 4 4 4
@@ -19,14 +17,6 @@ sd_hide_title: true
 :class: sd-m-auto
 ```
 
-<!-- ```{button-ref} intro
-:ref-type: doc
-:color: primary
-:class: sd-rounded-pill
-
-Get Started
-``` -->
-
 :::
 
 :::{grid-item}
@@ -34,72 +24,54 @@ Get Started
 :child-align: justify
 :class: sd-fs-5
 
-```{rubric} The OpenCAXPlus SDK
-
+```{rubric} Some slogan
 ```
+We are ...
 
-Our aim is to provide a SDK (software development kit) that does the tedious works in building an CAX application, while still grants developers full control of the core logic and being able to spawn an production ready application in no time.
+We are ...
+
+We are not ...
+
+We are not ...
 
 :::
 
 ::::
 
 
-
 ::::{grid} 2
 
 :::{grid-item-card} {octicon}`rocket;1.5em;sd-mr-1` I want to use the SDK
-:link: syntax/core
+:link: user_manual
 :link-type: ref
 
 I want to develop a new CAD, CAE, CAM, CAI, etc. application using the SDK.
 
 +++
-[Learn how to use»](user/index)
+[Learn how to use»](user/quick_starter.md)
 :::
 
 :::{grid-item-card} {octicon}`plug;1.5em;sd-mr-1` I want to contribute to the SDK
-:link: roles-directives
+:link: dev_doc
 :link-type: ref
 
 I want to add new things to the SDK, such as,
  create a new starter template, add a new toolkit library, improve the docs, etc.
 
 +++
-[Learn how to contribute »](dev/index)
+[Learn how to contribute »](dev/quick_starter.md)
 :::
 
 ::::
 
-
-
-```{rubric} Additional resources
-```
-
-Relevant links
-
-
-```{rubric} Acknowledgements
-```
-
-Some Acknowledgements
-
 ````
 
-
 ```{toctree}
 :hidden:
-:caption: Developer Guide
 
-dev/index.md
-```
-
-```{toctree}
-:hidden:
-:caption: User Manual
-
+overview.md
 user/index.md
-toolkit/index.md
+dev/index.md
 ```
 
 ```{toctree}

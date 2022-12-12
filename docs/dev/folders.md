@@ -1,8 +1,6 @@
-# Contribute to the OpenCAXPlus SDK
+# Understand the folder structure
 
-## Understand the folder structure
-
-Core folders:
+## Core folders:
 - **Framework**: is a skeleton of application. It contains two parts. 
     - **interface** which are header files that define programming rules for the SDK, so that various parts can be connected easily. 
     - **lifecycle** which defines the procedures of how an application should be called. It setup the routine parts of an application for the users and expose certain slots to the user to customize. Lifecycle calls your function to build an executable. 
@@ -11,7 +9,7 @@ Core folders:
 - **Cli**: is a golang cli application that handles the initiating, build, and packaging of the SDK project for both SDK developers and users.
 - **cmake**: contains cmake macros to be used in CMakeLists.txt files.
 
-Other less important folders and files:
+## Other less important folders and files:
 - .github: is the default github configuration folder containing things such as github actions
 - .vscode: containing configuration files for the Visual Studio Code
 - docs: contains the documentations using MyST markdown with sphinx
@@ -19,38 +17,3 @@ Other less important folders and files:
 - CMakeLists.txt: is the cmake file
 - CMakePresets.json: is the cmake presets file, you need to use at least cmake version 3.20 to use this file.
 - LICENSE: our open source license
-
-
-toolkit use interface, lifecycle use toolkit libraries, starter use lifecycle, user defined application use starter.
-
-### Dev environment
-
-Need to have golang and cmake installed.
-
-```
-sudo apt install golang-go cmake
-```
-
-### Usage
-
-Initial run
-
-```
-git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
-cd OpenCAXPlusSDK
-cmake --preset="linux-gnu-Debug" -S "."
-cmake --build --preset="linux-gnu-Debug"
-```
-
-The initial run will build the OpenCAXPlus command line tool "ocp", you can use the ocp command to manage the SDK from now on.
-Following run
-
-```
-./ocp build
-```
-
-To build a starter, such as the BasicConsole starter
-
-```
-./ocp build -p starter/BasicConsole
-```
