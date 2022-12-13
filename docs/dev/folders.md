@@ -2,8 +2,8 @@
 
 ## Core folders
 - **Framework**: is a skeleton of application. It contains two parts. 
-    - **interface** which are header files that define programming rules for the SDK, so that various parts can be connected easily. 
-    - **lifecycle** which defines the procedures of how an application should be called. It setup the routine parts of an application for the users and expose certain slots to the user to customize. Lifecycle calls your function to build an executable. 
+    - **interface** are header files that define programming rules for the SDK, so that various parts can be connected easily. 
+    - **lifecycle** defines the procedures of how an application should be called. It setup the routine parts of an application for the users and expose certain slots to the user to customize. Lifecycle calls your function to build an executable. 
 - **Toolkit**: is a collection of software libraries. These are handy functions that you can call to save your developing time. Libraries in the toolkit must conform (at least partially) to the *framework/interface*. Here, we will use the **faspsolver** as an example.
     - **external**:
     - other files:
