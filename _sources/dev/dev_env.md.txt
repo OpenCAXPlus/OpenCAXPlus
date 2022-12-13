@@ -14,8 +14,10 @@ Need to have golang and cmake installed.
 
 ::::{tab-set}
 
-:::{tab-item} Windows
-Content 1
+:::{tab-item} Linux
+```sh
+sudo apt install golang-go cmake
+```
 :::
 
 :::{tab-item} Mac
@@ -24,10 +26,8 @@ brew install go cmake
 ```
 :::
 
-:::{tab-item} Linux
-```sh
-sudo apt install golang-go cmake
-```
+:::{tab-item} Windows
+Content 1
 :::
 
 ::::

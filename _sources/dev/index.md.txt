@@ -9,6 +9,7 @@ folders.md
 build_system.md
 starter.md
 toolkit.md
+faq.md
 ```
 
 The following sections are for the SDK developers. 

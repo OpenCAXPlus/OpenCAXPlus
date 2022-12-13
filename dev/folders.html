@@ -201,6 +201,11 @@
      toolkit
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="faq.html">
+     Frequently asked questions
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -394,12 +399,12 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#core-folders">
-   Core folders:
+   Core folders
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-less-important-folders-and-files">
-   Other less important folders and files:
+   Other less important folders and files
   </a>
  </li>
 </ul>
@@ -423,12 +428,12 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#core-folders">
-   Core folders:
+   Core folders
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-less-important-folders-and-files">
-   Other less important folders and files:
+   Other less important folders and files
   </a>
  </li>
 </ul>
@@ -444,7 +449,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="understand-the-folder-structure">
 <h1>Understand the folder structure<a class="headerlink" href="#understand-the-folder-structure" title="Permalink to this headline">#</a></h1>
 <section id="core-folders">
-<h2>Core folders:<a class="headerlink" href="#core-folders" title="Permalink to this headline">#</a></h2>
+<h2>Core folders<a class="headerlink" href="#core-folders" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><strong>Framework</strong>: is a skeleton of application. It contains two parts.</p>
 <ul>
@@ -452,14 +457,24 @@ title="Print to PDF"
 <li><p><strong>lifecycle</strong> which defines the procedures of how an application should be called. It setup the routine parts of an application for the users and expose certain slots to the user to customize. Lifecycle calls your function to build an executable.</p></li>
 </ul>
 </li>
-<li><p><strong>Toolkit</strong>: is a collection of software libraries. These are handy functions that you can call to save your developing time. Libraries in the toolkit must conform (at least partially) to the <em>framework/interface</em>.</p></li>
+<li><p><strong>Toolkit</strong>: is a collection of software libraries. These are handy functions that you can call to save your developing time. Libraries in the toolkit must conform (at least partially) to the <em>framework/interface</em>. Here, we will use the <strong>faspsolver</strong> as an example.</p>
+<ul>
+<li><p><strong>external</strong>:</p></li>
+<li><p>other files:</p></li>
+</ul>
+</li>
 <li><p><strong>Starter</strong>: is a collection of starter templates for SDK users to initiate various new projects. Each folder within the Starter is a standalone cmake project.</p></li>
-<li><p><strong>Cli</strong>: is a golang cli application that handles the initiating, build, and packaging of the SDK project for both SDK developers and users.</p></li>
+<li><p><strong>Cli</strong>: is a golang cli application that handles the initiating, build, and packaging of the SDK project for both SDK developers and users.</p>
+<ul>
+<li><p><strong>cmd</strong>:</p></li>
+<li><p><strong>pkg</strong>:</p></li>
+</ul>
+</li>
 <li><p><strong>cmake</strong>: contains cmake macros to be used in CMakeLists.txt files.</p></li>
 </ul>
 </section>
 <section id="other-less-important-folders-and-files">
-<h2>Other less important folders and files:<a class="headerlink" href="#other-less-important-folders-and-files" title="Permalink to this headline">#</a></h2>
+<h2>Other less important folders and files<a class="headerlink" href="#other-less-important-folders-and-files" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>.github: is the default github configuration folder containing things such as github actions</p></li>
 <li><p>.vscode: containing configuration files for the Visual Studio Code</p></li>
