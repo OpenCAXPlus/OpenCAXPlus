@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>toolkit &#8212; OpenCAXPlus SDK</title>
+    <title>Add new libraries to the toolkit &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -38,8 +38,8 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Frequently asked questions" href="faq.html" />
-    <link rel="prev" title="starter" href="starter.html" />
+    <link rel="next" title="CMake macros" href="cmake.html" />
+    <link rel="prev" title="Create a new starter template" href="starter.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -172,13 +172,13 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="quick_starter.html">
-     Quick starter
+    <a class="reference internal" href="dev_env.html">
+     Development environment
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="dev_env.html">
-     Development environment
+    <a class="reference internal" href="quick_starter.html">
+     Quick starter
     </a>
    </li>
    <li class="toctree-l2">
@@ -193,12 +193,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="starter.html">
-     starter
+     Create a new starter template
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     toolkit
+     Add new libraries to the toolkit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cmake.html">
+     CMake macros
     </a>
    </li>
    <li class="toctree-l2">
@@ -375,23 +380,94 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rules-you-must-follow">
+   Rules you must follow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#readme-md">
+     README.md
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modern-cmake">
+     Modern cmake
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#external-folder">
+     external folder
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>toolkit</h1>
+                <h1>Add new libraries to the toolkit</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rules-you-must-follow">
+   Rules you must follow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#readme-md">
+     README.md
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modern-cmake">
+     Modern cmake
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#external-folder">
+     external folder
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -399,8 +475,47 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="toolkit">
-<h1>toolkit<a class="headerlink" href="#toolkit" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="add-new-libraries-to-the-toolkit">
+<h1>Add new libraries to the toolkit<a class="headerlink" href="#add-new-libraries-to-the-toolkit" title="Permalink to this headline">#</a></h1>
+<p>A toolkit library is the external library plus wrapper that follows the interface definition in our Framework.
+The folder structure of a toolkit library should always look like this:</p>
+<ul class="simple">
+<li><p>README.md</p></li>
+<li><p>.gitignore</p></li>
+<li><p>CMakeLists.txt</p></li>
+<li><p>some source codes</p></li>
+<li><p>external</p>
+<ul>
+<li><p>CMakeLists.txt</p></li>
+<li><p>name-version.tar.gz</p></li>
+</ul>
+</li>
+</ul>
+<section id="rules-you-must-follow">
+<h2>Rules you must follow<a class="headerlink" href="#rules-you-must-follow" title="Permalink to this headline">#</a></h2>
+<p>When we review your pull request for a new toolkit library, we will look into the following things.</p>
+<section id="readme-md">
+<h3>README.md<a class="headerlink" href="#readme-md" title="Permalink to this headline">#</a></h3>
+<p>You must have a README.md file that explain basic things about your code.</p>
+</section>
+<section id="modern-cmake">
+<h3>Modern cmake<a class="headerlink" href="#modern-cmake" title="Permalink to this headline">#</a></h3>
+<p>You must use the modern cmake build system. Notice, it’s not just cmake but you have to use modern cmake.</p>
+<p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_toolkit</span></code>, to help you setup a standard library target. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros.</p>
+<p>The CMakeLists.txt file should create a target following the naming convention of “OCP::toolkit_{toolkit_folder_name}” that linked to the imported target from the external folder.
+The target should also be linked to the <strong>OCP::Interface</strong>, and the wrapper functions should follow the interface defined in the framework.</p>
+</section>
+<section id="external-folder">
+<h3>external folder<a class="headerlink" href="#external-folder" title="Permalink to this headline">#</a></h3>
+<p>The external library must be places in the external folder, and</p>
+<div class="warning admonition">
+<p class="admonition-title">No source code should be included</p>
+<p>You should only include a compress source code following the convention of “name-version.tar.gz” in the external folder</p>
+</div>
+<p>The external folder should contain a CMakeLists.txt file that create an imported target to fulfill all requirements, such as linking libraries, include folders, compiler options, and etc., when using this external library.</p>
+<p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_toolkit_external</span></code>, to help you setup a external library target. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros.</p>
+</section>
+</section>
 </section>
 
 
@@ -415,13 +530,13 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">starter</p>
+            <p class="prev-next-title">Create a new starter template</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="faq.html" title="next page">
+    <a class='right-next' id="next-link" href="cmake.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Frequently asked questions</p>
+        <p class="prev-next-title">CMake macros</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -20,10 +20,10 @@ cd OpenCAXPlusSDK
 
 ::::{tab-set}
 
-:::{tab-item} Windows
+:::{tab-item} Linux
 ```sh
-cmake --preset="windows-gnu-Debug" -S "."
-cmake --build --preset="windows-gnu-Debug"
+cmake --preset="linux-gnu-Debug" -S "."
+cmake --build --preset="linux-gnu-Debug"
 ```
 :::
 
@@ -34,10 +34,10 @@ cmake --build --preset="darwin-gnu-Debug"
 ```
 :::
 
-:::{tab-item} Linux
+:::{tab-item} Windows
 ```sh
-cmake --preset="linux-gnu-Debug" -S "."
-cmake --build --preset="linux-gnu-Debug"
+cmake --preset="windows-gnu-Debug" -S "."
+cmake --build --preset="windows-gnu-Debug"
 ```
 :::
 

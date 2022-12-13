@@ -3,12 +3,13 @@
 ```{toctree}
 :hidden:
 
-quick_starter.md
 dev_env.md
+quick_starter.md
 folders.md
 build_system.md
 starter.md
 toolkit.md
+cmake.md
 faq.md
 ```
 

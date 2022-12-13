@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>starter &#8212; OpenCAXPlus SDK</title>
+    <title>Create a new starter template &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -38,7 +38,7 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="toolkit" href="toolkit.html" />
+    <link rel="next" title="Add new libraries to the toolkit" href="toolkit.html" />
     <link rel="prev" title="Build system" href="build_system.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -172,13 +172,13 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="quick_starter.html">
-     Quick starter
+    <a class="reference internal" href="dev_env.html">
+     Development environment
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="dev_env.html">
-     Development environment
+    <a class="reference internal" href="quick_starter.html">
+     Quick starter
     </a>
    </li>
    <li class="toctree-l2">
@@ -193,12 +193,17 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     starter
+     Create a new starter template
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="toolkit.html">
-     toolkit
+     Add new libraries to the toolkit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cmake.html">
+     CMake macros
     </a>
    </li>
    <li class="toctree-l2">
@@ -375,23 +380,84 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rules-you-must-follow">
+   Rules you must follow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#readme-md">
+     README.md
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modern-cmake">
+     Modern cmake
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>starter</h1>
+                <h1>Create a new starter template</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rules-you-must-follow">
+   Rules you must follow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#readme-md">
+     README.md
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modern-cmake">
+     Modern cmake
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -399,8 +465,26 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="starter">
-<h1>starter<a class="headerlink" href="#starter" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="create-a-new-starter-template">
+<h1>Create a new starter template<a class="headerlink" href="#create-a-new-starter-template" title="Permalink to this headline">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Always try this before pull request!</p>
+<p>Always make sure you can copy the template folder to any directory, then build and run the program.</p>
+</div>
+<section id="rules-you-must-follow">
+<h2>Rules you must follow<a class="headerlink" href="#rules-you-must-follow" title="Permalink to this headline">#</a></h2>
+<p>When we review your pull request for a new starter template, we will look into the following things.</p>
+<section id="readme-md">
+<h3>README.md<a class="headerlink" href="#readme-md" title="Permalink to this headline">#</a></h3>
+<p>You must have a README.md file that explain basic things about your code.</p>
+</section>
+<section id="modern-cmake">
+<h3>Modern cmake<a class="headerlink" href="#modern-cmake" title="Permalink to this headline">#</a></h3>
+<p>You must use the modern cmake build system. Notice, it’s not just cmake but you have to use modern cmake.</p>
+<p>You must use CMakePresets.json file and follow our naming convention.</p>
+<p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_embed_user_program</span></code>, to help you link your template with the SDK. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros</p>
+</section>
+</section>
 </section>
 
 
@@ -421,7 +505,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="toolkit.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">toolkit</p>
+        <p class="prev-next-title">Add new libraries to the toolkit</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
