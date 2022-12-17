@@ -4,6 +4,7 @@
 #include "m++.h" 
 #include "mpi.h"
 #include "Poisson.h"
+#include "App.h"
 
 #ifdef DCOMPLEX
 #error undef DCOMPLEX in src/Compiler.h

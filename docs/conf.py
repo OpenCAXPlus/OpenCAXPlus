@@ -23,6 +23,8 @@ copyright = f"{date.today().year}, OpenCAXPlus Org."
 author = 'OpenCAXPlux Org.'
 master_doc = "index"
 
+language = "en"
+
 
 # -- General configuration ---------------------------------------------------
 
