@@ -1,10 +1,10 @@
-```{include} ../../../Starter/README.md
+```{include} ../../../starter/README.md
 :relative-docs: docs/
 :relative-images:
 ```
 
 ```{toctree}
-:caption: Starters
+:caption: starters
 
 BasicConsole/index.md
 ```

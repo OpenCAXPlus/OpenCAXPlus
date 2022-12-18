@@ -151,12 +151,7 @@
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../user/starter/BasicConsole/index.html">
-       Basic console application starter
-      </a>
-     </li>
+    <ul class="simple">
     </ul>
    </li>
   </ul>
@@ -204,6 +199,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="cmake.html">
      CMake macros
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naming.html">
+     Naming conventions
     </a>
    </li>
    <li class="toctree-l2">
@@ -486,13 +486,13 @@ title="Print to PDF"
 <h2>Target names<a class="headerlink" href="#target-names" title="Permalink to this headline">#</a></h2>
 <p>Following are the available targets in our build system and their purposes.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">OCP::Interface</span></code>, an interface library target for all header files in the Framework/interface folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OCP::Interface</span></code>, an interface library target for all header files in the framework/interface folder.</p></li>
 <li><p>lifecycle targets, here we use the BasicConsole as an example</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">${USER_PROGRAM}</span></code>, user defined name for the final executable target,</p></li>
 </ul>
 </li>
-<li><p>Toolkit targets, here we use the faspsolver library as an example</p>
+<li><p>toolkit targets, here we use the faspsolver library as an example</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">OCP::external_faspsolver</span></code>, an imported interface library that links to the external library.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">OCP::toolkit_faspsolver</span></code>, a library target that contains source code for wrappers of the external library, it also links to the OCP::external_faspsolver target.</p></li>
@@ -525,7 +525,7 @@ title="Print to PDF"
 </section>
 <section id="build-the-starter-template">
 <h3>Build the starter template<a class="headerlink" href="#build-the-starter-template" title="Permalink to this headline">#</a></h3>
-<p>To build a specific starter template, you can use the command <code class="docutils literal notranslate"><span class="pre">ocp</span> <span class="pre">build</span> <span class="pre">-p</span> <span class="pre">Starter/Starter_Name</span></code> from the root of the SDK repository. The <code class="docutils literal notranslate"><span class="pre">-p</span></code> option will set the path to the CMake project to be built.</p>
+<p>To build a specific starter template, you can use the command <code class="docutils literal notranslate"><span class="pre">ocp</span> <span class="pre">build</span> <span class="pre">-p</span> <span class="pre">starter/starter_Name</span></code> from the root of the SDK repository. The <code class="docutils literal notranslate"><span class="pre">-p</span></code> option will set the path to the CMake project to be built.</p>
 <p>The build dependencies for a starter template project are shown below. Only the necessary libraries within the toolkit are built, and the starter code is included.</p>
 <p><a class="reference external" href="https://mermaid.live/edit#pako:eNqtVMtu2zAQ_BWC7dFBYPcFs0AAqXGDAi0S2O7JNAJaXNZsKFKgKKSG4X_PKiL9kJOcqtNqObM7w11pSwsngTKqjHss1sIHMs-5JfgURtT1NSjiiuo5Jkobw94ppb6Mx197IPgXwFthIkh-ghUM-6CmBp-qfBCfxx8jADtoi3wlCri4uArOmQcdurO6Wf3xoloT5UUJj84_kMX3FC7P-QtOf6SYc3v77Y6xQ4IuGWPJ0H8gt45EVSHvp1ZQbArT8t5vf88m0_u76e3NNPu1e4kIVvb8RdcEa827cECcNRtSg4EigHxG1FisI0rtMa2d3U8szWC4mKRpVN79RRTJWgXpHK8YxezR-2s48PcSLrPLlE33kd7vs1NfXdXoYniqaHSuKH9d0ehM0ehIUf66ovwNRYeiSeKxy1QqnvW99bknevrc_M15RxRqqwN-buB7axCzZDHrguVh0YxeYd-YJwHKyohwtG_zbHozmcd1awm91rEGto5ryy23dEBL8KXQEv8C2xbIaVhDievOMJSgRGMCp9zuENpUEltOpA7OU6aEqWFARRPcbGMLyoJvIIGutUBHZUTtngD7vYiF"><img alt="" src="https://mermaid.ink/img/pako:eNqtVMtu2zAQ_BWC7dFBYPcFs0AAqXGDAi0S2O7JNAJaXNZsKFKgKKSG4X_PKiL9kJOcqtNqObM7w11pSwsngTKqjHss1sIHMs-5JfgURtT1NSjiiuo5Jkobw94ppb6Mx197IPgXwFthIkh-ghUM-6CmBp-qfBCfxx8jADtoi3wlCri4uArOmQcdurO6Wf3xoloT5UUJj84_kMX3FC7P-QtOf6SYc3v77Y6xQ4IuGWPJ0H8gt45EVSHvp1ZQbArT8t5vf88m0_u76e3NNPu1e4kIVvb8RdcEa827cECcNRtSg4EigHxG1FisI0rtMa2d3U8szWC4mKRpVN79RRTJWgXpHK8YxezR-2s48PcSLrPLlE33kd7vs1NfXdXoYniqaHSuKH9d0ehM0ehIUf66ovwNRYeiSeKxy1QqnvW99bknevrc_M15RxRqqwN-buB7axCzZDHrguVh0YxeYd-YJwHKyohwtG_zbHozmcd1awm91rEGto5ryy23dEBL8KXQEv8C2xbIaVhDievOMJSgRGMCp9zuENpUEltOpA7OU6aEqWFARRPcbGMLyoJvIIGutUBHZUTtngD7vYiF?type=png" /></a></p>
 <p>All <span style="background-color:#fff799">yellow boxed targets</span> are managed by the SDK, <span style="background-color:#d5ebe1">blue boxed targets</span> are external open source projects, <span style="background-color:#f3a694">red boxed target</span> is the code that SDK users write (in this case, you as the SDK developer pretent to be a user). Only the used toolkit and lifecycle is built by cmake.</p>

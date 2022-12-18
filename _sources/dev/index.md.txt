@@ -10,6 +10,7 @@ build_system.md
 starter.md
 toolkit.md
 cmake.md
+naming.md
 faq.md
 ```
 

@@ -1,6 +1,6 @@
 # Add new libraries to the toolkit
 
-A toolkit library is the external library plus wrapper that follows the interface definition in our Framework. 
+A toolkit library is the external library plus wrapper that follows the interface definition in our framework. 
 The folder structure of a toolkit library should always look like this:
 - README.md
 - .gitignore
