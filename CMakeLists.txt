@@ -14,10 +14,10 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
-add_subdirectory(Framework/interface)
-add_subdirectory(Toolkit)
-add_subdirectory(Framework/lifecycle)
-add_subdirectory(Starter)
+add_subdirectory(framework/interface)
+add_subdirectory(toolkit)
+add_subdirectory(framework/lifecycle)
+add_subdirectory(starter)
 add_subdirectory(docs)
 # option(OCP_Cli "Should Cli be built?" ON)
 # if(OCP_Cli) 
@@ -32,12 +32,12 @@ include(CPackConfig)
 # SameMajorVersion)
 
 install(
-  DIRECTORY Framework/interface
+  DIRECTORY framework/interface
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
 
 install(
-  DIRECTORY Framework/lifecycle
+  DIRECTORY framework/lifecycle
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
 
@@ -48,5 +48,5 @@ install(
 
 # if(PROJECT_IS_TOP_LEVEL) cmake_minimum_required(VERSION 3.20)
 
-# project(OpenCAXPlusFramework) option(ENABLE_TEST "Enable testing" ON)
+# project(OpenCAXPlusframework) option(ENABLE_TEST "Enable testing" ON)
 # if(ENABLE_TEST) include(CTest) endif() endif()

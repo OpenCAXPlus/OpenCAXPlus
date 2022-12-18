@@ -3,9 +3,9 @@ on:
     push:
         paths:
             - '.github/workflows/sdk**'
-            - 'Framework/**'
-            - 'Starter/**'
-            - 'Toolkit/**'
+            - 'framework/**'
+            - 'starter/**'
+            - 'toolkit/**'
             - 'CMake*'
         branches:
             - 'main'

@@ -1,4 +1,4 @@
-```{include} ../../../../Starter/BasicConsole/README.md
+```{include} ../../../../starter/BasicConsole/README.md
 :relative-docs: docs/
 :relative-images:
 ```

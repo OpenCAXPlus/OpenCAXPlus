@@ -12,10 +12,10 @@ We use modern cmake, you should also do so if you want to contribute your code t
 
 Following are the available targets in our build system and their purposes.
 
-- `OCP::Interface`, an interface library target for all header files in the Framework/interface folder.
+- `OCP::Interface`, an interface library target for all header files in the framework/interface folder.
 - lifecycle targets, here we use the BasicConsole as an example
     - `${USER_PROGRAM}`, user defined name for the final executable target,
-- Toolkit targets, here we use the faspsolver library as an example
+- toolkit targets, here we use the faspsolver library as an example
     - `OCP::external_faspsolver`, an imported interface library that links to the external library.
     - `OCP::toolkit_faspsolver`, a library target that contains source code for wrappers of the external library, it also links to the OCP::external_faspsolver target.
 - Cli target: `cli` ALL target that build the golang cli tool.
@@ -43,7 +43,7 @@ Below, we illustrate the targets dependencies for building the SDK itself. All l
 [![](https://mermaid.ink/img/pako:eNqtlNtu2zAMhl9F0HaZpmi8A6IBA-IlGwZsaJF2V3FRKDK1aJUlQ5bRBUHefXRt5SDDuVquGPLnT32U7R0VNgfKqNT2RWy48-QhzQzBn9C8quYgiRXla0yk0pq9kVJ-nE4_RSL468EZrjtR_h7WcBOL6gpccEn4h-m7ToATlMF-yQVcXX321upn5dtaVa9_O15uiHS8gBfrnsnqawgf-_2rjH4PcZaZ2y93jB0T9JExFoD-Q3NDxMsS-34oCWIrdNP3dvfrfrF8ulveflvOfu6HGrVaY-O8Loptu5rmLi6IcTXdvDYNJo921G2OoO1DG44I1_o1XxHugKxrpT3OaBtz5UB4Zc3h1sM93qwW4UZLZ_-gisyag4U6ngXPeFAfVnnsPxzhenYdsmGn4f_T7By3de0ojqYhceoZrLpa7HROM-nTpMM0kx7N5GRyOkyTXqCZxDRnnjFNeokm6dOMx-NhnqTHk5zMxtZhIixeYEpipsg3puq5nTzHmaEjWoAruMrxe7RrShn1GyjwlWAY5iB53Ty7mdmjtC5z7mGRK28dZZLrCkaU197eb42gzLsagmiuOL4eRafa_wMCyrf6?type=png)](https://mermaid.live/edit#pako:eNqtlNtu2zAMhl9F0HaZpmi8A6IBA-IlGwZsaJF2V3FRKDK1aJUlQ5bRBUHefXRt5SDDuVquGPLnT32U7R0VNgfKqNT2RWy48-QhzQzBn9C8quYgiRXla0yk0pq9kVJ-nE4_RSL468EZrjtR_h7WcBOL6gpccEn4h-m7ToATlMF-yQVcXX321upn5dtaVa9_O15uiHS8gBfrnsnqawgf-_2rjH4PcZaZ2y93jB0T9JExFoD-Q3NDxMsS-34oCWIrdNP3dvfrfrF8ulveflvOfu6HGrVaY-O8Loptu5rmLi6IcTXdvDYNJo921G2OoO1DG44I1_o1XxHugKxrpT3OaBtz5UB4Zc3h1sM93qwW4UZLZ_-gisyag4U6ngXPeFAfVnnsPxzhenYdsmGn4f_T7By3de0ojqYhceoZrLpa7HROM-nTpMM0kx7N5GRyOkyTXqCZxDRnnjFNeokm6dOMx-NhnqTHk5zMxtZhIixeYEpipsg3puq5nTzHmaEjWoAruMrxe7RrShn1GyjwlWAY5iB53Ty7mdmjtC5z7mGRK28dZZLrCkaU197eb42gzLsagmiuOL4eRafa_wMCyrf6)
 
 ### Build the starter template
-To build a specific starter template, you can use the command `ocp build -p Starter/Starter_Name` from the root of the SDK repository. The `-p` option will set the path to the CMake project to be built.
+To build a specific starter template, you can use the command `ocp build -p starter/starter_Name` from the root of the SDK repository. The `-p` option will set the path to the CMake project to be built.
 
 The build dependencies for a starter template project are shown below. Only the necessary libraries within the toolkit are built, and the starter code is included.
 
