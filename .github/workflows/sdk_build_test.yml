@@ -55,33 +55,33 @@ jobs:
         steps:
             - name: Test 
               run: ctest --preset="linux-intel-Debug" 
-    mac-base:
-        runs-on: [ self-hosted, macOS]
-        steps:
-            - name: Basic info
-              run: |
-                  echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
-                  echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
-                    echo "Log level: ${{ github.event.inputs.logLevel }}"
-                  echo "Tags: ${{ github.event.inputs.tags }}"
-            - name: Check out repository
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
-    mac-gnu-build:
-        needs: mac-base
-        runs-on: [ self-hosted, macOS]
-        steps:
-            - name: Build 
-              run: |
-                cmake --preset="darwin-gnu-Debug" -S "."
-                cmake --build --preset="darwin-gnu-Debug" --target all
-    mac-gnu-test:
-        needs: mac-gnu-build
-        runs-on: [ self-hosted, macOS]
-        steps:
-            - name: Test 
-              run: ctest --preset="darwin-gnu-Debug" 
+#     mac-base:
+#         runs-on: [ self-hosted, macOS]
+#         steps:
+#             - name: Basic info
+#               run: |
+#                   echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+#                   echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+#                     echo "Log level: ${{ github.event.inputs.logLevel }}"
+#                   echo "Tags: ${{ github.event.inputs.tags }}"
+#             - name: Check out repository
+#               uses: actions/checkout@v3
+#               with:
+#                   fetch-depth: 0
+#     mac-gnu-build:
+#         needs: mac-base
+#         runs-on: [ self-hosted, macOS]
+#         steps:
+#             - name: Build 
+#               run: |
+#                 cmake --preset="darwin-gnu-Debug" -S "."
+#                 cmake --build --preset="darwin-gnu-Debug" --target all
+#     mac-gnu-test:
+#         needs: mac-gnu-build
+#         runs-on: [ self-hosted, macOS]
+#         steps:
+#             - name: Test 
+#               run: ctest --preset="darwin-gnu-Debug" 
     # mac-intel-build:
     #     needs: mac-base
     #     runs-on: [ self-hosted, macOS]
@@ -94,19 +94,19 @@ jobs:
     #     steps:
     #         - name: Test 
     #           run: ./ocp test -b Debug -c intel
-    windows-base:
-        runs-on: [ self-hosted, Windows]
-        steps:
-            - name: Basic info
-              run: |
-                  echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
-                  echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
-                    echo "Log level: ${{ github.event.inputs.logLevel }}"
-                  echo "Tags: ${{ github.event.inputs.tags }}"
-            - name: Check out repository
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
+#     windows-base:
+#         runs-on: [ self-hosted, Windows]
+#         steps:
+#             - name: Basic info
+#               run: |
+#                   echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+#                   echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
+#                     echo "Log level: ${{ github.event.inputs.logLevel }}"
+#                   echo "Tags: ${{ github.event.inputs.tags }}"
+#             - name: Check out repository
+#               uses: actions/checkout@v3
+#               with:
+#                   fetch-depth: 0
     # windows-mingw64-build:
     #     needs: windows-base
     #     runs-on: [ self-hosted, Windows]
@@ -119,29 +119,29 @@ jobs:
     #     steps:
     #         - name: Test 
     #           run: C:/msys64/msys2_shell -mingw64 -defterm -here -full-path -no-start -shell bash -c "./ocp test -b Debug -c gnu -t all"
-    windows-intel-build:
-        needs: windows-base
-        runs-on: [ self-hosted, Windows]
-        defaults:
-            run:
-                shell: cmd
-        steps:
-            - name: build 
-              run: |
-                call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
-                where cmake
-                where ninja
-                cmake --preset="windows-intel-Debug" -S "."
-                cmake --build --preset="windows-intel-Debug" --target all
-    windows-intel-test:
-        needs: windows-intel-build
-        runs-on: [ self-hosted, Windows]
-        defaults:
-            run:
-                shell: cmd
-        steps:
-            - name: Test 
-              run: |
-                call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
-                where ctest
-                ctest --preset="windows-intel-Debug" 
+#     windows-intel-build:
+#         needs: windows-base
+#         runs-on: [ self-hosted, Windows]
+#         defaults:
+#             run:
+#                 shell: cmd
+#         steps:
+#             - name: build 
+#               run: |
+#                 call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+#                 where cmake
+#                 where ninja
+#                 cmake --preset="windows-intel-Debug" -S "."
+#                 cmake --build --preset="windows-intel-Debug" --target all
+#     windows-intel-test:
+#         needs: windows-intel-build
+#         runs-on: [ self-hosted, Windows]
+#         defaults:
+#             run:
+#                 shell: cmd
+#         steps:
+#             - name: Test 
+#               run: |
+#                 call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+#                 where ctest
+#                 ctest --preset="windows-intel-Debug" 
