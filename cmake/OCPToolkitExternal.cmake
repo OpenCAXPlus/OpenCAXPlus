@@ -12,7 +12,7 @@ macro(OCP_Toolkit_External)
   )
 
   add_custom_target(
-    compress_${external_name}
+    compress_${OCPExternal_SOFTWARE}
     DEPENDS
       ${CMAKE_CURRENT_SOURCE_DIR}/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.7z
     COMMENT "Compress the ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}")
@@ -37,16 +37,16 @@ macro(OCP_Toolkit_External)
   add_subdirectory(${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}) # version
                                                                    # 1.11.0
 
-  add_library(external_${external_name} INTERFACE IMPORTED GLOBAL)
-  add_library(OCP::external_${external_name} ALIAS external_${external_name})
+  add_library(external_${OCPExternal_SOFTWARE} INTERFACE IMPORTED GLOBAL)
+  add_library(OCP::external_${OCPExternal_SOFTWARE} ALIAS external_${OCPExternal_SOFTWARE})
 
   set_property(
-    TARGET external_${external_name}
+    TARGET external_${OCPExternal_SOFTWARE}
     APPEND
     PROPERTY INTERFACE_LINK_LIBRARIES ${OCPExternal_LIBRARIES})
 
   set_property(
-    TARGET external_${external_name}
+    TARGET external_${OCPExternal_SOFTWARE}
     APPEND
     PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${OCPExternal_INCLUDE_DIRECTORIES})
 

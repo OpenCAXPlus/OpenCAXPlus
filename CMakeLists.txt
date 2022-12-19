@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(
-  OpenCAXPlusSDK
+  OCPSDK
   DESCRIPTION "The OpenCAXPlus SDK"
   VERSION 0.0.1
   LANGUAGES C CXX Fortran)

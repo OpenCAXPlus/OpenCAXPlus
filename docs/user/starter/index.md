@@ -6,5 +6,5 @@
 ```{toctree}
 :caption: starters
 
-BasicConsole/index.md
+basic_console/index.md
 ```
