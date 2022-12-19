@@ -21,7 +21,7 @@ add_subdirectory(starter)
 add_subdirectory(docs)
 # option(OCP_Cli "Should Cli be built?" ON)
 # if(OCP_Cli) 
-  add_subdirectory(Cli)
+  add_subdirectory(cli)
 # endif()
 
 include(CPackConfig)

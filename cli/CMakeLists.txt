@@ -14,5 +14,5 @@ add_custom_command(
 
 install(
   FILES ../${cliname}
-  DESTINATION Cli
+  DESTINATION cli
   COMPONENT ${PROJECT_NAME})
