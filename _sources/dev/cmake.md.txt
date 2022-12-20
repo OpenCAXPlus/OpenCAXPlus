@@ -48,8 +48,8 @@ It accept the following variables:
 
 Define a macro to be used in the external folder in a toolkit library. It will create several targets:
 
-- **compress\_${software}** to compress a folder with the name ${software}-${version} into a 7z file.
-- **external\_${software}** a INTERFACE IMPORTED library that work as a pseudo target so that you can link to the external library easily
+- **compress\_\${software}** to compress a folder with the name \${software}-\${version} into a 7z file.
+- **external\_\${software}** a INTERFACE IMPORTED library that work as a pseudo target so that you can link to the external library easily
 
 It accept the following variables:
 

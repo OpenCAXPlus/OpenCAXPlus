@@ -33,8 +33,6 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/design-tabs.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="shortcut icon" href="../_static/logo.png"/>
@@ -578,7 +576,7 @@ title="Print to PDF"
 <h2>OCPToolkitExternal.cmake<a class="headerlink" href="#ocptoolkitexternal-cmake" title="Permalink to this headline">#</a></h2>
 <p>Define a macro to be used in the external folder in a toolkit library. It will create several targets:</p>
 <ul class="simple">
-<li><p>**compress_<span class="math notranslate nohighlight">\({software}** to compress a folder with the name \)</span>{software}-${version} into a 7z file.</p></li>
+<li><p><strong>compress_${software}</strong> to compress a folder with the name ${software}-${version} into a 7z file.</p></li>
 <li><p><strong>external_${software}</strong> a INTERFACE IMPORTED library that work as a pseudo target so that you can link to the external library easily</p></li>
 </ul>
 <p>It accept the following variables:</p>
