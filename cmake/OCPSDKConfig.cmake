@@ -1,6 +1,6 @@
 include(CMakeFindDependencyMacro)
 
-set(OCP_ROOT "${OpenCAXPlusSDK_DIR}/..")
+set(OCP_ROOT "${OCPSDK_DIR}/..")
 
 list(APPEND CMAKE_MODULE_PATH "${OCP_ROOT}/cmake")
 
