@@ -5,25 +5,12 @@ project(vtk_starter)
 set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 find_package(OCPSDK)
 
-
-
-
-
 add_library(vtkStarter STATIC)
 target_sources(vtkStarter PUBLIC app.cpp define.cpp)
 
-
-# set(VTK_DIR
-# ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.2.0/lib/cmake/vtk-8.2
-# )
-# find_package(VTK REQUIRED)
-# vtk_module_config(VTK vtkCommonCore vtkFiltersSources vtkFiltersSources
-#               vtkInteractionStyle vtkRenderingOpenGL2)
-# target_link_libraries(vtkStarter PUBLIC ${VTK_LIBRARIES})
-
 ocp_embed_user_program(
   LIFECYCLE
-  "basic_console"
+  "basic_console_vtk"
   TOOLS
   "spdlog;VTK"
   NAME
@@ -33,3 +20,7 @@ ocp_embed_user_program(
   ROOT
   "${OCP_ROOT}"
   USE_CXX)
+
+
+# target_link_libraries(vtk_starter PRIVATE ${VTK_LIBRARIES})
+# include(${VTK_USE_FILE})

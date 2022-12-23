@@ -2,3 +2,4 @@
 # add_subdirectory(${OCP_LIFECYCLE} ${PROJECT_BINARY_DIR}/${USER_PROGRAM})
 
 add_subdirectory(basic_console)
+add_subdirectory(basic_console_vtk)

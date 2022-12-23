@@ -18,7 +18,8 @@ endif()
 set(CMAKE_NINJA_FORCE_RESPONSE_FILE
     "ON"
     CACHE BOOL "Force Ninja to use response files.")
-# external_VTK is created by the ocp_toolkit_external_build_install macro
+
+    #external_VTK is created by the ocp_toolkit_external_build_install macro
 
 add_library(external_VTK INTERFACE IMPORTED GLOBAL)
 add_library(OCP::external_VTK ALIAS external_VTK)

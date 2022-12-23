@@ -1,11 +1,19 @@
 if(OCP_SDK_INSIDE)
-  set(USER_PROGRAM basic_console)
+  set(USER_PROGRAM basic_console_vtk)
 endif()
 
 add_executable(${USER_PROGRAM})
 target_link_libraries(${USER_PROGRAM} PUBLIC OCP::Interface)
 target_include_directories(${USER_PROGRAM} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_sources(${USER_PROGRAM} PUBLIC main.c)
+
+set(VTK_DIR
+    ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.2.0/lib/cmake/vtk-8.2)
+find_package(VTK REQUIRED)
+vtk_module_config(VTK vtkCommonCore vtkFiltersSources vtkFiltersSources
+                  vtkInteractionStyle vtkRenderingOpenGL2)
+target_link_libraries(${USER_PROGRAM} PRIVATE ${VTK_LIBRARIES})
+include(${VTK_USE_FILE})
 
 if(OCP_SDK_INSIDE)
   target_sources(${USER_PROGRAM} PUBLIC dummy.c)
