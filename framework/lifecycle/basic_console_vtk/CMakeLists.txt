@@ -12,7 +12,6 @@ set(VTK_DIR
 find_package(VTK REQUIRED)
 vtk_module_config(VTK vtkCommonCore vtkFiltersSources vtkFiltersSources
                   vtkInteractionStyle vtkRenderingOpenGL2)
-target_link_libraries(${USER_PROGRAM} PRIVATE ${VTK_LIBRARIES})
 include(${VTK_USE_FILE})
 
 if(OCP_SDK_INSIDE)
@@ -23,8 +22,10 @@ if(OCP_SDK_INSIDE)
       APPEND
       PROPERTY LINK_LIBRARIES OCP::toolkit_${target})
   endforeach()
+  target_link_libraries(${USER_PROGRAM} PUBLIC ${VTK_LIBRARIES})
 else()
   target_link_libraries(${USER_PROGRAM} PUBLIC ${USER_PROGRAM_TARGET})
+  target_link_libraries(${USER_PROGRAM_TARGET} PUBLIC ${VTK_LIBRARIES})
 endif()
 
 if(ENABLE_TEST)
