@@ -33,6 +33,7 @@ jobs:
             - name: Build 
               run: |
                 cmake --preset="linux-gnu-Debug" -S "."
+                cmake --build --preset="linux-gnu-Debug" --target install_VTK
                 cmake --build --preset="linux-gnu-Debug" --target all
     linux-gnu-test:
         needs: linux-gnu-build
@@ -48,6 +49,7 @@ jobs:
               run: |
                 source /opt/intel/oneapi/setvars.sh
                 cmake --preset="linux-intel-Debug" -S "."
+                cmake --build --preset="linux-gnu-Debug" --target install_VTK
                 cmake --build --preset="linux-intel-Debug" --target all
     linux-intel-test:
         needs: linux-intel-build
