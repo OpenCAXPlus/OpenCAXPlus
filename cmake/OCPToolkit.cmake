@@ -12,7 +12,7 @@ macro(OCP_Toolkit)
   endif()
 
   set(tkname toolkit_${OCPToolkit_NAME})
-  add_library(${tkname})
+  add_library(${tkname} STATIC)
   add_library(OCP::${tkname} ALIAS ${tkname})
 
   target_sources(${tkname} PUBLIC ${OCPToolkit_FILES})
