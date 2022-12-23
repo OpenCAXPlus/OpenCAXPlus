@@ -41,22 +41,22 @@ jobs:
         steps:
             - name: Test 
               run: ctest --preset="linux-gnu-Debug" 
-    linux-intel-build:
-        needs: linux-base
-        runs-on: [ self-hosted, Linux]
-        steps:
-            - name: Build 
-              run: |
-                source /opt/intel/oneapi/setvars.sh
-                cmake --preset="linux-intel-Debug" -S "."
-                cmake --build --preset="linux-gnu-Debug" --target install_VTK
-                cmake --build --preset="linux-intel-Debug" --target all
-    linux-intel-test:
-        needs: linux-intel-build
-        runs-on: [ self-hosted, Linux]
-        steps:
-            - name: Test 
-              run: ctest --preset="linux-intel-Debug" 
+    # linux-intel-build:
+    #     needs: linux-base
+    #     runs-on: [ self-hosted, Linux]
+    #     steps:
+    #         - name: Build 
+    #           run: |
+    #             source /opt/intel/oneapi/setvars.sh
+    #             cmake --preset="linux-intel-Debug" -S "."
+    #             cmake --build --preset="linux-gnu-Debug" --target install_VTK
+    #             cmake --build --preset="linux-intel-Debug" --target all
+    # linux-intel-test:
+    #     needs: linux-intel-build
+    #     runs-on: [ self-hosted, Linux]
+    #     steps:
+    #         - name: Test 
+    #           run: ctest --preset="linux-intel-Debug" 
 #     mac-base:
 #         runs-on: [ self-hosted, macOS]
 #         steps:
