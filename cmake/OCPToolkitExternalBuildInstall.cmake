@@ -1,7 +1,7 @@
 macro(OCP_Toolkit_External_Build_Install)
   set(options)
   set(oneValueArgs SOFTWARE VERSION)
-  set(multiValueArgs LIBRARIES INCLUDE_DIRECTORIES)
+  set(multiValueArgs FLAGS)
 
   cmake_parse_arguments(OCPExternal "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
@@ -50,6 +50,7 @@ macro(OCP_Toolkit_External_Build_Install)
       "${CMAKE_COMMAND}" "-S" "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}"
       "-B" "build" "-GNinja" "-DCMAKE_BUILD_TYPE=Release" "-DBUILD_TESTING=OFF"
       "-DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_SOURCE_DIR}/install/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}"
+      ${OCPExternal_FLAGS}
     COMMAND "${CMAKE_COMMAND}" "-E" "chdir" "build" "ninja"
     COMMAND "${CMAKE_COMMAND}" "-E" "chdir" "build" "ninja" "install"
     COMMENT "Build and install")
