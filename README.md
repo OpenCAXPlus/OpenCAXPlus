@@ -5,22 +5,19 @@
 [![SDK Build & Test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml)
 [![Cli Build and test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml)
 
-The main goal of this project to provide a SDK (software development kit) that does the tedious works in building an CAX application for you, such as
-- create wrapper functions that allow the developer to use multiple open source libraries seamlessly
+The main goal of the OpenCAXPlus project is to provide an SDK (software development kit) that does the tedious work of building a CAX application. This includes but is not limited to
+- creating wrappers that allow developers to use multiple open-source libraries seamlessly
 - installing and linking necessary libraries
-- GUI interface
-- cross platform project setup
+- providing GUI interface
+- cross-platform project setup
 - documentation/landing page setup
-- automated CICD setup
+- automated CI/CD setup
 - automated packaging and publishing
 
-The SDK also aims to impose no rules on how the developers should write their application, developers still have full control of the core logic of your application.
+The SDK also aims to impose no rules on how developers should write their applications. Developers still have full control of the core logic of your application. Starting from our starter templates, developers can spawn a production-ready application in no time.
 
-Starting from our starter templates, developers are able to spawn an production ready application in no time.
-
-Checkout the sdk [site](https://sdk.opencax.plus) for developer guide, user manuals and examples.
-Also, checkout our organization [landing page](https://opencax.plus) for more of our projects.
-
+Check out the SDK [site](https://sdk.opencax.plus) for a developer guide, user manuals, and examples.
+Also, check out our organization [landing page](https://opencax.plus) for more of our projects.
 
 ![air foil](docs/_static/airfoil.jpg)
 ![cad](docs/_static/cad.jpg)
