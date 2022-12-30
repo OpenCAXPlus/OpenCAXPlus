@@ -11,30 +11,7 @@ macro(OCP_Toolkit_External_Build_Install)
       "Add external library ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}, link to ${OCPExternal_LIBRARIES}, includes ${OCPExternal_INCLUDE_DIRECTORIES}"
   )
 
-  add_custom_target(
-    compress_${OCPExternal_SOFTWARE}
-    DEPENDS
-      ${CMAKE_CURRENT_SOURCE_DIR}/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.7z
-    COMMENT "Compress the ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}")
-
-  add_custom_command(
-    OUTPUT
-      ${CMAKE_CURRENT_SOURCE_DIR}/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.7z
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMAND
-      "${CMAKE_COMMAND}" "-E" "tar" "cf"
-      "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.7z" "--format=7zip" "--"
-      "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}/*"
-    COMMENT "7zip compress ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}")
-
-  if(NOT EXISTS
-     ${CMAKE_CURRENT_SOURCE_DIR}/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION})
-    execute_process(
-      COMMAND
-        "${CMAKE_COMMAND}" "-E" "tar" "xf"
-        "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.7z" "--format=7zip"
-      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-  endif()
+  include(OCPCompress)
 
   add_custom_target(
     install_${OCPExternal_SOFTWARE}
