@@ -16,7 +16,7 @@ target_sources(mppstarter PUBLIC App.cpp Poisson.cpp PoissonProblems.cpp Define.
 # target_compile_options(-diag-disable=10441)
 ocp_embed_user_program(
  LIFECYCLE
- "basic_console"
+ "basic"
  TOOLS
  "spdlog;M++;faspsolver"
  NAME

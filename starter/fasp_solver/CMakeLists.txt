@@ -12,7 +12,7 @@ target_sources(faspstarter PUBLIC app.c app.h define.c)
 
 ocp_embed_user_program(
   LIFECYCLE
-  "basic_console"
+  "basic"
   TOOLS
   "ocplog;faspsolver"
   NAME

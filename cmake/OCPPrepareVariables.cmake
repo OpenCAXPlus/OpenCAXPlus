@@ -10,7 +10,7 @@ set(OCP_ROOT
 option(USER_CXX "The user program is using C++" OFF)
 
 set(OCP_LIFECYCLE
-    "basic_console"
+    "basic"
     CACHE STRING "The program life cycle that user want to use" FORCE)
 
 set_property(CACHE OCP_LIFECYCLE PROPERTY STRINGS BasicConsole GUI)
@@ -23,7 +23,7 @@ set(OCP_TOOLS
     CACHE INTERNAL "" FORCE)
 
 set(USER_PROGRAM
-    "basic_console"
+    "basic"
     CACHE STRING "The user program's name" FORCE)
 
 set(USER_PROGRAM_TARGET

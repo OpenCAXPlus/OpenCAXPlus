@@ -10,7 +10,7 @@ target_sources(vtkStarter PUBLIC app.cpp define.cpp)
 
 ocp_embed_user_program(
   LIFECYCLE
-  "basic_console_vtk"
+  "basic_vtk"
   TOOLS
   "spdlog;VTK"
   NAME

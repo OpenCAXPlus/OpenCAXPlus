@@ -12,11 +12,11 @@ target_sources(CAEStatic PUBLIC app.cpp define.cpp)
 
 ocp_embed_user_program(
   LIFECYCLE
-  "basic_console"
+  "basic"
   TOOLS
   "spdlog;faspsolver"
   NAME
-  "basic_console"
+  "basic"
   TARGET
   CAEStatic
   ROOT

@@ -21,7 +21,7 @@ target_link_libraries(oceStarter PUBLIC TKPrim)
 
 ocp_embed_user_program(
   LIFECYCLE
-  "basic_console"
+  "basic"
   TOOLS
   "spdlog;OCE"
   NAME
