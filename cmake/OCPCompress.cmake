@@ -12,7 +12,7 @@ add_custom_target(
       "${CMAKE_COMMAND}" "-E" "tar" "cJf"
       "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.tar.xz"  "--"
       "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}/*"
-    COMMENT "XZ compress ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" VERBATIM)
+    COMMENT "XZ compress ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}")
 
   if(NOT EXISTS
      ${CMAKE_CURRENT_SOURCE_DIR}/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION})

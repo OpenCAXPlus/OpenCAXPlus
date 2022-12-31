@@ -1,0 +1,4 @@
+gmsh**/
+build/
+install/
+cmake_options.texi
