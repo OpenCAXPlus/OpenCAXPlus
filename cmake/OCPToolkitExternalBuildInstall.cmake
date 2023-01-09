@@ -25,11 +25,15 @@ macro(OCP_Toolkit_External_Build_Install)
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMAND
       "${CMAKE_COMMAND}" "-S" "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}"
-      "-B" "build" "-GNinja" "-DCMAKE_BUILD_TYPE=Release" "-DBUILD_TESTING=OFF"
+      "-B" "build/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" "-GNinja"
+      "-DCMAKE_BUILD_TYPE=Release" "-DBUILD_TESTING=OFF"
       "-DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_SOURCE_DIR}/install/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}"
       ${OCPExternal_FLAGS}
-    COMMAND "${CMAKE_COMMAND}" "-E" "chdir" "build" "ninja"
-    COMMAND "${CMAKE_COMMAND}" "-E" "chdir" "build" "ninja" "install"
+    COMMAND "${CMAKE_COMMAND}" "-E" "chdir"
+            "build/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" "ninja"
+    COMMAND
+      "${CMAKE_COMMAND}" "-E" "chdir"
+      "build/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" "ninja" "install"
     COMMENT "Build and install")
 
   install(
