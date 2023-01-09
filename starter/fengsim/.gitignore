@@ -1,0 +1,10 @@
+*.o
+moc_*
+Makefile
+FENGSim
+data/
+figure/
+ui_**
+qrc_**
+*.vtk
+.qmake*
