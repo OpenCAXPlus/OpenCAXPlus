@@ -34,3 +34,5 @@ add_custom_command(
   COMMAND "${CMAKE_COMMAND}" "-E" "chdir" "build/${SOFTWARE}-${VERSION}" "make"
           "install"
   COMMENT "Build and install")
+
+  

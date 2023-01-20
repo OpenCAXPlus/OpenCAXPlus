@@ -1,0 +1,1 @@
+target_sources(FengSim PRIVATE system.qrc)

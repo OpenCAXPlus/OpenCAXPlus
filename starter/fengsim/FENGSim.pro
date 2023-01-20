@@ -117,13 +117,13 @@ RESOURCES += \
     Machining/machining.qrc \
     figure/transport_wind/transportwindow.qrc
 
-INCLUDEPATH += /home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/OCE/external/install/OCE-0.18.3/include/oce /home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/gmsh/external/install/gmsh-3.0.6/include/gmsh /home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/VTK/external/install/VTK-8.1/include/vtk-8.1
+INCLUDEPATH += ../../toolkit/OCE/external/install/OCE-0.18.3/include/oce ../../toolkit/gmsh/external/install/gmsh-3.0.6/include/gmsh ../../toolkit/VTK/external/install/VTK-8.1/include/vtk-8.1 
 
 LIBS += -L/usr/local/lib \
--L/home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/OCE/external/install/OCE-0.18.3/lib \
--L/home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/gmsh/external/install/gmsh-3.0.6/lib \
--L/home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/VTK/external/install/VTK-8.1/lib \
--L/home/xcheng/codes/OpenCAXPlus/OpenCAXPlusSDK/toolkit/lapack/external/install/lapack-3.11.0/lib \
+-L../../toolkit/OCE/external/install/OCE-0.18.3/lib \
+-L../../toolkit/gmsh/external/install/gmsh-3.0.6/lib \
+-L../../toolkit/VTK/external/install/VTK-8.1/lib \
+-L../../toolkit/lapack/external/install/lapack-3.11.0/lib \
 -llapack -lblas\
 -lTKBinL     -lTKBO     -lTKFeat      -lTKGeomBase  -lTKMath    -lTKOpenGl  -lTKService      -lTKSTEP209   -lTKTObj     -lTKXCAFSchema  -lTKXmlL \
 -lTKBin      -lTKBRep   -lTKFillet    -lTKHLR       -lTKMesh    -lTKPCAF    -lTKShapeSchema  -lTKSTEPAttr  -lTKTopAlgo  -lTKXCAF        -lTKXml \
