@@ -23,6 +23,7 @@
         "PoissonProblems.C": "cpp",
         "solver.h": "c",
         "App.C": "cpp",
-        "string.h": "c"
+        "string.h": "c",
+        "ostream": "cpp"
     },
 }

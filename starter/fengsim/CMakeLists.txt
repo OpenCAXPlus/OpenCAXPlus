@@ -29,7 +29,7 @@ set(gmsh_INCLUDE_DIRS ${gmsh_DIR}/include/gmsh)
 set(gmsh_LIBRARIES -lGmsh)
 # find_package(gmsh)
 
-set(VTK_DIR ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.1/lib/cmake/vtk-8.1)
+set(VTK_DIR ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.1.0/lib/cmake/vtk-8.1)
 find_package(VTK REQUIRED)
 vtk_module_config(
   VTK

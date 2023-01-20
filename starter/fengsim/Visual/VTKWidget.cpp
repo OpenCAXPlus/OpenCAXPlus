@@ -17,7 +17,7 @@ VTK_MODULE_INIT(vtkRenderingFreeType)
 #include "IVtkOCC_SelectableObject.hxx"
 #include "IVtkTools_ShapeObject.hxx"
 #include <QGraphicsView>
-
+#include "vtkFieldData.h"
 #include <vtkSmartPointer.h>
 #include <vtkSimplePointsReader.h>
 
@@ -38,7 +38,41 @@ double COLOR8[3] = {0.0/255.0, 0.0/255.0, 255.0/255.0};
 double COLOR9[3] = {0.0/255.0, 255.0/255.0, 0.0/255.0};
 double COLOR10[3] = {255.0/255.0, 0.0/255.0, 0.0/255.0};
 
+void VTKWidget::ActorCreateIdSelected(vtkSmartPointer<vtkActor> actor, int ObjectId){
+    vtkSmartPointer<vtkIntArray> idValue;
+    vtkSmartPointer<vtkIntArray> selectedValue;
+    idValue->SetNumberOfComponents(1);
+    idValue->SetName("Id");
+    idValue->InsertNextValue(ObjectId);
 
+    selectedValue->SetNumberOfComponents(1);
+    selectedValue->SetName("Selected");
+    selectedValue->InsertNextValue(0);
+
+    actor->GetMapper()->GetInput()->GetFieldData()->AddArray(idValue);
+    actor->GetMapper()->GetInput()->GetFieldData()->AddArray(selectedValue);
+}
+
+int VTKWidget::ActorGetId(vtkSmartPointer<vtkActor> actor){
+    auto retrievedArray = dynamic_cast<vtkIntArray*>(actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Id"));
+    return retrievedArray->GetValue(0);
+}
+
+bool VTKWidget::ActorIsSelected(vtkSmartPointer<vtkActor> actor){
+    int selected = 0;
+    auto retrievedArray = dynamic_cast<vtkIntArray*>(actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
+    selected = retrievedArray->GetValue(0);
+    if (selected==1)
+    {
+        return true;
+    }
+    return false;
+}
+
+void VTKWidget::ActorSetSelected(vtkSmartPointer<vtkActor> actor, bool selected){
+    auto retrievedArray = dynamic_cast<vtkIntArray*>(actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
+    retrievedArray->SetValue(0, selected);
+}
 
 VTKWidget::VTKWidget (QWidget *parent) : QVTKOpenGLWidget(parent)
 {
@@ -188,6 +222,8 @@ void VTKWidget::SetTextPosition()
 
 }
 
+
+
 void VTKWidget::Plot (TopoDS_Shape S, bool t)
 {
     IVtkOCC_Shape::Handle aShapeImpl = new IVtkOCC_Shape(S);
@@ -211,12 +247,14 @@ void VTKWidget::Plot (TopoDS_Shape S, bool t)
     Actor->SetMapper(Mapper);
 
 
-    Actor->SetId(ObjectId);
+    // Actor->SetId(ObjectId);
+
 
 
 
     Actor->GetProperty()->SetColor(COLOR0);
-    Actor->SetSelected(false);
+    // Actor->SetSelected(false);
+    ActorCreateIdSelected(Actor, ObjectId);
 
     // renderer
     renderer->AddActor(Actor);
@@ -332,9 +370,11 @@ void VTKWidget::Pick (double x, double y)
         bool IsSelected = false;
         for (IVtk_ShapeIdList::Iterator anIt (ids); anIt.More(); anIt.Next())
         {
-            if (actor->GetId() == anIt.Value())
+            // if (actor->GetId() == anIt.Value())
+            if (ActorGetId(actor) == anIt.Value())
             {
-                if (actor->IsSelected() == true)
+                // if (actor->IsSelected() == true)
+                if (ActorIsSelected(actor) )
                 {
                     if (SelectBnd)
                     {
@@ -355,13 +395,16 @@ void VTKWidget::Pick (double x, double y)
 
                     actor->GetProperty()->SetColor(COLOR5);
                     actor->GetProperty()->SetOpacity(measure_op);
-                    actor->SetSelected(false);
+                    // actor->SetSelected(false);
+                    ActorSetSelected(actor,false);
                     SelectedVtkActor = NULL;
                 }
-                else if (actor->IsSelected() == false)
+                // else if (actor->IsSelected() == false)
+                else if (!ActorIsSelected(actor))
                 {
                     actor->GetProperty()->SetColor(COLOR5);
-                    actor->SetSelected(true);
+                    // actor->SetSelected(true);
+                    ActorSetSelected(actor,true);
                     SelectedVtkActor = actor;
 
                     if (SelectBnd)
@@ -385,11 +428,13 @@ void VTKWidget::Pick (double x, double y)
             {
                 if (SelectDomain)
                 {
-                    if (actor->IsSelected() == true)
+                    // if (actor->IsSelected() == true)
+                    if (ActorIsSelected(actor))
                     {
                         // *** if could choose only one use ***
                         actor->GetProperty()->SetColor(COLOR0);
-                        actor->SetSelected(false);
+                        // actor->SetSelected(false);
+                        ActorSetSelected(actor,false);
                     }
                 }
             }
@@ -398,7 +443,8 @@ void VTKWidget::Pick (double x, double y)
         if (ids.Size() == 0)
         {
             actor->GetProperty()->SetColor(COLOR0);
-            actor->SetSelected(false);
+            // actor->SetSelected(false);
+            ActorSetSelected(actor,false);
             SelectedVtkActor = NULL;
         }
 
@@ -524,10 +570,12 @@ void VTKWidget::MouseMove( Qt::MouseButtons nFlags, const QPoint point )
         bool IsSelected = false;
         for (IVtk_ShapeIdList::Iterator anIt (ids); anIt.More(); anIt.Next())
         {
-            if (actor->GetId() == anIt.Value())
+            // if (actor->GetId() == anIt.Value())
+            if (ActorGetId(actor) == anIt.Value())
             {
                 IsSelected = true;
-                if (actor->IsSelected() == true)
+                // if (actor->IsSelected() == true)
+                if (ActorIsSelected(actor) == true)
                 {
                     actor->GetProperty()->SetColor(actor->GetProperty()->GetColor());
                 }
@@ -539,12 +587,14 @@ void VTKWidget::MouseMove( Qt::MouseButtons nFlags, const QPoint point )
         }
         if (IsSelected == false)
         {
-            if (actor->IsSelected() == true)
+            // if (actor->IsSelected() == true)
+            if (ActorIsSelected(actor) )
             {
                 //actor->GetProperty()->SetColor(COLOR5);
                 actor->GetProperty()->SetColor(actor->GetProperty()->GetColor());
             }
-            else if (actor->IsSelected() == false)
+            // else if (actor->IsSelected() == false)
+            else if (!ActorIsSelected(actor))
             {
                 //actor->GetProperty()->SetColor(actor->GetProperty()->GetColor());
                 //actor->GetProperty()->SetColor(COLOR0);
@@ -1174,7 +1224,8 @@ void VTKWidget::ClearSelectedBnd()
     {
         vtkActor* actor = acts->GetNextActor();
         actor->GetProperty()->SetColor(COLOR0);
-        actor->SetSelected(false);
+        // actor->SetSelected(false);
+        ActorSetSelected(actor,false);
     }
     SelectedVtkActor = NULL;
     GetRenderWindow()->Render();
@@ -1242,14 +1293,29 @@ void VTKWidget::MeasurePlotCAD (TopoDS_Shape S, bool t)
     meas_cad_actor->SetMapper(Mapper);
 
 
-    meas_cad_actor->SetId(ObjectId);
+    // vtkSmartPointer<vtkIntArray> idValue;
+    // vtkSmartPointer<vtkIntArray> selectedValue;
+    // idValue->SetNumberOfComponents(1);
+    // idValue->SetName("Id");
+    // idValue->InsertNextValue(ObjectId);
+
+    // selectedValue->SetNumberOfComponents(1);
+    // selectedValue->SetName("Selected");
+    // selectedValue->InsertNextValue(0);
+
+    // meas_cad_actor->GetMapper()->GetInput()->GetFieldData()->AddArray(idValue);
+    // meas_cad_actor->GetMapper()->GetInput()->GetFieldData()->AddArray(selectedValue);
+
+    ActorCreateIdSelected(meas_cad_actor, ObjectId);
+
+    // meas_cad_actor->SetId(ObjectId);
 
     meas_cad_actor->GetProperty()->SetOpacity(measure_op);
 
 
     meas_cad_actor->GetProperty()->SetColor(COLOR0);
     meas_cad_actor->SetVisibility(false);
-    meas_cad_actor->SetSelected(false);
+    // meas_cad_actor->SetSelected(false);
 
     // renderer
 
@@ -1312,13 +1378,14 @@ void VTKWidget::MeasurePlotCAD2 (TopoDS_Shape S, bool t)
     Actor->SetMapper(Mapper);
 
 
-    Actor->SetId(ObjectId);
+    // Actor->SetId(ObjectId);
 
     Actor->GetProperty()->SetOpacity(measure_op);
 
 
     Actor->GetProperty()->SetColor(COLOR0);
-    Actor->SetSelected(false);
+    // Actor->SetSelected(false);
+    ActorCreateIdSelected(Actor, ObjectId);
 
     // renderer
     renderer->AddActor(Actor);
@@ -2060,7 +2127,7 @@ void VTKWidget::MeasureClearAll()
 
 
 
-#include "vtkParticleReader.h".h"
+#include "vtkParticleReader.h"
 void VTKWidget::MeasureImportICPFinal(std::string name)
 {
     fstream _file;
@@ -2187,7 +2254,8 @@ void VTKWidget::MeasureSetSelectedBndsUnvisible()
 
 
 
-        actor->SetSelected(false);
+        // actor->SetSelected(false);
+        ActorSetSelected(actor,false);
     }
     SelectedVtkActor = NULL;
     GetRenderWindow()->Render();
@@ -2564,13 +2632,14 @@ void VTKWidget::AMImportCAD (TopoDS_Shape S, bool t)
     am_cad_actor->SetMapper(Mapper);
 
 
-    am_cad_actor->SetId(ObjectId);
+    // am_cad_actor->SetId(ObjectId);
 
+    ActorCreateIdSelected(am_cad_actor, ObjectId);
 
 
     am_cad_actor->GetProperty()->SetColor(COLOR0);
     am_cad_actor->GetProperty()->SetOpacity(measure_op);
-    am_cad_actor->SetSelected(false);
+    // am_cad_actor->SetSelected(false);
 
     // renderer
     renderer->AddActor(am_cad_actor);
@@ -3075,12 +3144,13 @@ void VTKWidget::MachiningPartPlot (TopoDS_Shape S, bool t)
     machining_part_actor->SetMapper(Mapper);
 
 
-    machining_part_actor->SetId(ObjectId);
+    // machining_part_actor->SetId(ObjectId);
 
+    ActorCreateIdSelected(machining_part_actor, ObjectId);
 
 
     machining_part_actor->GetProperty()->SetColor(COLOR0);
-    machining_part_actor->SetSelected(false);
+    // machining_part_actor->SetSelected(false);
 
     // renderer
     renderer->AddActor(machining_part_actor);
@@ -3137,12 +3207,12 @@ void VTKWidget::MachiningToolPlot (TopoDS_Shape S, bool t)
     machining_tool_actor->SetMapper(Mapper);
 
 
-    machining_tool_actor->SetId(ObjectId);
+    // machining_tool_actor->SetId(ObjectId);
 
-
+    ActorCreateIdSelected(machining_tool_actor, ObjectId);
 
     machining_tool_actor->GetProperty()->SetColor(COLOR0);
-    machining_tool_actor->SetSelected(false);
+    // machining_tool_actor->SetSelected(false);
     machining_tool_actor->GetProperty()->SetRepresentationToWireframe();
 
     // renderer
@@ -3344,7 +3414,8 @@ void VTKWidget::TransportPlot (TopoDS_Shape S, bool t, int color)
     Actor->SetMapper(Mapper);
 
 
-    Actor->SetId(ObjectId);
+    // Actor->SetId(ObjectId);
+    ActorCreateIdSelected(Actor, ObjectId);
 
 
     if (color == 0)
@@ -3365,7 +3436,7 @@ void VTKWidget::TransportPlot (TopoDS_Shape S, bool t, int color)
         Actor->GetProperty()->SetColor(COLOR7);
     else if (color == 8)
         Actor->GetProperty()->SetColor(COLOR8);
-    Actor->SetSelected(false);
+    // Actor->SetSelected(false);
 
 
     // renderer

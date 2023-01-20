@@ -32,6 +32,10 @@ class VTKWidget : public QVTKOpenGLWidget
 {
 public:
     VTKWidget(QWidget *parent = 0);
+    static void ActorCreateIdSelected(vtkSmartPointer<vtkActor> actor, int ObjectId);
+    static int ActorGetId(vtkSmartPointer<vtkActor> actor);
+    static bool ActorIsSelected(vtkSmartPointer<vtkActor> actor);
+    static void ActorSetSelected(vtkSmartPointer<vtkActor> actor, bool selected);
     // add
     void Plot (TopoDS_Shape S, bool t = true);
     void RePlot ()
