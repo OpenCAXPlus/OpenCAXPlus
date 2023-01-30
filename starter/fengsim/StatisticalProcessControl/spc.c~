@@ -1,0 +1,8 @@
+#include <stdio.h>
+#include "R.h"
+#include "Rmath.h"
+
+int main() {
+    R_pow(1,2);
+    return 0;
+}

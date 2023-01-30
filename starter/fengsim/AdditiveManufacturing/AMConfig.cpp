@@ -8,7 +8,7 @@ AMConfig::AMConfig()
 
 void AMConfig::clear (std::string filename)
 {
-    QDir dir("/home/jiping/M++/data/vtk");
+    QDir dir("./../../AM/data/vtk");
     QStringList stringlist_vtk;
     //stringlist_vtk << "am_mesh_*.vtk";
     stringlist_vtk << filename.c_str();
@@ -30,7 +30,7 @@ void AMConfig::clear()
 void AMConfig::reset ()
 {
     std::ofstream out;
-    out.open("./AM/conf/m++conf");
+    out.open("./../../AM/conf/m++conf");
     out << "#loadconf = Poisson/conf/poisson.conf;" << std::endl;
     out << "#loadconf = Elasticity/conf/m++conf;" << std::endl;
     out << "#loadconf = ElastoPlasticity/conf/m++conf;" << std::endl;
@@ -40,7 +40,7 @@ void AMConfig::reset ()
     out.close();
 
 
-    out.open("./AM/AdditiveManufacturing/conf/am.conf");
+    out.open("./../../AM/AdditiveManufacturing/conf/am.conf");
     out << "Model = AM;" << std::endl;
     out << "GeoPath = AdditiveManufacturing/;" << std::endl;
 

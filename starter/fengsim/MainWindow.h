@@ -30,6 +30,8 @@
 #include "Measure/MeasureThread3.h"
 #include "AdditiveManufacturing/AMThread1.h"
 #include "AdditiveManufacturing/AMThread2.h"
+#include "OCPoro/OCPoroDockWidget.h"
+#include "OCPoro/OCPoroDialog.h"
 
 // ui design
 namespace Ui {
@@ -464,6 +466,36 @@ public slots:
     {
         vtk_widget->TextOutput(str);
     }
+
+
+
+
+
+
+    // *******************************************************
+    // CAE poro
+public:
+    OCPoroDockWidget* ocporo_dock;
+    int attnum;
+    QString ocporofilename;
+    OCPoroDialog* ocporosummary;
+    OCPoroDialog* ocporosummary1;
+    OCPoroDialog* ocporosummary2;
+    std::vector<std::vector<double>> ocporosummarydata;
+public slots:
+    void OpenOCPoroModule ();
+    void OCPoroImportVTKFile();
+    void OCPoroSwitchAtt ();
+    void OCPoroImportSummary ();
+
+
+
+
+
+
+
+
+
 };
 
 class MeasureThread2 : public QThread

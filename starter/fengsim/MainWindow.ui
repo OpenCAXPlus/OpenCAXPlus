@@ -191,6 +191,7 @@
    <addaction name="actionSystem"/>
    <addaction name="actionSPC"/>
    <addaction name="actionTransport"/>
+   <addaction name="actionOCPoro"/>
    <addaction name="separator"/>
    <addaction name="actionAbout"/>
   </widget>
@@ -593,6 +594,18 @@
     <string>Physics</string>
    </property>
   </action>
+  <action name="actionOCPoro">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="OCPoro.qrc">
+     <normaloff>:/figure/ocporo_wind/poro.png</normaloff>:/figure/ocporo_wind/poro.png</iconset>
+   </property>
+   <property name="text">
+    <string>OCPoro</string>
+   </property>
+  </action>
   <zorder>dockWidget</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -605,14 +618,15 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="MainWindow.qrc"/>
-  <include location="figure/transport_wind/transportwindow.qrc"/>
-  <include location="MeshWindow.qrc"/>
-  <include location="Machining/machining.qrc"/>
   <include location="MeasureWidnow.qrc"/>
-  <include location="SPCWindow.qrc"/>
-  <include location="CADWindow.qrc"/>
+  <include location="OCPoro.qrc"/>
   <include location="System.qrc"/>
+  <include location="MeshWindow.qrc"/>
+  <include location="SPCWindow.qrc"/>
+  <include location="Machining/machining.qrc"/>
+  <include location="figure/transport_wind/transportwindow.qrc"/>
+  <include location="MainWindow.qrc"/>
+  <include location="CADWindow.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -17,7 +17,7 @@ VTK_MODULE_INIT(vtkRenderingFreeType)
 #include "IVtkOCC_SelectableObject.hxx"
 #include "IVtkTools_ShapeObject.hxx"
 #include <QGraphicsView>
-#include "vtkFieldData.h"
+
 #include <vtkSmartPointer.h>
 #include <vtkSimplePointsReader.h>
 
@@ -38,41 +38,7 @@ double COLOR8[3] = {0.0/255.0, 0.0/255.0, 255.0/255.0};
 double COLOR9[3] = {0.0/255.0, 255.0/255.0, 0.0/255.0};
 double COLOR10[3] = {255.0/255.0, 0.0/255.0, 0.0/255.0};
 
-void VTKWidget::ActorCreateIdSelected(vtkSmartPointer<vtkActor> actor, int ObjectId){
-    vtkSmartPointer<vtkIntArray> idValue;
-    vtkSmartPointer<vtkIntArray> selectedValue;
-    idValue->SetNumberOfComponents(1);
-    idValue->SetName("Id");
-    idValue->InsertNextValue(ObjectId);
 
-    selectedValue->SetNumberOfComponents(1);
-    selectedValue->SetName("Selected");
-    selectedValue->InsertNextValue(0);
-
-    actor->GetMapper()->GetInput()->GetFieldData()->AddArray(idValue);
-    actor->GetMapper()->GetInput()->GetFieldData()->AddArray(selectedValue);
-}
-
-int VTKWidget::ActorGetId(vtkSmartPointer<vtkActor> actor){
-    auto retrievedArray = dynamic_cast<vtkIntArray*>(actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Id"));
-    return retrievedArray->GetValue(0);
-}
-
-bool VTKWidget::ActorIsSelected(vtkSmartPointer<vtkActor> actor){
-    int selected = 0;
-    auto retrievedArray = dynamic_cast<vtkIntArray*>(actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
-    selected = retrievedArray->GetValue(0);
-    if (selected==1)
-    {
-        return true;
-    }
-    return false;
-}
-
-void VTKWidget::ActorSetSelected(vtkSmartPointer<vtkActor> actor, bool selected){
-    auto retrievedArray = dynamic_cast<vtkIntArray*>(actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
-    retrievedArray->SetValue(0, selected);
-}
 
 VTKWidget::VTKWidget (QWidget *parent) : QVTKOpenGLWidget(parent)
 {
@@ -222,8 +188,6 @@ void VTKWidget::SetTextPosition()
 
 }
 
-
-
 void VTKWidget::Plot (TopoDS_Shape S, bool t)
 {
     IVtkOCC_Shape::Handle aShapeImpl = new IVtkOCC_Shape(S);
@@ -247,14 +211,12 @@ void VTKWidget::Plot (TopoDS_Shape S, bool t)
     Actor->SetMapper(Mapper);
 
 
-    // Actor->SetId(ObjectId);
-
+    Actor->SetId(ObjectId);
 
 
 
     Actor->GetProperty()->SetColor(COLOR0);
-    // Actor->SetSelected(false);
-    ActorCreateIdSelected(Actor, ObjectId);
+    Actor->SetSelected(false);
 
     // renderer
     renderer->AddActor(Actor);
@@ -370,11 +332,9 @@ void VTKWidget::Pick (double x, double y)
         bool IsSelected = false;
         for (IVtk_ShapeIdList::Iterator anIt (ids); anIt.More(); anIt.Next())
         {
-            // if (actor->GetId() == anIt.Value())
-            if (ActorGetId(actor) == anIt.Value())
+            if (actor->GetId() == anIt.Value())
             {
-                // if (actor->IsSelected() == true)
-                if (ActorIsSelected(actor) )
+                if (actor->IsSelected() == true)
                 {
                     if (SelectBnd)
                     {
@@ -395,16 +355,13 @@ void VTKWidget::Pick (double x, double y)
 
                     actor->GetProperty()->SetColor(COLOR5);
                     actor->GetProperty()->SetOpacity(measure_op);
-                    // actor->SetSelected(false);
-                    ActorSetSelected(actor,false);
+                    actor->SetSelected(false);
                     SelectedVtkActor = NULL;
                 }
-                // else if (actor->IsSelected() == false)
-                else if (!ActorIsSelected(actor))
+                else if (actor->IsSelected() == false)
                 {
                     actor->GetProperty()->SetColor(COLOR5);
-                    // actor->SetSelected(true);
-                    ActorSetSelected(actor,true);
+                    actor->SetSelected(true);
                     SelectedVtkActor = actor;
 
                     if (SelectBnd)
@@ -428,13 +385,11 @@ void VTKWidget::Pick (double x, double y)
             {
                 if (SelectDomain)
                 {
-                    // if (actor->IsSelected() == true)
-                    if (ActorIsSelected(actor))
+                    if (actor->IsSelected() == true)
                     {
                         // *** if could choose only one use ***
                         actor->GetProperty()->SetColor(COLOR0);
-                        // actor->SetSelected(false);
-                        ActorSetSelected(actor,false);
+                        actor->SetSelected(false);
                     }
                 }
             }
@@ -443,8 +398,7 @@ void VTKWidget::Pick (double x, double y)
         if (ids.Size() == 0)
         {
             actor->GetProperty()->SetColor(COLOR0);
-            // actor->SetSelected(false);
-            ActorSetSelected(actor,false);
+            actor->SetSelected(false);
             SelectedVtkActor = NULL;
         }
 
@@ -570,12 +524,10 @@ void VTKWidget::MouseMove( Qt::MouseButtons nFlags, const QPoint point )
         bool IsSelected = false;
         for (IVtk_ShapeIdList::Iterator anIt (ids); anIt.More(); anIt.Next())
         {
-            // if (actor->GetId() == anIt.Value())
-            if (ActorGetId(actor) == anIt.Value())
+            if (actor->GetId() == anIt.Value())
             {
                 IsSelected = true;
-                // if (actor->IsSelected() == true)
-                if (ActorIsSelected(actor) == true)
+                if (actor->IsSelected() == true)
                 {
                     actor->GetProperty()->SetColor(actor->GetProperty()->GetColor());
                 }
@@ -587,14 +539,12 @@ void VTKWidget::MouseMove( Qt::MouseButtons nFlags, const QPoint point )
         }
         if (IsSelected == false)
         {
-            // if (actor->IsSelected() == true)
-            if (ActorIsSelected(actor) )
+            if (actor->IsSelected() == true)
             {
                 //actor->GetProperty()->SetColor(COLOR5);
                 actor->GetProperty()->SetColor(actor->GetProperty()->GetColor());
             }
-            // else if (actor->IsSelected() == false)
-            else if (!ActorIsSelected(actor))
+            else if (actor->IsSelected() == false)
             {
                 //actor->GetProperty()->SetColor(actor->GetProperty()->GetColor());
                 //actor->GetProperty()->SetColor(COLOR0);
@@ -721,6 +671,8 @@ void VTKWidget::ImportSTLFile(std::string name)
     vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
     actor->SetMapper(mapper);
 }
+#include "vtkPointData.h"
+#include "vtkCellData.h"
 
 void VTKWidget::ImportVTKFile(std::string name)
 {
@@ -730,17 +682,29 @@ void VTKWidget::ImportVTKFile(std::string name)
     // read a vtk file
     vtkSmartPointer<vtkUnstructuredGridReader> reader = vtkSmartPointer<vtkUnstructuredGridReader>::New();
     reader->SetFileName(name.c_str());
+    reader->ReadAllScalarsOn();
     reader->Update();
+
+    //reader->GetOutput()->GetCellData()->SetActiveAttribute(0,0);
+    //std::cout << reader->GetOutput()->GetCellData()->GetArrayName(1) << std::endl;
+    //std::cout << reader->GetOutput()->GetCellData()->GetNumberOfArrays() << std::endl;
+
     // mapper
     vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
     mapper->SetInputConnection(reader->GetOutputPort());
     vtkSmartPointer<vtkLookupTable> lut = vtkSmartPointer<vtkLookupTable>::New();
     lut->SetHueRange(0.666667,0.0);
     double * range = reader->GetOutput()->GetScalarRange();
+    lut->SetVectorModeToMagnitude();
     lut->Build();
     mapper->SetScalarRange(range);
     mapper->SetLookupTable(lut);
     mapper->Update();
+
+
+
+
+
     // actor
     vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
     actor->SetMapper(mapper);
@@ -1224,8 +1188,7 @@ void VTKWidget::ClearSelectedBnd()
     {
         vtkActor* actor = acts->GetNextActor();
         actor->GetProperty()->SetColor(COLOR0);
-        // actor->SetSelected(false);
-        ActorSetSelected(actor,false);
+        actor->SetSelected(false);
     }
     SelectedVtkActor = NULL;
     GetRenderWindow()->Render();
@@ -1293,29 +1256,14 @@ void VTKWidget::MeasurePlotCAD (TopoDS_Shape S, bool t)
     meas_cad_actor->SetMapper(Mapper);
 
 
-    // vtkSmartPointer<vtkIntArray> idValue;
-    // vtkSmartPointer<vtkIntArray> selectedValue;
-    // idValue->SetNumberOfComponents(1);
-    // idValue->SetName("Id");
-    // idValue->InsertNextValue(ObjectId);
-
-    // selectedValue->SetNumberOfComponents(1);
-    // selectedValue->SetName("Selected");
-    // selectedValue->InsertNextValue(0);
-
-    // meas_cad_actor->GetMapper()->GetInput()->GetFieldData()->AddArray(idValue);
-    // meas_cad_actor->GetMapper()->GetInput()->GetFieldData()->AddArray(selectedValue);
-
-    ActorCreateIdSelected(meas_cad_actor, ObjectId);
-
-    // meas_cad_actor->SetId(ObjectId);
+    meas_cad_actor->SetId(ObjectId);
 
     meas_cad_actor->GetProperty()->SetOpacity(measure_op);
 
 
     meas_cad_actor->GetProperty()->SetColor(COLOR0);
     meas_cad_actor->SetVisibility(false);
-    // meas_cad_actor->SetSelected(false);
+    meas_cad_actor->SetSelected(false);
 
     // renderer
 
@@ -1378,14 +1326,13 @@ void VTKWidget::MeasurePlotCAD2 (TopoDS_Shape S, bool t)
     Actor->SetMapper(Mapper);
 
 
-    // Actor->SetId(ObjectId);
+    Actor->SetId(ObjectId);
 
     Actor->GetProperty()->SetOpacity(measure_op);
 
 
     Actor->GetProperty()->SetColor(COLOR0);
-    // Actor->SetSelected(false);
-    ActorCreateIdSelected(Actor, ObjectId);
+    Actor->SetSelected(false);
 
     // renderer
     renderer->AddActor(Actor);
@@ -2127,7 +2074,7 @@ void VTKWidget::MeasureClearAll()
 
 
 
-#include "vtkParticleReader.h"
+#include "vtkParticleReader.h".h"
 void VTKWidget::MeasureImportICPFinal(std::string name)
 {
     fstream _file;
@@ -2254,8 +2201,7 @@ void VTKWidget::MeasureSetSelectedBndsUnvisible()
 
 
 
-        // actor->SetSelected(false);
-        ActorSetSelected(actor,false);
+        actor->SetSelected(false);
     }
     SelectedVtkActor = NULL;
     GetRenderWindow()->Render();
@@ -2632,14 +2578,13 @@ void VTKWidget::AMImportCAD (TopoDS_Shape S, bool t)
     am_cad_actor->SetMapper(Mapper);
 
 
-    // am_cad_actor->SetId(ObjectId);
+    am_cad_actor->SetId(ObjectId);
 
-    ActorCreateIdSelected(am_cad_actor, ObjectId);
 
 
     am_cad_actor->GetProperty()->SetColor(COLOR0);
     am_cad_actor->GetProperty()->SetOpacity(measure_op);
-    // am_cad_actor->SetSelected(false);
+    am_cad_actor->SetSelected(false);
 
     // renderer
     renderer->AddActor(am_cad_actor);
@@ -2687,11 +2632,11 @@ void VTKWidget::AMSetCADVisible(bool t)
 void VTKWidget::AMImportSTL ()
 {
     fstream _file;
-    _file.open("./Cura/data/am/am.stl", ios::in);
+    _file.open("./data/am/am.stl", ios::in);
     if (!_file) return;
     // read a vtk file
     vtkSmartPointer<vtkSTLReader> reader = vtkSmartPointer<vtkSTLReader>::New();
-    reader->SetFileName("./Cura/data/am/am.stl");
+    reader->SetFileName("./data/am/am.stl");
     reader->Update();
     // mapper
     vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
@@ -2738,11 +2683,11 @@ void VTKWidget::AMSetSTLVisible(bool t)
 void VTKWidget::AMImportSlices()
 {
     fstream _file;
-    _file.open("./Cura/data/am/slices.vtk", ios::in);
+    _file.open("./data/am/slices.vtk", ios::in);
     if (!_file) return;
     // read a vtk file
     vtkSmartPointer<vtkPolyDataReader> reader = vtkSmartPointer<vtkPolyDataReader>::New();
-    reader->SetFileName("./Cura/data/am/slices.vtk");
+    reader->SetFileName("./data/am/slices.vtk");
     reader->Update();
     // mapper
     vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
@@ -2789,11 +2734,11 @@ void VTKWidget::AMSetSlicesVisible(bool t)
 void VTKWidget::AMImportPathPlanning()
 {
     fstream _file;
-    _file.open("./Cura/data/am/pathplanning.vtk", ios::in);
+    _file.open("./data/am/pathplanning.vtk", ios::in);
     if (!_file) return;
     // read a vtk file
     vtkSmartPointer<vtkUnstructuredGridReader> reader = vtkSmartPointer<vtkUnstructuredGridReader>::New();
-    reader->SetFileName("./Cura/data/am/pathplanning.vtk");
+    reader->SetFileName("./data/am/pathplanning.vtk");
     reader->Update();
     // mapper
     vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
@@ -2842,11 +2787,11 @@ void VTKWidget::AMSetPathPlanningVisible (bool t)
 void VTKWidget::AMImportMesh()
 {
     fstream _file;
-    _file.open("./Cura/data/am/mesh.vtk", ios::in);
+    _file.open("./data/am/mesh.vtk", ios::in);
     if (!_file) return;
     // read a vtk file
     vtkSmartPointer<vtkUnstructuredGridReader> reader = vtkSmartPointer<vtkUnstructuredGridReader>::New();
-    reader->SetFileName("./Cura/data/am/mesh.vtk");
+    reader->SetFileName("./data/am/mesh.vtk");
     reader->Update();
     // mapper
     vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
@@ -2893,11 +2838,11 @@ void VTKWidget::AMSetMeshVisible (bool t)
 void VTKWidget::AMImportSimulation (int num)
 {
     fstream _file;
-    _file.open("./AM/data/vtk/am_mesh_" + std::to_string(num) + ".vtk", ios::in);
+    _file.open("./../../AM/data/vtk/am_mesh_" + std::to_string(num) + ".vtk", ios::in);
     if (!_file) return;
     // read a vtk file
     vtkSmartPointer<vtkUnstructuredGridReader> reader = vtkSmartPointer<vtkUnstructuredGridReader>::New();
-    reader->SetFileName(std::string("./AM/data/vtk/am_mesh_" + std::to_string(num) + ".vtk").c_str());
+    reader->SetFileName(std::string("./../../AM/data/vtk/am_mesh_" + std::to_string(num) + ".vtk").c_str());
     reader->Update();
     // mapper
     vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
@@ -2935,11 +2880,11 @@ void VTKWidget::AMImportSimulation (int num)
 void VTKWidget::AMImportSource(int num)
 {
     fstream _file;
-    _file.open("./AM/data/vtk/am_current_pos_" + std::to_string(num) + ".vtk", ios::in);
+    _file.open("./../../AM/data/vtk/am_current_pos_" + std::to_string(num) + ".vtk", ios::in);
     if (!_file) return;
     // read a vtk file
     vtkSmartPointer<vtkSimplePointsReader> reader = vtkSmartPointer<vtkSimplePointsReader>::New();
-    reader->SetFileName(std::string("./AM/data/vtk/am_current_pos_" + std::to_string(num) + ".vtk").c_str());
+    reader->SetFileName(std::string("./../../AM/data/vtk/am_current_pos_" + std::to_string(num) + ".vtk").c_str());
     reader->Update();
     // mapper
     vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
@@ -3144,13 +3089,12 @@ void VTKWidget::MachiningPartPlot (TopoDS_Shape S, bool t)
     machining_part_actor->SetMapper(Mapper);
 
 
-    // machining_part_actor->SetId(ObjectId);
+    machining_part_actor->SetId(ObjectId);
 
-    ActorCreateIdSelected(machining_part_actor, ObjectId);
 
 
     machining_part_actor->GetProperty()->SetColor(COLOR0);
-    // machining_part_actor->SetSelected(false);
+    machining_part_actor->SetSelected(false);
 
     // renderer
     renderer->AddActor(machining_part_actor);
@@ -3207,12 +3151,12 @@ void VTKWidget::MachiningToolPlot (TopoDS_Shape S, bool t)
     machining_tool_actor->SetMapper(Mapper);
 
 
-    // machining_tool_actor->SetId(ObjectId);
+    machining_tool_actor->SetId(ObjectId);
 
-    ActorCreateIdSelected(machining_tool_actor, ObjectId);
+
 
     machining_tool_actor->GetProperty()->SetColor(COLOR0);
-    // machining_tool_actor->SetSelected(false);
+    machining_tool_actor->SetSelected(false);
     machining_tool_actor->GetProperty()->SetRepresentationToWireframe();
 
     // renderer
@@ -3414,8 +3358,7 @@ void VTKWidget::TransportPlot (TopoDS_Shape S, bool t, int color)
     Actor->SetMapper(Mapper);
 
 
-    // Actor->SetId(ObjectId);
-    ActorCreateIdSelected(Actor, ObjectId);
+    Actor->SetId(ObjectId);
 
 
     if (color == 0)
@@ -3436,7 +3379,7 @@ void VTKWidget::TransportPlot (TopoDS_Shape S, bool t, int color)
         Actor->GetProperty()->SetColor(COLOR7);
     else if (color == 8)
         Actor->GetProperty()->SetColor(COLOR8);
-    // Actor->SetSelected(false);
+    Actor->SetSelected(false);
 
 
     // renderer
@@ -3528,4 +3471,59 @@ void VTKWidget::TransportImportVTKFile(std::string name, int color)
     // This ensures that no props are cut off
     // redraw
     GetRenderWindow()->Render();
+}
+
+int VTKWidget::OCPoroImportVTKFile(std::string name, int n)
+{
+    fstream _file;
+    _file.open(name, ios::in);
+    if (!_file) return -1;
+    // read a vtk file
+    vtkSmartPointer<vtkUnstructuredGridReader> reader = vtkSmartPointer<vtkUnstructuredGridReader>::New();
+    reader->SetFileName(name.c_str());
+    reader->ReadAllScalarsOn();
+    reader->Update();
+
+    reader->GetOutput()->GetCellData()->SetActiveAttribute(n,0);
+    //std::cout << reader->GetOutput()->GetCellData()->GetArrayName(1) << std::endl;
+    //std::cout << reader->GetOutput()->GetCellData()->GetNumberOfArrays() << std::endl;
+    int m = reader->GetOutput()->GetCellData()->GetNumberOfArrays();
+
+    // mapper
+    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
+    mapper->SetInputConnection(reader->GetOutputPort());
+    vtkSmartPointer<vtkLookupTable> lut = vtkSmartPointer<vtkLookupTable>::New();
+    lut->SetHueRange(0.666667,0.0);
+    double * range = reader->GetOutput()->GetScalarRange();
+    lut->SetVectorModeToMagnitude();
+    lut->Build();
+    mapper->SetScalarRange(range);
+    mapper->SetLookupTable(lut);
+    mapper->Update();
+
+
+
+
+
+    // actor
+    vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
+    actor->SetMapper(mapper);
+    actor->GetProperty()->EdgeVisibilityOn();
+    actor->GetProperty()->SetAmbient(0.25);
+    // actor->GetProperty()->SetFrontfaceCulling(1); // shit this is OK, check it for long time
+    // actor->GetProperty()->SetOpacity(100.0);
+    //actor->GetProperty()->SetEdgeColor(255.0/255.0,255.0/255.0,255.0/255.0);
+    // renderer
+    renderer->AddActor(actor);
+    //renderer->ResetCamera();
+    // Automatically set up the camera based on the visible actors.
+    // The camera will reposition itself to view the center point of the actors,
+    // and move along its initial view plane normal (i.e., vector defined from camera position to focal point)
+    // so that all of the actors can be seen.
+    renderer->ResetCameraClippingRange();
+    // Reset the camera clipping range based on the bounds of the visible actors.
+    // This ensures that no props are cut off
+    // redraw
+    GetRenderWindow()->Render();
+    return m;
 }

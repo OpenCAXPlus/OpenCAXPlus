@@ -1897,10 +1897,10 @@
   </layout>
  </widget>
  <resources>
-  <include location="../MainWindow.qrc"/>
   <include location="../MeasureWidnow.qrc"/>
-  <include location="../MeshWindow.qrc"/>
+  <include location="../MainWindow.qrc"/>
   <include location="../FEMWindow.qrc"/>
+  <include location="../MeshWindow.qrc"/>
   <include location="../AMWindow.qrc"/>
   <include location="../CADWindow.qrc"/>
  </resources>

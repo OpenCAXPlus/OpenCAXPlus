@@ -11,7 +11,7 @@ public:
         AMThread1();
         void run () {
                 QProcess *proc = new QProcess();
-                proc->setWorkingDirectory( "./AM" );
+                proc->setWorkingDirectory( "./../../AM" );
                 QString command(QString("./AMRun"));
                 proc->start(command);
                 if (proc->waitForFinished(-1)) {

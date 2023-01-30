@@ -25,6 +25,8 @@
 #include "ui_AdditiveManufacturingDockWidget.h"
 #include "ui_MachiningDockWidget.h"
 #include "ui_TransportDockWidget.h"
+#include "ui_OCPoroDockWidget.h"
+#include "ui_OCPoroDialog.h"
 #include "Machining/MakeTools.h"
 #include "QToolButton"
 #include "QTreeWidget"
@@ -32,6 +34,7 @@
 #include <QFileDialog>
 #include "BRep_Builder.hxx"
 #include "STEPControl_Writer.hxx"
+#include "qcustomplot.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -353,6 +356,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     connect(transport_dock->ui->pushButton_3,SIGNAL(clicked()), this, SLOT(TransportParaModel()));
     connect(transport_dock->ui->pushButton_6,SIGNAL(clicked()), this, SLOT(TransportSelect()));
     connect(transport_dock->ui->pushButton_4,SIGNAL(clicked()), this, SLOT(TransportMCRun()));
+
+    // *******************************************************
+    // *******************************************************
+    // cae poro
+    ocporo_dock = new OCPoroDockWidget;
+    connect(ui->actionOCPoro, SIGNAL(triggered()), this, SLOT(OpenOCPoroModule()));
+    connect(ocporo_dock->ui->pushButton, SIGNAL(clicked(bool)), this,
+            SLOT(OCPoroImportVTKFile()));
+    connect(ocporo_dock->ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(OCPoroSwitchAtt()));
+    connect(ocporo_dock->ui->pushButton_3, SIGNAL(clicked(bool)), this,
+            SLOT(OCPoroImportSummary()));
+    ocporosummary = new OCPoroDialog;
+    ocporosummary1 = new OCPoroDialog;
+    ocporosummary2 = new OCPoroDialog;
+
+
+
+
 
 
 
@@ -1475,7 +1496,7 @@ void MainWindow::BoxFit() {
 void MainWindow::ImportAMStlModel()
 {
     stl_file_name =  QFileDialog::getOpenFileName(0,"Open Stl Files",
-                                                  QString("/home/jiping/FENGSim/FENGSim/data/"),
+                                                  QString("/home/jiping/OpenDT/FENGSim/FENGSim/data/"),
                                                   "Stl files (*.stl);;", 0 , QFileDialog::DontUseNativeDialog);
     //MM.ClearSlices();
     // MM.FileFormat2(cli_file_name);
@@ -1501,7 +1522,7 @@ void MainWindow::AMStlModelShow()
 void MainWindow::ImportAMSlices()
 {
     cli_file_name =  QFileDialog::getOpenFileName(0,"Open Slices",
-                                                  QString("/home/jiping/FENGSim/FENGSim/data"),
+                                                  QString("/home/jiping/OpenDT/FENGSim/FENGSim/data"),
                                                   "Slice files (*.cli);;", 0 , QFileDialog::DontUseNativeDialog);
     MM.ClearSlices();
     MM.FileFormatCliToVTK(cli_file_name);
@@ -1514,7 +1535,7 @@ void MainWindow::ImportAMSlices()
 void MainWindow::AMStlModelToSlices()
 {
     cli_file_name =  QFileDialog::getSaveFileName(0,"Open Slices",
-                                                  QString("/home/jiping/FENGSim/FENGSim/data"),
+                                                  QString("/home/jiping/OpenDT/FENGSim/FENGSim/data"),
                                                   "Slice files (*.cli);;", 0 , QFileDialog::DontUseNativeDialog);
     std::cout << "check cli file name: " << cli_file_name.toStdString() << std::endl;
     ofstream out;
@@ -1541,7 +1562,7 @@ void MainWindow::AMStlModelToSlices()
 void MainWindow::AMSlicesToPathPlanning()
 {
     path_file_name =  QFileDialog::getSaveFileName(0,"Open Path Planning",
-                                                   QString("/home/jiping/FENGSim/FENGSim/data"),
+                                                   QString("/home/jiping/OpenDT/FENGSim/FENGSim/data"),
                                                    "Path files (*.vtk);;", 0 , QFileDialog::DontUseNativeDialog);
     ofstream out;
     out.open("./Cura/Cura/conf/cura.conf");
@@ -1749,9 +1770,9 @@ void MainWindow::MeasureOpenCAD()
     //vtk_widget->SetBnds(meas_bnds);
     vtk_widget->MeasureClearAll();
     //vtk_widget->MeasurePlotCAD(*(measure_cad->Value()));
-    //meas_parts->Add(measure_cad);
+    meas_parts->Add(measure_cad);
     parts->Add(measure_cad);
-    //meas_bnds->Reset(meas_parts);
+    meas_bnds->Reset(meas_parts);
     vtk_widget->Plot(*(measure_cad->Value()));
     //vtk_widget->PlotBnds();
     vtk_widget->MeasurePlotBnds();
@@ -1830,9 +1851,9 @@ void MainWindow::MeasureOpenCAD()
 void MainWindow::MeasureCADHide()
 {
     //if (!measure_dock->ui->pushButton_6->isChecked())
-        vtk_widget->MeasureCADHide();
+    vtk_widget->MeasureCADHide();
     //else if (measure_dock->ui->pushButton_6->isChecked())
-        vtk_widget->MeasureCADOn();
+    vtk_widget->MeasureCADOn();
 }
 
 void MainWindow::MeasureCADHide2()
@@ -2372,6 +2393,8 @@ void MeasureThread2::run () {
                 for (faceExplorer.Init(*((*meas_bnds)[vtk_widget->selected_bnd_id[i]]->Value()), TopAbs_FACE);
                      faceExplorer.More(); faceExplorer.Next())
                 {
+
+
                     TopoDS_Face aFace = TopoDS::Face(faceExplorer.Current());
 
                     double _xmax;
@@ -2654,9 +2677,8 @@ void MeasureThread2::MeasureVariance (double mean, QString path)
 
 void MainWindow::AMOpenCAD()
 {
-
     ofstream out;
-    out.open("./Cura/Cura/conf/m++conf");
+    out.open((meas_path+QString("../../CAM/Cura/conf/m++conf")).toStdString());
     out << "#loadconf = Poisson/conf/poisson.conf;" << endl;
     out << "#loadconf = Elasticity/conf/m++conf;" << endl;
     out << "#loadconf = ElastoPlasticity/conf/m++conf;" << endl;
@@ -2667,7 +2689,7 @@ void MainWindow::AMOpenCAD()
 
 
     // file name
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home/jiping/FENGSim/FENGSim/AdditiveManufacturing/data/",
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home/jiping/OpenDT/CAM/data/",
                                                     tr("CAD Files (*.stp *.step)"),
                                                     0 , QFileDialog::DontUseNativeDialog);
     if (fileName.isNull()) return;
@@ -2770,7 +2792,7 @@ void MainWindow::AMCAD2STL()
 {
     if (am_parts->size() == 0) return;
     StlAPI_Writer output;
-    output.Write(*((*am_parts)[0]->Value()), "./Cura/data/am/am.stl");
+    output.Write(*((*am_parts)[0]->Value()), (meas_path+QString("/data/am/am.stl")).toStdString().c_str());
     vtk_widget->AMImportSTL();
     additive_manufacturing_dock->ui->pushButton_17->setChecked(true);
 }
@@ -2792,17 +2814,19 @@ void MainWindow::AMSTL2Slices()
 {
     if (am_parts->size() == 0) return;
     ofstream out;
-    out.open("./Cura/Cura/conf/cura.conf");
+    QString file = meas_path+QString("/../../CAM/Cura/Cura/conf/cura.conf");
+    std::cout << file.toStdString() << std::endl;
+    out.open(file.toStdString());
     out << "Model = SlicePhaseTest" << endl;
-    out << "./data/am/am.stl"  << endl;
-    out << "./data/am/slices.vtk" << endl;
-    out << "./data/am/slices_pathplanning.vtk" << endl;
-    out << "./data/am/slices_meshing.cli" << endl;
+    out << meas_path.toStdString() << "/data/am/am.stl"  << endl;
+    out << meas_path.toStdString() << "/data/am/slices.vtk" << endl;
+    out << meas_path.toStdString() << "/data/am/slices_pathplanning.vtk" << endl;
+    out << meas_path.toStdString() << "/data/am/slices_meshing.cli" << endl;
     out << additive_manufacturing_dock->ui->doubleSpinBox->text().toDouble() << endl;
     out << additive_manufacturing_dock->ui->doubleSpinBox_2->text().toDouble() << endl;
 
     QProcess *proc = new QProcess();
-    proc->setWorkingDirectory( "./Cura" );
+    proc->setWorkingDirectory((meas_path+QString("/../../CAM/Cura/")));
     proc->start("./CuraRun");
 
     if (proc->waitForFinished(-1)) {
@@ -2832,13 +2856,14 @@ void MainWindow::AMSetSlicesVisible()
 void MainWindow::AMSlices2PathPlanning()
 {
     ofstream out;
-    out.open("./Cura/Cura/conf/cura.conf");
+    QString file = meas_path+QString("/../../CAM/Cura/Cura/conf/cura.conf");
+    out.open(file.toStdString());
     out << "Model = InfillTest" << endl;
-    out << "./data/am/slices_pathplanning.vtk" << endl;
-    out << "./data/am/pathplanning.vtk" << endl;
+    out << meas_path.toStdString() << "/data/am/slices_pathplanning.vtk" << endl;
+    out << meas_path.toStdString() << "/data/am/pathplanning.vtk" << endl;
 
     QProcess *proc = new QProcess();
-    proc->setWorkingDirectory( "./Cura" );
+    proc->setWorkingDirectory((meas_path+QString("/../../CAM/Cura/")));
     proc->start("./CuraRun");
 
     if (proc->waitForFinished(-1)) {
@@ -2850,8 +2875,9 @@ void MainWindow::AMSlices2PathPlanning()
         //vtk_widget->ImportVTKFileAMPathPlanning(path_file_name.toStdString() + "_outlines0.vtk");
         vtk_widget->AMImportPathPlanning();
         additive_manufacturing_dock->ui->pushButton_21->setChecked(true);
-        QFile::remove("./AM/AdditiveManufacturing/conf/geo/pathplanning.vtk");
-        QFile::copy("./Cura/data/am/pathplanning.vtk", "./AM/AdditiveManufacturing/conf/geo/pathplanning.vtk");
+        QFile::remove(meas_path+QString("/../../AM/AdditiveManufacturing/conf/geo/pathplanning.vtk"));
+        QFile::copy("./data/am/pathplanning.vtk",
+                    meas_path+QString("/../../AM/AdditiveManufacturing/conf/geo/pathplanning.vtk"));
     }
     proc->close();
 }
@@ -2870,21 +2896,28 @@ void MainWindow::AMSetPathPlanningVisible()
 
 void MainWindow::AMSlices2Mesh()
 {
-    QProcess *proc = new QProcess();
-    proc->setWorkingDirectory("./Cura");
+    QProcess *proc = new QProcess(); 
+    proc->setWorkingDirectory(meas_path+QString("/../../../software/slice2mesh-master/build-slice2mesh-Desktop_Qt_5_12_10_GCC_64bit-Debug"));
     std::cout << (QString("./slice2mesh ./data/am/slices_meshing.cli ") + additive_manufacturing_dock->ui->lineEdit_2->text()).toStdString() << std::endl;
-    QString command(QString("./slice2mesh ./data/am/slices_meshing.cli ") + additive_manufacturing_dock->ui->lineEdit_2->text());
+    QString command(QString("./slice2mesh ")
+                    +meas_path
+                    +QString("/data/am/slices_meshing.cli ")
+                    + additive_manufacturing_dock->ui->lineEdit_2->text());
     proc->start(command);
 
     if (proc->waitForFinished(-1)) {
-        MM.FileFormatMeshToVTK("./Cura/amslices2mesh.mesh",
-                               "./Cura/data/am/mesh.vtk");
+        MM.FileFormatMeshToVTK(meas_path
+                               +QString("/../../../software/slice2mesh-master/build-slice2mesh-Desktop_Qt_5_12_10_GCC_64bit-Debug")
+                               +QString("/amslices2mesh.mesh"),
+                               "./data/am/mesh.vtk");
 
         // this is old work for machining live and dead element
         //        MM.FileFormatMeshToGeo("/home/jiping/software/slice2mesh-master/build-slice2mesh-Desktop_Qt_5_12_10_GCC_64bit-Debug/amslices2mesh.mesh",
         //                               "/home/jiping/FENGSim/AM/Elasticity/conf/geo/thinwall.geo");
-        MM.FileFormatMeshToGeo("./Cura/amslices2mesh.mesh",
-                               "./AM/AdditiveManufacturing/conf/geo/thinwall.geo");
+        MM.FileFormatMeshToGeo((meas_path
+                               +QString("/../../../software/slice2mesh-master/build-slice2mesh-Desktop_Qt_5_12_10_GCC_64bit-Debug")
+                               +QString("/amslices2mesh.mesh")).toStdString().c_str(),
+                               (meas_path+QString("/../../AM/AdditiveManufacturing/conf/geo/thinwall.geo")).toStdString().c_str());
 
         vtk_widget->AMImportMesh();
         additive_manufacturing_dock->ui->pushButton_23->setChecked(true);
@@ -2909,12 +2942,16 @@ class MyThread1 : public QThread
 {
 public:
     void run();
+    QString filename;
+    void setfilename (QString name) {
+        filename = name;
+    }
 };
 
 void MyThread1::run()
 {
     QProcess *proc = new QProcess();
-    proc->setWorkingDirectory( "./AM" );
+    proc->setWorkingDirectory( QString("/home/jiping/OpenDT/AM") );
     QString command(QString("./AMRun"));
     proc->start(command);
     if (proc->waitForFinished(-1)) {
@@ -2951,7 +2988,7 @@ void MainWindow::AMSimulation()
     amconfig.reset();
 
 
-    QDir dir("./AM/data/vtk");
+    QDir dir("./../../AM/data/vtk");
     QStringList stringlist_vtk;
     stringlist_vtk << "*.vtk";
     dir.setNameFilters(stringlist_vtk);
@@ -3865,3 +3902,112 @@ void MainWindow::ImportVTKFile()
 }
 
 
+void MainWindow::OCPoroImportVTKFile()
+{
+    ocporofilename =  QFileDialog::getOpenFileName(0,"Open VTK Files",
+                                                   QString("./home/jiping/"),
+                                                   "VTK files (*.vtk);;", 0 , QFileDialog::DontUseNativeDialog);
+    vtk_widget->Clear();
+    ocporo_dock->ui->comboBox->clear();
+    attnum = vtk_widget->OCPoroImportVTKFile(ocporofilename.toStdString());
+    for (int i=0; i<attnum; i++) {
+        ocporo_dock->ui->comboBox->addItem(QString::number(i));
+    }
+}
+
+void MainWindow::OCPoroSwitchAtt() {
+    //std::cout << attnum << std::endl;
+    if (attnum!=0) {
+        vtk_widget->OCPoroImportVTKFile(ocporofilename.toStdString(),
+                                        ocporo_dock->ui->comboBox->currentIndex());
+        //std::cout << ocporo_dock->ui->comboBox->currentIndex() << std::endl;
+    }
+}
+#include "qcustomplot.h"
+#include "QVector"
+void MainWindow::OCPoroImportSummary()
+{
+    QString fileName =  QFileDialog::getOpenFileName(0,"Open OUT Files",
+                                                     QString("./home/jiping/"),
+                                                     "OUT files (*.out);;", 0 , QFileDialog::DontUseNativeDialog);
+
+
+    ifstream is;
+    is.open(fileName.toStdString());
+    const int len = 256;
+    char L[len];
+    is.getline(L,len);
+    is.getline(L,len);
+    is.getline(L,len);
+    is.getline(L,len);
+    bool stop = true;
+    while (stop)
+    {
+        is.getline(L,len);
+        double x[9];
+        int d = sscanf(L,"%lf %lf %lf %lf %lf %lf %lf %lf %lf", x, x+1, x+2
+                       , x+3, x+4, x+5, x+6, x+7, x+8);
+        if (d<9) stop = false;
+        else {
+            std::vector<double> vv;
+            for (int i=0; i<9; i++)
+                vv.push_back(x[i]);
+            ocporosummarydata.push_back(vv);
+        }
+    }
+
+    QVector<double> x(ocporosummarydata.size());
+    QVector<double> y(ocporosummarydata.size());
+    QVector<double> y1(ocporosummarydata.size());
+    QVector<double> y2(ocporosummarydata.size());
+    for (int i=0; i<ocporosummarydata.size(); i++) {
+        x[i] = ocporosummarydata[i][0];
+        y[i] = ocporosummarydata[i][1];
+        y1[i] = ocporosummarydata[i][2];
+        y2[i] = ocporosummarydata[i][3];
+        std::cout << x[i] << " " << y[i] << std::endl;
+    }
+    ocporosummary->ui->customplot->addGraph();
+    ocporosummary->ui->customplot->graph(0)->setData(x,y);
+    ocporosummary->ui->customplot->graph(0)->rescaleAxes();
+    ocporosummary->show();
+
+
+
+    ocporosummary1->ui->customplot->addGraph();
+    ocporosummary1->ui->customplot->graph(0)->setData(x,y1);
+    ocporosummary1->ui->customplot->graph(0)->rescaleAxes();
+    ocporosummary1->show();
+
+    ocporosummary2->ui->customplot->addGraph();
+    ocporosummary2->ui->customplot->graph(0)->setData(x,y2);
+    ocporosummary2->ui->customplot->graph(0)->rescaleAxes();
+    ocporosummary2->show();
+
+
+}
+void MainWindow::OpenOCPoroModule()
+{
+    if (ui->actionOCPoro->isChecked())
+    {
+        vtk_widget->SetSelectable(false);
+        vtk_widget->SetSelectDomain(false);
+        vtk_widget->Reset();
+        // cout << parts->size() << endl;
+        // OCCw->Clear();
+        // OCCw->SetMachiningModule(false);
+        // OCCw->Fit();
+        ui->dockWidget->setWidget(ocporo_dock);
+        ui->dockWidget->show();
+        // set open and close
+        ui->actionCAD->setChecked(false);
+        ui->actionMesh->setChecked(false);
+        ui->actionSolver->setChecked(false);
+        ui->actionVisual->setChecked(false);
+        ui->actionMeasure->setChecked(false);
+    }
+    else
+    {
+        ui->dockWidget->hide();
+    }
+}

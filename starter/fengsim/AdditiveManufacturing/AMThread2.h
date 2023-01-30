@@ -18,7 +18,7 @@ public:
 public slots:
         void vtknum()
         {
-                QDir dir("./AM/data/vtk");
+                QDir dir("./../../AM/data/vtk");
                 QStringList stringlist_vtk;
                 stringlist_vtk << "am_mesh_*.vtk";
                 dir.setNameFilters(stringlist_vtk);

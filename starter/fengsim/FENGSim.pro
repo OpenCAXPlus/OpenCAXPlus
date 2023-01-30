@@ -28,6 +28,8 @@ SOURCES +=\
     Measure/MeasureICP.cpp \
     Measure/MeasureThread1.cpp \
     Measure/MeasureThread3.cpp \
+    OCPoro/OCPoroDialog.cpp \
+    OCPoro/OCPoroDockWidget.cpp \
     Transport/data_analyze.cpp \
     include/test.cpp \
     qcustomplot.cpp \
@@ -65,6 +67,8 @@ HEADERS  += \
     Measure/MeasureICP.h \
     Measure/MeasureThread1.h \
     Measure/MeasureThread3.h \
+    OCPoro/OCPoroDialog.h \
+    OCPoro/OCPoroDockWidget.h \
     Transport/data_analyze.h \
     include/test.h \
     qcustomplot.h \
@@ -96,6 +100,8 @@ FORMS    += \
     AboutDialog.ui \
     CAD/CADDockWidget.ui \
     Mesh/MeshDockWidget.ui \
+    OCPoro/OCPoroDialog.ui \
+    OCPoro/OCPoroDockWidget.ui \
     Visual/VTKDockWidget.ui \
     FEM/FEMDockWidget.ui \
     Measure/MeasureDockWidget.ui \
@@ -111,20 +117,16 @@ RESOURCES += \
     CADWindow.qrc \
     DataBaseWindow.qrc \
     MeasureWidnow.qrc \
+    OCPoro.qrc \
     System.qrc \
     SPCWindow.qrc \
     AMWindow.qrc \
     Machining/machining.qrc \
     figure/transport_wind/transportwindow.qrc
 
-INCLUDEPATH += ../../toolkit/OCE/external/install/OCE-0.18.3/include/oce ../../toolkit/gmsh/external/install/gmsh-3.0.6/include/gmsh ../../toolkit/VTK/external/install/VTK-8.1/include/vtk-8.1 
+INCLUDEPATH += /usr/local/include/oce /usr/local/include/gmsh /usr/local/include/vtk-8.1 /usr/local/include/pcl-1.8 /usr/local/include/Geant4 /home/jiping/FENGSim/FENGSim/GDT/
 
 LIBS += -L/usr/local/lib \
--L../../toolkit/OCE/external/install/OCE-0.18.3/lib \
--L../../toolkit/gmsh/external/install/gmsh-3.0.6/lib \
--L../../toolkit/VTK/external/install/VTK-8.1/lib \
--L../../toolkit/lapack/external/install/lapack-3.11.0/lib \
--llapack -lblas\
 -lTKBinL     -lTKBO     -lTKFeat      -lTKGeomBase  -lTKMath    -lTKOpenGl  -lTKService      -lTKSTEP209   -lTKTObj     -lTKXCAFSchema  -lTKXmlL \
 -lTKBin      -lTKBRep   -lTKFillet    -lTKHLR       -lTKMesh    -lTKPCAF    -lTKShapeSchema  -lTKSTEPAttr  -lTKTopAlgo  -lTKXCAF        -lTKXml \
 -lTKBinTObj  -lTKCAF    -lTKG2d       -lTKIGES      -lTKMeshVS  -lTKPLCAF   -lTKShHealing    -lTKSTEPBase  -lTKV3d      -lTKXDEIGES     -lTKXmlTObj \
@@ -155,10 +157,10 @@ LIBS += -L/usr/local/lib \
 -lvtkFiltersGeneric-8.1               -lvtkhdf5_hl-8.1                 -lvtkIOImport-8.1              -lvtkParallelCore-8.1    -lvtkzlib-8.1 \
 -lvtkFiltersGeometry-8.1              -lvtkImagingColor-8.1            -lvtkIOInfovis-8.1             -lvtkpng-8.1 \
 -lvtkFiltersHybrid-8.1                -lvtkImagingCore-8.1             -lvtkIOLegacy-8.1              -lvtkproj4-8.1 \
-#-lpcl_common    -lpcl_io_ply  -lpcl_keypoints  -lpcl_outofcore    -lpcl_registration      -lpcl_segmentation  -lpcl_tracking \
-#-lpcl_io      -lpcl_ml         -lpcl_people       -lpcl_sample_consensus  -lpcl_stereo        -lpcl_visualization \
-#-lpcl_filters   -lpcl_kdtree  -lpcl_octree     -lpcl_recognition  -lpcl_search            -lpcl_surface \
-#-lpcl_features -llz4 \
+-lpcl_common    -lpcl_io_ply  -lpcl_keypoints  -lpcl_outofcore    -lpcl_registration      -lpcl_segmentation  -lpcl_tracking \
+-lpcl_io      -lpcl_ml         -lpcl_people       -lpcl_sample_consensus  -lpcl_stereo        -lpcl_visualization \
+-lpcl_filters   -lpcl_kdtree  -lpcl_octree     -lpcl_recognition  -lpcl_search            -lpcl_surface \
+-lpcl_features -llz4 \
 #-lG4analysis           -lG4global         -lG4particles     -lG4Tree \
 #-lG4clhep              -lG4GMocren        -lG4persistency   -lG4visHepRep \
 #-lG4digits_hits        -lG4graphics_reps  -lG4physicslists  -lG4vis_management \
@@ -170,7 +172,7 @@ LIBS += -L/usr/local/lib \
 #-lG4gl2ps              -lG4parmodels      -lG4track \
 #-L/home/jiping/FENGSim/FENGSim/GDT/build -lexample2
 
-# QT += svg
+QT += svg
 #INCLUDEPATH += /usr/local/lib/R/library/RInside/include/ /usr/local/lib/R/library/Rcpp/include/ /usr/local/lib/R/include
 #LIBS += -L/usr/local/lib/R/lib -lRlapack -lRblas -lR -L/usr/local/lib/R/library/RInside/lib/ -lRInside \
 #-L/usr/local/lib/R/library/Rcpp/libs/Rcpp.so
@@ -178,7 +180,7 @@ LIBS += -L/usr/local/lib \
 
 
 #QMAKE_LFLAGS += -no-pie
-QMAKE_CXXFLAGS += "-fno-sized-deallocation"
 
 DISTFILES += \
     figure/cad_wind/tree.png
+

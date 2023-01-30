@@ -32,10 +32,6 @@ class VTKWidget : public QVTKOpenGLWidget
 {
 public:
     VTKWidget(QWidget *parent = 0);
-    static void ActorCreateIdSelected(vtkSmartPointer<vtkActor> actor, int ObjectId);
-    static int ActorGetId(vtkSmartPointer<vtkActor> actor);
-    static bool ActorIsSelected(vtkSmartPointer<vtkActor> actor);
-    static void ActorSetSelected(vtkSmartPointer<vtkActor> actor, bool selected);
     // add
     void Plot (TopoDS_Shape S, bool t = true);
     void RePlot ()
@@ -438,6 +434,11 @@ public:
 public:
     void TransportPlot (TopoDS_Shape S, bool t = true, int color = 0);
     void TransportImportVTKFile (std::string name, int color=0);
+
+    // *******************************************************
+    // ocporo
+public:
+    int OCPoroImportVTKFile (std::string name, int n=0);
 
 
     // *******************************************************

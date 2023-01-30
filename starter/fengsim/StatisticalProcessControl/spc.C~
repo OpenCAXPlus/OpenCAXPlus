@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <R.h>
+#include <Rmath.h>
+
+int main() {
+    double t = R_pow(1,2);
+    printf("t = %lf\n",t);
+    return 0;
+}
