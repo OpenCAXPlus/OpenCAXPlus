@@ -29,7 +29,8 @@ set(gmsh_INCLUDE_DIRS ${gmsh_DIR}/include/gmsh)
 set(gmsh_LIBRARIES -lGmsh)
 # find_package(gmsh)
 
-set(VTK_DIR ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.1.0/lib/cmake/vtk-8.1)
+set(VTK_DIR
+    ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.1.0/lib/cmake/vtk-8.1)
 find_package(VTK REQUIRED)
 vtk_module_config(
   VTK
@@ -51,6 +52,7 @@ target_include_directories(
   FengSim PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${OCE_INCLUDE_DIRS}
                   ${gmsh_INCLUDE_DIRS})
 add_subdirectory(AdditiveManufacturing)
+add_subdirectory(OCPoro)
 add_subdirectory(CAD)
 add_subdirectory(FEM)
 add_subdirectory(Machining)
@@ -75,6 +77,7 @@ target_sources(
           System.qrc
           SPCWindow.qrc
           AMWindow.qrc
+          OCPoro.qrc
           MainWindow.ui
           AboutDialog.ui)
 
