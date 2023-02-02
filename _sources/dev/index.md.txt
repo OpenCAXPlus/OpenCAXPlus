@@ -11,6 +11,7 @@ starter.md
 toolkit.md
 cmake.md
 naming.md
+version.md
 faq.md
 ```
 

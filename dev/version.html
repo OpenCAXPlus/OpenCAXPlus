@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Create a new starter template &#8212; OpenCAXPlus SDK</title>
+    <title>Versioning &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -38,8 +38,8 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Add new libraries to the toolkit" href="toolkit.html" />
-    <link rel="prev" title="Build system" href="build_system.html" />
+    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="prev" title="Naming conventions" href="naming.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -174,8 +174,8 @@
      Build system
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="starter.html">
      Create a new starter template
     </a>
    </li>
@@ -194,8 +194,8 @@
      Naming conventions
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="version.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Versioning
     </a>
    </li>
@@ -308,7 +308,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OpenCAXPlus/OpenCAXPlusSDK/edit/main/docs/dev/starter.md"
+        <a href="https://github.com/OpenCAXPlus/OpenCAXPlusSDK/edit/main/docs/dev/version.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -336,7 +336,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/dev/starter.md.txt"
+        <a href="../_sources/dev/version.md.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -396,21 +396,24 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rules-you-must-follow">
-   Rules you must follow
+  <a class="reference internal nav-link" href="#version-in-doc">
+   version in doc
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#readme-md">
-     README.md
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modern-cmake">
-     Modern cmake
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-in-cmake">
+   version in cmake
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-in-source-code">
+   version in source code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-in-website">
+   version in website
+  </a>
  </li>
 </ul>
 
@@ -421,7 +424,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Create a new starter template</h1>
+                <h1>Versioning</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -432,21 +435,24 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rules-you-must-follow">
-   Rules you must follow
+  <a class="reference internal nav-link" href="#version-in-doc">
+   version in doc
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#readme-md">
-     README.md
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modern-cmake">
-     Modern cmake
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-in-cmake">
+   version in cmake
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-in-source-code">
+   version in source code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-in-website">
+   version in website
+  </a>
  </li>
 </ul>
 
@@ -458,25 +464,62 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="create-a-new-starter-template">
-<h1>Create a new starter template<a class="headerlink" href="#create-a-new-starter-template" title="Permalink to this headline">#</a></h1>
-<div class="tip admonition">
-<p class="admonition-title">Always try this before pull request!</p>
-<p>Always make sure you can copy the template folder to any directory, then build and run the program.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="versioning">
+<h1>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">#</a></h1>
+<p>Clear versioning is important for the success of an open source project. We follow the common <a class="reference external" href="https://semver.org/">semantic versioning rule</a>, that is <code class="docutils literal notranslate"><span class="pre">major_version.minor_version.patch</span></code>.</p>
+<p>We also have a set of rules to keep the versioning across different locations, such as git repository, doc, website, cmake, and source code, consistent with each other.</p>
+<p>The key idea is to use the tag in git repository as the single source of truth for current version, and all other versions should be obtained from git tag and inserted into their corresponding locations.</p>
+<section id="version-in-doc">
+<h2>version in doc<a class="headerlink" href="#version-in-doc" title="Permalink to this headline">#</a></h2>
+<p>Since we are using sphinx as the doc generator, we can obtain the tag information in the conf.py file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="n">release</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">getoutput</span><span class="p">(</span><span class="s1">&#39;git describe --tags --abbrev=0&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-<section id="rules-you-must-follow">
-<h2>Rules you must follow<a class="headerlink" href="#rules-you-must-follow" title="Permalink to this headline">#</a></h2>
-<p>When we review your pull request for a new starter template, we will look into the following things.</p>
-<section id="readme-md">
-<h3>README.md<a class="headerlink" href="#readme-md" title="Permalink to this headline">#</a></h3>
-<p>You must have a README.md file that explain basic things about your code.</p>
+<p>For projects using doxygen, you can use the following command to insert the git tag information as project number.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PROJECT_NUMBER</span><span class="o">=</span><span class="k">$(</span>git describe --tags --abbrev<span class="o">=</span><span class="m">0</span><span class="k">)</span> doxygen
+</pre></div>
+</div>
 </section>
-<section id="modern-cmake">
-<h3>Modern cmake<a class="headerlink" href="#modern-cmake" title="Permalink to this headline">#</a></h3>
-<p>You must use the modern cmake build system. Notice, it’s not just cmake but you have to use modern cmake.</p>
-<p>You must use CMakePresets.json file and follow our naming convention.</p>
-<p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_embed_user_program</span></code>, to help you link your template with the SDK. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros</p>
+<section id="version-in-cmake">
+<h2>version in cmake<a class="headerlink" href="#version-in-cmake" title="Permalink to this headline">#</a></h2>
+<p>In cmake, you can use the execute_process command to extract git tag’s major, minor, and patch version into the corresponding cmake variables.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">execute_process</span><span class="p">(</span>
+<span class="w">    </span><span class="s">COMMAND</span><span class="w"> </span><span class="o">${</span><span class="nv">GIT_EXECUTABLE</span><span class="o">}</span><span class="w"> </span><span class="s2">&quot;--git-dir=${CMAKE_SOURCE_DIR}/.git&quot;</span><span class="w"> </span><span class="s">describe</span>
+<span class="w">            </span><span class="s">--tags</span><span class="w"> </span><span class="s">--abbrev=0</span>
+<span class="w">    </span><span class="s">OUTPUT_VARIABLE</span><span class="w"> </span><span class="s">GIT_TAG</span>
+<span class="w">    </span><span class="s">OUTPUT_STRIP_TRAILING_WHITESPACE</span><span class="p">)</span>
+
+<span class="nb">string</span><span class="p">(</span><span class="s">REGEX</span><span class="w"> </span><span class="s">REPLACE</span><span class="w"> </span><span class="s2">&quot;^([^.]+)\\.([^.]+)\\.(.+)$&quot;</span><span class="w"> </span><span class="s2">&quot;\\1&quot;</span><span class="w"> </span><span class="s">VERSION_MAJOR</span>
+<span class="w">                        </span><span class="s2">&quot;${GIT_TAG}&quot;</span><span class="p">)</span>
+<span class="nb">string</span><span class="p">(</span><span class="s">REGEX</span><span class="w"> </span><span class="s">REPLACE</span><span class="w"> </span><span class="s2">&quot;^([^.]+)\\.([^.]+)\\.(.+)$&quot;</span><span class="w"> </span><span class="s2">&quot;\\2&quot;</span><span class="w"> </span><span class="s">VERSION_MINOR</span>
+<span class="w">                        </span><span class="s2">&quot;${GIT_TAG}&quot;</span><span class="p">)</span>
+<span class="nb">string</span><span class="p">(</span><span class="s">REGEX</span><span class="w"> </span><span class="s">REPLACE</span><span class="w"> </span><span class="s2">&quot;^([^.]+)\\.([^.]+)\\.(.+)$&quot;</span><span class="w"> </span><span class="s2">&quot;\\3&quot;</span><span class="w"> </span><span class="s">VERSION_PATCH</span>
+<span class="w">                        </span><span class="s2">&quot;${GIT_TAG}&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
+<section id="version-in-source-code">
+<h2>version in source code<a class="headerlink" href="#version-in-source-code" title="Permalink to this headline">#</a></h2>
+<p>We do not manually keep the version number in source code. Instead, we use macros which can be defined by cmake to parse the version number during preprocessing.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_compile_definitions</span><span class="p">(</span><span class="o">${</span><span class="nv">target</span><span class="o">}</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">VERSION_MAJOR=</span><span class="o">${</span><span class="nv">VERSION_MAJOR</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">get_major_version</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">VERSION_MAJOR</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="version-in-website">
+<h2>version in website<a class="headerlink" href="#version-in-website" title="Permalink to this headline">#</a></h2>
+<p>Most of our website is build with javascript, and if the website is within the current repository, we can use the git-rev-sync package.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">git</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;git-rev-sync&#39;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">git</span><span class="p">.</span><span class="nx">tag</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>If the website is trying to obtain tag of another repository, I haven’t found an proper way to do so without cloning that repository. We may explore more on this if we encounter such use cases.</p>
 </section>
 </section>
 
@@ -488,17 +531,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="build_system.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="naming.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Build system</p>
+            <p class="prev-next-title">Naming conventions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="toolkit.html" title="next page">
+    <a class='right-next' id="next-link" href="faq.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Add new libraries to the toolkit</p>
+        <p class="prev-next-title">Frequently asked questions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
