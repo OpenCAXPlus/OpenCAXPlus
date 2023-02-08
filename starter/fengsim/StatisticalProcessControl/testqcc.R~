@@ -1,8 +1,0 @@
-library(qcc)
-mu = 100
-sigma_W = 10
-epsilon = rnorm(500)
-x = matrix(mu + sigma_W*epsilon, ncol=10, byrow=TRUE)
-q = qcc(x, type="xbar")
-q = qcc(x, type="R")
-q = qcc(x, type="S")
