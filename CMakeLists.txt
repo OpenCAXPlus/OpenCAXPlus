@@ -33,12 +33,12 @@ include(CPackConfig)
 
 install(
   DIRECTORY framework/interface
-  DESTINATION .
+  DESTINATION framework
   COMPONENT ${PROJECT_NAME})
 
 install(
   DIRECTORY framework/lifecycle
-  DESTINATION .
+  DESTINATION framework
   COMPONENT ${PROJECT_NAME})
 
 install(

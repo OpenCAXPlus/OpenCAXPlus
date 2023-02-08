@@ -1,5 +1,9 @@
-set(tkname Qt)
-add_subdirectory(external)
-add_library(toolkit_${tkname} INTERFACE)
-add_library(OCP::toolkit_${tkname} ALIAS toolkit_${tkname})
-target_link_libraries(toolkit_${tkname} INTERFACE OCP::external_${tkname})
+# set(tkname Qt) add_subdirectory(external) add_library(toolkit_${tkname}
+# INTERFACE) add_library(OCP::toolkit_${tkname} ALIAS toolkit_${tkname})
+# target_link_libraries(toolkit_${tkname} INTERFACE OCP::external_${tkname})
+
+# install( FILES CMakeLists.txt DESTINATION toolkit/Qt COMPONENT
+# ${PROJECT_NAME})
+
+include(OCPToolkitInterface)
+ocp_toolkit_interface()

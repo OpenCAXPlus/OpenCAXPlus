@@ -1,32 +1,8 @@
-# fasp solver
-install(
-  DIRECTORY FASPSolver
-  COMPONENT ${PROJECT_NAME}
-  DESTINATION ./starter
-  PATTERN out EXCLUDE)
-install(
-  DIRECTORY .github
-  DESTINATION ./starter/FASPSolver
-  COMPONENT ${PROJECT_NAME})
-install(
-  FILES ../CMakePresets.json
-  DESTINATION ./starter/FASPSolver
-  COMPONENT ${PROJECT_NAME})
-
-# CAE_Static_Console
-install(
-  DIRECTORY BasicConsole
-  COMPONENT ${PROJECT_NAME}
-  DESTINATION ./starter
-  PATTERN out EXCLUDE)
-install(
-  DIRECTORY .github
-  DESTINATION ./starter/BasicConsole
-  COMPONENT ${PROJECT_NAME})
-install(
-  FILES ../CMakePresets.json
-  DESTINATION ./starter/BasicConsole
-  COMPONENT ${PROJECT_NAME})
-
-# add_subdirectory(M++ EXCLUDE_FROM_ALL)
-# add_subdirectory(FASPSolver)
+include(OCPStarterInstall)
+ocp_starter_install(NAME fasp_solver)
+ocp_starter_install(NAME basic_console)
+ocp_starter_install(NAME basic_gui)
+ocp_starter_install(NAME fengsim)
+ocp_starter_install(NAME m++)
+ocp_starter_install(NAME oce)
+ocp_starter_install(NAME vtk)

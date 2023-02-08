@@ -13,12 +13,12 @@ macro(OCP_Toolkit_External)
 
   include(OCPCompress)
 
-
   add_subdirectory(${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}) # version
                                                                    # 1.11.0
 
   add_library(external_${OCPExternal_SOFTWARE} INTERFACE IMPORTED GLOBAL)
-  add_library(OCP::external_${OCPExternal_SOFTWARE} ALIAS external_${OCPExternal_SOFTWARE})
+  add_library(OCP::external_${OCPExternal_SOFTWARE} ALIAS
+              external_${OCPExternal_SOFTWARE})
 
   set_property(
     TARGET external_${OCPExternal_SOFTWARE}
@@ -30,10 +30,13 @@ macro(OCP_Toolkit_External)
     APPEND
     PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${OCPExternal_INCLUDE_DIRECTORIES})
 
+  # install( DIRECTORY . DESTINATION Toolkit/${OCPExternal_SOFTWARE}/external
+  # COMPONENT ${PROJECT_NAME} PATTERN
+  # "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" EXCLUDE)
+
   install(
-    DIRECTORY .
-    DESTINATION Toolkit/${OCPExternal_SOFTWARE}/external
-    COMPONENT ${PROJECT_NAME}
-    PATTERN "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" EXCLUDE)
+    FILES ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.tar.xz CMakeLists.txt
+    DESTINATION toolkit/${OCPExternal_SOFTWARE}/external
+    COMPONENT ${PROJECT_NAME})
 
 endmacro(OCP_Toolkit_External)

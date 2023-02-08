@@ -67,9 +67,14 @@ add_custom_command(
     -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip
     qtquickcontrols -skip qtquickcontrols2 -skip qtscript -skip qtscxml -skip
     qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg
-    -skip qttranslations -skip qtvirtualkeyboard -skip qtwayland
-    -skip qtwebchannel -skip qtwebengine -skip qtwebsockets -skip qtwebview
-    -skip qtwinextras -skip qtxmlpatterns
-    COMMAND make -j
-    COMMAND make install
-    COMMENT "Build source and install. Be patient! This may take 30mins or more.")
+    -skip qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip
+    qtwebchannel -skip qtwebengine -skip qtwebsockets -skip qtwebview -skip
+    qtwinextras -skip qtxmlpatterns
+  COMMAND make -j
+  COMMAND make install
+  COMMENT "Build source and install. Be patient! This may take 30mins or more.")
+
+install(
+  FILES qt-unified-linux-x64-4.5.1-online.run.tar.xz CMakeLists.txt
+  DESTINATION toolkit/Qt/external
+  COMPONENT ${PROJECT_NAME})

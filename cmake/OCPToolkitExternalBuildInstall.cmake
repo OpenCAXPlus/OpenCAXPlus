@@ -36,10 +36,13 @@ macro(OCP_Toolkit_External_Build_Install)
       "build/${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" "ninja" "install"
     COMMENT "Build and install")
 
+  # install( DIRECTORY . DESTINATION toolkit/${OCPExternal_SOFTWARE}/external
+  # COMPONENT ${PROJECT_NAME} PATTERN
+  # "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" EXCLUDE)
+
   install(
-    DIRECTORY .
-    DESTINATION Toolkit/${OCPExternal_SOFTWARE}/external
-    COMPONENT ${PROJECT_NAME}
-    PATTERN "${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}" EXCLUDE)
+    FILES ${OCPExternal_SOFTWARE}-${OCPExternal_VERSION}.tar.xz CMakeLists.txt
+    DESTINATION toolkit/${OCPExternal_SOFTWARE}/external
+    COMPONENT ${PROJECT_NAME})
 
 endmacro(OCP_Toolkit_External)
