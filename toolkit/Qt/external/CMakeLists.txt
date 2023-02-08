@@ -66,7 +66,7 @@ add_custom_command(
     qtgraphicaleffects -skip qtimageformats -skip qtlocation -skip qtmacextras
     -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip
     qtquickcontrols -skip qtquickcontrols2 -skip qtscript -skip qtscxml -skip
-    qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg
+    qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech
     -skip qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip
     qtwebchannel -skip qtwebengine -skip qtwebsockets -skip qtwebview -skip
     qtwinextras -skip qtxmlpatterns
