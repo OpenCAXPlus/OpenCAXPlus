@@ -1,30 +1,15 @@
 // must keep this order
-#include <QApplication>
 #include "MainWindow.h"
+#include <QApplication>
 //#include <QFile>
-//#include "Measure/ls.h"
+#include "PluginInterface.h"
+#include <QDebug>
 #include <QDir>
-
-
-//#include "helloworld.h"
-//#include "StatisticalProcessControl/spc.h"
-
-//#include "Visual/VTKWidget.h"
-//#include "Visual/VTKDockWidget.h"
-
-
-
-
-
-//#include "Mesh/MeshDockWidget.h"
-
-
+#include <QPluginLoader>
 #include <QProcess>
+#include <iostream>
 
-//#include "SPCMainWindow.h"
-
-
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 
     // need this line for qvtkopenglwidget
@@ -32,7 +17,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QFile qss(":/main_wind/style.qss");
-    if(qss.open(QFile::ReadOnly)){
+    if (qss.open(QFile::ReadOnly)) {
         qApp->setStyleSheet(qss.readAll());
         qss.close();
     }
@@ -46,32 +31,23 @@ int main(int argc, char *argv[])
     dir.mkdir(w.meas_path + QString("/data/meas"));
     dir.mkdir(w.meas_path + QString("/data/am"));
 
-
-
-
-    //    SPCMainWindow spc;
-    //    spc.show();
-
-
-
-    //    std::cout << "check" << std::endl;
-
-
-    //    //SPCWindow spc(R);
-    //    //spc.show();
-
-    //        RInside R(argc,argv);
-
-    //        QtDensity qtdensity(R);
-
-    //SPCWindow(argc, argv);
-
-    //Helloworld();
+    QDir pluginsDir("plugins");
+    std::cout << "The plugins directory exists: " << pluginsDir.exists() << std::endl;
+    foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+        std::cout << "Have some plugins" << std::endl;
+        QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+        QObject*      plugin = loader.instance();
+        if (plugin) {
+            PluginInterface* interface = qobject_cast<PluginInterface*>(plugin);
+            if (interface) {
+                qDebug() << interface->name();
+                qDebug() << interface->content();
+            }
+        }
+    }
 
     return a.exec();
-
 }
-
 
 /*
 // VTK includes
@@ -84,9 +60,9 @@ int main(int argc, char *argv[])
 #include <vtkObjectFactory.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkProperty.h>
-#include <vtkRenderer.h>
 #include <vtkRenderWindow.h>
 #include <vtkRenderWindowInteractor.h>
+#include <vtkRenderer.h>
 #include <vtkSmartPointer.h>
 #include <vtkTransform.h>
 
@@ -129,9 +105,9 @@ public:
 
   void Build()
   {
-    m_subDataFilter = vtkSmartPointer<IVtkTools_SubPolyDataFilter>::New(); // Filter for polygonal sub-set of data
-    m_mapper = vtkSmartPointer<vtkPolyDataMapper>::New(); // Create mapper
-    m_actor = vtkSmartPointer<vtkActor>::New(); // Create actor
+    m_subDataFilter = vtkSmartPointer<IVtkTools_SubPolyDataFilter>::New(); // Filter for
+polygonal sub-set of data m_mapper = vtkSmartPointer<vtkPolyDataMapper>::New(); //
+Create mapper m_actor = vtkSmartPointer<vtkActor>::New(); // Create actor
 
     m_actor->SetMapper(m_mapper);
   }
@@ -243,8 +219,9 @@ public:
     int RAND_INDZ = rand() % 10;
 
     gp_Trsf aTrsf;
-    aTrsf.SetRotation( gp_Ax1( gp_Pnt(0.0, 0.0, 0.0), gp_Dir(RAND_INDX, RAND_INDY, RAND_INDZ) ), SHIFT );
-    aTrsf.SetTranslationPart( gp_Vec(0.0 + SHIFT, 0.0 + SHIFT, 0.0 + SHIFT) );
+    aTrsf.SetRotation( gp_Ax1( gp_Pnt(0.0, 0.0, 0.0), gp_Dir(RAND_INDX, RAND_INDY,
+RAND_INDZ) ), SHIFT ); aTrsf.SetTranslationPart( gp_Vec(0.0 + SHIFT, 0.0 + SHIFT, 0.0 +
+SHIFT) );
 
     TopoDS_Shape aNewShape = CTX::Shape.Moved(aTrsf);
 
@@ -281,10 +258,11 @@ public:
 // Customization:
 public:
 
-  void SetRenderer(const vtkSmartPointer<vtkRenderer>& theRenderer) { m_renderer = theRenderer; }
-  vtkSmartPointer<vtkRenderer> GetRenderer() const { return m_renderer; }
-  void SetPicker(const vtkSmartPointer<IVtkTools_ShapePicker>& thePicker) { m_picker = thePicker; }
-  vtkSmartPointer<IVtkTools_ShapePicker> GetPicker() const { return m_picker; }
+  void SetRenderer(const vtkSmartPointer<vtkRenderer>& theRenderer) { m_renderer =
+theRenderer; } vtkSmartPointer<vtkRenderer> GetRenderer() const { return m_renderer; }
+  void SetPicker(const vtkSmartPointer<IVtkTools_ShapePicker>& thePicker) { m_picker =
+thePicker; } vtkSmartPointer<IVtkTools_ShapePicker> GetPicker() const { return m_picker;
+}
 
 // Overriding:
 public:
@@ -318,9 +296,8 @@ public:
       while ( vtkActor* anActor = anActorCollection->GetNextActor() )
       {
         aPickedActor = anActor;
-        IVtkTools_ShapeDataSource* aDataSource = IVtkTools_ShapeObject::GetShapeSource(anActor);
-        if ( !aDataSource )
-          continue;
+        IVtkTools_ShapeDataSource* aDataSource =
+IVtkTools_ShapeObject::GetShapeSource(anActor); if ( !aDataSource ) continue;
 
         // Access initial shape wrapper
         IVtkOCC_Shape::Handle aShapeWrapper = aDataSource->GetShape();
@@ -336,9 +313,9 @@ public:
         {
           aCellMask.Add( (int) sIt.Value() );
           const TopoDS_Shape& aSubShape = aShapeWrapper->GetSubShape( sIt.Value() );
-          cout << "--------------------------------------------------------------" << endl;
-          cout << "Sub-shape ID: " << sIt.Value() << endl;
-          cout << "Sub-shape type: " << aSubShape.TShape()->DynamicType()->Name() << endl;
+          cout << "--------------------------------------------------------------" <<
+endl; cout << "Sub-shape ID: " << sIt.Value() << endl; cout << "Sub-shape type: " <<
+aSubShape.TShape()->DynamicType()->Name() << endl;
         }
 
         CTX::ShapeHiliPL->InitSubPolyFilter(aCellMask);
@@ -382,8 +359,8 @@ int main(int, char **)
   CTX::RenderWindow->AddRenderer(aRenderer);
 
   // Initialize Picker
-  vtkSmartPointer<IVtkTools_ShapePicker> aShapePicker = vtkSmartPointer<IVtkTools_ShapePicker>::New();
-  aShapePicker->SetTolerance(0.025);
+  vtkSmartPointer<IVtkTools_ShapePicker> aShapePicker =
+vtkSmartPointer<IVtkTools_ShapePicker>::New(); aShapePicker->SetTolerance(0.025);
   aShapePicker->SetRenderer(aRenderer);
 
   // Create test OCCT shape
@@ -400,17 +377,19 @@ int main(int, char **)
   CTX::ShapeHiliPL->AddToRenderer(aRenderer);
 
   // Initialize Interactor Style
-  vtkSmartPointer<InteractorStylePick> aStylePick = vtkSmartPointer<InteractorStylePick>::New();
-  aStylePick->SetRenderer(aRenderer);
+  vtkSmartPointer<InteractorStylePick> aStylePick =
+vtkSmartPointer<InteractorStylePick>::New(); aStylePick->SetRenderer(aRenderer);
   aStylePick->SetPicker(aShapePicker);
 
   // Establish listeners
-  vtkSmartPointer<TransformCallback> aTransformCB = vtkSmartPointer<TransformCallback>::New();
-  if ( !aStylePick->HasObserver(EVENT_TRANSFORM) )
-    aStylePick->AddObserver(EVENT_TRANSFORM, aTransformCB);
+  vtkSmartPointer<TransformCallback> aTransformCB =
+vtkSmartPointer<TransformCallback>::New(); if (
+!aStylePick->HasObserver(EVENT_TRANSFORM) ) aStylePick->AddObserver(EVENT_TRANSFORM,
+aTransformCB);
 
   // Initialize Interactor
-  vtkSmartPointer<vtkRenderWindowInteractor> aRenInter = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+  vtkSmartPointer<vtkRenderWindowInteractor> aRenInter =
+vtkSmartPointer<vtkRenderWindowInteractor>::New();
   aRenInter->SetRenderWindow(CTX::RenderWindow);
   aRenInter->SetInteractorStyle(aStylePick);
 

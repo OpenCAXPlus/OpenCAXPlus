@@ -21,6 +21,7 @@ include(Transport/transport.pri)
 include(Visual/visual.pri)
 include(FEM/fem.pri)
 include(StatisticalProcessControl/spc.pri)
+include(PluginTemplate/plugin.pri)
 
 SOURCES +=\
     Main.cpp \
@@ -33,6 +34,7 @@ HEADERS  += \
     qcustomplot.h \
     AboutDialog.h \
     vtkocc.h \
+    PluginInterface.h
 
 FORMS    += \
     MainWindow.ui \
