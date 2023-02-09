@@ -11,104 +11,32 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TARGET = FENGSim
 TEMPLATE = app
 
-#INCLUDEPATH += /usr/include/eigen3
-#DISPLAY=:0
-#LD_LIBRARY_PATH=/home/jiping/odt/Qt5.12.10/5.12.10/gcc_64/lib
-#QT_PLUGIN_PATH=/home/jiping/odt/Qt5.12.10/5.12.10/gcc_64/plugins/
-#QT_QPA_PLATFORM_PLUGIN_PATH=/home/jiping/odt/Qt5.12.10/5.12.10/gcc_64/plugins/platforms
+include(CAD/cad.pri)
+include(Measure/measure.pri)
+include(OCPoro/ocporo.pri)
+include(Machining/machining.pri)
+include(Mesh/mesh.pri)
+include(AdditiveManufacturing/am.pri)
+include(Transport/transport.pri)
+include(Visual/visual.pri)
+include(FEM/fem.pri)
+include(StatisticalProcessControl/spc.pri)
 
 SOURCES +=\
-    CAD/PhysicsDockWidget.cpp \
     Main.cpp \
     MainWindow.cpp \
-    CAD/OCCWidget.cpp \
-    CAD/Primitive.cpp \
-    CAD/CADDockWidget.cpp \
- #   Measure/MeasureThread1.cpp \
-    Measure/MeasureICP.cpp \
-    Measure/MeasureThread1.cpp \
-    Measure/MeasureThread3.cpp \
-    OCPoro/OCPoroDialog.cpp \
-    OCPoro/OCPoroDockWidget.cpp \
-    Transport/data_analyze.cpp \
-    include/test.cpp \
     qcustomplot.cpp \
     AboutDialog.cpp \
-    Mesh/MeshDockWidget.cpp \
-    Mesh/MeshGeneration.cpp \
-    Visual/VTKDockWidget.cpp \
-    Visual/VTKWidget.cpp \
-    FEM/FEMDockWidget.cpp \
-    Measure/MeasureDockWidget.cpp \
-    Measure/ls.cpp \
-#    Measure/Registration.cpp \
-#    Measure/example2.cpp \
-    AdditiveManufacturing/AdditiveManufacturingDockWidget.cpp \
-    Mesh/Slices.cpp \
-    StatisticalProcessControl/SPCDockWidget.cpp \
-    AdditiveManufacturing/AMThread1.cpp \
-    AdditiveManufacturing/AMThread2.cpp \
-    AdditiveManufacturing/AMConfig.cpp \
-    Machining/MachiningDockWidget.cpp \
-    Machining/MachiningThread1.cpp \
-    Machining/MachiningThread2.cpp \
-    Machining/MakeTools.cpp \
-    Transport/TransportDockWidget.cpp \
-
 
 HEADERS  += \
-    CAD/PhysicsDockWidget.h \
-    Machining/MakeTools.h \
     MainWindow.h \
-    CAD/OCCWidget.h \
-    CAD/Primitive.h \
-    CAD/CADDockWidget.h \
-#    Measure/MeasureThread1.h \
-    Measure/MeasureICP.h \
-    Measure/MeasureThread1.h \
-    Measure/MeasureThread3.h \
-    OCPoro/OCPoroDialog.h \
-    OCPoro/OCPoroDockWidget.h \
-    Transport/data_analyze.h \
-    include/test.h \
     qcustomplot.h \
     AboutDialog.h \
-    Mesh/MeshDockWidget.h \
-    Mesh/MeshGeneration.h \
-    Visual/VTKDockWidget.h \
-    Visual/VTKWidget.h \
     vtkocc.h \
-    FEM/FEMDockWidget.h \
-    Measure/MeasureDockWidget.h \
-    Measure/ls.h \
-#    Measure/Registration.h \
-#    Measure/example2.h \
-    AdditiveManufacturing/AdditiveManufacturingDockWidget.h \
-    Mesh/Slices.h \
-    StatisticalProcessControl/SPCDockWidget.h \
-    AdditiveManufacturing/AMThread1.h \
-    AdditiveManufacturing/AMThread2.h \
-    AdditiveManufacturing/AMConfig.h \
-    Machining/MachiningDockWidget.h \
-    Machining/MachiningThread1.h \
-    Machining/MachiningThread2.h \
-    Transport/TransportDockWidget.h \
 
 FORMS    += \
-    CAD/PhysicsDockWidget.ui \
     MainWindow.ui \
     AboutDialog.ui \
-    CAD/CADDockWidget.ui \
-    Mesh/MeshDockWidget.ui \
-    OCPoro/OCPoroDialog.ui \
-    OCPoro/OCPoroDockWidget.ui \
-    Visual/VTKDockWidget.ui \
-    FEM/FEMDockWidget.ui \
-    Measure/MeasureDockWidget.ui \
-    AdditiveManufacturing/AdditiveManufacturingDockWidget.ui \
-    StatisticalProcessControl/SPCDockWidget.ui \
-    Machining/MachiningDockWidget.ui \
-    Transport/TransportDockWidget.ui
 
 RESOURCES += \
     MainWindow.qrc \
@@ -123,6 +51,8 @@ RESOURCES += \
     AMWindow.qrc \
     Machining/machining.qrc \
     figure/transport_wind/transportwindow.qrc
+
+
 
 INCLUDEPATH += /usr/local/include/oce /usr/local/include/gmsh /usr/local/include/vtk-8.1 /usr/local/include/pcl-1.8 /usr/local/include/Geant4 /home/jiping/FENGSim/FENGSim/GDT/
 INCLUDEPATH += \
