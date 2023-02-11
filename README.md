@@ -25,7 +25,7 @@ Also, check out our organization [landing page](https://opencax.plus) for more o
 ![4](docs/_static/4.jpg)
 ![6](docs/_static/6.jpg)
 ![7](docs/_static/7.jpg)
-![8](docs/_static/airfoil8.jpg)
+![8](docs/_static/8.jpg)
 
 <!-- The logging library (spdlog) does not work with intel oneapi (classic) on mac, so you are expected to see different logging style for mac+intel vs other OS compiler combinations.
 
