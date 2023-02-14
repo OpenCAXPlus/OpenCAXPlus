@@ -1,5 +1,14 @@
-set(external_name spdlog)
-set(version 1.11.0)
-include(OCPToolkitExternal)
+set(SOFTWARE spdlog)
+set(VERSION 1.11.0)
+include(OCPToolkitExternalCMake)
 
-ocp_toolkit_external(SOFTWARE spdlog VERSION 1.11.0 LIBRARIES spdlog::spdlog)
+ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
+
+if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
+  set(spdlog_DIR ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/lib/cmake)
+  find_package(spdlog)
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_LINK_LIBRARIES spdlog::spdlog)
+endif()

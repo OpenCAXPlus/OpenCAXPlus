@@ -1,5 +1,26 @@
-set(external_name M++)
-set(version 1.8.0)
-include(OCPToolkitExternal)
+set(SOFTWARE M++)
+set(VERSION 1.8.0)
 
-ocp_toolkit_external(SOFTWARE M++ VERSION 1.8.0 LIBRARIES M++)
+include(OCPToolkitExternalCMake)
+
+ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
+
+if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
+  find_package(MPI)
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_LINK_LIBRARIES M++ MPI::MPI_CXX lapack blas superlu)
+
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_LINK_DIRECTORIES
+             ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/lib)
+
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+             ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
+endif()

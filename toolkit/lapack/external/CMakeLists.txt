@@ -1,7 +1,19 @@
-#
-include(OCPToolkitExternalBuildInstall)
+set(SOFTWARE lapack)
+set(VERSION 3.11.0)
+include(OCPToolkitExternalCMake)
 
-ocp_toolkit_external_build_install(SOFTWARE lapack VERSION 3.11.0 FLAGS "-DBUILD_SHARED_LIBS=ON")
+ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION}
+                                   FLAGS "-DBUILD_SHARED_LIBS=ON")
 
-add_library(external_lapack INTERFACE IMPORTED GLOBAL)
-add_library(OCP::external_lapack ALIAS external_lapack)
+if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_LINK_LIBRARIES lapack)
+
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+             ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
+endif()

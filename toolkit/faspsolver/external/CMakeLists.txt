@@ -1,14 +1,25 @@
-set(external_name faspsolver)
-set(version 2.2.0)
-include(OCPToolkitExternal)
+set(SOFTWARE faspsolver)
+set(VERSION 2.2.0)
 
-ocp_toolkit_external(
-  SOFTWARE
-  ${external_name}
-  VERSION
-  ${version}
-  LIBRARIES
-  fasp
-  m
-  INCLUDE_DIRECTORIES
-  ${CMAKE_CURRENT_SOURCE_DIR}/${external_name}-${version}/base/include)
+include(OCPToolkitExternalCMake)
+
+ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
+
+if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_LINK_LIBRARIES fasp m)
+
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_LINK_DIRECTORIES
+             ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/lib)
+
+  set_property(
+    TARGET external_${SOFTWARE}
+    APPEND
+    PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+             ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
+endif()
