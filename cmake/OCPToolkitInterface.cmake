@@ -29,4 +29,4 @@ macro(OCP_Toolkit_interface)
     NAMESPACE OCP::
     FILE ${tkname}Targets.cmake)
 
-endmacro(OCP_Toolkit)
+endmacro(OCP_Toolkit_interface)
