@@ -3,14 +3,12 @@ cmake_minimum_required(VERSION 3.20)
 project(oce_starter)
 
 set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
-find_package(OCPSDK)
+find_package(OCPSDK REQUIRED)
 
 add_library(oceStarter STATIC)
 target_sources(oceStarter PUBLIC app.cpp define.cpp)
 
-set(OCE_DIR
-    ${OCP_ROOT}/toolkit/OCE/external/install/OCE-0.18.3/lib/oce-0.18)
-
+set(OCE_DIR ${OCP_CACHE}/OCE/0.18.3/install/lib/oce-0.18)
 find_package(OCE REQUIRED COMPONENTS TKPrim)
 
 # Include files reside in ${OCE_INCLUDE_DIRS};
@@ -31,7 +29,6 @@ ocp_embed_user_program(
   ROOT
   "${OCP_ROOT}"
   USE_CXX)
-
 
 # target_link_libraries(vtk_starter PRIVATE ${VTK_LIBRARIES})
 # include(${VTK_USE_FILE})

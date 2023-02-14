@@ -10,6 +10,7 @@ if(ENABLE_TEST)
   include(CTest)
 endif()
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)

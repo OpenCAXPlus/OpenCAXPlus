@@ -18,7 +18,6 @@ macro(OCP_Embed_User_Program)
     include(CTest)
   endif()
 
-  include(OCPPrepareVariables)
 
   set(OCP_LIFECYCLE
       ${OCPUser_LIFECYCLE}

@@ -2,9 +2,7 @@
 # add_subdirectory(${OCP_LIFECYCLE} ${PROJECT_BINARY_DIR}/${USER_PROGRAM})
 add_subdirectory(basic)
 
-
-set(VTK_DIR
-    ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.2.0/lib/cmake/vtk-8.2)
+set(VTK_DIR ${OCP_CACHE}/VTK/8.1.0/install/lib/cmake/vtk-8.1)
 find_package(VTK)
 if(VTK_FOUND)
   message(STATUS "VTK found so build the basic_vtk lifecycle")

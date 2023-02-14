@@ -14,7 +14,7 @@ macro(OCP_Toolkit_interface)
   add_library(${tkname} INTERFACE)
   add_library(OCP::${tkname} ALIAS ${tkname})
 
-  target_link_libraries(${tkname} INTERFACE OCP::external_${tkname})
+  target_link_libraries(${tkname} INTERFACE OCP::external_${OCPToolkit_NAME})
 
   add_subdirectory(external)
 

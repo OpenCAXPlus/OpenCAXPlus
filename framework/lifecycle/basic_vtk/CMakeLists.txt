@@ -7,8 +7,8 @@ target_link_libraries(${USER_PROGRAM} PUBLIC OCP::Interface)
 target_include_directories(${USER_PROGRAM} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_sources(${USER_PROGRAM} PUBLIC main.c)
 
-set(VTK_DIR
-    ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.2.0/lib/cmake/vtk-8.2)
+set(VTK_DIR ${OCP_CACHE}/VTK/8.1.0/install/lib/cmake/vtk-8.1)
+
 find_package(VTK REQUIRED)
 vtk_module_config(VTK vtkCommonCore vtkFiltersSources vtkFiltersSources
                   vtkInteractionStyle vtkRenderingOpenGL2)

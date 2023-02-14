@@ -4,8 +4,12 @@
 # set(OCP_FRAMEWORK_SRC "" CACHE INTERNAL "" FORCE)
 
 set(OCP_ROOT
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${OCPSDK_DIR}/..
     CACHE FILEPATH "The OpenCAX+SDK root path" FORCE)
+
+set(OCP_CACHE
+    $ENV{HOME}/opencaxplus/cache
+    CACHE FILEPATH "The OpenCAX+SDK cache path" FORCE)
 
 option(USER_CXX "The user program is using C++" OFF)
 
@@ -19,7 +23,7 @@ set_property(CACHE OCP_LIFECYCLE PROPERTY STRINGS BasicConsole GUI)
 # INTERNAL "" FORCE)
 
 set(OCP_TOOLS
-    ocplog faspsolver
+    ""
     CACHE INTERNAL "" FORCE)
 
 set(USER_PROGRAM
