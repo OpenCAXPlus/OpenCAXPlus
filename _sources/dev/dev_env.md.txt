@@ -7,6 +7,10 @@ vscode
 
 ### Compilers
 gnu, intel oneapi
+```
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 12
+sudo update-alternatives --config g++
+```
 
 ### Dependencies
 
