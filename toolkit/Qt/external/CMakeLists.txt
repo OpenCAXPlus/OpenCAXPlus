@@ -66,18 +66,20 @@ add_custom_command(
   WORKING_DIRECTORY ${buildpath}
   DEPENDS ${buildpath}
   COMMAND
-    "${sourcepath}/${VERSION}/Src/configure" -prefix ${installpath} -release -opensource
-    -confirm-license -nomake tools -nomake examples -nomake tests -skip qt3d
-    -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip qtconnectivity
-    -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip
-    qtgraphicaleffects -skip qtimageformats -skip qtlocation -skip qtmacextras
-    -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip
-    qtquickcontrols -skip qtquickcontrols2 -skip qtscript -skip qtscxml -skip
-    qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip
+    "${sourcepath}/${VERSION}/Src/configure" -prefix ${installpath} -release
+    -opensource -confirm-license -nomake tools -nomake examples -nomake tests
+    -skip qt3d -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip
+    qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip
+    qtgamepad -skip qtgraphicaleffects -skip qtimageformats -skip qtlocation
+    -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing
+    -skip qtquickcontrols -skip qtquickcontrols2 -skip qtscript -skip qtscxml
+    -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip
     qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel
     -skip qtwebengine -skip qtwebsockets -skip qtwebview -skip qtwinextras -skip
-    qtxmlpatterns
-  COMMAND make
+    qtxmlpatterns -skip qtbluetooth -skip qtconcurrent -skip qthelp -skip qtnfc
+    -skip qtpositioning -skip qtquicktimeline -skip qtdatavisualization -skip
+    qtlottieanimation -skip qtforwebassembly
+  COMMAND make -j${ncore}
   COMMAND make install
   VERBATIM USES_TERMINAL
   COMMENT "Build source and install.")
@@ -87,4 +89,4 @@ install(
   DESTINATION toolkit/Qt/external
   COMPONENT ${PROJECT_NAME})
 
-  add_dependencies(install_Qt download_Qt)
+add_dependencies(install_Qt download_Qt)

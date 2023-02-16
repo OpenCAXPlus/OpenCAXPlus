@@ -28,7 +28,7 @@ add_custom_command(
     --download-fblaslapack --download-mpich --download-metis --download-parmetis
     --download-suitesparse --download-mumps --download-hypre --download-slepc
     --download-eigen --download-scalapack --download-superlu --download-fftw
-  COMMAND make -j
+  COMMAND make -j${ncore}
   COMMAND make install
   VERBATIM USES_TERMINAL
   COMMENT "Build source and install.")

@@ -26,7 +26,10 @@ add_subdirectory(framework/lifecycle)
 add_subdirectory(starter)
 add_subdirectory(docs)
 
+cmake_host_system_information(RESULT Ncpu QUERY NUMBER_OF_PHYSICAL_CORES)
+message(STATUS "CMake ${CMAKE_VERSION} using ${Ncpu} threads")
 
+set(ncore ${Ncpu} CACHE STRING "Number of cores for make" FORCE)
 include(CPackConfig)
 # include(GNUInstallDirs)
 
