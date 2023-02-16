@@ -26,9 +26,8 @@ add_custom_command(
     ./configure --prefix=${installpath} --PETSC_DIR=${sourcepath} --with-cc=gcc
     --with-cxx=g++ --with-fc=gfortran --with-petsc4py=1 --download-mpi4py
     --download-fblaslapack --download-mpich --download-metis --download-parmetis
-    --download-ptscotch --download-suitesparse --download-mumps --download-hypre
-    --download-slepc --download-eigen --download-scalapack --download-superlu
-    --download-fftw
+    --download-suitesparse --download-mumps --download-hypre --download-slepc
+    --download-eigen --download-scalapack --download-superlu --download-fftw
   COMMAND make -j
   COMMAND make install
   VERBATIM USES_TERMINAL
