@@ -14,9 +14,10 @@ macro(OCP_Toolkit)
 
   # only create the toolkit target when
   if((NOT ${OCPToolkit_NO_EXTERNAL}) AND (NOT EXISTS
-                                       ${OCP_CACHE}/${OCPToolkit_NAME}))
-    message(ERROR "Doing nothing, because ${OCPToolkit_NAME} has external,"
-            " but ${OCP_CACHE}/${OCPToolkit_NAME} does not exist")
+                                          ${OCP_CACHE}/${OCPToolkit_NAME}))
+    message(STATUS "${OCPToolkit_NAME} has external,"
+            " but ${OCP_CACHE}/${OCPToolkit_NAME} does not exist yet")
+    add_subdirectory(external)
   else()
     set(tkname toolkit_${OCPToolkit_NAME})
     add_library(${tkname} STATIC)
