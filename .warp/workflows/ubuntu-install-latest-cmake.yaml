@@ -1,0 +1,18 @@
+---
+name: Install latest cmake on ubuntu
+command: |-
+  wget https://github.com/Kitware/CMake/releases/download/v{{version}}/cmake-{{version}}.tar.gz
+  tar xzf cmake-{{version}}.tar.gz
+  cd cmake-{{version}}
+  sudo apt install libssl-dev
+  ./bootstrap
+  make
+  sudo make install
+arguments:
+  - name: version
+    description: The version number of cmake, without the v
+    default_value: 3.26.0-rc3
+tags: ["cmake","ubuntu"]
+source_url: 
+description: Since the cmake in apt-get is always old, we have to install latest cmake on ubuntu by ourselves
+author: Cheng, Xiaoxing
