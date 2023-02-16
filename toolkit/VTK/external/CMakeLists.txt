@@ -2,8 +2,6 @@ set(SOFTWARE VTK)
 set(VERSION 8.1.0)
 include(OCPToolkitExternalCMake)
 
-add_dependencies(install_VTK install_Qt)
-
 set(qtpath
     ${OCP_CACHE}/Qt/5.12.10/install
     CACHE INTERNAL "" FORCE)
@@ -23,3 +21,5 @@ if(EXISTS ${qtpath})
 else()
   ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
 endif()
+
+add_dependencies(install_VTK install_Qt)

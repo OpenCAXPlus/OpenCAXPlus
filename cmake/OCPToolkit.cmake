@@ -13,8 +13,8 @@ macro(OCP_Toolkit)
   endif()
 
   # only create the toolkit target when
-  if(NOT ${OCPToolkit_NO_EXTERNAL} and NOT EXISTS
-                                       ${OCP_CACHE}/${OCPToolkit_NAME})
+  if((NOT ${OCPToolkit_NO_EXTERNAL}) AND (NOT EXISTS
+                                       ${OCP_CACHE}/${OCPToolkit_NAME}))
     message(ERROR "Doing nothing, because ${OCPToolkit_NAME} has external,"
             " but ${OCP_CACHE}/${OCPToolkit_NAME} does not exist")
   else()
@@ -48,8 +48,6 @@ macro(OCP_Toolkit)
                      "source files ${OCPToolkit_FILES}, "
                      "link with tools ${OCPToolkit_TOOLS}")
     endif()
-  endif()
-
   endif()
 
   install(
