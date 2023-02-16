@@ -10,7 +10,7 @@ ocp_toolkit_external_cmake(
   FLAGS
   "-Dpugixml_DIR=${OCP_CACHE}/pugixml/1.13/install/lib/cmake/pugixml"
   "-DBasix_DIR=${OCP_CACHE}/basix/0.6.0/install/lib/cmake/basix"
-  "-DHDF5_DIR=${OCP_CACHE}/hdf5/20230108/install/cmake"
+  "-DHDF5_DIR=${OCP_CACHE}/hdf5/1.14.0/install/cmake"
   "-DUFCx_DIR=${OCP_CACHE}/ffcx/0.6.0/install/share/ufcx/cmake"
   "-DMPI_HOME=${OCP_CACHE}/petsc/3.18.4/install"
   SUBFOLDER
@@ -27,7 +27,7 @@ add_custom_command(
   WORKING_DIRECTORY ${OCP_CACHE}/${SOFTWARE}/${VERSION}/source/python
   COMMAND
     ${CMAKE_COMMAND} -E env
-    PETSC_DIR=${OCP_CACHE}/petsc/3.18.4/install;PETSC_ARCH=;PYTHONPATH=${OCP_CACHE}/petsc/3.18.4/install/lib;CMAKE_ARGS=-DDOLFINX_DIR=${OCP_CACHE}/dolfinx/0.6.0/install/lib/cmake/dolfinx\ -Dpugixml_DIR=${OCP_CACHE}/pugixml/1.13/install/lib/cmake/pugixml\ -DHDF5_DIR=${OCP_CACHE}/hdf5/20230108/install/cmake\ -DMPI_C_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpicc\ -DMPI_CXX_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpic++
+    PETSC_DIR=${OCP_CACHE}/petsc/3.18.4/install;PETSC_ARCH=;PYTHONPATH=${OCP_CACHE}/petsc/3.18.4/install/lib;CMAKE_ARGS=-DDOLFINX_DIR=${OCP_CACHE}/dolfinx/0.6.0/install/lib/cmake/dolfinx\ -Dpugixml_DIR=${OCP_CACHE}/pugixml/1.13/install/lib/cmake/pugixml\ -DHDF5_DIR=${OCP_CACHE}/hdf5/1.14.0/install/cmake\ -DMPI_C_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpicc\ -DMPI_CXX_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpic++
     pip install .
   VERBATIM USES_TERMINAL
   COMMENT "Pip Install dolfinx")

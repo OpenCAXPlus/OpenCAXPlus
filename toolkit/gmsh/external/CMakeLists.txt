@@ -16,11 +16,9 @@ ocp_toolkit_external_cmake(
   "-DENABLE_BUILD_SHARED=1"
   "-DENABLE_BUILD_DYNAMIC=1"
   "-DCMAKE_LIBRARY_PATH=${OCP_CACHE}/lapack/3.11.0/install"
-  "-DCMAKE_C_FLAGS=-lgfortran"
-  LIBRARIES
-  gmsh)
+  "-DCMAKE_C_FLAGS=-lgfortran")
 
-  if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
+if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
   set_property(
     TARGET external_${SOFTWARE}
     APPEND
@@ -32,3 +30,5 @@ ocp_toolkit_external_cmake(
     PROPERTY INTERFACE_INCLUDE_DIRECTORIES
              ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
 endif()
+
+add_dependencies(install_gmsh install_lapack)

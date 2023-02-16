@@ -3,7 +3,15 @@ set(VERSION 1.8.0)
 
 include(OCPToolkitExternalCMake)
 
-ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
+ocp_toolkit_external_cmake(
+  SOFTWARE
+  ${SOFTWARE}
+  VERSION
+  ${VERSION}
+  FLAGS
+  "-DMPI_HOME=${OCP_CACHE}/petsc/3.18.4/install"
+  "-DMPI_C_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpicc"
+  "-DMPI_CXX_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpic++")
 
 if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
   find_package(MPI)
@@ -24,3 +32,5 @@ if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
     PROPERTY INTERFACE_INCLUDE_DIRECTORIES
              ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
 endif()
+
+add_dependencies(install_M++ install_petsc)

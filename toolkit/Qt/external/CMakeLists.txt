@@ -19,7 +19,7 @@ include(OCPCompress)
 # WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}) endif()
 
 set(rootpath ${OCP_CACHE}/${SOFTWARE}/${VERSION})
-set(sourcepath ${rootpath}/source/${VERSION}/Src)
+set(sourcepath ${rootpath}/source)
 set(installpath ${rootpath}/install)
 set(buildpath ${rootpath}/build)
 
@@ -66,7 +66,7 @@ add_custom_command(
   WORKING_DIRECTORY ${buildpath}
   DEPENDS ${buildpath}
   COMMAND
-    "${sourcepath}/configure" -prefix ${installpath} -release -opensource
+    "${sourcepath}/${VERSION}/Src/configure" -prefix ${installpath} -release -opensource
     -confirm-license -nomake tools -nomake examples -nomake tests -skip qt3d
     -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip qtconnectivity
     -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip
@@ -86,3 +86,5 @@ install(
   FILES qt-unified-linux-x64-4.5.1-online.run.tar.xz CMakeLists.txt
   DESTINATION toolkit/Qt/external
   COMPONENT ${PROJECT_NAME})
+
+  add_dependencies(install_Qt download_Qt)
