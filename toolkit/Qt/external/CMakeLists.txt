@@ -77,7 +77,7 @@ add_custom_command(
     qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel
     -skip qtwebengine -skip qtwebsockets -skip qtwebview -skip qtwinextras -skip
     qtxmlpatterns
-  COMMAND make -j
+  COMMAND make
   COMMAND make install
   VERBATIM USES_TERMINAL
   COMMENT "Build source and install.")
