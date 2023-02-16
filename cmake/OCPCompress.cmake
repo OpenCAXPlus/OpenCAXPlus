@@ -7,6 +7,9 @@ macro(ocp_compress_extract)
   cmake_parse_arguments(OCPCompress "${options}" "${oneValueArgs}"
                         "${multiValueArgs}" ${ARGN})
 
+  cmake_path(GET OCPCompress_SOURCE PARENT_PATH PARENT_DIR)
+  cmake_path(GET OCPCompress_SOURCE FILENAME file)
+
   add_custom_target(
     compress_${OCPCompress_TARGET}
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${OCPCompress_TAR}.tar.xz
@@ -14,16 +17,18 @@ macro(ocp_compress_extract)
 
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${OCPCompress_TAR}.tar.xz
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${PARENT_DIR}
     COMMAND "${CMAKE_COMMAND}" "-E" "echo" compress "${OCPCompress_SOURCE}" to
-            "${CMAKE_CURRENT_SOURCE_DIR}/${OCPCompress_TAR}.tar.xz"
+            "${OCPCompress_TAR}.tar.xz"
+    COMMAND "${CMAKE_COMMAND}" "-E" "rename" ${file} ${OCPCompress_TAR}
     COMMAND "${CMAKE_COMMAND}" "-E" "tar" "cJf" "${OCPCompress_TAR}.tar.xz" "--"
-            ${OCPCompress_SOURCE}/*
-    USES_TERMINAL
+            ${OCPCompress_TAR}
+    COMMAND "${CMAKE_COMMAND}" "-E" "rename" ${OCPCompress_TAR}.tar.xz
+            ${CMAKE_CURRENT_SOURCE_DIR}/${OCPCompress_TAR}.tar.xz
+    COMMAND "${CMAKE_COMMAND}" "-E" "rename" ${OCPCompress_TAR} ${file}
+    VERBATIM USES_TERMINAL
     COMMENT "XZ compress ${OCPCompress_TAR}")
 
-  cmake_path(GET OCPCompress_SOURCE PARENT_PATH PARENT_DIR)
-  cmake_path(GET OCPCompress_SOURCE FILENAME file)
 
   if(NOT EXISTS ${OCPCompress_SOURCE})
     add_custom_command(
@@ -33,7 +38,7 @@ macro(ocp_compress_extract)
       COMMAND
         "${CMAKE_COMMAND}" "-E" "echo" extract
         "${CMAKE_CURRENT_SOURCE_DIR}/${OCPCompress_TAR}.tar.xz" to
-        "${PARENT_DIR}/${file}"
+        "${OCPCompress_SOURCE}"
       COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xJf"
               "${CMAKE_CURRENT_SOURCE_DIR}/${OCPCompress_TAR}.tar.xz"
       COMMAND "${CMAKE_COMMAND}" "-E" "rename" "${OCPCompress_TAR}" "${file}"
