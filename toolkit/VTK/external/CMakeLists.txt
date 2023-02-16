@@ -2,6 +2,8 @@ set(SOFTWARE VTK)
 set(VERSION 8.1.0)
 include(OCPToolkitExternalCMake)
 
+add_dependencies(install_VTK install_Qt)
+
 set(qtpath
     ${OCP_CACHE}/Qt/5.12.10/install
     CACHE INTERNAL "" FORCE)
@@ -21,17 +23,3 @@ if(EXISTS ${qtpath})
 else()
   ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
 endif()
-# add_library(external_VTK INTERFACE IMPORTED GLOBAL)
-# add_library(OCP::external_VTK ALIAS external_VTK)
-
-# if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
-
-# set_property( TARGET external_${SOFTWARE} APPEND PROPERTY
-# INTERFACE_LINK_LIBRARIES fasp m)
-
-# set_property( TARGET external_${SOFTWARE} APPEND PROPERTY
-# INTERFACE_LINK_DIRECTORIES ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/lib)
-
-# set_property( TARGET external_${SOFTWARE} APPEND PROPERTY
-# INTERFACE_INCLUDE_DIRECTORIES
-# ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include) endif()

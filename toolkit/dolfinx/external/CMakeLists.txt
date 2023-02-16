@@ -31,3 +31,6 @@ add_custom_command(
     pip install .
   VERBATIM USES_TERMINAL
   COMMENT "Pip Install dolfinx")
+
+add_dependencies(install_dolfinx install_pugixml install_petsc install_hdf5
+                 install_basix install_ffcx)

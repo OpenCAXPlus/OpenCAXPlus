@@ -19,3 +19,21 @@ add_subdirectory(hdf5)
 add_subdirectory(basix)
 add_subdirectory(ffcx)
 add_subdirectory(dolfinx)
+
+add_custom_target(install_all COMMENT "Install all tools")
+add_dependencies(
+  install_all
+  install_faspsolver
+  install_M++
+  install_spdlog
+  install_lapack
+  install_gmsh
+  install_Qt
+  install_VTK
+  install_OCE
+  install_pugixml
+  install_petsc
+  install_hdf5
+  install_basix
+  install_ffcx
+  install_dolfinx)
