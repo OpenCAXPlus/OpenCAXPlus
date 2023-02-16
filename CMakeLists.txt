@@ -15,15 +15,17 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
+# option(OCP_Cli "Should Cli be built?" ON)
+# if(OCP_Cli) 
+add_subdirectory(cli)
+# endif()
+
 add_subdirectory(framework/interface)
 add_subdirectory(toolkit)
 add_subdirectory(framework/lifecycle)
 add_subdirectory(starter)
 add_subdirectory(docs)
-# option(OCP_Cli "Should Cli be built?" ON)
-# if(OCP_Cli) 
-  add_subdirectory(cli)
-# endif()
+
 
 include(CPackConfig)
 # include(GNUInstallDirs)
