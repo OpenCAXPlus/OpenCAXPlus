@@ -33,4 +33,4 @@ if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
              ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
 endif()
 
-add_dependencies(install_M++ install_petsc)
+add_dependencies(install_M++ install_petsc install_BLAS)
