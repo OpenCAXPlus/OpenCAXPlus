@@ -6,7 +6,7 @@ on:
 
 jobs:
   linux-base:
-    runs-on: [self-hosted, Linux]
+    runs-on: [self-hosted, Linux, cloud]
     steps:
       - name: Basic info
         run: |
