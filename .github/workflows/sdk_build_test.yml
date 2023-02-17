@@ -22,17 +22,16 @@ jobs:
                   echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
                     echo "Log level: ${{ github.event.inputs.logLevel }}"
                   echo "Tags: ${{ github.event.inputs.tags }}"
-                  echo $HOME
-                  echo $LD_LIBRARY_PATH
-                  echo $PATH
-                  echo $QT_EMAIL $QT_PASSWORD
+                  source ~/.profile
+                  echo home $HOME
+                  echo LD_LIBRARY_PATH $LD_LIBRARY_PATH
+                  echo PATH $PATH
+                  ls $HOME/opencaxplus/cache
             - name: Check out repository
               uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
     linux-gnu-build:
         needs: linux-base
-        runs-on: [ self-hosted, Linux]
+        runs-on: [ self-hosted, Linux, cloud]
         steps:
             - name: Build 
               run: |
@@ -40,10 +39,21 @@ jobs:
                 cmake --build --preset="linux-gnu-Debug" --target all
     linux-gnu-test:
         needs: linux-gnu-build
-        runs-on: [ self-hosted, Linux]
+        runs-on: [ self-hosted, Linux, cloud]
         steps:
             - name: Test 
               run: ctest --preset="linux-gnu-Debug" 
+    linux-gnu-starter-basic-console:
+        needs: linux-base
+        runs-on: [ self-hosted, Linux, cloud]
+        steps:
+            - name: Build 
+              run: |
+                cd starter/basic_console
+                cmake --preset="linux-gnu-Debug" -S "." 
+                cmake --build --preset="linux-gnu-Debug" --target all              
+
+
     # linux-intel-build:
     #     needs: linux-base
     #     runs-on: [ self-hosted, Linux]
