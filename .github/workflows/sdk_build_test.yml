@@ -22,6 +22,10 @@ jobs:
                   echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
                     echo "Log level: ${{ github.event.inputs.logLevel }}"
                   echo "Tags: ${{ github.event.inputs.tags }}"
+                  echo $HOME
+                  echo $LD_LIBRARY_PATH
+                  echo $PATH
+                  echo $QT_EMAIL $QT_PASSWORD
             - name: Check out repository
               uses: actions/checkout@v3
               with:
