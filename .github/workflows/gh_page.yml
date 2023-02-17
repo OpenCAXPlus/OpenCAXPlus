@@ -11,7 +11,7 @@ env:
     CI: false
 defaults:
   run:
-    shell: bash -leo pipefail {0}
+    shell: bash -ileo pipefail {0}
 jobs:
     gh-page-publish:
         runs-on: [self-hosted, Linux, cloud]
