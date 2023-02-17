@@ -4,6 +4,7 @@
 
 [![SDK Build & Test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/sdk_build_test.yml)
 [![Cli Build and test](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml/badge.svg)](https://github.com/OpenCAXPlus/OpenCAXPlusSDK/actions/workflows/cli_build_test.yml)
+[![Github pages](https://github.com/OpenCAXPlus/OCP-SDK/actions/workflows/gh_page.yml/badge.svg)](https://github.com/OpenCAXPlus/OCP-SDK/actions/workflows/gh_page.yml)
 
 The main goal of the OpenCAXPlus project is to provide an SDK (software development kit) that does the tedious work of building a CAX application. This includes but is not limited to
 - creating wrappers that allow developers to use multiple open-source libraries seamlessly
