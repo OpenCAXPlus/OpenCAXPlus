@@ -24,6 +24,7 @@ cd OpenCAXPlusSDK
 ```sh
 cmake --preset="linux-gnu-Debug" -S "."
 cmake --build --preset="linux-gnu-Debug"
+export PATH=$PATH:/home/runner/code/OCP-SDK
 ```
 :::
 
@@ -45,6 +46,16 @@ cmake --build --preset="windows-gnu-Debug"
 
 Cmake will perform out of source build in the folder out/build/. You should also see an executable file **ocp** been created in the root of the repository.
 This is the compiled executable of the golang OpenCAXPlus command line tool, you can use the **ocp** command to manage the SDK from now on.
+
+### Install available toolkits
+
+Here we are installing all toolkits, you can choose to install only some of them
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opencaxplus/cache/lapack/3.11.0/install/lib
+ocp build -i install_all
+export PYTHONPATH=${PYTHONPATH}:$HOME/opencaxplus/cache/petsc/3.18.4/install/lib
+```
+
 
 ### Following builds
 
