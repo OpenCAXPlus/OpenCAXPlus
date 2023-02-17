@@ -22,7 +22,6 @@ jobs:
                   echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."  
                     echo "Log level: ${{ github.event.inputs.logLevel }}"
                   echo "Tags: ${{ github.event.inputs.tags }}"
-                  source ~/.profile
                   echo home $HOME
                   echo LD_LIBRARY_PATH $LD_LIBRARY_PATH
                   echo PATH $PATH
@@ -35,7 +34,6 @@ jobs:
         steps:
             - name: Build 
               run: |
-                source ~/.profile
                 cmake --preset="linux-gnu-Debug" -S "."
                 cmake --build --preset="linux-gnu-Debug" --target all
     linux-gnu-test:
@@ -50,7 +48,6 @@ jobs:
         steps:
             - name: Build 
               run: |
-                source ~/.profile
                 ocp build -p starter/basic_console          
 
 
