@@ -76,9 +76,7 @@ add_custom_command(
     -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip
     qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel
     -skip qtwebengine -skip qtwebsockets -skip qtwebview -skip qtwinextras -skip
-    qtxmlpatterns -skip qtbluetooth -skip qtconcurrent -skip qthelp -skip qtnfc
-    -skip qtpositioning -skip qtquicktimeline -skip qtdatavisualization -skip
-    qtlottieanimation -skip qtforwebassembly
+    qtxmlpatterns
   COMMAND make -j${ncore}
   COMMAND make install
   VERBATIM USES_TERMINAL
