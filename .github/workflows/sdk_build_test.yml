@@ -33,7 +33,6 @@ jobs:
             - name: Build 
               run: |
                 cmake --preset="linux-gnu-Debug" -S "."
-                cmake --build --preset="linux-gnu-Debug" --target install_VTK
                 cmake --build --preset="linux-gnu-Debug" --target all
     linux-gnu-test:
         needs: linux-gnu-build
