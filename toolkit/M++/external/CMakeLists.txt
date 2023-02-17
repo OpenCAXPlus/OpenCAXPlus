@@ -9,9 +9,9 @@ ocp_toolkit_external_cmake(
   VERSION
   ${VERSION}
   FLAGS
-  "-DMPI_HOME=${OCP_CACHE}/petsc/3.18.4/install"
   "-DMPI_C_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpicc"
-  "-DMPI_CXX_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpic++")
+  "-DMPI_CXX_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpic++"
+  "-Dsuperlu_DIR=${OCP_CACHE}/petsc/3.18.4/install/lib/cmake/superlu")
 
 if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
   find_package(MPI)
@@ -33,4 +33,4 @@ if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
              ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install/include)
 endif()
 
-add_dependencies(install_M++ install_petsc install_BLAS install_lapack)
+add_dependencies(install_M++ install_petsc install_lapack)

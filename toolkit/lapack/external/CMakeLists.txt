@@ -2,8 +2,7 @@ set(SOFTWARE lapack)
 set(VERSION 3.11.0)
 include(OCPToolkitExternalCMake)
 
-ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION}
-                                   FLAGS "-DBUILD_SHARED_LIBS=ON")
+ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
 
 if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
   set_property(
