@@ -411,6 +411,11 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-available-toolkits">
+     Install available toolkits
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#following-builds">
      Following builds
     </a>
@@ -464,6 +469,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initial-build">
      Initial build
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-available-toolkits">
+     Install available toolkits
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -521,6 +531,7 @@ title="Print to PDF"
 Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
 cmake --build --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/runner/code/OCP-SDK
 </pre></div>
 </div>
 </div>
@@ -543,6 +554,15 @@ cmake --build --preset<span class="o">=</span><span class="s2">&quot;windows-gnu
 </div>
 <p>Cmake will perform out of source build in the folder out/build/. You should also see an executable file <strong>ocp</strong> been created in the root of the repository.
 This is the compiled executable of the golang OpenCAXPlus command line tool, you can use the <strong>ocp</strong> command to manage the SDK from now on.</p>
+</section>
+<section id="install-available-toolkits">
+<h3>Install available toolkits<a class="headerlink" href="#install-available-toolkits" title="Permalink to this headline">#</a></h3>
+<p>Here we are installing all toolkits, you can choose to install only some of them</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opencaxplus/cache/lapack/3.11.0/install/lib
+ocp build -i install_all
+export PYTHONPATH=${PYTHONPATH}:$HOME/opencaxplus/cache/petsc/3.18.4/install/lib
+</pre></div>
+</div>
 </section>
 <section id="following-builds">
 <h3>Following builds<a class="headerlink" href="#following-builds" title="Permalink to this headline">#</a></h3>
