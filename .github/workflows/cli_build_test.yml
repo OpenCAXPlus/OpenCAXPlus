@@ -1,4 +1,7 @@
 name:  Cli Build & test
+defaults:
+  run:
+    shell: bash -leo pipefail {0}
 on:
   push:
     paths:

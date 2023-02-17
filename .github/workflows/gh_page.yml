@@ -9,6 +9,9 @@ on:
             - 'main'
 env:
     CI: false
+defaults:
+  run:
+    shell: bash -leo pipefail {0}
 jobs:
     gh-page-publish:
         runs-on: [self-hosted, Linux, cloud]

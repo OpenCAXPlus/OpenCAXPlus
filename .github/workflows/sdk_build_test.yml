@@ -1,4 +1,7 @@
 name: SDK Build & Test
+defaults:
+  run:
+    shell: bash -leo pipefail {0}
 on:
     push:
         paths:
