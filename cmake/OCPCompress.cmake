@@ -1,7 +1,7 @@
 macro(ocp_compress_extract)
 
   set(options)
-  set(oneValueArgs TARGET TAR SOURCE)
+  set(oneValueArgs TARGET TAR SOURCE ANCHOR)
   set(multiValueArgs)
 
   cmake_parse_arguments(OCPCompress "${options}" "${oneValueArgs}"
@@ -30,9 +30,9 @@ macro(ocp_compress_extract)
     COMMENT "XZ compress ${OCPCompress_TAR}")
 
 
-  if(NOT EXISTS ${OCPCompress_SOURCE})
+  if(NOT EXISTS ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR})
     add_custom_command(
-      OUTPUT ${OCPCompress_SOURCE}
+      OUTPUT ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR}
       WORKING_DIRECTORY ${PARENT_DIR}
       # COMMAND "${CMAKE_COMMAND}" "-E" "remove_directory" ${file}
       COMMAND

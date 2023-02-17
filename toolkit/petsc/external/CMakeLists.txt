@@ -9,7 +9,7 @@ set(installpath ${rootpath}/install)
 set(buildpath ${rootpath}/build)
 
 ocp_compress_extract(TARGET ${SOFTWARE} TAR ${SOFTWARE}-${VERSION} SOURCE
-                     ${sourcepath})
+                     ${sourcepath} ANCHOR configure)
 
 add_custom_target(
   install_${SOFTWARE}
@@ -20,16 +20,20 @@ add_custom_target(
 add_custom_command(
   OUTPUT ${installpath}
   WORKING_DIRECTORY ${sourcepath}
-  DEPENDS ${sourcepath}
+  DEPENDS ${sourcepath}/configure
   COMMAND chmod 755 configure
   COMMAND
     ./configure --prefix=${installpath} --PETSC_DIR=${sourcepath} --with-cc=gcc
     --with-cxx=g++ --with-fc=gfortran --with-petsc4py=1 --download-mpi4py
-    --download-fblaslapack --download-mpich --download-metis --download-parmetis
-    --download-suitesparse --download-mumps --download-hypre --download-slepc
-    --download-eigen --download-scalapack --download-superlu --download-fftw
+    --with-blas-lib=${OCP_CACHE}/lapack/3.11.0/install/lib/libblas.a
+    --with-lapack-lib=${OCP_CACHE}/lapack/3.11.0/install/lib/liblapack.a
+    --download-mpich --download-metis --download-parmetis --download-suitesparse
+    --download-mumps --download-hypre --download-slepc --download-eigen
+    --download-scalapack --download-superlu --download-fftw
   COMMAND make -j${ncore}
   COMMAND make install
+  COMMAND ${CMAKE_COMMAND} -E remove_directory ${rootpath}/build
+  COMMAND ${CMAKE_COMMAND} -E rename ${sourcepath}/arch-linux-c-debug ${rootpath}/build
   VERBATIM USES_TERMINAL
   COMMENT "Build source and install.")
 
@@ -39,3 +43,5 @@ install(
   COMPONENT ${PROJECT_NAME})
 
 # PETSC_DIR=${OCP_CACHE}/petsc/3.18.4/install PETSC_ARCH=""
+
+add_dependencies(install_petsc install_lapack)
