@@ -479,7 +479,8 @@ title="Print to PDF"
 <section id="compilers">
 <h3>Compilers<a class="headerlink" href="#compilers" title="Permalink to this headline">#</a></h3>
 <p>gnu, intel oneapi</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++</span> <span class="n">g</span><span class="o">++</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++-</span><span class="mi">12</span> <span class="mi">12</span>
+<p>You need to use g+±10 for fenics, and g+±9 for M++</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++</span> <span class="n">g</span><span class="o">++</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">g</span><span class="o">++-</span><span class="mi">10</span> <span class="mi">10</span>
 <span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">g</span><span class="o">++</span>
 </pre></div>
 </div>
@@ -491,7 +492,23 @@ title="Print to PDF"
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 Linux</label><div class="sd-tab-content docutils">
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install golang-go cmake
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget https://github.com/Kitware/CMake/releases/download/v3.26.0-rc3/cmake-3.26.0-rc3.tar.gz
+tar xzf cmake-3.26.0-rc3.tar.gz
+<span class="nb">cd</span> cmake-3.26.0-rc3
+sudo apt install libssl-dev
+./bootstrap
+make
+sudo make install
+
+wget https://go.dev/dl/go1.20.1.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go 
+sudo tar -C /usr/local -xzf go1.20.1.linux-amd64.tar.gz
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+
+sudo apt install gfortran ninja-build pkg-config mlocate libclang-dev
+sudo apt install libfontconfig1-dev libxcb-glx0-dev libx11-xcb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-sync0-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-x11-dev libglu1-mesa-dev libgl1-mesa-dev libfreetype6-dev libglib2.0-dev mesa-common-dev libdbus-1-dev libicu-dev libinput-dev libxkbcommon-dev libsqlite3-dev libssl-dev libpng-dev libjpeg-dev libx11-dev libxcb1-dev libxext-dev libxi-dev libxcomposite-dev libxcursor-dev libxtst-dev libxrandr-dev libxcb-shm0-dev libxcb-util0-dev
+/usr/bin/python3 -m pip install numpy
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/.local/bin
 </pre></div>
 </div>
 </div>
