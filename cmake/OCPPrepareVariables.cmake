@@ -11,6 +11,10 @@ set(OCP_CACHE
     $ENV{HOME}/opencaxplus/cache
     CACHE FILEPATH "The OpenCAX+SDK cache path" FORCE)
 
+set(OCP_BIN
+    $ENV{HOME}/opencaxplus/bin
+    CACHE FILEPATH "The OpenCAX+SDK bin path" FORCE)
+
 option(USER_CXX "The user program is using C++" OFF)
 
 set(OCP_LIFECYCLE

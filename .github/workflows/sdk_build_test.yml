@@ -35,6 +35,7 @@ jobs:
         steps:
             - name: Build 
               run: |
+                source ~/.profile
                 cmake --preset="linux-gnu-Debug" -S "."
                 cmake --build --preset="linux-gnu-Debug" --target all
     linux-gnu-test:
@@ -44,14 +45,13 @@ jobs:
             - name: Test 
               run: ctest --preset="linux-gnu-Debug" 
     linux-gnu-starter-basic-console:
-        needs: linux-base
+        needs: linux-gnu-build
         runs-on: [ self-hosted, Linux, cloud]
         steps:
             - name: Build 
               run: |
-                cd starter/basic_console
-                cmake --preset="linux-gnu-Debug" -S "." 
-                cmake --build --preset="linux-gnu-Debug" --target all              
+                source ~/.profile
+                ocp build -p starter/basic_console          
 
 
     # linux-intel-build:
