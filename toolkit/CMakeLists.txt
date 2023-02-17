@@ -4,7 +4,6 @@ add_subdirectory(faspsolver)
 add_subdirectory(M++)
 add_subdirectory(spdlog)
 
-add_subdirectory(BLAS)
 add_subdirectory(lapack)
 add_subdirectory(gmsh)
 
@@ -27,7 +26,6 @@ add_dependencies(
   install_faspsolver
   install_M++
   install_spdlog
-  install_BLAS
   install_lapack
   install_gmsh
   install_Qt
