@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Naming conventions &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -444,17 +443,17 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="naming-conventions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="naming-conventions">
 <h1>Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">#</a></h1>
 <p>In general, we follow the <a class="reference external" href="https://www.gnu.org/prep/standards/html_node/Names.html#Names">GNU C naming convention style</a>.
 In short use snake case when possible, such as for function name and variables. Reserve upper case for macros and enum constants.
 File and folder names should use snake case too.</p>
 <p>The above is only for C, in the case of C++, we haven’t decide yet.</p>
-<section id="constants">
+<div class="section" id="constants">
 <h2>constants<a class="headerlink" href="#constants" title="Permalink to this headline">#</a></h2>
 <p>Use UPPER_SNAKE for constants.</p>
-</section>
-<section id="typedef">
+</div>
+<div class="section" id="typedef">
 <h2>typedef<a class="headerlink" href="#typedef" title="Permalink to this headline">#</a></h2>
 <p>Since you are defining a type name, snake case is no longer suitable, so we use camelCase here.</p>
 <p>There are 4 types of typedef in the framework’s interface, type, struct, enum, func. The main reason we append suffix of Type, Struct, Enum, and Func is to avoid possible naming conflict.</p>
@@ -520,8 +519,8 @@ File and folder names should use snake case too.</p>
 </tr>
 </tbody>
 </table>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

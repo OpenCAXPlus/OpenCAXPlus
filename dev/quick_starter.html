@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quick starter &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -508,54 +507,54 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="quick-starter">
+  <div class="tex2jax_ignore mathjax_ignore section" id="quick-starter">
 <span id="dev-doc"></span><h1>Quick starter<a class="headerlink" href="#quick-starter" title="Permalink to this headline">#</a></h1>
 <div class="important admonition">
 <p class="admonition-title">Important: Check environment</p>
 <p>Please check the <a class="reference internal" href="dev_env.html"><span class="doc std std-doc">development environment</span></a> requirement before running the following commands.</p>
 </div>
-<section id="step-1-clone-the-source-code">
+<div class="section" id="step-1-clone-the-source-code">
 <h2>Step 1: Clone the source code<a class="headerlink" href="#step-1-clone-the-source-code" title="Permalink to this headline">#</a></h2>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
-<span class="nb">cd</span> OpenCAXPlusSDK
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
+<span class="nb">cd</span><span class="w"> </span>OpenCAXPlusSDK
 </pre></div>
 </div>
-</section>
-<section id="step-2-build-the-sdk">
+</div>
+<div class="section" id="step-2-build-the-sdk">
 <h2>Step 2: Build the SDK<a class="headerlink" href="#step-2-build-the-sdk" title="Permalink to this headline">#</a></h2>
-<section id="initial-build">
+<div class="section" id="initial-build">
 <h3>Initial build<a class="headerlink" href="#initial-build" title="Permalink to this headline">#</a></h3>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 Linux</label><div class="sd-tab-content docutils">
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
-cmake --build --preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span>
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/runner/code/OCP-SDK
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span><span class="w"> </span>-S<span class="w"> </span><span class="s2">&quot;.&quot;</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>--preset<span class="o">=</span><span class="s2">&quot;linux-gnu-Debug&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/runner/code/OCP-SDK
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
 Mac</label><div class="sd-tab-content docutils">
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;darwin-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
-cmake --build --preset<span class="o">=</span><span class="s2">&quot;darwin-gnu-Debug&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--preset<span class="o">=</span><span class="s2">&quot;darwin-gnu-Debug&quot;</span><span class="w"> </span>-S<span class="w"> </span><span class="s2">&quot;.&quot;</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>--preset<span class="o">=</span><span class="s2">&quot;darwin-gnu-Debug&quot;</span>
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
 Windows</label><div class="sd-tab-content docutils">
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake --preset<span class="o">=</span><span class="s2">&quot;windows-gnu-Debug&quot;</span> -S <span class="s2">&quot;.&quot;</span>
-cmake --build --preset<span class="o">=</span><span class="s2">&quot;windows-gnu-Debug&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--preset<span class="o">=</span><span class="s2">&quot;windows-gnu-Debug&quot;</span><span class="w"> </span>-S<span class="w"> </span><span class="s2">&quot;.&quot;</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>--preset<span class="o">=</span><span class="s2">&quot;windows-gnu-Debug&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Cmake will perform out of source build in the folder out/build/. You should also see an executable file <strong>ocp</strong> been created in the root of the repository.
 This is the compiled executable of the golang OpenCAXPlus command line tool, you can use the <strong>ocp</strong> command to manage the SDK from now on.</p>
-</section>
-<section id="install-available-toolkits">
+</div>
+<div class="section" id="install-available-toolkits">
 <h3>Install available toolkits<a class="headerlink" href="#install-available-toolkits" title="Permalink to this headline">#</a></h3>
 <p>Here we are installing all toolkits, you can choose to install only some of them</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opencaxplus/cache/lapack/3.11.0/install/lib
@@ -563,43 +562,43 @@ ocp build -i install_all
 export PYTHONPATH=${PYTHONPATH}:$HOME/opencaxplus/cache/petsc/3.18.4/install/lib
 </pre></div>
 </div>
-</section>
-<section id="following-builds">
+</div>
+<div class="section" id="following-builds">
 <h3>Following builds<a class="headerlink" href="#following-builds" title="Permalink to this headline">#</a></h3>
 <p>We will use the <strong>ocp</strong> executable for all following builds.
 To make it easier using the <strong>ocp</strong> tool, you probably want to add the SDK repository root directory to your PATH variable.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;export PATH=\$PATH:</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span> &gt;&gt; ~/.bashrc
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=\$PATH:</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </pre></div>
 </div>
 <p>Then, to build the SDK.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp build
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp<span class="w"> </span>build
 </pre></div>
 </div>
 <p>To build a starter, you just need to pass the <code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--path</span></code> option with the location to the starter, such as the BasicConsole starter</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp build -p starter/BasicConsole
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp<span class="w"> </span>build<span class="w"> </span>-p<span class="w"> </span>starter/BasicConsole
 </pre></div>
 </div>
 <p>For more information of how the build system is setup, please read the <a class="reference internal" href="build_system.html"><span class="doc std std-doc">build system</span></a> section.</p>
-</section>
-</section>
-<section id="step-3-add-new-toolkit">
+</div>
+</div>
+<div class="section" id="step-3-add-new-toolkit">
 <h2>Step 3: Add new toolkit<a class="headerlink" href="#step-3-add-new-toolkit" title="Permalink to this headline">#</a></h2>
 <p>Not ready</p>
 <p>Please read the <a class="reference internal" href="toolkit.html"><span class="doc std std-doc">toolkit</span></a> section for more guidance on how to work with toolkit development.</p>
-</section>
-<section id="step-4-add-new-starter">
+</div>
+<div class="section" id="step-4-add-new-starter">
 <h2>Step 4: Add new starter<a class="headerlink" href="#step-4-add-new-starter" title="Permalink to this headline">#</a></h2>
 <p>Not ready</p>
 <p>Please read the <a class="reference internal" href="starter.html"><span class="doc std std-doc">starter</span></a> section for more guidance on how to work with starter development.</p>
-</section>
-<section id="step-5-build-the-doc">
+</div>
+<div class="section" id="step-5-build-the-doc">
 <h2>Step 5: Build the doc<a class="headerlink" href="#step-5-build-the-doc" title="Permalink to this headline">#</a></h2>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp build -t html
-ocp build -t latexpdf
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ocp<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>html
+ocp<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>latexpdf
 </pre></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

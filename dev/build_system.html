@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Build system &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -468,14 +467,14 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="build-system">
+  <div class="tex2jax_ignore mathjax_ignore section" id="build-system">
 <h1>Build system<a class="headerlink" href="#build-system" title="Permalink to this headline">#</a></h1>
 <p>Now you understand the <span class="xref myst">core four parts</span> of our SDK, we will discuss how the cmake build system is configured.</p>
 <div class="important admonition">
 <p class="admonition-title">Important: Modern cmake</p>
 <p>We use modern cmake, you should also do so if you want to contribute your code to the SDK. The key is always think from the cmake target’s perspective.</p>
 </div>
-<section id="target-names">
+<div class="section" id="target-names">
 <h2>Target names<a class="headerlink" href="#target-names" title="Permalink to this headline">#</a></h2>
 <p>Following are the available targets in our build system and their purposes.</p>
 <ul class="simple">
@@ -494,8 +493,8 @@ title="Print to PDF"
 <li><p>Cli target: <code class="docutils literal notranslate"><span class="pre">cli</span></code> ALL target that build the golang cli tool.</p></li>
 <li><p>docs target: we have <code class="docutils literal notranslate"><span class="pre">html</span></code> and <code class="docutils literal notranslate"><span class="pre">latexpdf</span></code> EXCLUDE_FROM_ALL target for building the web page and pdf document.</p></li>
 </ul>
-</section>
-<section id="target-relationships">
+</div>
+<div class="section" id="target-relationships">
 <h2>Target relationships<a class="headerlink" href="#target-relationships" title="Permalink to this headline">#</a></h2>
 <p>There are two types of build when developing for the SDK:</p>
 <ol class="arabic simple">
@@ -510,21 +509,21 @@ title="Print to PDF"
 <li><p>cmake does not allow adding the same directory twice</p></li>
 </ol>
 </div>
-<section id="build-the-sdk-toolkits">
+<div class="section" id="build-the-sdk-toolkits">
 <h3>Build the SDK/toolkits<a class="headerlink" href="#build-the-sdk-toolkits" title="Permalink to this headline">#</a></h3>
 <p>To build the SDK, you just run <code class="docutils literal notranslate"><span class="pre">ocp</span> <span class="pre">build</span></code> command from the root of the SDK repository. This will build the CMake project located in the root folder.</p>
 <p>Below, we illustrate the targets dependencies for building the SDK itself. All libraries in the toolkit are compiled, and the lifecycle main programs are built. Notice the starter template codes are not included in this build</p>
 <p><a class="reference external" href="https://mermaid.live/edit#pako:eNqtlNtu2zAMhl9F0HaZpmi8A6IBA-IlGwZsaJF2V3FRKDK1aJUlQ5bRBUHefXRt5SDDuVquGPLnT32U7R0VNgfKqNT2RWy48-QhzQzBn9C8quYgiRXla0yk0pq9kVJ-nE4_RSL468EZrjtR_h7WcBOL6gpccEn4h-m7ToATlMF-yQVcXX321upn5dtaVa9_O15uiHS8gBfrnsnqawgf-_2rjH4PcZaZ2y93jB0T9JExFoD-Q3NDxMsS-34oCWIrdNP3dvfrfrF8ulveflvOfu6HGrVaY-O8Loptu5rmLi6IcTXdvDYNJo921G2OoO1DG44I1_o1XxHugKxrpT3OaBtz5UB4Zc3h1sM93qwW4UZLZ_-gisyag4U6ngXPeFAfVnnsPxzhenYdsmGn4f_T7By3de0ojqYhceoZrLpa7HROM-nTpMM0kx7N5GRyOkyTXqCZxDRnnjFNeokm6dOMx-NhnqTHk5zMxtZhIixeYEpipsg3puq5nTzHmaEjWoAruMrxe7RrShn1GyjwlWAY5iB53Ty7mdmjtC5z7mGRK28dZZLrCkaU197eb42gzLsagmiuOL4eRafa_wMCyrf6"><img alt="" src="https://mermaid.ink/img/pako:eNqtlNtu2zAMhl9F0HaZpmi8A6IBA-IlGwZsaJF2V3FRKDK1aJUlQ5bRBUHefXRt5SDDuVquGPLnT32U7R0VNgfKqNT2RWy48-QhzQzBn9C8quYgiRXla0yk0pq9kVJ-nE4_RSL468EZrjtR_h7WcBOL6gpccEn4h-m7ToATlMF-yQVcXX321upn5dtaVa9_O15uiHS8gBfrnsnqawgf-_2rjH4PcZaZ2y93jB0T9JExFoD-Q3NDxMsS-34oCWIrdNP3dvfrfrF8ulveflvOfu6HGrVaY-O8Loptu5rmLi6IcTXdvDYNJo921G2OoO1DG44I1_o1XxHugKxrpT3OaBtz5UB4Zc3h1sM93qwW4UZLZ_-gisyag4U6ngXPeFAfVnnsPxzhenYdsmGn4f_T7By3de0ojqYhceoZrLpa7HROM-nTpMM0kx7N5GRyOkyTXqCZxDRnnjFNeokm6dOMx-NhnqTHk5zMxtZhIixeYEpipsg3puq5nTzHmaEjWoAruMrxe7RrShn1GyjwlWAY5iB53Ty7mdmjtC5z7mGRK28dZZLrCkaU197eb42gzLsagmiuOL4eRafa_wMCyrf6?type=png" /></a></p>
-</section>
-<section id="build-the-starter-template">
+</div>
+<div class="section" id="build-the-starter-template">
 <h3>Build the starter template<a class="headerlink" href="#build-the-starter-template" title="Permalink to this headline">#</a></h3>
 <p>To build a specific starter template, you can use the command <code class="docutils literal notranslate"><span class="pre">ocp</span> <span class="pre">build</span> <span class="pre">-p</span> <span class="pre">starter/starter_Name</span></code> from the root of the SDK repository. The <code class="docutils literal notranslate"><span class="pre">-p</span></code> option will set the path to the CMake project to be built.</p>
 <p>The build dependencies for a starter template project are shown below. Only the necessary libraries within the toolkit are built, and the starter code is included.</p>
 <p><a class="reference external" href="https://mermaid.live/edit#pako:eNqtVMtu2zAQ_BWC7dFBYPcFs0AAqXGDAi0S2O7JNAJaXNZsKFKgKKSG4X_PKiL9kJOcqtNqObM7w11pSwsngTKqjHss1sIHMs-5JfgURtT1NSjiiuo5Jkobw94ppb6Mx197IPgXwFthIkh-ghUM-6CmBp-qfBCfxx8jADtoi3wlCri4uArOmQcdurO6Wf3xoloT5UUJj84_kMX3FC7P-QtOf6SYc3v77Y6xQ4IuGWPJ0H8gt45EVSHvp1ZQbArT8t5vf88m0_u76e3NNPu1e4kIVvb8RdcEa827cECcNRtSg4EigHxG1FisI0rtMa2d3U8szWC4mKRpVN79RRTJWgXpHK8YxezR-2s48PcSLrPLlE33kd7vs1NfXdXoYniqaHSuKH9d0ehM0ehIUf66ovwNRYeiSeKxy1QqnvW99bknevrc_M15RxRqqwN-buB7axCzZDHrguVh0YxeYd-YJwHKyohwtG_zbHozmcd1awm91rEGto5ryy23dEBL8KXQEv8C2xbIaVhDievOMJSgRGMCp9zuENpUEltOpA7OU6aEqWFARRPcbGMLyoJvIIGutUBHZUTtngD7vYiF"><img alt="" src="https://mermaid.ink/img/pako:eNqtVMtu2zAQ_BWC7dFBYPcFs0AAqXGDAi0S2O7JNAJaXNZsKFKgKKSG4X_PKiL9kJOcqtNqObM7w11pSwsngTKqjHss1sIHMs-5JfgURtT1NSjiiuo5Jkobw94ppb6Mx197IPgXwFthIkh-ghUM-6CmBp-qfBCfxx8jADtoi3wlCri4uArOmQcdurO6Wf3xoloT5UUJj84_kMX3FC7P-QtOf6SYc3v77Y6xQ4IuGWPJ0H8gt45EVSHvp1ZQbArT8t5vf88m0_u76e3NNPu1e4kIVvb8RdcEa827cECcNRtSg4EigHxG1FisI0rtMa2d3U8szWC4mKRpVN79RRTJWgXpHK8YxezR-2s48PcSLrPLlE33kd7vs1NfXdXoYniqaHSuKH9d0ehM0ehIUf66ovwNRYeiSeKxy1QqnvW99bknevrc_M15RxRqqwN-buB7axCzZDHrguVh0YxeYd-YJwHKyohwtG_zbHozmcd1awm91rEGto5ryy23dEBL8KXQEv8C2xbIaVhDievOMJSgRGMCp9zuENpUEltOpA7OU6aEqWFARRPcbGMLyoJvIIGutUBHZUTtngD7vYiF?type=png" /></a></p>
 <p>All <span style="background-color:#fff799">yellow boxed targets</span> are managed by the SDK, <span style="background-color:#d5ebe1">blue boxed targets</span> are external open source projects, <span style="background-color:#f3a694">red boxed target</span> is the code that SDK users write (in this case, you as the SDK developer pretent to be a user). Only the used toolkit and lifecycle is built by cmake.</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
               </div>

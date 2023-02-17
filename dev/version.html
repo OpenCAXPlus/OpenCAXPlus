@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Versioning &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -464,12 +463,12 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="versioning">
+  <div class="tex2jax_ignore mathjax_ignore section" id="versioning">
 <h1>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">#</a></h1>
 <p>Clear versioning is important for the success of an open source project. We follow the common <a class="reference external" href="https://semver.org/">semantic versioning rule</a>, that is <code class="docutils literal notranslate"><span class="pre">major_version.minor_version.patch</span></code>.</p>
 <p>We also have a set of rules to keep the versioning across different locations, such as git repository, doc, website, cmake, and source code, consistent with each other.</p>
 <p>The key idea is to use the tag in git repository as the single source of truth for current version, and all other versions should be obtained from git tag and inserted into their corresponding locations.</p>
-<section id="version-in-doc">
+<div class="section" id="version-in-doc">
 <h2>version in doc<a class="headerlink" href="#version-in-doc" title="Permalink to this headline">#</a></h2>
 <p>Since we are using sphinx as the doc generator, we can obtain the tag information in the conf.py file.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span>
@@ -477,11 +476,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>For projects using doxygen, you can use the following command to insert the git tag information as project number.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PROJECT_NUMBER</span><span class="o">=</span><span class="k">$(</span>git describe --tags --abbrev<span class="o">=</span><span class="m">0</span><span class="k">)</span> doxygen
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PROJECT_NUMBER</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>describe<span class="w"> </span>--tags<span class="w"> </span>--abbrev<span class="o">=</span><span class="m">0</span><span class="k">)</span><span class="w"> </span>doxygen
 </pre></div>
 </div>
-</section>
-<section id="version-in-cmake">
+</div>
+<div class="section" id="version-in-cmake">
 <h2>version in cmake<a class="headerlink" href="#version-in-cmake" title="Permalink to this headline">#</a></h2>
 <p>In cmake, you can use the execute_process command to extract git tag’s major, minor, and patch version into the corresponding cmake variables.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">execute_process</span><span class="p">(</span>
@@ -498,30 +497,30 @@ title="Print to PDF"
 <span class="w">                        </span><span class="s2">&quot;${GIT_TAG}&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="version-in-source-code">
+</div>
+<div class="section" id="version-in-source-code">
 <h2>version in source code<a class="headerlink" href="#version-in-source-code" title="Permalink to this headline">#</a></h2>
 <p>We do not manually keep the version number in source code. Instead, we use macros which can be defined by cmake to parse the version number during preprocessing.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_compile_definitions</span><span class="p">(</span><span class="o">${</span><span class="nv">target</span><span class="o">}</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">VERSION_MAJOR=</span><span class="o">${</span><span class="nv">VERSION_MAJOR</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">get_major_version</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">VERSION_MAJOR</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">get_major_version</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">VERSION_MAJOR</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="version-in-website">
+</div>
+<div class="section" id="version-in-website">
 <h2>version in website<a class="headerlink" href="#version-in-website" title="Permalink to this headline">#</a></h2>
 <p>Most of our website is build with javascript, and if the website is within the current repository, we can use the git-rev-sync package.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">git</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;git-rev-sync&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">git</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;git-rev-sync&#39;</span><span class="p">);</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">git</span><span class="p">.</span><span class="nx">tag</span><span class="p">());</span>
 </pre></div>
 </div>
 <p>If the website is trying to obtain tag of another repository, I haven’t found an proper way to do so without cloning that repository. We may explore more on this if we encounter such use cases.</p>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

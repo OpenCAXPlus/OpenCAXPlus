@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add new libraries to the toolkit &#8212; OpenCAXPlus SDK</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -468,7 +467,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="add-new-libraries-to-the-toolkit">
+  <div class="tex2jax_ignore mathjax_ignore section" id="add-new-libraries-to-the-toolkit">
 <h1>Add new libraries to the toolkit<a class="headerlink" href="#add-new-libraries-to-the-toolkit" title="Permalink to this headline">#</a></h1>
 <p>A toolkit library is the external library plus wrapper that follows the interface definition in our framework.
 The folder structure of a toolkit library should always look like this:</p>
@@ -484,21 +483,21 @@ The folder structure of a toolkit library should always look like this:</p>
 </ul>
 </li>
 </ul>
-<section id="rules-you-must-follow">
+<div class="section" id="rules-you-must-follow">
 <h2>Rules you must follow<a class="headerlink" href="#rules-you-must-follow" title="Permalink to this headline">#</a></h2>
 <p>When we review your pull request for a new toolkit library, we will look into the following things.</p>
-<section id="readme-md">
+<div class="section" id="readme-md">
 <h3>README.md<a class="headerlink" href="#readme-md" title="Permalink to this headline">#</a></h3>
 <p>You must have a README.md file that explain basic things about your code.</p>
-</section>
-<section id="modern-cmake">
+</div>
+<div class="section" id="modern-cmake">
 <h3>Modern cmake<a class="headerlink" href="#modern-cmake" title="Permalink to this headline">#</a></h3>
 <p>You must use the modern cmake build system. Notice, it’s not just cmake but you have to use modern cmake.</p>
 <p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_toolkit</span></code>, to help you setup a standard library target. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros.</p>
 <p>The CMakeLists.txt file should create a target following the naming convention of “OCP::toolkit_{toolkit_folder_name}” that linked to the imported target from the external folder.
 The target should also be linked to the <strong>OCP::Interface</strong>, and the wrapper functions should follow the interface defined in the framework.</p>
-</section>
-<section id="external-folder">
+</div>
+<div class="section" id="external-folder">
 <h3>external folder<a class="headerlink" href="#external-folder" title="Permalink to this headline">#</a></h3>
 <p>The external library must be places in the external folder, and</p>
 <div class="warning admonition">
@@ -507,9 +506,9 @@ The target should also be linked to the <strong>OCP::Interface</strong>, and the
 </div>
 <p>The external folder should contain a CMakeLists.txt file that create an imported target to fulfill all requirements, such as linking libraries, include folders, compiler options, and etc., when using this external library.</p>
 <p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_toolkit_external</span></code>, to help you setup a external library target. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros.</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
               </div>
