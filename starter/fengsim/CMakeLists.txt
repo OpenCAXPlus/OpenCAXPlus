@@ -14,23 +14,23 @@ set(CMAKE_AUTOUIC ON)
 
 set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 find_package(OCPSDK)
-set(Qt5_DIR ${OCP_ROOT}/toolkit/Qt/external/install/5.12.10/lib/cmake/Qt5)
+set(Qt5_DIR ${OCP_CACHE}/Qt/5.12.10/install/lib/cmake/Qt5)
 
 find_package(
   Qt5
   COMPONENTS Widgets PrintSupport
   REQUIRED)
 
-set(OCE_DIR ${OCP_ROOT}/toolkit/OCE/external/install/OCE-0.18.3/lib/oce-0.18)
+set(OCE_DIR ${OCP_CACHE}/OCE/0.18.3/install/lib/oce-0.18)
 find_package(OCE REQUIRED)
 
-set(gmsh_DIR ${OCP_ROOT}/toolkit/gmsh/external/install/gmsh-3.0.6)
+set(gmsh_DIR ${OCP_CACHE}/gmsh/3.0.6/install)
 set(gmsh_INCLUDE_DIRS ${gmsh_DIR}/include/gmsh)
 set(gmsh_LIBRARIES -lGmsh)
 # find_package(gmsh)
 
 set(VTK_DIR
-    ${OCP_ROOT}/toolkit/VTK/external/install/VTK-8.1.0/lib/cmake/vtk-8.1)
+    ${OCP_CACHE}/VTK/8.1.0/install/lib/cmake/vtk-8.1)
 find_package(VTK REQUIRED)
 vtk_module_config(
   VTK

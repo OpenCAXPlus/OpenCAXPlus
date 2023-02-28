@@ -1,0 +1,14 @@
+{
+    "tasks": [
+        {
+            "label": "setup_ld",
+            "command": "echo $LD_LIBRARY_PATH",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+    ],
+    "version": "2.0.0"
+}

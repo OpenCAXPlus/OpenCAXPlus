@@ -63,11 +63,13 @@ int VTKWidget::ActorGetId(vtkSmartPointer<vtkActor> actor)
 bool VTKWidget::ActorIsSelected(vtkSmartPointer<vtkActor> actor)
 {
     int  selected       = 0;
-    auto retrievedArray = dynamic_cast<vtkIntArray*>(
-        actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
-    selected = retrievedArray->GetValue(0);
-    if (selected == 1) {
-        return true;
+    if(actor->GetMapper()!=NULL){
+        auto retrievedArray = dynamic_cast<vtkIntArray*>(
+            actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
+        selected = retrievedArray->GetValue(0);
+        if (selected == 1) {
+            return true;
+        }
     }
     return false;
 }
