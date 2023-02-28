@@ -9,6 +9,15 @@
             },
             "problemMatcher": []
         },
+        {
+            "label": "format_all",
+            "command": "find . -type f \( -name '*.h' -o -name '*.cpp' -o -name '*.c' \) -not -path '*/out/*' | xargs clang-format -i",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
     ],
     "version": "2.0.0"
 }
