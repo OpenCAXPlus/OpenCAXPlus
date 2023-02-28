@@ -3,9 +3,9 @@
 
 #include <BRep_Tool.hxx>
 
-#include <BRepAlgoAPI_Fuse.hxx>
-#include <BRepAlgoAPI_Cut.hxx>
 #include <BRepAlgoAPI_Common.hxx>
+#include <BRepAlgoAPI_Cut.hxx>
+#include <BRepAlgoAPI_Fuse.hxx>
 #include <BRepOffsetAPI_MakePipe.hxx>
 #include <gp_Circ.hxx>
 
@@ -52,20 +52,19 @@
 #include <TopExp_Explorer.hxx>
 
 #include <TopoDS.hxx>
+#include <TopoDS_Compound.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
-#include <TopoDS_Wire.hxx>
 #include <TopoDS_Shape.hxx>
-#include <TopoDS_Compound.hxx>
+#include <TopoDS_Wire.hxx>
 
-#include <TopTools_ListOfShape.hxx>
-#include <math.h>
-#include <gp_Lin2d.hxx>
 #include <BRepBuilderAPI_MakeEdge.hxx>
+#include <TopTools_ListOfShape.hxx>
+#include <gp_Lin2d.hxx>
+#include <math.h>
 
 #include <Visual/VTKWidget.h>
 
-TopoDS_Shape
-MakeTools(const Standard_Real toolLength, const Standard_Real drillRadius);
+TopoDS_Shape MakeTools(const Standard_Real toolLength, const Standard_Real drillRadius);
 
 #endif // MAKETOOLS_H

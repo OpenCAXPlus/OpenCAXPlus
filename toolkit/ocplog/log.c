@@ -22,4 +22,4 @@ void ocplog_debug(const char* fmt, ...)
     va_end(args);
 }
 
-void ocplog_null(const char* fmt, ...){}
+void ocplog_null(const char* fmt, ...) {}

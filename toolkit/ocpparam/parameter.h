@@ -13,7 +13,6 @@ extern "C" {
 ocpStatusEnum ocplog_parameter_allocate(ocpParameterStructPtr a, int n);
 ocpStatusEnum ocplog_parameter_deallocate(ocpParameterStructPtr a);
 
-
 #ifdef __cplusplus
 }
 #endif

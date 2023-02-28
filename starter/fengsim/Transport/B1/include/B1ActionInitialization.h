@@ -36,7 +36,7 @@
 
 class B1ActionInitialization : public G4VUserActionInitialization
 {
-  public:
+public:
     B1ActionInitialization();
     virtual ~B1ActionInitialization();
 
@@ -47,5 +47,3 @@ class B1ActionInitialization : public G4VUserActionInitialization
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
-
-    

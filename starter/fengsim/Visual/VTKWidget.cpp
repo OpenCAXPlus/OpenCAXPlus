@@ -62,10 +62,11 @@ int VTKWidget::ActorGetId(vtkSmartPointer<vtkActor> actor)
 
 bool VTKWidget::ActorIsSelected(vtkSmartPointer<vtkActor> actor)
 {
-    int  selected       = 0;
-    if(actor->GetMapper()!=NULL){
+    int selected = 0;
+    if (actor->GetMapper() != NULL) {
         auto retrievedArray = dynamic_cast<vtkIntArray*>(
-            actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray("Selected"));
+            actor->GetMapper()->GetInput()->GetFieldData()->GetAbstractArray(
+                "Selected"));
         selected = retrievedArray->GetValue(0);
         if (selected == 1) {
             return true;
@@ -1129,7 +1130,7 @@ void VTKWidget::ClearSelectedBnd()
         vtkActor* actor = acts->GetNextActor();
         actor->GetProperty()->SetColor(COLOR0);
         // actor->SetSelected(false);
-        ActorSetSelected(actor,false);
+        ActorSetSelected(actor, false);
     }
     SelectedVtkActor = NULL;
     GetRenderWindow()->Render();

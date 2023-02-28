@@ -1,12 +1,12 @@
-#include <QtPlugin>
 #include <QString>
+#include <QtPlugin>
 
 class PluginInterface
 {
 public:
     virtual ~PluginInterface() {}
 
-    virtual QString name() const = 0;
+    virtual QString name() const    = 0;
     virtual QString content() const = 0;
 };
 

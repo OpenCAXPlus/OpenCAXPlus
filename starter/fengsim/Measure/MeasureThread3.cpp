@@ -1,8 +1,8 @@
 #include "MeasureThread3.h"
 
-void MeasureThread3::run ()
+void MeasureThread3::run()
 {
-    //TextOutput("Begin to change a CAD model to a point cloud model. Please wait...");
+    // TextOutput("Begin to change a CAD model to a point cloud model. Please wait...");
 
     if (meas_bnds->Size() == 0) {
         vtk_widget->MeasureClearCloudTarget();
@@ -24,15 +24,16 @@ void MeasureThread3::run ()
 
     if (vtk_widget->selected_bnd_id.size() == 0) return;
 
-    //vtk_widget->SetSelectable(false);
+    // vtk_widget->SetSelectable(false);
 
     BRep_Builder builder;
     TopoDS_Shell shell;
     builder.MakeShell(shell);
     for (int i = 0; i < vtk_widget->selected_bnd_id.size(); i++)
-        builder.Add(shell,*((*meas_bnds)[vtk_widget->selected_bnd_id[i]]->Value()));
-    MM.MeshGeneration(&shell, measure_dock->ui->doubleSpinBox_2->text().toDouble(), 0, path);
-    //MM.MeasureModel(path);
+        builder.Add(shell, *((*meas_bnds)[vtk_widget->selected_bnd_id[i]]->Value()));
+    MM.MeshGeneration(&shell, measure_dock->ui->doubleSpinBox_2->text().toDouble(), 0,
+                      path);
+    // MM.MeasureModel(path);
 
     // the whole model
     /*BRep_Builder builder1;
@@ -40,8 +41,8 @@ void MeasureThread3::run ()
     builder.MakeShell(shell1);
     for (int i = 0; i < meas_bnds->Size(); i++)
         builder.Add(shell1,*((*meas_bnds)[i]->Value()));
-    MM.MeshGeneration(&shell1, measure_dock->ui->doubleSpinBox_2->text().toDouble(), 0, path);
-    MM.MeasureModel(path,QString("/data/meas/fengsim_meas_target_whole.vtk"));
+    MM.MeshGeneration(&shell1, measure_dock->ui->doubleSpinBox_2->text().toDouble(), 0,
+    path); MM.MeasureModel(path,QString("/data/meas/fengsim_meas_target_whole.vtk"));
 */
     //    ofstream out;
     //    out.open(std::string("/home/jiping/FENGSim/FENGSim/Measure/data/cloud_target.vtk").c_str(),ios::app);
@@ -64,11 +65,6 @@ void MeasureThread3::run ()
     //        out << vertex1.X() << " " << vertex1.Y() << " "<< vertex1.Z() << endl;
     //    }
 
-
     exit();
     exec();
-
-
-
-
 }

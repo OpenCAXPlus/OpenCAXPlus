@@ -9,7 +9,7 @@
  * @brief The CSR solver context for Ax=b
  */
 typedef struct _ocpCSRSolverContextStruct {
-    ocpString32Type               name;
+    ocpString32Type           name;
     ocpCSRMatFloat64StructPtr A;     // input
     ocpVecFloat64StructPtr    b;     // input
     ocpVecFloat64StructPtr    x;     // output

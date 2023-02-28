@@ -2,7 +2,7 @@
 
 ocpStatusEnum ocplog_parameter_allocate(ocpParameterStructPtr a, int n)
 {
-    a        = calloc(n, sizeof(ocpParameterStruct));
+    a = calloc(n, sizeof(ocpParameterStruct));
     return OCP_OK;
 }
 

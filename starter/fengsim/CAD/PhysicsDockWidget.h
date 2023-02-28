@@ -3,7 +3,8 @@
 
 #include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class PhysicsDockWidget;
 }
 
@@ -12,11 +13,11 @@ class PhysicsDockWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PhysicsDockWidget(QWidget *parent = nullptr);
+    explicit PhysicsDockWidget(QWidget* parent = nullptr);
     ~PhysicsDockWidget();
 
 public:
-    Ui::PhysicsDockWidget *ui;
+    Ui::PhysicsDockWidget* ui;
 };
 
 #endif // PHYSICSDOCKWIDGET_H

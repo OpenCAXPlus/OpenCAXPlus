@@ -1,6 +1,5 @@
 #include "solver.h"
 
-
 ocpStatusEnum fasp_CSR_solver(ocpCSRSolverContextStructPtr context)
 {
     ocp_info("Using the fasp csr solver through OCP wrapper");
@@ -31,7 +30,6 @@ ocpStatusEnum fasp_CSR_solver(ocpCSRSolverContextStructPtr context)
     itspar.restart       = 1;    /**< number of steps for restarting: for GMRES etc */
     itspar.maxit         = 100;  /**< max number of iterations */
     itspar.tol           = 0.01; /**< convergence tolerance for relative residual */
-
 
     // call fasp CSR solve
     fasp_solver_dcsr_krylov(&faspCSR, &b, &x, &itspar);

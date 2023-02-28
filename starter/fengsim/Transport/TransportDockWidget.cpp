@@ -1,14 +1,11 @@
 #include "TransportDockWidget.h"
 #include "ui_TransportDockWidget.h"
 
-TransportDockWidget::TransportDockWidget(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::TransportDockWidget)
+TransportDockWidget::TransportDockWidget(QWidget* parent)
+    : QWidget(parent)
+    , ui(new Ui::TransportDockWidget)
 {
-        ui->setupUi(this);
+    ui->setupUi(this);
 }
 
-TransportDockWidget::~TransportDockWidget()
-{
-        delete ui;
-}
+TransportDockWidget::~TransportDockWidget() { delete ui; }

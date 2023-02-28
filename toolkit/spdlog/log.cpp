@@ -25,9 +25,7 @@ void spdlog_info(const char* fmt, ...)
     spdlog::info("{}", formatted);
 }
 
-void spdlog_null(const char* fmt,...){
-
-}
+void spdlog_null(const char* fmt, ...) {}
 
 void spdlog_debug(const char* fmt, ...)
 {

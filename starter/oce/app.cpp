@@ -1,10 +1,10 @@
 #include "app.h"
 
-#include <TopoDS_Shape.hxx>
-#include <BRep_Builder.hxx>
-#include <BRepTools.hxx>
 #include <BRepGProp.hxx>
+#include <BRepTools.hxx>
+#include <BRep_Builder.hxx>
 #include <GProp_GProps.hxx>
+#include <TopoDS_Shape.hxx>
 #include <iostream>
 
 int app(int argc, char** argv)
@@ -13,8 +13,7 @@ int app(int argc, char** argv)
     BRep_Builder builder;
     GProp_GProps prop;
 
-    if (argc < 2)
-    {
+    if (argc < 2) {
         std::cerr << "Usage: computeSurface file.brep" << std::endl;
         exit(1);
     }

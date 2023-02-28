@@ -4,32 +4,30 @@
 #include <QDialog>
 #include <QLabel>
 
-namespace Ui {
+namespace Ui
+{
 class AboutDialog;
 }
 
 class AboutDialog : public QDialog
 {
-        Q_OBJECT
+    Q_OBJECT
 
 public:
-        explicit AboutDialog(QWidget *parent = 0);
-        ~AboutDialog();
-        void ChangePicture (QString name);
-
+    explicit AboutDialog(QWidget* parent = 0);
+    ~AboutDialog();
+    void ChangePicture(QString name);
 
 public slots:
-        // *******************************************************************
-        //
-        // close dialog
-        //
-        // *******************************************************************
-        void CloseDialog ()
-        {
-                this->close();
-        }
+    // *******************************************************************
+    //
+    // close dialog
+    //
+    // *******************************************************************
+    void CloseDialog() { this->close(); }
+
 private:
-        Ui::AboutDialog *ui;
+    Ui::AboutDialog* ui;
 };
 // *******************************************************************
 //
@@ -38,21 +36,20 @@ private:
 // *******************************************************************
 class ClickedLabel : public QLabel
 {
-        Q_OBJECT
+    Q_OBJECT
 public:
-        explicit ClickedLabel(QWidget* parent=0 );
-        ~ClickedLabel();
+    explicit ClickedLabel(QWidget* parent = 0);
+    ~ClickedLabel();
 signals:
-        // *******************************************************************
-        // define clicked signal
-        // *******************************************************************
-        void clicked();
+    // *******************************************************************
+    // define clicked signal
+    // *******************************************************************
+    void clicked();
+
 protected:
-        // *******************************************************************
-        // redefine mouse click
-        // *******************************************************************
-        void mousePressEvent(QMouseEvent* event);
-
-
+    // *******************************************************************
+    // redefine mouse click
+    // *******************************************************************
+    void mousePressEvent(QMouseEvent* event);
 };
 #endif // ABOUTDIALOG_H

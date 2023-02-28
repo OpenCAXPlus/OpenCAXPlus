@@ -1,10 +1,11 @@
 #ifndef FEMDOCKWIDGET_H
 #define FEMDOCKWIDGET_H
 
-#include <QWidget>
 #include <QComboBox>
+#include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class FEMDockWidget;
 }
 
@@ -15,18 +16,18 @@ class FEMDockWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit FEMDockWidget(QWidget *parent = 0);
+    explicit FEMDockWidget(QWidget* parent = 0);
     ~FEMDockWidget();
     friend class MainWindow;
 
 public slots:
-    void MainModule ();
-    void Configure ();
-    void OpenMeshFile ();
+    void MainModule();
+    void Configure();
+    void OpenMeshFile();
 
 private:
-    Ui::FEMDockWidget *ui;
-    QString mesh_file;
+    Ui::FEMDockWidget* ui;
+    QString            mesh_file;
 };
 
 #endif // FEMDOCKWIDGET_H

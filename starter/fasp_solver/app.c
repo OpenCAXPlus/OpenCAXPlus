@@ -35,10 +35,8 @@ int app(int argc, char* argv[])
     char filename1[512], *datafile1;
     char filename2[512], *datafile2;
 
-
     memcpy(filename1, inipar.workdir, 256);
     memcpy(filename2, inipar.workdir, 256);
-
 
     // Matrix and vector
     dCSRmat A;

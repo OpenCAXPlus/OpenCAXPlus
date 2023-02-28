@@ -3,7 +3,8 @@
 
 #include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class MeshDockWidget;
 }
 
@@ -14,11 +15,12 @@ class MeshDockWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MeshDockWidget(QWidget *parent = 0);
+    explicit MeshDockWidget(QWidget* parent = 0);
     ~MeshDockWidget();
     friend class MainWindow;
+
 private:
-    Ui::MeshDockWidget *ui;
+    Ui::MeshDockWidget* ui;
 };
 
 #endif // MESHDOCKWIDGET_H

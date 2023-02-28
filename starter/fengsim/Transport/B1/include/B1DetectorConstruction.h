@@ -40,19 +40,18 @@ class G4LogicalVolume;
 
 class B1DetectorConstruction : public G4VUserDetectorConstruction
 {
-  public:
+public:
     B1DetectorConstruction();
     virtual ~B1DetectorConstruction();
 
     virtual G4VPhysicalVolume* Construct();
-    
+
     G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
 
-  protected:
-    G4LogicalVolume*  fScoringVolume;
+protected:
+    G4LogicalVolume* fScoringVolume;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
-
