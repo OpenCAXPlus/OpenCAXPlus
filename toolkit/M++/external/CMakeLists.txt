@@ -11,6 +11,7 @@ ocp_toolkit_external_cmake(
   FLAGS
   "-DMPI_C_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpicc"
   "-DMPI_CXX_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpic++"
+  "-DMPI_Fortran_COMPILER=${OCP_CACHE}/petsc/3.18.4/install/bin/mpif90"
   "-Dsuperlu_DIR=${OCP_CACHE}/petsc/3.18.4/install/lib/cmake/superlu")
 
 if(EXISTS ${OCP_CACHE}/${SOFTWARE}/${VERSION}/install)
