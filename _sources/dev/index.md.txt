@@ -7,9 +7,9 @@ dev_env.md
 quick_starter.md
 folders.md
 build_system.md
+cmake.md
 starter.md
 toolkit.md
-cmake.md
 naming.md
 version.md
 faq.md

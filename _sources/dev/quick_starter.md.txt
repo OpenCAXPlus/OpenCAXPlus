@@ -95,3 +95,11 @@ Please read the [starter](starter.md) section for more guidance on how to work w
 ocp build -t html
 ocp build -t latexpdf
 ```
+
+## Step 6: Package the SDK
+
+```sh
+ocp build -t package
+```
+
+Or `cmake --build . --target package` inside the build directory, or `cmake --build --preset="linux-gnu-Debug" --target package` from the project root directory.
