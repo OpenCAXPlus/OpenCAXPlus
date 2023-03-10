@@ -14,6 +14,6 @@ add_custom_command(
   VERBATIM USES_TERMINAL)
 
 install(
-  FILES ../${cliname}
+  FILES ${OCP_BIN}/${cliname}
   DESTINATION cli
   COMPONENT ${PROJECT_NAME})
