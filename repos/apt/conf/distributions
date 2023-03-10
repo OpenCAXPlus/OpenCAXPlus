@@ -1,0 +1,7 @@
+Origin: OpenCAXPlus SDK
+Label: OpenCAXPlus SDK
+Codename: all
+Architectures: source i386 amd64
+Components: main
+Description: Apt repository for OpenCAXPlus SDK
+SignWith: 88DEBFF970F99292A7417DC823A5857AFCC8687E
