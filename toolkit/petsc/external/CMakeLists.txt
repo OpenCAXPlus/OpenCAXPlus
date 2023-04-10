@@ -17,14 +17,22 @@ add_custom_target(
   COMMENT "Install the ${SOFTWARE}-${VERSION}")
 # add_dependencies(install_${SOFTWARE} download_${SOFTWARE})
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  set(GCC gcc-12)
+  set(G++ g++-12)
+else()
+  set(GCC gcc)
+  set(G++ g++) 
+endif()
+
 add_custom_command(
   OUTPUT ${installpath}
   WORKING_DIRECTORY ${sourcepath}
   DEPENDS ${sourcepath}/configure
   COMMAND chmod 755 configure
   COMMAND
-    ./configure --prefix=${installpath} --PETSC_DIR=${sourcepath} --with-cc=gcc
-    --with-cxx=g++ --with-fc=gfortran --with-petsc4py=1 --download-mpi4py
+    ./configure --prefix=${installpath} --PETSC_DIR=${sourcepath} --with-cc=${GCC}
+    --with-cxx=${G++} --with-fc=gfortran --with-petsc4py=1 --download-mpi4py
     --with-blas-lib=${OCP_CACHE}/lapack/3.11.0/install/lib/libblas.a
     --with-lapack-lib=${OCP_CACHE}/lapack/3.11.0/install/lib/liblapack.a
     --download-mpich --download-metis --download-parmetis --download-suitesparse
