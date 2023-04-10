@@ -416,6 +416,18 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#things-to-notice-for-each-toolkit">
+   Things to notice for each toolkit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qt">
+     Qt
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -453,6 +465,18 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#external-folder">
      external folder
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#things-to-notice-for-each-toolkit">
+   Things to notice for each toolkit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qt">
+     Qt
     </a>
    </li>
   </ul>
@@ -506,6 +530,18 @@ The target should also be linked to the <strong>OCP::Interface</strong>, and the
 </div>
 <p>The external folder should contain a CMakeLists.txt file that create an imported target to fulfill all requirements, such as linking libraries, include folders, compiler options, and etc., when using this external library.</p>
 <p>It is recommended to use the CMake macro provided by us, such as <code class="docutils literal notranslate"><span class="pre">ocp_toolkit_external</span></code>, to help you setup a external library target. Check <a class="reference internal" href="cmake.html"><span class="doc std std-doc">here</span></a> for more information of available CMake macros.</p>
+</div>
+</div>
+<div class="section" id="things-to-notice-for-each-toolkit">
+<h2>Things to notice for each toolkit<a class="headerlink" href="#things-to-notice-for-each-toolkit" title="Permalink to this headline">#</a></h2>
+<div class="section" id="qt">
+<h3>Qt<a class="headerlink" href="#qt" title="Permalink to this headline">#</a></h3>
+<p>You need to set the QT_EMAIL and QT_PASSWORD environment variables.</p>
+<p>On MacOS, you need to manually click the dmg and install Qt. Here are the steps:</p>
+<ol class="arabic simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">installation</span></code> and set the installation folder to <code class="docutils literal notranslate"><span class="pre">~/opencaxplus/cache/Qt/5.12.10/install</span></code>. Then Next</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Archive</span></code> and <code class="docutils literal notranslate"><span class="pre">LTS</span></code> then select 5.12.10</p></li>
+</ol>
 </div>
 </div>
 </div>
