@@ -10,6 +10,7 @@ add_subdirectory(gmsh)
 add_subdirectory(Qt)
 add_subdirectory(VTK)
 add_subdirectory(OCE)
+add_subdirectory(opencascade)
 
 add_subdirectory(pugixml)
 add_subdirectory(petsc)
@@ -31,6 +32,7 @@ add_dependencies(
   install_Qt
   install_VTK
   install_OCE
+  install_opencascade
   install_pugixml
   install_petsc
   install_hdf5

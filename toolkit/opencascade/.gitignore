@@ -1,0 +1,4 @@
+OCCT**/
+build/
+install/
+*.tar.xz
