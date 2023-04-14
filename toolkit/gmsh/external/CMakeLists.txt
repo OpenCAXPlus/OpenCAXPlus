@@ -1,5 +1,6 @@
 set(SOFTWARE gmsh)
-set(VERSION 4.11.1)
+set(VERSION 3.0.6)
+# set(VERSION 4.11.1)
 include(OCPToolkitExternalCMake)
 
 ocp_toolkit_external_cmake(
