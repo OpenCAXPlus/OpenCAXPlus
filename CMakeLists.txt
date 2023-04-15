@@ -17,7 +17,7 @@ option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
 # option(OCP_Cli "Should Cli be built?" ON)
 # if(OCP_Cli) 
-# add_subdirectory(cli)
+add_subdirectory(cli)
 # endif()
 
 add_subdirectory(framework/interface)
