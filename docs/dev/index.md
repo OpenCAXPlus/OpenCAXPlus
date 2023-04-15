@@ -4,6 +4,7 @@
 :hidden:
 
 dev_env.md
+fengsim.md
 quick_starter.md
 folders.md
 build_system.md
