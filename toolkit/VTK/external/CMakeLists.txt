@@ -3,15 +3,15 @@ set(VERSION 8.1.0)
 include(OCPCores)
 include(OCPToolkitExternalCMake)
 
-if($(CMAKE_SYSTEM_NAME) MATCHES "Linux")
+# if($(CMAKE_SYSTEM_NAME) MATCHES "Linux")
   set(qtpath
       ${OCP_CACHE}/Qt/5.12.10/install
       CACHE INTERNAL "" FORCE)
-else()
-  set(qtpath
-      ${OCP_CACHE}/Qt/5.12.10/install/5.12.10/clang_64
-      CACHE INTERNAL "" FORCE)
-endif()
+# else()
+#   set(qtpath
+#       ${OCP_CACHE}/Qt/5.12.10/install/5.12.10/clang_64
+#       CACHE INTERNAL "" FORCE)
+# endif()
 if(EXISTS ${qtpath})
   ocp_toolkit_external_cmake(
     SOFTWARE
