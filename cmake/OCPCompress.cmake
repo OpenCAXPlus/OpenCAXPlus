@@ -29,10 +29,15 @@ macro(ocp_compress_extract)
     VERBATIM USES_TERMINAL
     COMMENT "XZ compress ${OCPCompress_TAR}")
 
-
   if(NOT EXISTS ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR})
     add_custom_command(
+      OUTPUT ${PARENT_DIR}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" ${PARAENT_DIR}
+      COMMENT "Create ${PARENT_DIR}")
+    add_custom_command(
       OUTPUT ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR}
+      DEPENDS ${PARENT_DIR}
       WORKING_DIRECTORY ${PARENT_DIR}
       # COMMAND "${CMAKE_COMMAND}" "-E" "remove_directory" ${file}
       COMMAND
