@@ -30,10 +30,13 @@ macro(ocp_compress_extract)
     COMMENT "XZ compress ${OCPCompress_TAR}")
 
   if(NOT EXISTS ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR})
+    # the following custom command may not be necessary, but on some machine
+    # the cache folder won't get generated, so we explicitly mkdir here
     add_custom_command(
       OUTPUT ${PARENT_DIR}
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
       COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" ${PARENT_DIR}
+      COMMAND "${CMAKE_COMMAND}" "-E" "echo" ${PARENT_DIR}
       COMMENT "Create ${PARENT_DIR}")
     add_custom_command(
       OUTPUT ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR}
