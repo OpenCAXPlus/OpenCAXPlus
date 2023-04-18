@@ -33,7 +33,7 @@ macro(ocp_compress_extract)
     add_custom_command(
       OUTPUT ${PARENT_DIR}
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-      COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" ${PARAENT_DIR}
+      COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" ${PARENT_DIR}
       COMMENT "Create ${PARENT_DIR}")
     add_custom_command(
       OUTPUT ${OCPCompress_SOURCE}/${OCPCompress_ANCHOR}
