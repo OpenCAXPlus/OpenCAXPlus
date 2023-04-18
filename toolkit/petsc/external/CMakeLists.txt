@@ -25,6 +25,7 @@ else()
   set(G++ g++) 
 endif()
 
+if(NOT EXISTS ${buildpath})
 add_custom_command(
   OUTPUT ${installpath}
   WORKING_DIRECTORY ${sourcepath}
@@ -44,7 +45,7 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E rename ${sourcepath}/arch-linux-c-debug ${rootpath}/build
   VERBATIM USES_TERMINAL
   COMMENT "Build source and install.")
-
+endif()
 install(
   FILES ${SOFTWARE}-${VERSION}.tar.xz CMakeLists.txt
   DESTINATION toolkit/petsc/external
