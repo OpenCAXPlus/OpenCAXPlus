@@ -10,8 +10,8 @@ Please check the [development environment](dev_env.md) requirement before runnin
 ## Step 1: Clone the source code
 
 ```sh
-git clone https://github.com/OpenCAXPlus/OpenCAXPlusSDK.git
-cd OpenCAXPlusSDK
+git clone https://github.com/OpenCAXPlus/OCP.git
+cd OCP
 ```
 
 ## Step 2: Build the SDK
@@ -24,7 +24,6 @@ cd OpenCAXPlusSDK
 ```sh
 cmake --preset="linux-gnu-Debug" -S "."
 cmake --build --preset="linux-gnu-Debug"
-export PATH=$PATH:/home/runner/code/OCP-SDK
 ```
 :::
 
