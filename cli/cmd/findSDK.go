@@ -13,17 +13,17 @@ func findSDK() string {
 	paths := [4]string{}
 	if runtime.GOOS == "windows" {
 		paths = [4]string{
-			"C:/Program Files/opencaxplus/sdk",
-			filepath.Join(os.Getenv("HOME"), "AppData", "Local", "Programs", "opencaxplus", "sdk"),
-			filepath.Join(os.Getenv("HOME"), "opencaxplus", "sdk"),
-			filepath.Join(cwd, "..", "..", "OpenCAXPlusSDK"),
+			"C:/Program Files/OCP",
+			filepath.Join(os.Getenv("HOME"), "AppData", "Local", "Programs", "OCP"),
+			filepath.Join(os.Getenv("HOME"), "OCP"),
+			filepath.Join(cwd, ".."),
 		}
 	} else {
 		paths = [4]string{
-			"/opt/opencaxplus/sdk",
-			"/usr/local/opencaxplus/sdk",
-			filepath.Join(os.Getenv("HOME"), "opencaxplus", "sdk"),
-			filepath.Join(cwd, "..", "..", "OpenCAXPlusSDK"),
+			"/opt/OCP/",
+			"/usr/local/OCP/",
+			filepath.Join(os.Getenv("HOME"), "OCP"),
+			filepath.Join(cwd, ".."),
 		}
 	}
 	for i := 0; i < len(paths); i++ {

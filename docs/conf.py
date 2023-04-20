@@ -57,8 +57,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'node_modules']
 html_theme = 'sphinx_book_theme'
 html_theme_options = {
     "home_page_in_toc": True,
-    "github_url": "https://github.com/OpenCAXPlus/OpenCAXPlusSDK",
-    "repository_url": "https://github.com/OpenCAXPlus/OpenCAXPlusSDK",
+    "github_url": "https://github.com/OpenCAXPlus/OCP",
+    "repository_url": "https://github.com/OpenCAXPlus/OCP",
     "use_repository_button": True,
     "repository_branch": "main",
     "path_to_docs": "docs",
