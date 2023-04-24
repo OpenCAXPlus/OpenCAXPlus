@@ -60,6 +60,6 @@ It accept the following variables:
 |      LIBRARIES      | multi_value_keywords | Libraries that you need to link if using the toolkit |
 | INCLUDE_DIRECTORIES | multi_value_keywords | Include directories that you need to link to         |
 
-## OCPSDKConfig.cmake
+## OCPConfig.cmake
 
 File cmake install
