@@ -23,7 +23,13 @@ else()
   set(install "${rootpath}/${INSTALL_SCRIPT}")
 endif()
 
+add_custom_target(
+  install_${SOFTWARE}
+  DEPENDS ${installpath}/lib
+  COMMENT "Install the ${SOFTWARE}-${VERSION}")
+  
 # if($(CMAKE_SYSTEM_NAME) MATCHES "Linux")
+if(NOT EXISTS ${sourcepath})
   add_custom_target(
     download_${SOFTWARE}
     DEPENDS ${sourcepath}
@@ -41,10 +47,7 @@ endif()
     VERBATIM USES_TERMINAL
     COMMENT "Download source") # --accept-messages
 
-  add_custom_target(
-    install_${SOFTWARE}
-    DEPENDS ${installpath}/lib
-    COMMENT "Install the ${SOFTWARE}-${VERSION}")
+
   # add_dependencies(install_${SOFTWARE} download_${SOFTWARE})
 
   add_custom_command(
@@ -81,6 +84,7 @@ endif()
 #     DEPENDS ${installpath}/${VERSION}/clang_64/lib
 #     COMMENT "Install the ${SOFTWARE}-${VERSION}")
 # endif()
+endif()
 
 install(
   FILES qt-unified-linux-x64-4.5.1-online.run.tar.xz CMakeLists.txt

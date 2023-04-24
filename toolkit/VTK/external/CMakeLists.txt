@@ -1,5 +1,5 @@
 set(SOFTWARE VTK)
-set(VERSION 8.1.0)
+set(VERSION 8.1.0-special)
 include(OCPCores)
 include(OCPToolkitExternalCMake)
 

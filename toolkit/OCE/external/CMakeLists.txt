@@ -5,11 +5,11 @@ ocp_toolkit_external_cmake(
   SOFTWARE
   OCE
   VERSION
-  0.18.3
+  0.18.3-special
   FLAGS
-  "-DOCE_INSTALL_PREFIX=${OCP_CACHE}//OCE/0.18.3/install"
+  "-DOCE_INSTALL_PREFIX=${OCP_CACHE}/OCE/0.18.3-special/install"
   "-DOCE_WITH_VTK=ON"
-  "-DVTK_DIR=${OCP_CACHE}/VTK/8.1.0/install/lib/cmake/vtk-8.1")
+  "-DVTK_DIR=${OCP_CACHE}/VTK/8.1.0-special/install/lib/cmake/vtk-8.1")
 
 # add_library(external_OCE INTERFACE IMPORTED GLOBAL)
 # add_library(OCP::external_OCE ALIAS external_OCE)
