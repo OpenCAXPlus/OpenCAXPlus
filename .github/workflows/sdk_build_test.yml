@@ -28,7 +28,7 @@ jobs:
                   echo home $HOME
                   echo LD_LIBRARY_PATH $LD_LIBRARY_PATH
                   echo PATH $PATH
-                  ls $HOME/opencaxplus/cache
+                  ls $HOME/ocp/cache
             - name: Check out repository
               uses: actions/checkout@v3
     linux-gnu-build:

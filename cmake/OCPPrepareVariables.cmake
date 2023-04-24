@@ -4,15 +4,15 @@
 # set(OCP_FRAMEWORK_SRC "" CACHE INTERNAL "" FORCE)
 
 set(OCP_ROOT
-    ${OCPSDK_DIR}/..
+    ${OCP_DIR}/..
     CACHE FILEPATH "The OpenCAX+SDK root path" FORCE)
 
 set(OCP_CACHE
-    $ENV{HOME}/opencaxplus/cache
+    $ENV{HOME}/ocp/cache
     CACHE FILEPATH "The OpenCAX+SDK cache path" FORCE)
 
 set(OCP_BIN
-    $ENV{HOME}/opencaxplus/bin
+    $ENV{HOME}/ocp/bin
     CACHE FILEPATH "The OpenCAX+SDK bin path" FORCE)
 
 option(USER_CXX "The user program is using C++" OFF)

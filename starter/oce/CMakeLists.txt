@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(oce_starter)
 
-set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
-find_package(OCPSDK REQUIRED)
+set(OCP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+find_package(OCP REQUIRED)
 
 add_library(oceStarter STATIC)
 target_sources(oceStarter PUBLIC app.cpp define.cpp)

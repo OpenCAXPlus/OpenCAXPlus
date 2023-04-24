@@ -12,8 +12,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
-find_package(OCPSDK)
+set(OCP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+find_package(OCP)
 set(Qt5_DIR ${OCP_CACHE}/Qt/5.12.10/install/lib/cmake/Qt5)
 
 find_package(

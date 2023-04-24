@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.20)
 project(
   helloworld)
 # cmake_policy(SET CMP0076 NEW)
-set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
-find_package(OCPSDK)
+set(OCP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+find_package(OCP)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

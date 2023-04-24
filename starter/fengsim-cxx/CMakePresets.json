@@ -27,7 +27,7 @@
                 "CMAKE_C_FLAGS": "-diag-disable=10441",
                 "CMAKE_CXX_FLAGS": "-diag-disable=10441",
                 "CPACK_GENERATOR": "TGZ",
-                "CPACK_COMPONENTS_ALL": "OCPSDK"
+                "CPACK_COMPONENTS_ALL": "OCP"
             },
             "vendor": {
                 "example.com/ExampleIDE/1.0": {

@@ -4,9 +4,9 @@ project(mppstarter)
 
 # set(CMAKE_CXX_COMPILER /usr/bin/mpicxx.openmpi)
 
-set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+set(OCP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 # message(${OpenCAXPlusSDK_DIR})
-find_package(OCPSDK)
+find_package(OCP)
 find_package(MPI REQUIRED)
 
 add_library(mppstarter STATIC)

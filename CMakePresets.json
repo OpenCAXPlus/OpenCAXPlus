@@ -26,11 +26,11 @@
                 "CMAKE_Fortran_COMPILER": "ifort",
                 "CMAKE_C_FLAGS": "-diag-disable=10441",
                 "CMAKE_CXX_FLAGS": "-diag-disable=10441",
-                "MPI_C_COMPILER": "$env{HOME}/opencaxplus/cache/petsc/3.18.4/install/bin/mpicc",
-                "MPI_CXX_COMPILER": "$env{HOME}/opencaxplus/cache/petsc/3.18.4/install/bin/mpic++",
-                "MPI_Fortran_COMPILER": "$env{HOME}/opencaxplus/cache/petsc/3.18.4/install/bin/mpif90",
+                "MPI_C_COMPILER": "$env{HOME}/ocp/cache/petsc/3.18.4/install/bin/mpicc",
+                "MPI_CXX_COMPILER": "$env{HOME}/ocp/cache/petsc/3.18.4/install/bin/mpic++",
+                "MPI_Fortran_COMPILER": "$env{HOME}/ocp/cache/petsc/3.18.4/install/bin/mpif90",
                 "CPACK_GENERATOR": "TXZ;DEB",
-                "CPACK_COMPONENTS_ALL": "OCPSDK"
+                "CPACK_COMPONENTS_ALL": "OCP"
             },
             "vendor": {
                 "example.com/ExampleIDE/1.0": {

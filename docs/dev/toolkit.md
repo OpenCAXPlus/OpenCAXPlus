@@ -47,5 +47,5 @@ It is recommended to use the CMake macro provided by us, such as `ocp_toolkit_ex
 You need to set the QT_EMAIL and QT_PASSWORD environment variables.
 
 On MacOS, you need to manually click the dmg and install Qt. Here are the steps:
-1. Select `Custom installation` and set the installation folder to `~/opencaxplus/cache/Qt/5.12.10/install`. Then Next
+1. Select `Custom installation` and set the installation folder to `~/ocp/cache/Qt/5.12.10/install`. Then Next
 2. Select `Archive` and `LTS` then select 5.12.10

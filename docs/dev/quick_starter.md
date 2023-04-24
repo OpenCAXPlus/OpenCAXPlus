@@ -50,9 +50,9 @@ This is the compiled executable of the golang OpenCAXPlus command line tool, you
 
 Here we are installing all toolkits, you can choose to install only some of them
 ```
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opencaxplus/cache/lapack/3.11.0/install/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/ocp/cache/lapack/3.11.0/install/lib
 ocp build -i install_all
-export PYTHONPATH=${PYTHONPATH}:$HOME/opencaxplus/cache/petsc/3.18.4/install/lib
+export PYTHONPATH=${PYTHONPATH}:$HOME/ocp/cache/petsc/3.18.4/install/lib
 ```
 
 

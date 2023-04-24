@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(vtk_starter)
 
-set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
-find_package(OCPSDK)
+set(OCP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+find_package(OCP)
 
 add_library(vtkStarter STATIC)
 target_sources(vtkStarter PUBLIC app.cpp define.cpp)

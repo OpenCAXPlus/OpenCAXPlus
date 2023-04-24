@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(FASPStarter)
 
-set(OCPSDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
-find_package(OCPSDK)
+set(OCP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+find_package(OCP)
 
 add_library(faspstarter STATIC)
 target_sources(faspstarter PUBLIC app.c app.h define.c)
