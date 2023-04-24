@@ -3,8 +3,7 @@
 
 #include <QWidget>
 
-namespace Ui
-{
+namespace Ui {
 class AdditiveManufacturingDockWidget;
 }
 
@@ -13,11 +12,11 @@ class AdditiveManufacturingDockWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit AdditiveManufacturingDockWidget(QWidget* parent = 0);
+    explicit AdditiveManufacturingDockWidget(QWidget *parent = 0);
     ~AdditiveManufacturingDockWidget();
 
 public:
-    Ui::AdditiveManufacturingDockWidget* ui;
+    Ui::AdditiveManufacturingDockWidget *ui;
 };
 
 #endif // ADDITIVEMANUFACTURINGDOCKWIDGET_H

@@ -3,20 +3,20 @@
 
 #include <QWidget>
 
-namespace Ui
-{
+namespace Ui {
 class TransportDockWidget;
 }
 
 class TransportDockWidget : public QWidget
 {
-    Q_OBJECT
+        Q_OBJECT
 
 public:
-    explicit TransportDockWidget(QWidget* parent = 0);
-    ~TransportDockWidget();
+        explicit TransportDockWidget(QWidget *parent = 0);
+        ~TransportDockWidget();
 
-    Ui::TransportDockWidget* ui;
+
+        Ui::TransportDockWidget *ui;
 };
 
 #endif // TRANSPORTDOCKWIDGET_H

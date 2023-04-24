@@ -40,7 +40,7 @@ class B1RunAction;
 
 class B1EventAction : public G4UserEventAction
 {
-public:
+  public:
     B1EventAction(B1RunAction* runAction);
     virtual ~B1EventAction();
 
@@ -49,7 +49,7 @@ public:
 
     void AddEdep(G4double edep) { fEdep += edep; }
 
-private:
+  private:
     B1RunAction* fRunAction;
     G4double     fEdep;
 };
@@ -57,3 +57,5 @@ private:
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
+
+    

@@ -1069,7 +1069,7 @@ QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
 
 QTreeView, QListView
 {
-    border: 1px solid #76797C;
+    border: 0px solid #76797C;
     background-color: #232629;
 }
 

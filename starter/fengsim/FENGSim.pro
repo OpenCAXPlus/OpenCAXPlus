@@ -11,34 +11,104 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TARGET = FENGSim
 TEMPLATE = app
 
-include(CAD/cad.pri)
-include(Measure/measure.pri)
-include(OCPoro/ocporo.pri)
-include(Machining/machining.pri)
-include(Mesh/mesh.pri)
-include(AdditiveManufacturing/am.pri)
-include(Transport/transport.pri)
-include(Visual/visual.pri)
-include(FEM/fem.pri)
-include(StatisticalProcessControl/spc.pri)
-include(PluginTemplate/plugin.pri)
+#INCLUDEPATH += /usr/include/eigen3
+#DISPLAY=:0
+#LD_LIBRARY_PATH=/home/jiping/odt/Qt5.12.10/5.12.10/gcc_64/lib
+#QT_PLUGIN_PATH=/home/jiping/odt/Qt5.12.10/5.12.10/gcc_64/plugins/
+#QT_QPA_PLATFORM_PLUGIN_PATH=/home/jiping/odt/Qt5.12.10/5.12.10/gcc_64/plugins/platforms
 
 SOURCES +=\
+    CAD/PhysicsDockWidget.cpp \
     Main.cpp \
     MainWindow.cpp \
+    CAD/OCCWidget.cpp \
+    CAD/Primitive.cpp \
+    CAD/CADDockWidget.cpp \
+ #   Measure/MeasureThread1.cpp \
+    Measure/MeasureICP.cpp \
+    Measure/MeasureThread1.cpp \
+    Measure/MeasureThread3.cpp \
+    OCPoro/OCPoroDialog.cpp \
+    OCPoro/OCPoroDockWidget.cpp \
+    Transport/data_analyze.cpp \
+    include/test.cpp \
     qcustomplot.cpp \
     AboutDialog.cpp \
+    Mesh/MeshDockWidget.cpp \
+    Mesh/MeshGeneration.cpp \
+    Visual/VTKDockWidget.cpp \
+    Visual/VTKWidget.cpp \
+    FEM/FEMDockWidget.cpp \
+    Measure/MeasureDockWidget.cpp \
+    Measure/ls.cpp \
+#    Measure/Registration.cpp \
+#    Measure/example2.cpp \
+    AdditiveManufacturing/AdditiveManufacturingDockWidget.cpp \
+    Mesh/Slices.cpp \
+    StatisticalProcessControl/SPCDockWidget.cpp \
+    AdditiveManufacturing/AMThread1.cpp \
+    AdditiveManufacturing/AMThread2.cpp \
+    AdditiveManufacturing/AMConfig.cpp \
+    Machining/MachiningDockWidget.cpp \
+    Machining/MachiningThread1.cpp \
+    Machining/MachiningThread2.cpp \
+    Machining/MakeTools.cpp \
+    Transport/TransportDockWidget.cpp \
+
 
 HEADERS  += \
+    CAD/PhysicsDockWidget.h \
+    Machining/MakeTools.h \
     MainWindow.h \
+    CAD/OCCWidget.h \
+    CAD/Primitive.h \
+    CAD/CADDockWidget.h \
+#    Measure/MeasureThread1.h \
+    Measure/MeasureICP.h \
+    Measure/MeasureThread1.h \
+    Measure/MeasureThread3.h \
+    OCPoro/OCPoroDialog.h \
+    OCPoro/OCPoroDockWidget.h \
+    Transport/data_analyze.h \
+    include/test.h \
     qcustomplot.h \
     AboutDialog.h \
+    Mesh/MeshDockWidget.h \
+    Mesh/MeshGeneration.h \
+    Visual/VTKDockWidget.h \
+    Visual/VTKWidget.h \
     vtkocc.h \
-    PluginInterface.h
+    FEM/FEMDockWidget.h \
+    Measure/MeasureDockWidget.h \
+    Measure/ls.h \
+#    Measure/Registration.h \
+#    Measure/example2.h \
+    AdditiveManufacturing/AdditiveManufacturingDockWidget.h \
+    Mesh/Slices.h \
+    StatisticalProcessControl/SPCDockWidget.h \
+    AdditiveManufacturing/AMThread1.h \
+    AdditiveManufacturing/AMThread2.h \
+    AdditiveManufacturing/AMConfig.h \
+    Machining/MachiningDockWidget.h \
+    Machining/MachiningThread1.h \
+    Machining/MachiningThread2.h \
+    Transport/TransportDockWidget.h \
 
 FORMS    += \
+    CAD/PhysicsDockWidget.ui \
     MainWindow.ui \
     AboutDialog.ui \
+    CAD/CADDockWidget.ui \
+    Mesh/MeshDockWidget.ui \
+    OCPoro/OCPoroDialog.ui \
+    OCPoro/OCPoroDockWidget.ui \
+    Visual/VTKDockWidget.ui \
+    FEM/FEMDockWidget.ui \
+    Measure/MeasureDockWidget.ui \
+    AdditiveManufacturing/AdditiveManufacturingDockWidget.ui \
+    StatisticalProcessControl/SPCDockWidget.ui \
+    Machining/MachiningDockWidget.ui \
+    Transport/TransportDockWidget.ui
 
 RESOURCES += \
     MainWindow.qrc \
@@ -52,21 +122,11 @@ RESOURCES += \
     SPCWindow.qrc \
     AMWindow.qrc \
     Machining/machining.qrc \
-    figure/transport_wind/transportwindow.qrc
-
-
+    TransportWindow.qrc
 
 INCLUDEPATH += /usr/local/include/oce /usr/local/include/gmsh /usr/local/include/vtk-8.1 /usr/local/include/pcl-1.8 /usr/local/include/Geant4 /home/jiping/FENGSim/FENGSim/GDT/
-INCLUDEPATH += \
-$$PWD/../../toolkit/OCE/external/install/OCE-0.18.3/include/oce \
-$$PWD/../../toolkit/gmsh/external/install/gmsh-3.0.6/include/gmsh \
-$$PWD/../../toolkit/VTK/external/install/VTK-8.1.0/include/vtk-8.1 
 
 LIBS += -L/usr/local/lib \
--L$$PWD/../../toolkit/OCE/external/install/OCE-0.18.3/lib \
--L$$PWD/../../toolkit/gmsh/external/install/gmsh-3.0.6/lib \
--L$$PWD/../../toolkit/VTK/external/install/VTK-8.1.0/lib \
--L$$PWD/../../toolkit/lapack/external/install/lapack-3.11.0/lib \
 -lTKBinL     -lTKBO     -lTKFeat      -lTKGeomBase  -lTKMath    -lTKOpenGl  -lTKService      -lTKSTEP209   -lTKTObj     -lTKXCAFSchema  -lTKXmlL \
 -lTKBin      -lTKBRep   -lTKFillet    -lTKHLR       -lTKMesh    -lTKPCAF    -lTKShapeSchema  -lTKSTEPAttr  -lTKTopAlgo  -lTKXCAF        -lTKXml \
 -lTKBinTObj  -lTKCAF    -lTKG2d       -lTKIGES      -lTKMeshVS  -lTKPLCAF   -lTKShHealing    -lTKSTEPBase  -lTKV3d      -lTKXDEIGES     -lTKXmlTObj \
@@ -112,7 +172,7 @@ LIBS += -L/usr/local/lib \
 #-lG4gl2ps              -lG4parmodels      -lG4track \
 #-L/home/jiping/FENGSim/FENGSim/GDT/build -lexample2
 
-# QT += svg
+#QT += svg
 #INCLUDEPATH += /usr/local/lib/R/library/RInside/include/ /usr/local/lib/R/library/Rcpp/include/ /usr/local/lib/R/include
 #LIBS += -L/usr/local/lib/R/lib -lRlapack -lRblas -lR -L/usr/local/lib/R/library/RInside/lib/ -lRInside \
 #-L/usr/local/lib/R/library/Rcpp/libs/Rcpp.so
@@ -123,3 +183,4 @@ LIBS += -L/usr/local/lib \
 
 DISTFILES += \
     figure/cad_wind/tree.png
+

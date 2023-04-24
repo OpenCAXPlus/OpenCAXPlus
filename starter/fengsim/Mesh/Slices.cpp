@@ -1,3 +1,6 @@
 #include "Slices.h"
 
-Slices::Slices() {}
+Slices::Slices()
+{
+
+}

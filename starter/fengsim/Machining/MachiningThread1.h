@@ -1,25 +1,26 @@
 #ifndef MACHININGTHREAD1_H
 #define MACHININGTHREAD1_H
 
-#include <QProcess>
+
+
 #include <QThread>
+#include <QProcess>
 
 class MachiningThread1 : public QThread
 {
-    Q_OBJECT
+        Q_OBJECT
 public:
-    MachiningThread1();
-    void run()
-    {
-        QProcess* proc = new QProcess();
-        proc->setWorkingDirectory("/home/jiping/FENGSim/M++/");
-        QString command(QString("./MachiningRun"));
-        proc->start(command);
-        if (proc->waitForFinished(-1)) {
-            quit();
+        MachiningThread1();
+        void run () {
+                QProcess *proc = new QProcess();
+                proc->setWorkingDirectory( "/home/jiping/OpenDT/M++/" );
+                QString command(QString("./MachiningRun"));
+                proc->start(command);
+                if (proc->waitForFinished(-1)) {
+                        quit();
+                }
+                exec();
         }
-        exec();
-    }
 };
 
 #endif // MACHININGTHREAD1_H

@@ -572,8 +572,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="figure/transport_wind/transportwindow.qrc">
-     <normaloff>:/new/prefix1/nuclear.png</normaloff>:/new/prefix1/nuclear.png</iconset>
+    <iconset resource="TransportWindow.qrc">
+     <normaloff>:/new/prefix1/figure/transport_wind/nuclear.png</normaloff>:/new/prefix1/figure/transport_wind/nuclear.png</iconset>
    </property>
    <property name="text">
     <string>Transport</string>
@@ -619,14 +619,14 @@
  </customwidgets>
  <resources>
   <include location="MeasureWidnow.qrc"/>
-  <include location="OCPoro.qrc"/>
+  <include location="CADWindow.qrc"/>
+  <include location="SPCWindow.qrc"/>
   <include location="System.qrc"/>
   <include location="MeshWindow.qrc"/>
-  <include location="SPCWindow.qrc"/>
-  <include location="Machining/machining.qrc"/>
-  <include location="figure/transport_wind/transportwindow.qrc"/>
   <include location="MainWindow.qrc"/>
-  <include location="CADWindow.qrc"/>
+  <include location="OCPoro.qrc"/>
+  <include location="Machining/machining.qrc"/>
+  <include location="TransportWindow.qrc"/>
  </resources>
  <connections/>
 </ui>

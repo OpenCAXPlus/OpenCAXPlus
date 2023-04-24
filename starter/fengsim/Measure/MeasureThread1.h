@@ -1,11 +1,12 @@
 #ifndef MEASURETHREAD1_H
 #define MEASURETHREAD1_H
 
+
 #include "Visual/VTKWidget.h"
-#include "fstream"
+#include <QThread>
 #include <QProcess>
 #include <QTextEdit>
-#include <QThread>
+#include "fstream"
 
 class MeasureThread1 : public QThread
 {
@@ -13,9 +14,9 @@ class MeasureThread1 : public QThread
 public:
     VTKWidget* vtk_widget;
     MeasureThread1() {}
-    void        run();
+    void run ();
     std::string name;
-    QString     path;
+    QString path;
 };
 
 #endif // MEASURETHREAD1_H

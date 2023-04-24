@@ -1,11 +1,10 @@
 #ifndef VISUALDOCKWIDGET_H
 #define VISUALDOCKWIDGET_H
 
-#include <QMenu>
 #include <QWidget>
+#include <QMenu>
 
-namespace Ui
-{
+namespace Ui {
 class VTKDockWidget;
 }
 
@@ -16,12 +15,12 @@ class VTKDockWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit VTKDockWidget(QWidget* parent = 0);
+    explicit VTKDockWidget(QWidget *parent = 0);
     ~VTKDockWidget();
     friend class MainWindow;
-
 private:
-    Ui::VTKDockWidget* ui;
+    Ui::VTKDockWidget *ui;
 };
+
 
 #endif // VISUALDOCKWIDGET_H

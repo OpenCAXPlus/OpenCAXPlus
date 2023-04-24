@@ -1,13 +1,16 @@
 #include "AMConfig.h"
 #include "iostream"
 
-AMConfig::AMConfig() {}
-
-void AMConfig::clear(std::string filename)
+AMConfig::AMConfig()
 {
-    QDir        dir("./../../AM/data/vtk");
+
+}
+
+void AMConfig::clear (std::string filename)
+{
+    QDir dir("./../../AM/data/vtk");
     QStringList stringlist_vtk;
-    // stringlist_vtk << "am_mesh_*.vtk";
+    //stringlist_vtk << "am_mesh_*.vtk";
     stringlist_vtk << filename.c_str();
     dir.setNameFilters(stringlist_vtk);
     QFileInfoList fileinfolist;
@@ -24,7 +27,7 @@ void AMConfig::clear()
     clear("am_current_pos_*.vtk");
 }
 
-void AMConfig::reset()
+void AMConfig::reset ()
 {
     std::ofstream out;
     out.open("./../../AM/conf/m++conf");
@@ -36,24 +39,28 @@ void AMConfig::reset()
     out << "loadconf = Cura/conf/m++conf;" << std::endl;
     out.close();
 
+
     out.open("./../../AM/AdditiveManufacturing/conf/am.conf");
     out << "Model = AM;" << std::endl;
     out << "GeoPath = AdditiveManufacturing/;" << std::endl;
 
-    out << "SourceV = " << am_source_v << ";" << std::endl;
-    out << "SourceX = " << am_source_x << ";" << std::endl;
-    out << "SourceY = " << am_source_y << ";" << std::endl;
-    out << "SourceZ = " << am_source_z << ";" << std::endl;
-    out << "SourceH = " << am_source_h << ";" << std::endl;
+    out << "SourceV = " << am_source_v <<";" << std::endl;
+    out << "SourceX = " << am_source_x <<";" << std::endl;
+    out << "SourceY = " << am_source_y <<";" << std::endl;
+    out << "SourceZ = " << am_source_z <<";" << std::endl;
+    out << "SourceH = " << am_source_h <<";" << std::endl;
 
-    out << "Time = " << time << ";" << std::endl;
-    out << "TimeSteps = " << time_num << ";" << std::endl;
+    out << "Time = " << time <<";" << std::endl;
+    out << "TimeSteps = " << time_num <<";" << std::endl;
     out << "TimeLevel = 2;" << std::endl;
+
 
     out << "Mesh = thinwall;" << std::endl;
     out << "Mesh2 = thinwall2;" << std::endl;
     out << "plevel = 0;" << std::endl;
     out << "level = 0;" << std::endl;
+
+
 
     out << "EXAMPLE = 1;" << std::endl;
     out << "Discretization = linear;" << std::endl;
@@ -77,4 +84,5 @@ void AMConfig::reset()
     out << "PoissonRatio = 0.25;" << std::endl;
 
     out.close();
+
 }

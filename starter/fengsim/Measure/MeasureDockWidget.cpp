@@ -1,27 +1,27 @@
 #include "MeasureDockWidget.h"
 #include "ui_MeasureDockWidget.h"
 
-MeasureDockWidget::MeasureDockWidget(QWidget* parent)
-    : QWidget(parent)
-    , ui(new Ui::MeasureDockWidget)
+MeasureDockWidget::MeasureDockWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::MeasureDockWidget)
 {
     ui->setupUi(this);
-    menu_objects = new QMenu;
+    menu_objects =  new QMenu;
     menu_objects->addAction(ui->actionSurface);
     menu_objects->addAction(ui->actionLine);
-    // ui->pushButton->setMenu(menu_objects);
-    menu_cdt = new QMenu;
+    //ui->pushButton->setMenu(menu_objects);
+    menu_cdt =  new QMenu;
     menu_cdt->addAction(ui->actionSurfaceProfile);
     menu_cdt->addAction(ui->actionLineProfile);
     menu_cdt->addAction(ui->actionFlatness);
     menu_cdt->addAction(ui->actionStraightness);
-    //    menu_cdt->addAction(ui->actionCircularity);
-    //    menu_cdt->addAction(ui->actionCylindricity);
-    // ui->pushButton_2->setMenu(menu_cdt);
-    //    gdt_objects_type = new QMenu();
-    //    gdt_objects_type->addAction(ui->actionSurface);
-    //    gdt_objects_type->addAction(ui->actionLine);
-    //    ui->pushButton->setMenu(gdt_objects_type);
+//    menu_cdt->addAction(ui->actionCircularity);
+//    menu_cdt->addAction(ui->actionCylindricity);
+    //ui->pushButton_2->setMenu(menu_cdt);
+//    gdt_objects_type = new QMenu();
+//    gdt_objects_type->addAction(ui->actionSurface);
+//    gdt_objects_type->addAction(ui->actionLine);
+//    ui->pushButton->setMenu(gdt_objects_type);
 
     connect(ui->actionLine, SIGNAL(triggered()), this, SLOT(SetObject1()));
     connect(ui->actionSurface, SIGNAL(triggered()), this, SLOT(SetObject2()));
@@ -33,11 +33,11 @@ MeasureDockWidget::MeasureDockWidget(QWidget* parent)
     connect(ui->actionLineProfile, SIGNAL(triggered()), this, SLOT(SetType5()));
     connect(ui->actionSurfaceProfile, SIGNAL(triggered()), this, SLOT(SetType6()));
 
-    // connect(ui->doubleSpinBox_2, SIGNAL(valueChanged(double)), this,
-    // SLOT(SetSingleStep()));
+    //connect(ui->doubleSpinBox_2, SIGNAL(valueChanged(double)), this, SLOT(SetSingleStep()));
 
-    // ui->tableWidget->setRowCount(7);
-    // ui->tableWidget->setColumnCount(2);
+
+    //ui->tableWidget->setRowCount(7);
+    //ui->tableWidget->setColumnCount(2);
     /*
         ui->tableWidget->setColumnWidth(0,20);
         ui->tableWidget->setColumnWidth(0,50);*/
@@ -64,9 +64,14 @@ MeasureDockWidget::MeasureDockWidget(QWidget* parent)
     //        ui->tableWidget->setCellWidget(6, 1, ui->doubleSpinBox_9);
     //        ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //        ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
 }
 
-MeasureDockWidget::~MeasureDockWidget() { delete ui; }
+MeasureDockWidget::~MeasureDockWidget()
+{
+    delete ui;
+}
 
 void MeasureDockWidget::SetAllObjectsUnchecked()
 {
@@ -74,22 +79,24 @@ void MeasureDockWidget::SetAllObjectsUnchecked()
     ui->actionSurface->setChecked(false);
 }
 
-void MeasureDockWidget::SetObject1()
+void MeasureDockWidget::SetObject1 ()
 {
-    if (ui->actionLine->isChecked()) {
+    if (ui->actionLine->isChecked())
+    {
         measure_obj = MeasureObject::measure_line;
-        // ui->pushButton->setIcon(QIcon(":/new/measure/figure/measure_wind/line.png"));
+        //ui->pushButton->setIcon(QIcon(":/new/measure/figure/measure_wind/line.png"));
         SetAllObjectsUnchecked();
         ui->actionLine->setChecked(true);
     }
     ui->actionLine->setChecked(true);
 }
 
-void MeasureDockWidget::SetObject2()
+void MeasureDockWidget::SetObject2 ()
 {
-    if (ui->actionSurface->isChecked()) {
+    if (ui->actionSurface->isChecked())
+    {
         measure_obj = MeasureObject::measure_surface;
-        // ui->pushButton->setIcon(QIcon(":/new/measure/figure/measure_wind/face.png"));
+        //ui->pushButton->setIcon(QIcon(":/new/measure/figure/measure_wind/face.png"));
         SetAllObjectsUnchecked();
         ui->actionSurface->setChecked(true);
     }
@@ -106,66 +113,72 @@ void MeasureDockWidget::SetAllTypesUnchecked()
     ui->actionSurfaceProfile->setChecked(false);
 }
 
-void MeasureDockWidget::SetType1()
+void MeasureDockWidget::SetType1 ()
 {
-    if (ui->actionStraightness->isChecked()) {
+    if (ui->actionStraightness->isChecked())
+    {
         measure_type = MeasureType::straightness;
-        // ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/straight.png"));
+        //ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/straight.png"));
         SetAllTypesUnchecked();
         ui->actionStraightness->setChecked(true);
     }
     ui->actionStraightness->setChecked(true);
 }
 
-void MeasureDockWidget::SetType2()
+void MeasureDockWidget::SetType2 ()
 {
-    if (ui->actionFlatness->isChecked()) {
+    if (ui->actionFlatness->isChecked())
+    {
         measure_type = MeasureType::flatness;
-        // ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/flatness.png"));
+        //ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/flatness.png"));
         SetAllTypesUnchecked();
         ui->actionFlatness->setChecked(true);
     }
     ui->actionFlatness->setChecked(true);
 }
 
-void MeasureDockWidget::SetType3()
+void MeasureDockWidget::SetType3 ()
 {
-    if (ui->actionCircularity->isChecked()) {
+    if (ui->actionCircularity->isChecked())
+    {
         measure_type = MeasureType::circularity;
-        // ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/circularity.png"));
+        //ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/circularity.png"));
         SetAllTypesUnchecked();
         ui->actionCircularity->setChecked(true);
     }
     ui->actionCircularity->setChecked(true);
 }
 
-void MeasureDockWidget::SetType4()
+void MeasureDockWidget::SetType4 ()
 {
-    if (ui->actionCylindricity->isChecked()) {
+    if (ui->actionCylindricity->isChecked())
+    {
         measure_type = MeasureType::cylindricity;
-        // ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/cylindricity.png"));
+        //ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/cylindricity.png"));
         SetAllTypesUnchecked();
         ui->actionCylindricity->setChecked(true);
     }
     ui->actionCylindricity->setChecked(true);
 }
 
-void MeasureDockWidget::SetType5()
+void MeasureDockWidget::SetType5 ()
 {
-    if (ui->actionLineProfile->isChecked()) {
+    if (ui->actionLineProfile->isChecked())
+    {
         measure_type = MeasureType::lineprofile;
-        // ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/lineprofile.png"));
+        //ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/lineprofile.png"));
         SetAllTypesUnchecked();
         ui->actionLineProfile->setChecked(true);
     }
     ui->actionLineProfile->setChecked(true);
 }
 
-void MeasureDockWidget::SetType6()
+void MeasureDockWidget::SetType6 ()
 {
-    if (ui->actionSurfaceProfile->isChecked()) {
+    if (ui->actionSurfaceProfile->isChecked())
+    {
         measure_type = MeasureType::straightness;
-        // ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/surfaceprofile.png"));
+        //ui->pushButton_2->setIcon(QIcon(":/new/measure/figure/measure_wind/surfaceprofile.png"));
         SetAllTypesUnchecked();
         ui->actionSurfaceProfile->setChecked(true);
     }

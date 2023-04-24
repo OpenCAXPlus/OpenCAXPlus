@@ -42,9 +42,11 @@ QTreeView::branch:closed:has-children{
 }
 QTreeView::branch:open:has-children{
 	image: url(:/new/prefix1/figure/spc_wind/close.png);
-}
-</string>
+}</string>
      </property>
+     <attribute name="headerVisible">
+      <bool>false</bool>
+     </attribute>
      <column>
       <property name="text">
        <string>part_1</string>

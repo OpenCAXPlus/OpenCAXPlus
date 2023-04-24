@@ -1,13 +1,15 @@
 #include "MeasureICP.h"
 //#include "pcl/point_types.h"
 
-MeasureICP::MeasureICP() {}
-
-void MeasureICP::run()
+MeasureICP::MeasureICP()
 {
-    // PointCloud<PointXYZ>::Ptr src, tgt;
-    // pcl::PointCloud<pcl::PointXYZ> cloud_src;
-    // pcl::PointCloud<pcl::PointXYZ> cloud_tgt;
+
+}
+
+void MeasureICP::run() {
+    //PointCloud<PointXYZ>::Ptr src, tgt;
+   // pcl::PointCloud<pcl::PointXYZ> cloud_src;
+   // pcl::PointCloud<pcl::PointXYZ> cloud_tgt;
 
     /*
     std::ifstream is("./data/meas/fengsim_meas_model.vtk");
@@ -67,8 +69,7 @@ void MeasureICP::run()
     src.reset (new PointCloud<PointXYZ>(cloud_tgt));
     tgt.reset (new PointCloud<PointXYZ>(cloud_src));
 
-    //  if (loadPCDFile (argv[p_file_indices[0]], *src) == -1 || loadPCDFile
-    (argv[p_file_indices[1]], *tgt) == -1)
+    //  if (loadPCDFile (argv[p_file_indices[0]], *src) == -1 || loadPCDFile (argv[p_file_indices[1]], *tgt) == -1)
     //{
     //print_error ("Error reading the input files!\n");
     //return (-1);

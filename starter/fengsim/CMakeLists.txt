@@ -21,7 +21,7 @@ find_package(
   COMPONENTS Widgets PrintSupport
   REQUIRED)
 
-set(OCE_DIR ${OCP_CACHE}/OCE/0.18.3/install/lib/oce-0.18)
+set(OCE_DIR ${OCP_CACHE}/OCE/0.18.3-special/install/lib/oce-0.18)
 find_package(OCE REQUIRED)
 
 set(gmsh_DIR ${OCP_CACHE}/gmsh/3.0.6/install)
@@ -30,7 +30,7 @@ set(gmsh_LIBRARIES -lGmsh)
 # find_package(gmsh)
 
 set(VTK_DIR
-    ${OCP_CACHE}/VTK/8.1.0/install/lib/cmake/vtk-8.1)
+    ${OCP_CACHE}/VTK/8.1.0-special/install/lib/cmake/vtk-8.1)
 find_package(VTK REQUIRED)
 vtk_module_config(
   VTK

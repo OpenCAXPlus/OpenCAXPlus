@@ -28,43 +28,43 @@
 /// \brief Implementation of the B1ActionInitialization class
 
 #include "Transport/B1/include/B1ActionInitialization.h"
-#include "Transport/B1/include/B1EventAction.h"
 #include "Transport/B1/include/B1PrimaryGeneratorAction.h"
 #include "Transport/B1/include/B1RunAction.h"
+#include "Transport/B1/include/B1EventAction.h"
 #include "Transport/B1/include/B1SteppingAction.h"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 B1ActionInitialization::B1ActionInitialization()
-    : G4VUserActionInitialization()
-{
-}
+ : G4VUserActionInitialization()
+{}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-B1ActionInitialization::~B1ActionInitialization() {}
+B1ActionInitialization::~B1ActionInitialization()
+{}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void B1ActionInitialization::BuildForMaster() const
 {
-    B1RunAction* runAction = new B1RunAction;
-    SetUserAction(runAction);
+  B1RunAction* runAction = new B1RunAction;
+  SetUserAction(runAction);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void B1ActionInitialization::Build() const
 {
-    SetUserAction(new B1PrimaryGeneratorAction);
+  SetUserAction(new B1PrimaryGeneratorAction);
 
-    B1RunAction* runAction = new B1RunAction;
-    SetUserAction(runAction);
-
-    B1EventAction* eventAction = new B1EventAction(runAction);
-    SetUserAction(eventAction);
-
-    SetUserAction(new B1SteppingAction(eventAction));
-}
+  B1RunAction* runAction = new B1RunAction;
+  SetUserAction(runAction);
+  
+  B1EventAction* eventAction = new B1EventAction(runAction);
+  SetUserAction(eventAction);
+  
+  SetUserAction(new B1SteppingAction(eventAction));
+}  
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

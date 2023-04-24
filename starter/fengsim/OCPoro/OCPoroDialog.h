@@ -3,8 +3,7 @@
 
 #include <QDialog>
 
-namespace Ui
-{
+namespace Ui {
 class OCPoroDialog;
 }
 
@@ -13,11 +12,11 @@ class OCPoroDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit OCPoroDialog(QWidget* parent = nullptr);
+    explicit OCPoroDialog(QWidget *parent = nullptr);
     ~OCPoroDialog();
 
 public:
-    Ui::OCPoroDialog* ui;
+    Ui::OCPoroDialog *ui;
 };
 
 #endif // OCPORODIALOG_H

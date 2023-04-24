@@ -1,9 +1,9 @@
 #include "CADDockWidget.h"
 #include "ui_CADDockWidget.h"
 
-CADDockWidget::CADDockWidget(QWidget* parent)
-    : QWidget(parent)
-    , ui(new Ui::CADDockWidget)
+CADDockWidget::CADDockWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::CADDockWidget)
 {
     ui->setupUi(this);
     // curve
@@ -45,29 +45,27 @@ CADDockWidget::CADDockWidget(QWidget* parent)
     connect(ui->actionSweep, SIGNAL(triggered()), this, SLOT(SetSweepModule()));
     connect(ui->actionExtrude, SIGNAL(triggered()), this, SLOT(SetExtrudeModule()));
     connect(ui->actionMirror, SIGNAL(triggered()), this, SLOT(SetMirrorModule()));
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this,
-            SLOT(OperationComboBoxIndexChange()));
-    connect(ui->doubleSpinBox, SIGNAL(valueChanged(double)), this,
-            SLOT(OperationValueChange1()));
-    connect(ui->doubleSpinBox_2, SIGNAL(valueChanged(double)), this,
-            SLOT(OperationValueChange2()));
-    connect(ui->doubleSpinBox_3, SIGNAL(valueChanged(double)), this,
-            SLOT(OperationValueChange3()));
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(OperationComboBoxIndexChange()));
+    connect(ui->doubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(OperationValueChange1()));
+    connect(ui->doubleSpinBox_2, SIGNAL(valueChanged(double)), this, SLOT(OperationValueChange2()));
+    connect(ui->doubleSpinBox_3, SIGNAL(valueChanged(double)), this, SLOT(OperationValueChange3()));
     // point line plane box ball torus cylinder cone
-    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this,
-            SLOT(PrimitiveComboBoxIndexChange()));
-    connect(ui->doubleSpinBox_4, SIGNAL(valueChanged(double)), this,
-            SLOT(PrimitiveValueChange4()));
-    connect(ui->doubleSpinBox_5, SIGNAL(valueChanged(double)), this,
-            SLOT(PrimitiveValueChange5()));
-    connect(ui->doubleSpinBox_6, SIGNAL(valueChanged(double)), this,
-            SLOT(PrimitiveValueChange6()));
+    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(PrimitiveComboBoxIndexChange()));
+    connect(ui->doubleSpinBox_4, SIGNAL(valueChanged(double)), this, SLOT(PrimitiveValueChange4()));
+    connect(ui->doubleSpinBox_5, SIGNAL(valueChanged(double)), this, SLOT(PrimitiveValueChange5()));
+    connect(ui->doubleSpinBox_6, SIGNAL(valueChanged(double)), this, SLOT(PrimitiveValueChange6()));
     // initial
-    // SetSweepModule();
+    //SetSweepModule();
     ClearPrimitives();
+
+
+
 }
 
-CADDockWidget::~CADDockWidget() { delete ui; }
+CADDockWidget::~CADDockWidget()
+{
+    delete ui;
+}
 
 void CADDockWidget::ClearOperations()
 {
@@ -75,22 +73,23 @@ void CADDockWidget::ClearOperations()
     ui->doubleSpinBox->setValue(0);
     ui->doubleSpinBox_2->setValue(0);
     ui->doubleSpinBox_3->setValue(0);
-    pos[0]  = 0;
-    pos[1]  = 0;
-    pos[2]  = 0;
+    pos[0] = 0;
+    pos[1] = 0;
+    pos[2] = 0;
     dir1[0] = 1;
     dir1[1] = 0;
     dir1[2] = 0;
     dir2[0] = 0;
     dir2[1] = 1;
     dir2[2] = 0;
-    angle   = 360;
+    angle = 360;
 }
 
 void CADDockWidget::SetSweepModule()
 {
     operation_type = OperationTYPE::SWEEP;
-    if (!ui->actionSweep->isChecked()) ui->actionSweep->setChecked(true);
+    if (!ui->actionSweep->isChecked())
+        ui->actionSweep->setChecked(true);
     ClearOperations();
     ui->tabWidget->setCurrentIndex(2);
     ui->comboBox->addItem("Position");
@@ -99,7 +98,7 @@ void CADDockWidget::SetSweepModule()
     ui->actionExtrude->setChecked(false);
     ui->actionMirror->setChecked(false);
     ui->pushButton_13->setIcon(QIcon(":/cad_wind/figure/cad_wind/sweep.png"));
-    ui->tabWidget->setTabIcon(2, QIcon(":/cad_wind/figure/cad_wind/sweep.png"));
+    ui->tabWidget->setTabIcon(2,QIcon(":/cad_wind/figure/cad_wind/sweep.png"));
     ui->comboBox->setCurrentIndex(0);
     ui->doubleSpinBox->setValue(pos[0]);
     ui->doubleSpinBox_2->setValue(pos[1]);
@@ -109,14 +108,15 @@ void CADDockWidget::SetSweepModule()
 void CADDockWidget::SetExtrudeModule()
 {
     operation_type = OperationTYPE::EXTRUDE;
-    if (!ui->actionExtrude->isChecked()) ui->actionExtrude->setChecked(true);
+    if (!ui->actionExtrude->isChecked())
+        ui->actionExtrude->setChecked(true);
     ClearOperations();
     ui->tabWidget->setCurrentIndex(2);
     ui->comboBox->addItem("Direction 1");
     ui->actionSweep->setChecked(false);
     ui->actionMirror->setChecked(false);
     ui->pushButton_13->setIcon(QIcon(":/cad_wind/figure/cad_wind/extrude.png"));
-    ui->tabWidget->setTabIcon(2, QIcon(":/cad_wind/figure/cad_wind/extrude.png"));
+    ui->tabWidget->setTabIcon(2,QIcon(":/cad_wind/figure/cad_wind/extrude.png"));
     ui->comboBox->setCurrentIndex(0);
     ui->doubleSpinBox->setValue(dir1[0]);
     ui->doubleSpinBox_2->setValue(dir1[1]);
@@ -126,7 +126,8 @@ void CADDockWidget::SetExtrudeModule()
 void CADDockWidget::SetMirrorModule()
 {
     operation_type = OperationTYPE::MIRROR;
-    if (!ui->actionMirror->isChecked()) ui->actionMirror->setChecked(true);
+    if (!ui->actionMirror->isChecked())
+        ui->actionMirror->setChecked(true);
     ClearOperations();
     ui->tabWidget->setCurrentIndex(2);
     ui->comboBox->addItem("Position");
@@ -135,7 +136,7 @@ void CADDockWidget::SetMirrorModule()
     ui->actionSweep->setChecked(false);
     ui->actionExtrude->setChecked(false);
     ui->pushButton_13->setIcon(QIcon(":/cad_wind/figure/cad_wind/mirror.png"));
-    ui->tabWidget->setTabIcon(2, QIcon(":/cad_wind/figure/cad_wind/mirror.png"));
+    ui->tabWidget->setTabIcon(2,QIcon(":/cad_wind/figure/cad_wind/mirror.png"));
     ui->comboBox->setCurrentIndex(0);
     ui->doubleSpinBox->setValue(pos[0]);
     ui->doubleSpinBox_2->setValue(pos[1]);
@@ -144,19 +145,26 @@ void CADDockWidget::SetMirrorModule()
 
 void CADDockWidget::OperationComboBoxIndexChange()
 {
-    if (ui->comboBox->currentText() == "Position") {
+    if (ui->comboBox->currentText() == "Position")
+    {
         ui->doubleSpinBox->setValue(pos[0]);
         ui->doubleSpinBox_2->setValue(pos[1]);
         ui->doubleSpinBox_3->setValue(pos[2]);
-    } else if (ui->comboBox->currentText() == "Direction 1") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 1")
+    {
         ui->doubleSpinBox->setValue(dir1[0]);
         ui->doubleSpinBox_2->setValue(dir1[1]);
         ui->doubleSpinBox_3->setValue(dir1[2]);
-    } else if (ui->comboBox->currentText() == "Direction 2") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 2")
+    {
         ui->doubleSpinBox->setValue(dir2[0]);
         ui->doubleSpinBox_2->setValue(dir2[1]);
         ui->doubleSpinBox_3->setValue(dir2[2]);
-    } else if (ui->comboBox->currentText() == "Angle") {
+    }
+    else if (ui->comboBox->currentText() == "Angle")
+    {
         ui->doubleSpinBox->setValue(angle);
         ui->doubleSpinBox_2->setValue(0);
         ui->doubleSpinBox_3->setValue(0);
@@ -165,35 +173,52 @@ void CADDockWidget::OperationComboBoxIndexChange()
 
 void CADDockWidget::OperationValueChange1()
 {
-    if (ui->comboBox->currentText() == "Position") {
+    if (ui->comboBox->currentText() == "Position")
+    {
         pos[0] = ui->doubleSpinBox->value();
-    } else if (ui->comboBox->currentText() == "Direction 1") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 1")
+    {
         dir1[0] = ui->doubleSpinBox->value();
-    } else if (ui->comboBox->currentText() == "Direction 2") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 2")
+    {
         dir2[0] = ui->doubleSpinBox->value();
-    } else if (ui->comboBox->currentText() == "Angle") {
+    }
+    else if (ui->comboBox->currentText() == "Angle")
+    {
         angle = ui->doubleSpinBox->value();
     }
 }
 
 void CADDockWidget::OperationValueChange2()
 {
-    if (ui->comboBox->currentText() == "Position") {
+    if (ui->comboBox->currentText() == "Position")
+    {
         pos[1] = ui->doubleSpinBox_2->value();
-    } else if (ui->comboBox->currentText() == "Direction 1") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 1")
+    {
         dir1[1] = ui->doubleSpinBox_2->value();
-    } else if (ui->comboBox->currentText() == "Direction 2") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 2")
+    {
         dir2[1] = ui->doubleSpinBox_2->value();
     }
 }
 
 void CADDockWidget::OperationValueChange3()
 {
-    if (ui->comboBox->currentText() == "Position") {
+    if (ui->comboBox->currentText() == "Position")
+    {
         pos[2] = ui->doubleSpinBox_3->value();
-    } else if (ui->comboBox->currentText() == "Direction 1") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 1")
+    {
         dir1[2] = ui->doubleSpinBox_3->value();
-    } else if (ui->comboBox->currentText() == "Direction 2") {
+    }
+    else if (ui->comboBox->currentText() == "Direction 2")
+    {
         dir2[2] = ui->doubleSpinBox_3->value();
     }
 }
@@ -205,19 +230,20 @@ void CADDockWidget::ClearPrimitives()
     ui->doubleSpinBox_4->setValue(0);
     ui->doubleSpinBox_5->setValue(0);
     ui->doubleSpinBox_6->setValue(0);
-    // ui->tabWidget->setCurrentIndex(0);
+    //ui->tabWidget->setCurrentIndex(0);
 }
 
-void CADDockWidget::SetAnyModule(double* pos, double* dir, double angle)
+void CADDockWidget::SetAnyModule (double *pos, double *dir, double angle)
 {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::ANY;
-    // ui->tabWidget->setCurrentIndex(0);
-    for (int i = 0; i < 3; i++) {
+    //ui->tabWidget->setCurrentIndex(0);
+    for (int i = 0; i < 3; i++)
+    {
         any_pos[i] = pos[i];
         any_dir[i] = dir[i];
     }
-    any_angle = angle;
+    any_angle =  angle;
     ui->comboBox_2->addItem("Position");
     ui->comboBox_2->addItem("Direction");
     ui->comboBox_2->addItem("Angle");
@@ -226,11 +252,11 @@ void CADDockWidget::SetAnyModule(double* pos, double* dir, double angle)
     ui->doubleSpinBox_6->setValue(any_pos[2]);
 }
 
-void CADDockWidget::SetPointModule(double* x)
-{
+void CADDockWidget::SetPointModule (double* x) {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::POINT;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         point[i] = x[i];
     }
 
@@ -240,11 +266,12 @@ void CADDockWidget::SetPointModule(double* x)
     ui->doubleSpinBox_6->setValue(point[2]);
 }
 
-void CADDockWidget::SetLineModule(double* x1, double* x2)
+void CADDockWidget::SetLineModule (double *x1, double *x2)
 {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::LINE;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         line_p1[i] = x1[i];
         line_p2[i] = x2[i];
     }
@@ -255,15 +282,16 @@ void CADDockWidget::SetLineModule(double* x1, double* x2)
     ui->doubleSpinBox_6->setValue(line_p1[2]);
 }
 
-void CADDockWidget::SetPlaneModule(double* pos, double* dir, double* x, double* y)
-{
+void CADDockWidget::SetPlaneModule (double* pos, double* dir, double* x, double* y) {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::PLANE;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         plane_pos[i] = pos[i];
         plane_dir[i] = dir[i];
     }
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
+    {
         plane_x[i] = x[i];
         plane_y[i] = y[i];
     }
@@ -276,14 +304,14 @@ void CADDockWidget::SetPlaneModule(double* pos, double* dir, double* x, double* 
     ui->doubleSpinBox_6->setValue(plane_pos[2]);
 }
 
-void CADDockWidget::SetBoxModule(double* x, double* pos, double* dir)
-{
+void CADDockWidget::SetBoxModule (double* x, double* pos, double* dir) {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::BOX;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         box_size[i] = x[i];
-        box_pos[i]  = pos[i];
-        box_dir[i]  = dir[i];
+        box_pos[i] = pos[i];
+        box_dir[i] = dir[i];
     }
     ui->comboBox_2->addItem("Parameters");
     ui->comboBox_2->addItem("Position");
@@ -293,12 +321,12 @@ void CADDockWidget::SetBoxModule(double* x, double* pos, double* dir)
     ui->doubleSpinBox_6->setValue(box_size[2]);
 }
 
-void CADDockWidget::SetSphereModule(double r, double* pos, double* dir)
-{
+void CADDockWidget::SetSphereModule (double r, double* pos, double* dir) {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::BALL;
-    ball_radius    = r;
-    for (int i = 0; i < 3; i++) {
+    ball_radius = r;
+    for (int i = 0; i < 3; i++)
+    {
         ball_pos[i] = pos[i];
         ball_dir[i] = dir[i];
     }
@@ -310,13 +338,13 @@ void CADDockWidget::SetSphereModule(double r, double* pos, double* dir)
     ui->doubleSpinBox_6->setValue(0);
 }
 
-void CADDockWidget::SetCylinderModule(double r, double h, double* pos, double* dir)
-{
+void CADDockWidget::SetCylinderModule (double r, double h, double* pos, double* dir) {
     ClearPrimitives();
-    primitive_type  = PrimitiveTYPE::CYLINDER;
+    primitive_type = PrimitiveTYPE::CYLINDER;
     cylinder_radius = r;
     cylinder_height = h;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         cylinder_pos[i] = pos[i];
         cylinder_dir[i] = dir[i];
     }
@@ -329,15 +357,14 @@ void CADDockWidget::SetCylinderModule(double r, double h, double* pos, double* d
     ui->doubleSpinBox_6->setValue(0);
 }
 
-void CADDockWidget::SetConeModule(
-    double r1, double r2, double h, double* pos, double* dir)
-{
+void CADDockWidget::SetConeModule (double r1, double r2, double h, double* pos, double* dir) {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::CONE;
-    cone_radius1   = r1;
-    cone_radius2   = r2;
-    cone_height    = h;
-    for (int i = 0; i < 3; i++) {
+    cone_radius1 = r1;
+    cone_radius2 = r2;
+    cone_height = h;
+    for (int i = 0; i < 3; i++)
+    {
         cone_pos[i] = pos[i];
         cone_dir[i] = dir[i];
     }
@@ -351,13 +378,13 @@ void CADDockWidget::SetConeModule(
     ui->doubleSpinBox_6->setValue(0);
 }
 
-void CADDockWidget::SetTorusModule(double r1, double r2, double* pos, double* dir)
-{
+void CADDockWidget::SetTorusModule (double r1, double r2, double* pos, double* dir) {
     ClearPrimitives();
     primitive_type = PrimitiveTYPE::TORUS;
-    torus_radius1  = r1;
-    torus_radius2  = r2;
-    for (int i = 0; i < 3; i++) {
+    torus_radius1 = r1;
+    torus_radius2 = r2;
+    for (int i = 0; i < 3; i++)
+    {
         torus_pos[i] = pos[i];
         torus_dir[i] = dir[i];
     }
@@ -372,130 +399,195 @@ void CADDockWidget::SetTorusModule(double r1, double r2, double* pos, double* di
 
 void CADDockWidget::PrimitiveComboBoxIndexChange()
 {
-    if (primitive_type == PrimitiveTYPE::ANY) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    if (primitive_type == PrimitiveTYPE::ANY)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(any_pos[0]);
             ui->doubleSpinBox_5->setValue(any_pos[1]);
             ui->doubleSpinBox_6->setValue(any_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(any_dir[0]);
             ui->doubleSpinBox_5->setValue(any_dir[1]);
             ui->doubleSpinBox_6->setValue(any_dir[2]);
-        } else if (ui->comboBox_2->currentText() == "Angle") {
+        }
+        else if (ui->comboBox_2->currentText() == "Angle")
+        {
             ui->doubleSpinBox_4->setValue(any_angle);
         }
-    } else if (primitive_type == PrimitiveTYPE::POINT) {
+    }
+    else if (primitive_type == PrimitiveTYPE::POINT)
+    {
         ui->doubleSpinBox_4->setValue(point[0]);
         ui->doubleSpinBox_5->setValue(point[1]);
         ui->doubleSpinBox_6->setValue(point[2]);
-    } else if (primitive_type == PrimitiveTYPE::LINE) {
-        if (ui->comboBox_2->currentText() == "x1") {
+    }
+    else if (primitive_type == PrimitiveTYPE::LINE)
+    {
+        if (ui->comboBox_2->currentText() == "x1")
+        {
             ui->doubleSpinBox_4->setValue(line_p1[0]);
             ui->doubleSpinBox_5->setValue(line_p1[1]);
             ui->doubleSpinBox_6->setValue(line_p1[2]);
-        } else if (ui->comboBox_2->currentText() == "x2") {
+        }
+        else if (ui->comboBox_2->currentText() == "x2")
+        {
             ui->doubleSpinBox_4->setValue(line_p2[0]);
             ui->doubleSpinBox_5->setValue(line_p2[1]);
             ui->doubleSpinBox_6->setValue(line_p2[2]);
         }
-    } else if (primitive_type == PrimitiveTYPE::PLANE) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::PLANE)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(plane_pos[0]);
             ui->doubleSpinBox_5->setValue(plane_pos[1]);
             ui->doubleSpinBox_6->setValue(plane_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(plane_dir[0]);
             ui->doubleSpinBox_5->setValue(plane_dir[1]);
             ui->doubleSpinBox_6->setValue(plane_dir[2]);
-        } else if (ui->comboBox_2->currentText() == "x") {
+        }
+        else if (ui->comboBox_2->currentText() == "x")
+        {
             ui->doubleSpinBox_4->setValue(plane_x[0]);
             ui->doubleSpinBox_5->setValue(plane_x[1]);
-        } else if (ui->comboBox_2->currentText() == "y") {
+        }
+        else if (ui->comboBox_2->currentText() == "y")
+        {
             ui->doubleSpinBox_4->setValue(plane_y[0]);
             ui->doubleSpinBox_5->setValue(plane_y[1]);
         }
-    } else if (primitive_type == PrimitiveTYPE::BOX) {
-        if (ui->comboBox_2->currentText() == "Parameters") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BOX)
+    {
+        if (ui->comboBox_2->currentText() == "Parameters")
+        {
             ui->doubleSpinBox_4->setValue(box_size[0]);
             ui->doubleSpinBox_5->setValue(box_size[1]);
             ui->doubleSpinBox_6->setValue(box_size[2]);
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(box_pos[0]);
             ui->doubleSpinBox_5->setValue(box_pos[1]);
             ui->doubleSpinBox_6->setValue(box_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(box_dir[0]);
             ui->doubleSpinBox_5->setValue(box_dir[1]);
             ui->doubleSpinBox_6->setValue(box_dir[2]);
         }
-    } else if (primitive_type == PrimitiveTYPE::BALL) {
-        if (ui->comboBox_2->currentText() == "Radius") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BALL)
+    {
+        if (ui->comboBox_2->currentText() == "Radius")
+        {
             ui->doubleSpinBox_4->setValue(ball_radius);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(ball_pos[0]);
             ui->doubleSpinBox_5->setValue(ball_pos[1]);
             ui->doubleSpinBox_6->setValue(ball_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(ball_dir[0]);
             ui->doubleSpinBox_5->setValue(ball_dir[1]);
             ui->doubleSpinBox_6->setValue(ball_dir[2]);
         }
-    } else if (primitive_type == PrimitiveTYPE::CYLINDER) {
-        if (ui->comboBox_2->currentText() == "Radius") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CYLINDER)
+    {
+        if (ui->comboBox_2->currentText() == "Radius")
+        {
             ui->doubleSpinBox_4->setValue(cylinder_radius);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Height") {
+        }
+        else if (ui->comboBox_2->currentText() == "Height")
+        {
             ui->doubleSpinBox_4->setValue(cylinder_height);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(cylinder_pos[0]);
             ui->doubleSpinBox_5->setValue(cylinder_pos[1]);
             ui->doubleSpinBox_6->setValue(cylinder_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(cylinder_dir[0]);
             ui->doubleSpinBox_5->setValue(cylinder_dir[1]);
             ui->doubleSpinBox_6->setValue(cylinder_dir[2]);
         }
-    } else if (primitive_type == PrimitiveTYPE::CONE) {
-        if (ui->comboBox_2->currentText() == "Radius Top") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CONE)
+    {
+        if (ui->comboBox_2->currentText() == "Radius Top")
+        {
             ui->doubleSpinBox_4->setValue(cone_radius1);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Radius Bottom") {
+        }
+        else if (ui->comboBox_2->currentText() == "Radius Bottom")
+        {
             ui->doubleSpinBox_4->setValue(cone_radius2);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Height") {
+        }
+        else if (ui->comboBox_2->currentText() == "Height")
+        {
             ui->doubleSpinBox_4->setValue(cone_height);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(cone_pos[0]);
             ui->doubleSpinBox_5->setValue(cone_pos[1]);
             ui->doubleSpinBox_6->setValue(cone_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(cone_dir[0]);
             ui->doubleSpinBox_5->setValue(cone_dir[1]);
             ui->doubleSpinBox_6->setValue(cone_dir[2]);
         }
-    } else if (primitive_type == PrimitiveTYPE::TORUS) {
-        if (ui->comboBox_2->currentText() == "Radius Inner") {
+    }
+    else if (primitive_type == PrimitiveTYPE::TORUS)
+    {
+        if (ui->comboBox_2->currentText() == "Radius Inner")
+        {
             ui->doubleSpinBox_4->setValue(torus_radius1);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Radius Outer") {
+        }
+        else if (ui->comboBox_2->currentText() == "Radius Outer")
+        {
             ui->doubleSpinBox_4->setValue(torus_radius2);
             ui->doubleSpinBox_5->setValue(0);
             ui->doubleSpinBox_6->setValue(0);
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             ui->doubleSpinBox_4->setValue(torus_pos[0]);
             ui->doubleSpinBox_5->setValue(torus_pos[1]);
             ui->doubleSpinBox_6->setValue(torus_pos[2]);
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ui->doubleSpinBox_4->setValue(torus_dir[0]);
             ui->doubleSpinBox_5->setValue(torus_dir[1]);
             ui->doubleSpinBox_6->setValue(torus_dir[2]);
@@ -505,78 +597,143 @@ void CADDockWidget::PrimitiveComboBoxIndexChange()
 
 void CADDockWidget::PrimitiveValueChange4()
 {
-    if (primitive_type == PrimitiveTYPE::ANY) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    if (primitive_type == PrimitiveTYPE::ANY)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             any_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             any_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Angle") {
+        }
+        else if (ui->comboBox_2->currentText() == "Angle")
+        {
             any_angle = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::POINT) {
+    }
+    else if (primitive_type == PrimitiveTYPE::POINT)
+    {
         point[0] = ui->doubleSpinBox_4->value();
-    } else if (primitive_type == PrimitiveTYPE::LINE) {
-        if (ui->comboBox_2->currentText() == "x1") {
+    }
+    else if (primitive_type == PrimitiveTYPE::LINE)
+    {
+        if (ui->comboBox_2->currentText() == "x1")
+        {
             line_p1[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "x2") {
+        }
+        else if (ui->comboBox_2->currentText() == "x2")
+        {
             line_p2[0] = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::PLANE) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::PLANE)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             plane_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             plane_dir[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "x") {
+        }
+        else if (ui->comboBox_2->currentText() == "x")
+        {
             plane_x[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "y") {
+        }
+        else if (ui->comboBox_2->currentText() == "y")
+        {
             plane_y[0] = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::BOX) {
-        if (ui->comboBox_2->currentText() == "Parameters") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BOX)
+    {
+        if (ui->comboBox_2->currentText() == "Parameters")
+        {
             box_size[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             box_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             box_dir[0] = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::BALL) {
-        if (ui->comboBox_2->currentText() == "Radius") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BALL)
+    {
+        if (ui->comboBox_2->currentText() == "Radius")
+        {
             ball_radius = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             ball_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ball_dir[0] = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::CYLINDER) {
-        if (ui->comboBox_2->currentText() == "Radius") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CYLINDER)
+    {
+        if (ui->comboBox_2->currentText() == "Radius")
+        {
             cylinder_radius = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Height") {
+        }
+        else if (ui->comboBox_2->currentText() == "Height")
+        {
             cylinder_height = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             cylinder_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             cylinder_dir[0] = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::CONE) {
-        if (ui->comboBox_2->currentText() == "Radius Top") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CONE)
+    {
+        if (ui->comboBox_2->currentText() == "Radius Top")
+        {
             cone_radius1 = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Radius Bottom") {
+        }
+        else if (ui->comboBox_2->currentText() == "Radius Bottom")
+        {
             cone_radius2 = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Height") {
+        }
+        else if (ui->comboBox_2->currentText() == "Height")
+        {
             cone_height = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             cone_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             cone_dir[0] = ui->doubleSpinBox_4->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::TORUS) {
-        if (ui->comboBox_2->currentText() == "Radius Inner") {
+    }
+    else if (primitive_type == PrimitiveTYPE::TORUS)
+    {
+        if (ui->comboBox_2->currentText() == "Radius Inner")
+        {
             torus_radius1 = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Radius Outer") {
+        }
+        else if (ui->comboBox_2->currentText() == "Radius Outer")
+        {
             torus_radius2 = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             torus_pos[0] = ui->doubleSpinBox_4->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             torus_dir[0] = ui->doubleSpinBox_4->value();
         }
     }
@@ -584,60 +741,107 @@ void CADDockWidget::PrimitiveValueChange4()
 
 void CADDockWidget::PrimitiveValueChange5()
 {
-    if (primitive_type == PrimitiveTYPE::ANY) {
-        if (ui->comboBox_2->currentText() == "Position") {
-            any_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+    if (primitive_type == PrimitiveTYPE::ANY)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             any_pos[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::POINT) {
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
+            any_pos[1] = ui->doubleSpinBox_5->value();
+        }
+    }
+    else if (primitive_type == PrimitiveTYPE::POINT)
+    {
         point[1] = ui->doubleSpinBox_5->value();
-    } else if (primitive_type == PrimitiveTYPE::LINE) {
-        if (ui->comboBox_2->currentText() == "x1") {
+    }
+    else if (primitive_type == PrimitiveTYPE::LINE)
+    {
+        if (ui->comboBox_2->currentText() == "x1")
+        {
             line_p1[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "x2") {
+        }
+        else if (ui->comboBox_2->currentText() == "x2")
+        {
             line_p2[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::PLANE) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::PLANE)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             plane_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             plane_dir[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "x") {
+        }
+        else if (ui->comboBox_2->currentText() == "x")
+        {
             plane_x[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "y") {
+        }
+        else if (ui->comboBox_2->currentText() == "y")
+        {
             plane_y[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::BOX) {
-        if (ui->comboBox_2->currentText() == "Parameters") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BOX)
+    {
+        if (ui->comboBox_2->currentText() == "Parameters")
+        {
             box_size[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             box_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             box_dir[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::BALL) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BALL)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             ball_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ball_dir[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::CYLINDER) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CYLINDER)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             cylinder_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             cylinder_dir[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::CONE) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CONE)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             cone_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             cone_dir[1] = ui->doubleSpinBox_5->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::TORUS) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::TORUS)
+    {
+       if (ui->comboBox_2->currentText() == "Position")
+        {
             torus_pos[1] = ui->doubleSpinBox_5->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             torus_dir[1] = ui->doubleSpinBox_5->value();
         }
     }
@@ -645,56 +849,99 @@ void CADDockWidget::PrimitiveValueChange5()
 
 void CADDockWidget::PrimitiveValueChange6()
 {
-    if (primitive_type == PrimitiveTYPE::ANY) {
-        if (ui->comboBox_2->currentText() == "Position") {
-            any_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+    if (primitive_type == PrimitiveTYPE::ANY)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             any_pos[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::POINT) {
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
+            any_pos[2] = ui->doubleSpinBox_6->value();
+        }
+    }
+    else if (primitive_type == PrimitiveTYPE::POINT)
+    {
         point[2] = ui->doubleSpinBox_6->value();
-    } else if (primitive_type == PrimitiveTYPE::LINE) {
-        if (ui->comboBox_2->currentText() == "x1") {
+    }
+    else if (primitive_type == PrimitiveTYPE::LINE)
+    {
+        if (ui->comboBox_2->currentText() == "x1")
+        {
             line_p1[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "x2") {
+        }
+        else if (ui->comboBox_2->currentText() == "x2")
+        {
             line_p2[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::PLANE) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::PLANE)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             plane_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             plane_dir[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::BOX) {
-        if (ui->comboBox_2->currentText() == "Parameters") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BOX)
+    {
+        if (ui->comboBox_2->currentText() == "Parameters")
+        {
             box_size[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Position") {
+        }
+        else if (ui->comboBox_2->currentText() == "Position")
+        {
             box_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             box_dir[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::BALL) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::BALL)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             ball_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             ball_dir[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::CYLINDER) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CYLINDER)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             cylinder_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             cylinder_dir[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::CONE) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::CONE)
+    {
+        if (ui->comboBox_2->currentText() == "Position")
+        {
             cone_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             cone_dir[2] = ui->doubleSpinBox_6->value();
         }
-    } else if (primitive_type == PrimitiveTYPE::TORUS) {
-        if (ui->comboBox_2->currentText() == "Position") {
+    }
+    else if (primitive_type == PrimitiveTYPE::TORUS)
+    {
+       if (ui->comboBox_2->currentText() == "Position")
+        {
             torus_pos[2] = ui->doubleSpinBox_6->value();
-        } else if (ui->comboBox_2->currentText() == "Direction") {
+        }
+        else if (ui->comboBox_2->currentText() == "Direction")
+        {
             torus_dir[2] = ui->doubleSpinBox_6->value();
         }
     }

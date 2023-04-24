@@ -21,8 +21,8 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
-       <iconset resource="../figure/transport_wind/transportwindow.qrc">
-        <normaloff>:/new/prefix1/cad.png</normaloff>:/new/prefix1/cad.png</iconset>
+       <iconset resource="../TransportWindow.qrc">
+        <normaloff>:/new/prefix1/figure/transport_wind/cad.png</normaloff>:/new/prefix1/figure/transport_wind/cad.png</iconset>
       </attribute>
       <attribute name="title">
        <string/>
@@ -198,8 +198,14 @@ QTableWidget::item:selected:active, QTreeView::item:selected:active, QListView::
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="../MainWindow.qrc">
-               <normaloff>:/main_wind/figure/main_wind/save.png</normaloff>:/main_wind/figure/main_wind/save.png</iconset>
+              <iconset resource="../TransportWindow.qrc">
+               <normaloff>:/new/prefix1/figure/transport_wind/save.png</normaloff>:/new/prefix1/figure/transport_wind/save.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -247,8 +253,8 @@ QTableWidget::item:selected:active, QTreeView::item:selected:active, QListView::
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="icon">
-       <iconset resource="../figure/transport_wind/transportwindow.qrc">
-        <normaloff>:/new/prefix1/source.png</normaloff>:/new/prefix1/source.png</iconset>
+       <iconset resource="../TransportWindow.qrc">
+        <normaloff>:/new/prefix1/figure/transport_wind/source.png</normaloff>:/new/prefix1/figure/transport_wind/source.png</iconset>
       </attribute>
       <attribute name="title">
        <string/>
@@ -673,8 +679,8 @@ QTableWidget::item:selected:active, QTreeView::item:selected:active, QListView::
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../CADWindow.qrc">
-             <normaloff>:/cad_wind/figure/cad_wind/selection_domain.png</normaloff>:/cad_wind/figure/cad_wind/selection_domain.png</iconset>
+            <iconset resource="../TransportWindow.qrc">
+             <normaloff>:/new/prefix1/figure/transport_wind/select.png</normaloff>:/new/prefix1/figure/transport_wind/select.png</iconset>
            </property>
            <property name="checkable">
             <bool>true</bool>
@@ -747,8 +753,8 @@ QTableWidget::item:selected:active, QTreeView::item:selected:active, QListView::
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="icon">
-       <iconset resource="../figure/transport_wind/transportwindow.qrc">
-        <normaloff>:/new/prefix1/data.png</normaloff>:/new/prefix1/data.png</iconset>
+       <iconset resource="../TransportWindow.qrc">
+        <normaloff>:/new/prefix1/figure/transport_wind/data.png</normaloff>:/new/prefix1/figure/transport_wind/data.png</iconset>
       </attribute>
       <attribute name="title">
        <string/>
@@ -1007,11 +1013,9 @@ QTableWidget::item:selected:active, QTreeView::item:selected:active, QListView::
   </layout>
  </widget>
  <resources>
-  <include location="../AMWindow.qrc"/>
-  <include location="../CADWindow.qrc"/>
-  <include location="../figure/transport_wind/transportwindow.qrc"/>
-  <include location="../MainWindow.qrc"/>
   <include location="../FEMWindow.qrc"/>
+  <include location="../AMWindow.qrc"/>
+  <include location="../TransportWindow.qrc"/>
  </resources>
  <connections/>
 </ui>
