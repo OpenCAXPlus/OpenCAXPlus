@@ -15,12 +15,10 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
-# option(OCP_Cli "Should Cli be built?" ON)
-# if(OCP_Cli) 
-#add_subdirectory(cli)
-# endif()
 
-#add_subdirectory(framework/interface)
+add_subdirectory(cli)
+
+add_subdirectory(framework/interface)
 
 ##############################################################
 ## 1. go to the directory for toolkit
@@ -47,9 +45,9 @@ add_subdirectory(toolkit)
 
 
 
-#add_subdirectory(framework/lifecycle)
-#add_subdirectory(starter)
-#add_subdirectory(docs)
+add_subdirectory(framework/lifecycle)
+add_subdirectory(starter)
+add_subdirectory(docs)
 
 cmake_host_system_information(RESULT Ncpu QUERY NUMBER_OF_PHYSICAL_CORES)
 message(STATUS "CMake ${CMAKE_VERSION} using ${Ncpu} threads")
