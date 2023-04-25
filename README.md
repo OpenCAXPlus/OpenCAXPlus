@@ -30,6 +30,8 @@ sudo wget http://apt.repos.opencax.plus/ocp.list -O /etc/apt/sources.list.d/ocp.
 Then in the future, you can use apt install to get the latest updates.
 ```
 sudo apt install ocp
+export PATH=$PATH:/opt/ocp/cli
+ocp install all
 ```
 
 Remember to add `/opt/ocp/cli` to your $PATH variable, so that you can use the `ocp` command everywhere.
