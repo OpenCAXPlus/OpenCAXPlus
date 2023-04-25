@@ -24,8 +24,8 @@ We have some custom targets to simplify some common tasks.
 
 - docs targets: we have `html` and `latexpdf` target for building the web page and pdf document. 
 - toolkit targets: 
-    - `install_${toolkit_name}` for installing the corresponding toolkit into `$HOME/opencaxplus/cache` folder.
-    - `compress_${toolkit_name}` for compress the source folder `$HOME/opencaxplus/cache/${toolkit_name}/${toolkit_version}/source` into `${toolkit_name}_${toolkit_version}.tar.xz`
+    - `install_${toolkit_name}` for installing the corresponding toolkit into `$HOME/ocp/cache` folder.
+    - `compress_${toolkit_name}` for compress the source folder `$HOME/ocp/cache/${toolkit_name}/${toolkit_version}/source` into `${toolkit_name}_${toolkit_version}.tar.xz`
 - cpack target `package` for create a deb file
 
 You can use the following targets with the command:
