@@ -20,6 +20,31 @@ The SDK also aims to impose no rules on how developers should write their applic
 Check out the SDK [site](https://sdk.opencax.plus) for a developer guide, user manuals, and examples.
 Also, check out our organization [landing page](https://opencax.plus) for more of our projects.
 
+## User install
+
+Add our repository to your source list.
+```
+sudo wget -O - http://apt.repos.opencax.plus/ocp.gpg.key | sudo apt-key add -
+sudo wget http://apt.repos.opencax.plus/ocp.list -O /etc/apt/sources.list.d/ocp.list
+```
+Then in the future, you can use apt install to get the latest updates.
+```
+sudo apt install ocp
+```
+
+## Developer Build
+```
+cmake --preset="linux-gnu-Debug" -S "."
+cmake --build --preset="linux-gnu-Debug"
+```
+
+## TODO
+
+exodusii mstk jali wonton portage mesquite
+
+
+## Showcases
+
 ![1](docs/_static/1.jpg)
 ![2](docs/_static/2.jpg)
 ![3](docs/_static/3.jpg)
@@ -32,13 +57,3 @@ Also, check out our organization [landing page](https://opencax.plus) for more o
 
 You shouldn't use any toolkit code from the framework.
 Only use framework code from the toolkit if necessary, such as in the interface part of the toolkit. The core logic part of the toolkit should be as independent as possible. -->
-
-# TODO
-
-exodusii mstk jali wonton portage mesquite
-
-
-```
-cmake --preset="linux-gnu-Debug" -S "."
-cmake --build --preset="linux-gnu-Debug"
-```
