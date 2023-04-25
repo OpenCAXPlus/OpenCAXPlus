@@ -11,7 +11,7 @@
             "displayName": "Default Config",
             "description": "Default build using Ninja generator",
             "generator": "Ninja",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "binaryDir": "$env{HOME}/ocp/build/install/${presetName}",
             "architecture": {
                 "value": "x64",
                 "strategy": "external"
@@ -19,7 +19,7 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "BUILD_TEST": "ON",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_INSTALL_PREFIX": "$env{HOME}/ocp/install/${presetName}",
                 "FASP_DIR": "$env{FASP_DIR}",
                 "CMAKE_C_COMPILER": "icc",
                 "CMAKE_CXX_COMPILER": "icpc",

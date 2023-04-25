@@ -36,3 +36,9 @@ Only use framework code from the toolkit if necessary, such as in the interface 
 # TODO
 
 exodusii mstk jali wonton portage mesquite
+
+
+```
+cmake --preset="linux-gnu-Debug" -S "."
+cmake --build --preset="linux-gnu-Debug"
+```

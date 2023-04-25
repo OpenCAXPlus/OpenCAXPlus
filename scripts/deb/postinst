@@ -1,1 +1,2 @@
 echo "Post install"
+chmod a+x /opt/ocp/cli/ocp

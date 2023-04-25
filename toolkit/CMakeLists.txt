@@ -39,3 +39,8 @@ add_dependencies(
   install_basix
   install_ffcx
   install_dolfinx)
+
+install(
+  FILES CMakeLists.txt 
+  DESTINATION toolkit
+  COMPONENT ${PROJECT_NAME})
