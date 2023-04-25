@@ -32,6 +32,8 @@ Then in the future, you can use apt install to get the latest updates.
 sudo apt install ocp
 ```
 
+Remember to add `/opt/ocp/cli` to your $PATH variable, so that you can use the `ocp` command everywhere.
+
 ## Developer Build
 ```
 cmake --preset="linux-gnu-Debug" -S "."
