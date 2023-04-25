@@ -4,6 +4,5 @@
 
 # install( FILES CMakeLists.txt DESTINATION toolkit/Qt COMPONENT
 # ${PROJECT_NAME})
-
 include(OCPToolkitInterface)
 ocp_toolkit_interface()
