@@ -53,8 +53,8 @@ cd OCP
 ```sh
 cmake --preset="linux-gnu-Debug" -S "." # 1min
 cmake --build --preset="linux-gnu-Debug" # 1min
-ls ~/opencaxplus/bin/ocp
-export PATH=$PATH:~/opencaxplus/bin
+ls ~/ocp/bin/ocp
+export PATH=$PATH:~/ocp/bin
 ```
 
 Now you can use the ocp command from command line.

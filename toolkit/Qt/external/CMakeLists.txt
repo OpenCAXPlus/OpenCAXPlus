@@ -24,19 +24,19 @@ if(NOT EXISTS ${sourcepath})
     WORKING_DIRECTORY ${rootpath}
     COMMAND git clone https://code.qt.io/qt/qt5.git source
     COMMAND ${CMAKE_COMMAND} -E chdir source git checkout ${VERSION}
-    COMMAND ${CMAKE_COMMAND} -E chdir source ./init-repository --module-subset=qtbase,qtx11extras
+    COMMAND ${CMAKE_COMMAND} -E chdir source ./init-repository --module-subset=qtbase,qtx11extras,qttools
     VERBATIM USES_TERMINAL
     COMMENT "Download source") # --accept-messages
 
-  add_custom_command(
-    OUTPUT ${sourcepath}/qtbase/configure
-    DEPENDS ${sourcepath}
-    WORKING_DIRECTORY ${sourcepath}
-    COMMAND git checkout ${VERSION}
-    COMMAND ./init-repository --module-subset=qtbase,qtx11extras
-    VERBATIM USES_TERMINAL
-    COMMENT "Checkout to version ${VERSION}"
-  )
+  # add_custom_command(
+  #   OUTPUT ${sourcepath}/qtbase/configure
+  #   DEPENDS ${sourcepath}
+  #   WORKING_DIRECTORY ${sourcepath}
+  #   COMMAND git checkout ${VERSION}
+  #   COMMAND ./init-repository --module-subset=qtbase,qtx11extras
+  #   VERBATIM USES_TERMINAL
+  #   COMMENT "Checkout to version ${VERSION}"
+  # )
   # add_dependencies(install_${SOFTWARE} download_${SOFTWARE})
 
   add_custom_command(
