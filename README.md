@@ -40,6 +40,7 @@ Remember to add `/opt/ocp/cli` to your $PATH variable, so that you can use the `
 ```
 cmake --preset="linux-gnu-Debug" -S "."
 cmake --build --preset="linux-gnu-Debug"
+sudo apt install out/build/linux-gnu-Debug/ocp_0.0.2_amd64.deb
 ```
 
 ## TODO
