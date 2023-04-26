@@ -23,6 +23,7 @@ if(EXISTS ${qtpath})
     "-DQT_QMAKE_EXECUTABLE:PATH=${qtpath}/bin/qmake"
     "-DVTK_Group_Qt:BOOL=ON"
     "-DCMAKE_PREFIX_PATH:PATH=${qtpath}/lib/cmake"
+    "-DQt5_DIR:PATH=${qtpath}/lib/cmake/Qt5"
     "-DBUILD_SHARED_LIBS:BOOL=ON")
 else()
   ocp_toolkit_external_cmake(SOFTWARE ${SOFTWARE} VERSION ${VERSION})
