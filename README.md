@@ -23,18 +23,14 @@ Also, check out our organization [landing page](https://opencax.plus) for more o
 ## User install
 
 Add our repository to your source list.
-```
-sudo wget -O - http://apt.repos.opencax.plus/ocp.gpg.key | sudo apt-key add -
-sudo wget http://apt.repos.opencax.plus/ocp.list -O /etc/apt/sources.list.d/ocp.list
-```
-Then in the future, you can use apt install to get the latest updates.
-```
-sudo apt install ocp
-export PATH=$PATH:/opt/ocp/cli
-ocp install all
+```sh
+# install a specific version of the cli
+sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh) 20230609 ubuntu-22.04
+# Or use a shorter command default to latest and current system distro
+sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh) 
 ```
 
-Remember to add `/opt/ocp/cli` to your $PATH variable, so that you can use the `ocp` command everywhere.
+Remember to add `$HOME/ocp/cli/latest` to your $PATH variable, so that you can use the `ocp` command everywhere.
 
 ## Developer Build
 ```
@@ -42,6 +38,13 @@ cmake --preset="linux-gnu-Debug" -S "."
 cmake --build --preset="linux-gnu-Debug"
 sudo apt install out/build/linux-gnu-Debug/ocp_0.0.2_amd64.deb
 ```
+
+## Developer publish
+
+```sh
+rclone copyto --progress scripts/linux/install.sh ali:ocp-download
+```
+
 
 ## TODO
 
