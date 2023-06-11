@@ -28,13 +28,16 @@ publish() {
   mkdir -p "$dir"
   go build -o $dir/ocp
 
+  echo "Build the cli tool $dir/ocp"
+
   today=$(date +"%Y%m%d")
   distro_version=$(. $script_dir/distro_version.sh)
   tar -cJf ocp-cli-$today-$distro_version.tar.xz ocp/
   tar -cJf ocp-cli-latest-$distro_version.tar.xz ocp/
-
+  echo "Create compressed files"
   rclone copy -P ocp-cli-$today-$distro_version.tar.xz ali:ocp-download
   rclone copy -P ocp-cli-latest-$distro_version.tar.xz ali:ocp-download
+  echo "Upload compressed files"
   rm -rf ocp
   rm ocp-*.tar.xz
 }
