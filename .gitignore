@@ -12,5 +12,5 @@ _deps
 
 out/
 ocp*
-!ocp/
+
 *~

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-cd $script_dir/../../cli
-
 check_git() {
   # Check if there are uncommitted changes in the current repository
   if ! git diff-index --quiet HEAD --; then
@@ -43,10 +40,11 @@ publish() {
 }
 
 if check_git; then
+  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+  cd $script_dir/../../cli
   echo "No uncommitted changes detected. Proceeding with script..."
   publish
+  cd -
 else
   echo "Skipping script due to uncommitted changes."
 fi
-
-cd -
