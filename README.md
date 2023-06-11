@@ -43,6 +43,13 @@ cmake --build --preset="linux-gnu-Debug"
 sudo apt install out/build/linux-gnu-Debug/ocp_0.0.2_amd64.deb
 ```
 
+## Developer publish
+
+```sh
+rclone copyto --progress scripts/linux/install.sh ali:ocp-download
+```
+
+
 ## TODO
 
 exodusii mstk jali wonton portage mesquite
