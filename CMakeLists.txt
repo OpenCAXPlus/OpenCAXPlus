@@ -15,7 +15,7 @@ include(OCPPrepareVariables)
 
 option(OCP_SDK_INSIDE "Inside OCP SDK" ON)
 
-add_subdirectory(cli)
+# add_subdirectory(cli)
 
 add_subdirectory(framework/interface)
 
@@ -44,7 +44,7 @@ add_subdirectory(toolkit)
 
 add_subdirectory(framework/lifecycle)
 add_subdirectory(starter)
-add_subdirectory(docs)
+# add_subdirectory(docs)
 
 cmake_host_system_information(RESULT Ncpu QUERY NUMBER_OF_PHYSICAL_CORES)
 message(STATUS "CMake ${CMAKE_VERSION} using ${Ncpu} threads")
