@@ -7,6 +7,7 @@
 [![Github pages](https://github.com/OpenCAXPlus/OCP-SDK/actions/workflows/gh_page.yml/badge.svg)](https://github.com/OpenCAXPlus/OCP-SDK/actions/workflows/gh_page.yml)
 
 The main goal of the OpenCAXPlus project is to provide an SDK (software development kit) that does the tedious work of building a CAX application. This includes but is not limited to
+
 - creating wrappers that allow developers to use multiple open-source libraries seamlessly
 - installing and linking necessary libraries
 - providing GUI interface
@@ -23,16 +24,18 @@ Also, check out our organization [landing page](https://opencax.plus) for more o
 ## User install
 
 Add our repository to your source list.
+
 ```sh
 # install a specific version of the cli
 sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh) 20230609 ubuntu-22.04
 # Or use a shorter command default to latest and current system distro
-sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh) 
+sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh)
 ```
 
 Remember to add `$HOME/ocp/cli/latest` to your $PATH variable, so that you can use the `ocp` command everywhere.
 
 ## Developer Build
+
 ```
 cmake --preset="linux-gnu-Debug" -S "."
 cmake --build --preset="linux-gnu-Debug"
@@ -45,11 +48,9 @@ sudo apt install out/build/linux-gnu-Debug/ocp_0.0.2_amd64.deb
 rclone copyto --progress scripts/linux/install.sh ali:ocp-download
 ```
 
-
 ## TODO
 
 exodusii mstk jali wonton portage mesquite
-
 
 ## Showcases
 
@@ -65,3 +66,7 @@ exodusii mstk jali wonton portage mesquite
 
 You shouldn't use any toolkit code from the framework.
 Only use framework code from the toolkit if necessary, such as in the interface part of the toolkit. The core logic part of the toolkit should be as independent as possible. -->
+
+## package.yml
+
+The default download path is https://ocp-download.oss-cn-hongkong.aliyuncs.com/${id}/${id}-${version}.tar.xz
