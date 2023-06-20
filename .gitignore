@@ -11,6 +11,5 @@ CTestTestfile.cmake
 _deps
 
 out/
-ocp*
 
 *~
