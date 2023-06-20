@@ -46,6 +46,6 @@ func init() {
 	// force download
 	downloadCmd.Flags().BoolP("force", "f", false, "force the package to be downloaded.")
 	viper.BindPFlag("download.force", downloadCmd.Flags().Lookup("force"))
-	downloadCmd.Flags().Lookup("force").NoOptDefVal = "false"
+	downloadCmd.Flags().Lookup("force").NoOptDefVal = "true"
 	viper.SetDefault("download.force", false)
 }

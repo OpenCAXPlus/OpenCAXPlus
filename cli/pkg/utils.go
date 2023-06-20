@@ -11,28 +11,30 @@ import (
 	"github.com/ulikunitz/xz"
 )
 
-func DownloadFile(id, version, src, dst string) {
-
-	downloadFile := filepath.Join(dst, id+"-"+version+".tar.xz")
-
-	resp, err := http.Get(src + "/" + id + "/" + id + "-" + version + ".tar.xz")
-	if err != nil {
-		panic(err)
+// DownloadFile will download a url to a local file.
+func DownloadFile(url string, filepathStr string) error {
+	// Create the parent directory if it doesn't exist
+	if err := os.MkdirAll(filepath.Dir(filepathStr), 0755); err != nil {
+		return err
 	}
-	defer resp.Body.Close()
 
-	out, err := os.Create(downloadFile) // update the extension based on your actual files
+	// Create the file
+	out, err := os.Create(filepathStr)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer out.Close()
 
-	_, err = io.Copy(out, resp.Body)
+	// Get the data
+	resp, err := http.Get(url)
 	if err != nil {
-		panic(err)
+		return err
 	}
+	defer resp.Body.Close()
 
-	fmt.Println("Successfully downloaded", id+"-"+version+".tar.xz")
+	// Write the body to file
+	_, err = io.Copy(out, resp.Body)
+	return err
 }
 
 func DecompressTarXZ(src, dst string) error {
@@ -89,4 +91,54 @@ func FolderExists(foldername string) bool {
 		return false
 	}
 	return err == nil
+}
+
+func CopyFile(src string, dst string) error {
+	in, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer in.Close()
+
+	out, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	_, err = io.Copy(out, in)
+	return err
+}
+
+func CopyDir(src string, dst string) error {
+	return filepath.Walk(src, func(srcPath string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		relPath, err := filepath.Rel(src, srcPath)
+		if err != nil {
+			return err
+		}
+
+		dstPath := filepath.Join(dst, relPath)
+
+		if info.Mode()&os.ModeSymlink != 0 {
+			target, err := os.Readlink(srcPath)
+			if err != nil {
+				return err
+			}
+			return os.Symlink(target, dstPath)
+		}
+
+		if info.IsDir() {
+			return os.MkdirAll(dstPath, info.Mode())
+		}
+
+		if err := CopyFile(srcPath, dstPath); err != nil {
+			return err
+		}
+
+		return os.Chmod(dstPath, info.Mode())
+	})
 }

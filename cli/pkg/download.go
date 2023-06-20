@@ -34,7 +34,7 @@ func Download(id string, version string, force bool) {
 	// Read the packages.yml file
 	homeDir, _ := os.UserHomeDir()
 	downloadPath := filepath.Join(homeDir, "ocp", "download")
-	data, err := ioutil.ReadFile(filepath.Join(homeDir, "packages.yml"))
+	data, err := ioutil.ReadFile(filepath.Join(homeDir, "ocp", "packages.yml"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -63,23 +63,35 @@ OuterLoop:
 	for _, combinedPackages := range packages.Packages {
 		for _, universalPackage := range combinedPackages.Items {
 			if universalPackage.ID == id {
+				foundID = true
 				log.Printf("Found package: %+v\n", universalPackage)
 				// check if version exists, if yes, go download
 				for _, v := range universalPackage.Versions {
 					if v == version {
+						foundVersion = true
 						// check if the package exists locally, if no go on, if yes check if force is true
 						if FolderExists(filepath.Join(homeDir, "ocp", combinedPackages.ID, id, version)) && !force {
-							log.Printf("You have %+v@%+v installed locally, use -f to force reinstall.\n", id, version)
+							log.Printf("You have %+v@%+v installed locally, force install %+v use -f to force reinstall.\n", id, version, force)
 						} else {
-							DownloadFile(id, version, "https://ocp-download.oss-cn-hongkong.aliyuncs.com", downloadPath)
-							srcPath := filepath.Join(homeDir, "ocp", combinedPackages.ID)
-							DecompressTarXZ(filepath.Join(downloadPath, id+"-"+version+".tar.xz"), srcPath)
+							downloadUrl := "https://ocp-" + combinedPackages.ID + ".oss-cn-hongkong.aliyuncs.com" + "/" + id + "/" + id + "-" + version + ".tar.xz"
+							downloadFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
+
+							err := DownloadFile(downloadUrl, downloadFile)
+							if err != nil {
+								panic(err)
+							}
+							log.Println("Successfully downloaded ", downloadUrl, " to ", downloadFile)
+							xzFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
+							DecompressTarXZ(xzFile, downloadPath)
+
+							destPath := filepath.Join(homeDir, "ocp", combinedPackages.ID, id, version)
+							srcPath := filepath.Join(downloadPath, "ocp", combinedPackages.ID, id, version)
+							CopyDir(srcPath, destPath)
+							log.Println("Successfully decompressed ", xzFile, " to ", destPath)
 						}
-						foundVersion = true
 						break OuterLoop
 					}
 				}
-				foundID = true
 			}
 		}
 	}
