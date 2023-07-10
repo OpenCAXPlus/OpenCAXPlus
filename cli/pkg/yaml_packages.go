@@ -18,14 +18,22 @@ type YamlPackage struct {
 	Versions []string `yaml:"versions"`
 }
 
-type Package struct {
+type SourcePackage struct {
 	ID      string
 	UID     string
 	Type    string
 	Version string
 }
 
-func PackageExist(id string, version string) (Package, error) {
+type InstallPackage struct {
+	ID            string
+	UID           string
+	Type          string
+	Version       string
+	Configuration string
+}
+
+func SourcePackageExist(id string, version string) (SourcePackage, error) {
 	// Read the packages.yml file
 	homeDir, _ := os.UserHomeDir()
 	//! TODO: should automatically choose the packages.yml file in home/ocp or dev folder
@@ -53,7 +61,7 @@ func PackageExist(id string, version string) (Package, error) {
 				if v == version {
 					foundVersion = true
 					log.Printf("Found version: %+v\n", version)
-					return Package{ID: universalPackage.ID, UID: universalPackage.UID, Type: universalPackage.Type, Version: version}, nil
+					return SourcePackage{ID: universalPackage.ID, UID: universalPackage.UID, Type: universalPackage.Type, Version: version}, nil
 				}
 			}
 		}
@@ -68,5 +76,5 @@ func PackageExist(id string, version string) (Package, error) {
 		}
 	}
 
-	return Package{}, errors.New("Package not found") // return nil when nothing found
+	return SourcePackage{}, errors.New("Package not found") // return nil when nothing found
 }

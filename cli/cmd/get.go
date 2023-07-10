@@ -40,25 +40,38 @@ var getCmd = &cobra.Command{
 		log.Debug("get command")
 		log.Debug("Package id is ", id)
 		log.Debug("Package version is ", version)
+		log.Debug("Package configuration is ", config)
 		log.Debug("System is ", runtime.GOOS)
-		selectedPackage, err := pkg.PackageExist(id, version)
+		selectedSourcePackage, err := pkg.SourcePackageExist(id, version)
 		if err != nil {
 			panic(err)
+		}
+		selectedPackage := pkg.InstallPackage{
+			ID:            selectedSourcePackage.ID,
+			UID:           selectedSourcePackage.UID,
+			Type:          selectedSourcePackage.Type,
+			Version:       selectedSourcePackage.Version,
+			Configuration: config,
 		}
 
 		homeDir, _ := os.UserHomeDir()
 
 		if download {
 			// check if the package exists locally, if no go on, if yes check if force is true
-			if pkg.FolderExists(filepath.Join(homeDir, "ocp", selectedPackage.Type, selectedPackage.UID, version)) && !force {
+			if pkg.FolderExists(filepath.Join(homeDir, "ocp", selectedSourcePackage.Type, selectedSourcePackage.UID, version)) && !force {
 				log.Printf("You have %+v@%+v sources locally, force re-download %+v use -f to force reinstall.\n", id, version, force)
 			} else {
-				pkg.Download(selectedPackage, config)
+				pkg.Download(selectedPackage)
 			}
 		}
 
+		script, err := pkg.InstallConfigurationExists(selectedPackage)
+		if err != nil {
+			panic(err)
+		}
+
 		if install {
-			pkg.Install(selectedPackage, config)
+			pkg.RunScript(script)
 		}
 	},
 }
@@ -79,7 +92,7 @@ func init() {
 	viper.SetDefault("get.download", true)
 
 	// install
-	getCmd.Flags().BoolP("install", "d", true, "turn on install step for the package.")
+	getCmd.Flags().BoolP("install", "i", true, "turn on install step for the package.")
 	viper.BindPFlag("get.install", getCmd.Flags().Lookup("install"))
 	getCmd.Flags().Lookup("install").NoOptDefVal = "true"
 	viper.SetDefault("get.install", true)

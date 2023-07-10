@@ -1,13 +1,16 @@
 package pkg
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // ! TODO need to run the Download recursively on config dependencies
-func Download(selectedPackage Package, config string) (Package, error) {
+func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 	t := selectedPackage.Type
 	id := selectedPackage.ID
 	uid := selectedPackage.UID
@@ -34,29 +37,40 @@ func Download(selectedPackage Package, config string) (Package, error) {
 	CopyDir(srcPath, destPath)
 	log.Println("Successfully decompressed ", downloadFile, " to ", destPath)
 
+	//! TODO go to the source folder and find dependencies
+	// Download(depPackage,)
+
 	return selectedPackage, err
 }
 
-func Install(selectedPackage Package, config string) {
-	homeDir, _ := os.UserHomeDir()
-	t := selectedPackage.Type
-	uid := selectedPackage.UID
-	version := selectedPackage.Version
-	srcPath := filepath.Join(homeDir, "ocp", t, uid, version, "source")
-	ocpPath := filepath.Join(homeDir, "ocp", t, uid, version)
-	cmdFromOCP, _ := ConfigCommand(ocpPath, version, config)
+func RunScript(script Script) {
+
+	ext := ""
+	call := ""
+	switch runtime.GOOS {
+	case "linux":
+		ext = "sh"
+		call = "source"
+	case "windows":
+		ext = "bat"
+		call = "call"
+	}
+	command := fmt.Sprintf("%v %v.%v", call, script.Run, ext)
+	for _, arg := range script.Args {
+		command = fmt.Sprintf("%v %v", command, arg)
+	}
 
 	cwdPath, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	}
 
-	err = os.Chdir(srcPath)
+	err = os.Chdir(script.Path)
 	if err != nil {
 		panic(err)
 	}
 
-	executeCommand(cmdFromOCP)
+	executeCommand(command)
 
 	err = os.Chdir(cwdPath)
 	if err != nil {

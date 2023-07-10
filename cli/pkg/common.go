@@ -60,7 +60,11 @@ func executeCommand(commands string) {
 	case "windows":
 		shell = "cmd.exe"
 	}
-	log.Info("Start a new command ")
+	cwdPath, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	log.Info("Start a new command in ", cwdPath)
 	log.Info(newline() + commands)
 	cmd := exec.Command(shell)
 	cmdIn, _ := cmd.StdinPipe()
