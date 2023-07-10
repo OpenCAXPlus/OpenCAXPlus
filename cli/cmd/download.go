@@ -1,6 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2023 Xiaoxing Cheng <hello@chengxiaoxing.me>
 */
 package cmd
 
@@ -14,16 +13,17 @@ import (
 	"github.com/spf13/viper"
 )
 
-// buildCmd represents the build command
-//  need to parse the local ocp.toml file to get the necessary download information
+// the download command will
+// 1. download the tar.xz file based on the uid and version you specified
+// 2. extract the context of the compress file into your local directory
 var downloadCmd = &cobra.Command{
 	Use:   "download",
-	Short: "Download OpenCAX+ toolkits, starters, applications, and etc.",
+	Short: "ocp download package@version",
 	Long: `
-	The command will download the package and its dependencies. If the item already exists 
+	The command will download the OpenCAX+ external packages, toolkits, starters, 
+	applications, and its dependencies. If the item already exists 
 	locally and you want to force re-download everything, you need to pass the option -f.
-	parse the ocp.yml configuration file 
-	and download the necessary compressed files`,
+	parse the ocp.yml configuration file and download the necessary compressed files`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		s := strings.Split(args[0], "@")

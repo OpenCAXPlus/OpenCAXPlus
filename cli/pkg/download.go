@@ -10,7 +10,8 @@ import (
 )
 
 type DownloadPackage struct {
-	ID       string   `yaml:"id"`
+	ID       string   `yaml:"id"`  // id is for the download command
+	UID      string   `yaml:"uid"` // uid is for the download url
 	Versions []string `yaml:"versions"`
 }
 
@@ -34,6 +35,8 @@ func Download(id string, version string, force bool) {
 	// Read the packages.yml file
 	homeDir, _ := os.UserHomeDir()
 	downloadPath := filepath.Join(homeDir, "ocp", "download")
+	//! TODO: should automatically choose the packages.yml file in home/ocp or dev folder
+	//! based on the build type. Release build will read from home, while debug build from dev folder
 	data, err := ioutil.ReadFile(filepath.Join(homeDir, "ocp", "packages.yml"))
 	if err != nil {
 		log.Fatal(err)
@@ -45,6 +48,7 @@ func Download(id string, version string, force bool) {
 		panic(err)
 	}
 
+	// packages contains all three types of the packages that we can download
 	var packages Packages
 	packages.Packages = append(packages.Packages, DownloadPackages{
 		ID:    "external",
@@ -56,24 +60,26 @@ func Download(id string, version string, force bool) {
 		ID:    "starter",
 		Items: yml.Starter,
 	})
+
 	// find the item with the provided ID
 	foundID := false
 	foundVersion := false
 OuterLoop:
-	for _, combinedPackages := range packages.Packages {
-		for _, universalPackage := range combinedPackages.Items {
+	for _, combinedPackages := range packages.Packages { // loop through the external, toolkit, starter arrays
+		for _, universalPackage := range combinedPackages.Items { // loop through the packages
 			if universalPackage.ID == id {
 				foundID = true
+				uid := universalPackage.UID
 				log.Printf("Found package: %+v\n", universalPackage)
 				// check if version exists, if yes, go download
 				for _, v := range universalPackage.Versions {
 					if v == version {
 						foundVersion = true
 						// check if the package exists locally, if no go on, if yes check if force is true
-						if FolderExists(filepath.Join(homeDir, "ocp", combinedPackages.ID, id, version)) && !force {
+						if FolderExists(filepath.Join(homeDir, "ocp", combinedPackages.ID, uid, version)) && !force {
 							log.Printf("You have %+v@%+v installed locally, force install %+v use -f to force reinstall.\n", id, version, force)
 						} else {
-							downloadUrl := "https://ocp-" + combinedPackages.ID + ".oss-cn-hongkong.aliyuncs.com" + "/" + id + "/" + id + "-" + version + ".tar.xz"
+							downloadUrl := "https://ocp-" + combinedPackages.ID + ".oss-cn-hongkong.aliyuncs.com" + "/" + uid + "/" + uid + "-" + version + ".tar.xz"
 							downloadFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
 
 							err := DownloadFile(downloadUrl, downloadFile)
@@ -81,13 +87,14 @@ OuterLoop:
 								panic(err)
 							}
 							log.Println("Successfully downloaded ", downloadUrl, " to ", downloadFile)
-							xzFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
-							DecompressTarXZ(xzFile, downloadPath)
 
-							destPath := filepath.Join(homeDir, "ocp", combinedPackages.ID, id, version)
-							srcPath := filepath.Join(downloadPath, "ocp", combinedPackages.ID, id, version)
+							// xzFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
+							DecompressTarXZ(downloadFile, downloadPath)
+
+							destPath := filepath.Join(homeDir, "ocp", combinedPackages.ID, uid, version)
+							srcPath := filepath.Join(downloadPath, "ocp", combinedPackages.ID, uid, version)
 							CopyDir(srcPath, destPath)
-							log.Println("Successfully decompressed ", xzFile, " to ", destPath)
+							log.Println("Successfully decompressed ", downloadFile, " to ", destPath)
 						}
 						break OuterLoop
 					}
