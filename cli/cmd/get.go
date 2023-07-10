@@ -5,6 +5,8 @@ package cmd
 
 import (
 	"OpenCAXPlusCli/pkg"
+	"os"
+	"path/filepath"
 	"runtime"
 	"strings"
 
@@ -29,6 +31,7 @@ var getCmd = &cobra.Command{
 		s := strings.Split(args[0], "@")
 		id := s[0]
 		version := s[1]
+		config := s[2]
 
 		force := viper.GetBool("get.force")
 		download := viper.GetBool("get.download")
@@ -38,11 +41,24 @@ var getCmd = &cobra.Command{
 		log.Debug("Package id is ", id)
 		log.Debug("Package version is ", version)
 		log.Debug("System is ", runtime.GOOS)
-		if download {
-			pkg.Download(id, version, force)
+		selectedPackage, err := pkg.PackageExist(id, version)
+		if err != nil {
+			panic(err)
 		}
+
+		homeDir, _ := os.UserHomeDir()
+
+		if download {
+			// check if the package exists locally, if no go on, if yes check if force is true
+			if pkg.FolderExists(filepath.Join(homeDir, "ocp", selectedPackage.Type, selectedPackage.UID, version)) && !force {
+				log.Printf("You have %+v@%+v sources locally, force re-download %+v use -f to force reinstall.\n", id, version, force)
+			} else {
+				pkg.Download(selectedPackage, config)
+			}
+		}
+
 		if install {
-			// pkg.Install(id, version, force)
+			pkg.Install(selectedPackage, config)
 		}
 	},
 }
