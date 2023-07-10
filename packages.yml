@@ -1,8 +1,8 @@
-external:
-  - id: external-spdlog
-    uid: spdlog
-    versions: ["1.11.0"]
-toolkit:
-  - id: ocplog
-    uid: ocplog
-    versions: ["1.0.0"]
+- id: external-spdlog
+  uid: spdlog
+  type: external
+  versions: ["1.11.0"]
+- id: ocplog
+  uid: ocplog
+  type: toolkit
+  versions: ["1.0.0"]
