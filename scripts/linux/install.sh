@@ -89,4 +89,6 @@ else
 
     # remove the extracted folder in /tmp
     rm -rf "$download_dir/ocp/"
+
+    echo "export PATH=\$PATH:$HOME/ocp/cli/latest" >> ~/.bashrc
 fi
