@@ -2,7 +2,11 @@
   uid: spdlog
   type: external
   versions: ["1.11.0"]
-- id: ocplog
-  uid: ocplog
-  type: toolkit
-  versions: ["1.0.0"]
+- id: external-superlu
+  uid: superlu
+  type: external
+  versions: ["6.0.0"]
+- id: external-fasp
+  uid: fasp
+  type: external
+  versions: ["2.2.0"]
