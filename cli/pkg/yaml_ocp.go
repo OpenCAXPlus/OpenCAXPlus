@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 
 	log "github.com/sirupsen/logrus"
 
@@ -48,7 +49,7 @@ type YamlOCPConfiguration struct {
 	ID           string   `yaml:"id"`
 	Run          string   `yaml:"run"`
 	Args         []string `yaml:"arguments"`
-	dependencies []string `yaml:"dependencies"`
+	Dependencies []string `yaml:"dependencies"`
 }
 
 type YamlOCP struct {
@@ -63,23 +64,92 @@ type YamlOCP struct {
 	Configurations []YamlOCPConfiguration `yaml:"configurations"`
 }
 
-func parseArguments(args []string, p InstallPackage) []string {
+func parseArguments(args []string, p InstallPackage, dependencies []InstallPackage) []string {
 	out := args
+	base := p
 	for i, arg := range args {
 
-		switch arg {
-		case "@id":
-			out[i] = p.ID
-		case "@uid":
-			out[i] = p.UID
-		case "@type":
-			out[i] = p.Type
-		case "@version":
-			out[i] = p.Version
-		case "@configuration":
-			out[i] = p.Configuration
-		default:
-			out[i] = args[i]
+		s := strings.Split(arg, "@")
+
+		if len(s) > 1 {
+			if s[0] == "" {
+				base = p
+			} else {
+				for _, dep := range dependencies {
+					if dep.ID == s[0] {
+						base = dep
+						break
+					}
+				}
+			}
+			switch s[1] {
+			case "id":
+				out[i] = base.ID
+			case "uid":
+				out[i] = base.UID
+			case "type":
+				out[i] = base.Type
+			case "version":
+				out[i] = base.Version
+			case "configuration":
+				out[i] = base.Configuration
+			default:
+				out[i] = s[0]
+			}
+		} else {
+			out[i] = s[0]
+		}
+	}
+	return out
+}
+
+func GetConfigurationDependencies(selectedPackage InstallPackage) []InstallPackage {
+	homeDir, _ := os.UserHomeDir()
+	t := selectedPackage.Type
+	uid := selectedPackage.UID
+	v := selectedPackage.Version
+	c := selectedPackage.Configuration
+	// srcPath := filepath.Join(homeDir, "ocp", t, uid, v, "source")
+	ocpPath := filepath.Join(homeDir, "ocp", t, uid, v)
+	// Read the ocp.yml file
+	data, err := ioutil.ReadFile(filepath.Join(ocpPath, "ocp.yml"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var yml YamlOCP
+	err = yaml.Unmarshal(data, &yml)
+	if err != nil {
+		panic(err)
+	}
+
+	var out []InstallPackage
+	// the load the dependencies of configurations
+	// log.Debug("yml config", yml.Configurationss)
+	for _, config := range yml.Configurations {
+		if config.ID == c {
+			for _, dep := range config.Dependencies {
+				s := strings.Split(dep, "@")
+				dep_id := s[0]
+				dep_version := s[1]
+				dep_config := s[2]
+				dep_uid := dep_id
+				dep_type := "external"
+				for _, d := range yml.Dependencies {
+					if d.ID == dep_id {
+						dep_uid = d.UID
+						dep_type = d.Type
+					}
+				}
+				out = append(out, InstallPackage{
+					ID:            dep_id,
+					UID:           dep_uid,
+					Type:          dep_type,
+					Version:       dep_version,
+					Configuration: dep_config,
+				})
+			}
+			break
 		}
 	}
 	return out
@@ -128,7 +198,8 @@ func InstallConfigurationExists(selectedPackage InstallPackage) (Script, error) 
 							log.Debug("Find configuration details")
 							foundCF = true
 							// prepare the arguments array
-							parsedArgs := parseArguments(cf.Args, selectedPackage)
+							dependencies := GetConfigurationDependencies(selectedPackage)
+							parsedArgs := parseArguments(cf.Args, selectedPackage, dependencies)
 							return Script{Path: ocpPath, Run: cf.Run, Args: parsedArgs}, nil
 						}
 					}

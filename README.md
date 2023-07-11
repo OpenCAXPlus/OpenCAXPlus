@@ -51,6 +51,7 @@ rclone copyto --progress scripts/linux/install.sh ali:ocp-download
 ## TODO
 
 exodusii mstk jali wonton portage mesquite
+1. Now we only support fully explicit software version and config, in the future we want to allow an array of version and configuration for each package, and the user can have some flexibility to determine which version and config to use. Create a package.lock file that store the determined packages.
 
 ## Showcases
 

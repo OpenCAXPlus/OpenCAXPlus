@@ -20,7 +20,7 @@ import (
 // 2. extract the context of the compress file into your local directory
 var getCmd = &cobra.Command{
 	Use:   "get",
-	Short: "ocp get package@version",
+	Short: "ocp get package@version@configuration",
 	Long: `
 	The command will download and install the OpenCAX+ external packages, toolkits, starters, 
 	applications, and its dependencies. If the item already exists 
@@ -65,13 +65,8 @@ var getCmd = &cobra.Command{
 			}
 		}
 
-		script, err := pkg.InstallConfigurationExists(selectedPackage)
-		if err != nil {
-			panic(err)
-		}
-
 		if install {
-			pkg.RunScript(script)
+			pkg.Install(selectedPackage)
 		}
 	},
 }

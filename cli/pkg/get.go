@@ -38,9 +38,28 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 	log.Println("Successfully decompressed ", downloadFile, " to ", destPath)
 
 	//! TODO go to the source folder and find dependencies
-	// Download(depPackage,)
+	// need to
+	depPackages := GetConfigurationDependencies(selectedPackage)
+	for _, dep := range depPackages {
+		Download(dep)
+	}
 
 	return selectedPackage, err
+}
+
+func Install(selectedPackage InstallPackage) {
+	depPackages := GetConfigurationDependencies(selectedPackage)
+	for _, dep := range depPackages {
+		log.Debug("dependency", dep)
+		Install(dep)
+	}
+	// log.Debug("depPackage", depPackages)
+	// log.Debug("Selected", selectedPackage)
+	script, err := InstallConfigurationExists(selectedPackage)
+	if err != nil {
+		panic(err)
+	}
+	RunScript(script)
 }
 
 func RunScript(script Script) {
