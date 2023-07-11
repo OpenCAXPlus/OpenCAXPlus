@@ -45,7 +45,8 @@ sudo apt install out/build/linux-gnu-Debug/ocp_0.0.2_amd64.deb
 ## Developer publish
 
 ```sh
-rclone copyto --progress scripts/linux/install.sh ali:ocp-download
+source scripts/linux/publish_cli.sh
+rclone copy -P scripts/linux/install.sh ali:ocp-download
 ```
 
 ## TODO
