@@ -101,7 +101,7 @@ else
         fi
 
         echo "Establishing link $dir_base/latest => $dir_base/$dist_name"
-        rm -f $merge_dir/$dir_base/$latest
+        rm -f $merge_dir/$dir_base/latest
         ln -sf $merge_dir/$dir_base/$dist_name $merge_dir/$dir_base/latest
     done
 
