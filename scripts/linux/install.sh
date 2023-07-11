@@ -7,6 +7,19 @@ version=$VERSION_ID
 distro_version="$(echo "$distro" | tr '[:upper:]' '[:lower:]')-$version"
 
 software="ocp-cli"
+
+force=false
+
+OPTIND=1
+
+while getopts "f" opt; do
+    case "$opt" in
+    f)  force=true
+        ;;
+    esac
+done
+shift "$((OPTIND-1))"
+
 version=${1:-"latest"}
 system=${2:-"$distro_version"}
 
@@ -21,6 +34,10 @@ echo "Installing $software"
 echo "version=$version"
 echo "system=$system"
 echo
+
+if $force; then
+    rm "$download_dir/$filename"
+fi
 
 # download the compressed file to /tmp folder
 if [ -f "$download_dir/$filename" ]; then
@@ -84,6 +101,7 @@ else
         fi
 
         echo "Establishing link $dir_base/latest => $dir_base/$dist_name"
+        rm -f $merge_dir/$dir_base/$latest
         ln -sf $merge_dir/$dir_base/$dist_name $merge_dir/$dir_base/latest
     done
 
