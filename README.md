@@ -39,7 +39,6 @@ The installation script will modify the PATH variable at the bottom of your ~/.b
 ```
 cmake --preset="linux-gnu-Debug" -S "."
 cmake --build --preset="linux-gnu-Debug"
-sudo apt install out/build/linux-gnu-Debug/ocp_0.0.2_amd64.deb
 ```
 
 ## Developer publish
@@ -49,10 +48,6 @@ source scripts/linux/publish_cli.sh
 rclone copy -P scripts/linux/install.sh ali:ocp-download
 ```
 
-## TODO
-
-exodusii mstk jali wonton portage mesquite
-1. Now we only support fully explicit software version and config, in the future we want to allow an array of version and configuration for each package, and the user can have some flexibility to determine which version and config to use. Create a package.lock file that store the determined packages.
 
 ## Showcases
 
@@ -64,11 +59,9 @@ exodusii mstk jali wonton portage mesquite
 ![7](docs/_static/7.jpg)
 ![8](docs/_static/8.jpg)
 
-<!-- The logging library (spdlog) does not work with intel oneapi (classic) on mac, so you are expected to see different logging style for mac+intel vs other OS compiler combinations.
 
-You shouldn't use any toolkit code from the framework.
-Only use framework code from the toolkit if necessary, such as in the interface part of the toolkit. The core logic part of the toolkit should be as independent as possible. -->
+## TODO
 
-## package.yml
+1. include more external packages exodusii mstk jali wonton portage mesquite
+2. parse ocp.yml and create ocp.lock file that list all used dependencies for current project.
 
-The default download path is https://ocp-download.oss-cn-hongkong.aliyuncs.com/${id}/${id}-${version}.tar.xz
