@@ -42,6 +42,7 @@ type YamlOCPDependency struct {
 	ID       string           `yaml:"id"`
 	UID      string           `yaml:"uid"`
 	Type     string           `yaml:"type"`
+	Default  YamlOCPDefault   `yaml:"default"`
 	Versions []YamlOCPVersion `yaml:"versions"`
 }
 
@@ -131,15 +132,24 @@ func GetConfigurationDependencies(selectedPackage InstallPackage) []InstallPacka
 			for _, dep := range config.Dependencies {
 				s := strings.Split(dep, "@")
 				dep_id := s[0]
-				dep_version := s[1]
-				dep_config := s[2]
+				dep_version := ""
+				dep_config := ""
+
 				dep_uid := dep_id
 				dep_type := "external"
 				for _, d := range yml.Dependencies {
 					if d.ID == dep_id {
 						dep_uid = d.UID
 						dep_type = d.Type
+						dep_version = d.Default.Version
+						dep_config = d.Default.Configuration
 					}
+				}
+				if len(s) == 2 {
+					dep_version = s[1]
+				}
+				if len(s) == 3 {
+					dep_config = s[2]
 				}
 				out = append(out, InstallPackage{
 					ID:            dep_id,
