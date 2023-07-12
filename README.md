@@ -23,7 +23,7 @@ Also, check out our organization [landing page](https://opencax.plus) for more o
 
 ## User install
 
-Add our repository to your source list.
+The install script, by default, will install the latest cli, aka ocp, for your current system. However you can also specify the version and distro name for the cli build explicitly.
 
 ```sh
 # install a specific version of the cli
@@ -32,7 +32,7 @@ sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh) 20230
 sh <(curl -s https://ocp-download.oss-cn-hongkong.aliyuncs.com/install.sh)
 ```
 
-Remember to add `$HOME/ocp/cli/latest` to your $PATH variable, so that you can use the `ocp` command everywhere.
+The installation script will modify the PATH variable at the bottom of your ~/.bashrc file, you may revert this change if you don't want this behavior.
 
 ## Developer Build
 
