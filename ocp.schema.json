@@ -1,171 +1,205 @@
 {
     "$schema": "http://json-schema.org/draft-06/schema#",
-    "$ref": "#/definitions/Welcome10",
-    "$id": "https://opencax.plus/schemas",
-    "title": "ocp.yml schema",
     "type": "object",
     "properties": {
-        "name": {
+      "name": {
+        "type": "string"
+      },
+      "uid": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      },
+      "licenses": {
+        "type": "array",
+        "items": [
+          {
             "type": "string"
-        },
-        "id": {
+          }
+        ]
+      },
+      "default": {
+        "type": "object",
+        "properties": {
+          "version": {
             "type": "string"
-        },
-        "default_version": {
+          },
+          "configuration": {
             "type": "string"
-        },
-        "version": {
+          },
+          "scripts": {
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/Version"
-            }
-        },
-        "config": {
+            "items": [
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "dependencies": {
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/Config"
-            }
+            "items": [
+              {
+                "type": "string"
+              }
+            ]
+          }
         },
-        "dependency": {
-            "$ref": "#/definitions/Dependency"
+        "required": [
+          "version",
+          "configuration",
+          "scripts"
+        ]
+      },
+      "dependencies": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "uid": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "versions": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "default": {
+                        "type": "string"
+                      },
+                      "configurations": {
+                        "type": "array",
+                        "items": [
+                          {
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "uid",
+              "type",
+              "versions"
+            ]
+          }
+        ]
+      },
+      "configurations": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "run": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dependencies": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "run"
+            ]
+          }
+        ]
+      },
+      "versions": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "default": {
+                "type": "string"
+              },
+              "configurations": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ]
+      }
+    },
+    "scripts": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "run": {
+              "type": "string"
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "run",
+            "arguments"
+          ]
         }
+      ]
     },
     "required": [
-        "config",
-        "default_version",
-        "dependency",
-        "id",
-        "name",
-        "version"
-    ],
-    "definitions": {
-        "Config": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "$ref": "#/definitions/Value"
-                },
-                "dependency": {
-                    "$ref": "#/definitions/ConfigDependency"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "value"
-            ],
-            "title": "Config"
-        },
-        "ConfigDependency": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "external": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "external"
-            ],
-            "title": "ConfigDependency"
-        },
-        "Welcome10Dependency": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "toolkit": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/External"
-                    }
-                },
-                "external": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/External"
-                    }
-                }
-            },
-            "required": [
-                "external",
-                "toolkit"
-            ],
-            "title": "Welcome10Dependency"
-        },
-        "External": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "id",
-                "version"
-            ],
-            "title": "External"
-        },
-        "Version": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "config": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "dependency": {
-                    "type": "array",
-                    "items": {}
-                },
-                "external": {
-                    "type": "array",
-                    "items": {}
-                }
-            },
-            "required": [
-                "config",
-                "dependency",
-                "external",
-                "id"
-            ],
-            "title": "Version"
-        },
-        "Value": {
-            "anyOf": [
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                {
-                    "type": "string",
-                    "format": "integer"
-                }
-            ],
-            "title": "Value"
-        }
-    }
-}
+      "name",
+      "uid",
+      "type",
+      "licenses",
+      "default",
+      "configurations",
+      "versions",
+      "scripts"
+    ]
+  }
