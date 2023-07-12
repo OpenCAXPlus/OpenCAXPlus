@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "array",
+    "item": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string"
+            },
+            "uid": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string"
+            },
+            "version": {
+                "type": "array",
+                "item": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
