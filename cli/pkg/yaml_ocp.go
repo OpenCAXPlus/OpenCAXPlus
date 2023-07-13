@@ -145,7 +145,7 @@ func GetConfigurationDependencies(selectedPackage InstallPackage) []InstallPacka
 						dep_config = d.Default.Configuration
 					}
 				}
-				if len(s) == 2 {
+				if len(s) >= 2 {
 					dep_version = s[1]
 				}
 				if len(s) == 3 {
