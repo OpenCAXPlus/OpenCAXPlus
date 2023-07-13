@@ -17,7 +17,7 @@ check_git() {
 
 publish() {
   rm -rf ocp
-  rm ocp-*.tar.xz
+  rm sdk*.tar.xz
 
   rm -rf out
   cmake --preset="linux-gnu-Release" -S "."
@@ -34,8 +34,8 @@ publish() {
   # today=$(date +"%Y%m%d")
   version=$current_date.$short_hash
   distro_version=$(. $script_dir/distro_version.sh)
-  tar -cJf ocp-sdk-$version-$distro_version.tar.xz ocp/
-  tar -cJf ocp-sdk-latest-$distro_version.tar.xz ocp/
+  tar -cJf sdk-$version-$distro_version.tar.xz ocp/
+  tar -cJf sdk-latest-$distro_version.tar.xz ocp/
 
   rclone copy -P sdk-$version-$distro_version.tar.xz ali:ocp-download/sdk
   rclone copy -P sdk-latest-$distro_version.tar.xz ali:ocp-download/sdk

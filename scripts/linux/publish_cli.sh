@@ -18,7 +18,7 @@ check_git() {
 publish() {
 
   rm -rf ocp
-  rm ocp-*.tar.xz
+  rm cli*.tar.xz
   current_date=$(date +"%Y.%m%d")
   short_hash=$(git rev-parse --short HEAD)
   dir="ocp/cli/$current_date.$short_hash"
@@ -30,11 +30,11 @@ publish() {
   # today=$(date +"%Y%m%d")
   version=$current_date.$short_hash
   distro_version=$(. $script_dir/distro_version.sh)
-  tar -cJf ocp-cli-$version-$distro_version.tar.xz ocp/
-  tar -cJf ocp-cli-latest-$distro_version.tar.xz ocp/
+  tar -cJf cli-$version-$distro_version.tar.xz ocp/
+  tar -cJf cli-latest-$distro_version.tar.xz ocp/
   echo "Create compressed files"
-  rclone copy -P ocp-cli-$version-$distro_version.tar.xz ali:ocp-download
-  rclone copy -P ocp-cli-latest-$distro_version.tar.xz ali:ocp-download
+  rclone copy -P cli-$version-$distro_version.tar.xz ali:ocp-download/cli
+  rclone copy -P cli-latest-$distro_version.tar.xz ali:ocp-download/cli
   echo "Upload compressed files"
   rm -rf ocp
   rm ocp-*.tar.xz

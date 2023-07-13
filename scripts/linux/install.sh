@@ -6,7 +6,7 @@ distro=$ID
 version=$VERSION_ID
 distro_version="$(echo "$distro" | tr '[:upper:]' '[:lower:]')-$version"
 
-software="ocp-cli"
+software="cli"
 
 force=false
 
@@ -24,7 +24,7 @@ version=${1:-"latest"}
 system=${2:-"$distro_version"}
 
 # prepare some variables
-url="http://ocp-download.oss-cn-hongkong.aliyuncs.com/$software-$version-$system.tar.xz"
+url="http://ocp-download.oss-cn-hongkong.aliyuncs.com/$software/$software-$version-$system.tar.xz"
 filename=$(basename "$url")
 dir_name=${filename%.tar.xz}
 download_dir="/tmp"
