@@ -37,8 +37,8 @@ publish() {
   tar -cJf ocp-sdk-$version-$distro_version.tar.xz ocp/
   tar -cJf ocp-sdk-latest-$distro_version.tar.xz ocp/
 
-  rclone copy -P ocp-sdk-$version-$distro_version.tar.xz ali:ocp-download
-  rclone copy -P ocp-sdk-latest-$distro_version.tar.xz ali:ocp-download
+  rclone copy -P sdk-$version-$distro_version.tar.xz ali:ocp-download/sdk
+  rclone copy -P sdk-latest-$distro_version.tar.xz ali:ocp-download/sdk
   rm -rf ocp
   rm ocp-*.tar.xz
 }
