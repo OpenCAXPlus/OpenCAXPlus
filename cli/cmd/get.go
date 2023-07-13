@@ -71,7 +71,7 @@ var getCmd = &cobra.Command{
 			}
 		}
 
-		if install {
+		if install && config != "" {
 			pkg.Install(selectedPackage)
 		}
 	},

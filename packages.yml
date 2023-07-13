@@ -1,7 +1,7 @@
 - id: ocp-sdk
   uid: sdk
   type: download
-  version: ["latest","2023.0713.992bd4c"]
+  versions: ["latest","2023.0713.992bd4c"]
 - id: external-spdlog
   uid: spdlog
   type: external
