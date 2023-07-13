@@ -30,8 +30,14 @@ var getCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		s := strings.Split(args[0], "@")
 		id := s[0]
-		version := s[1]
-		config := s[2]
+		config := ""
+		if len(s) == 3 {
+			config = s[2]
+		}
+		version := "latest"
+		if len(s) >= 2 {
+			version = s[1]
+		}
 
 		force := viper.GetBool("get.force")
 		download := viper.GetBool("get.download")

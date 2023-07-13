@@ -39,9 +39,11 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 
 	//! TODO go to the source folder and find dependencies
 	// need to
-	depPackages := GetConfigurationDependencies(selectedPackage)
-	for _, dep := range depPackages {
-		Download(dep)
+	if selectedPackage.Configuration != "" {
+		depPackages := GetConfigurationDependencies(selectedPackage)
+		for _, dep := range depPackages {
+			Download(dep)
+		}
 	}
 
 	return selectedPackage, err
