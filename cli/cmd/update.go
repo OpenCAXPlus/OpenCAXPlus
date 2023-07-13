@@ -19,13 +19,16 @@ var updateCmd = &cobra.Command{
 	Short: "ocp update",
 	Long: `
 	The command will update the packages.yml file and the ocp cli.`,
-	Args: cobra.ExactArgs(0),
+	Args: cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 
 		log.Debug("update command")
 		log.Debug("System is ", runtime.GOOS)
-
-		pkg.Update()
+		if len(args) == 1 {
+			pkg.Update(args[0])
+		} else {
+			pkg.Update("")
+		}
 
 	},
 }
