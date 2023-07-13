@@ -4,12 +4,33 @@ import (
 	"archive/tar"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/ulikunitz/xz"
 )
+
+func MostRecentSubFolder(dir string) (mostRecentSubDir string, modTime time.Time, err error) {
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		return "", time.Time{}, err
+	}
+
+	for _, file := range files {
+		if file.IsDir() {
+			currentModTime := file.ModTime()
+			if currentModTime.After(modTime) {
+				modTime = currentModTime
+				// mostRecentSubDir = filepath.Join(dir, file.Name())
+				mostRecentSubDir = file.Name()
+			}
+		}
+	}
+	return mostRecentSubDir, modTime, nil
+}
 
 // DownloadFile will download a url to a local file.
 func DownloadFile(url string, filepathStr string) error {

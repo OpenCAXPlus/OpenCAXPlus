@@ -67,7 +67,11 @@ var getCmd = &cobra.Command{
 			if pkg.FolderExists(filepath.Join(homeDir, "ocp", selectedSourcePackage.Type, selectedSourcePackage.UID, version)) && !force {
 				log.Printf("You have %+v@%+v sources locally, force re-download %+v use -f to force reinstall.\n", id, version, force)
 			} else {
-				pkg.Download(selectedPackage)
+				if selectedSourcePackage.UID == "sdk" {
+					pkg.DownloadSDK(selectedPackage)
+				} else {
+					pkg.Download(selectedPackage)
+				}
 			}
 		}
 

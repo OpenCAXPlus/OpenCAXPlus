@@ -9,7 +9,44 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// ! TODO need to run the Download recursively on config dependencies
+func DownloadSDK(selectedPackage InstallPackage) (InstallPackage, error) {
+	t := selectedPackage.Type
+	id := selectedPackage.ID
+	uid := selectedPackage.UID
+	version := selectedPackage.Version
+
+	// Read the packages.yml file
+	homeDir, _ := os.UserHomeDir()
+	downloadPath := filepath.Join(homeDir, "ocp", "download")
+
+	downloadUrl := "https://ocp-" + t + ".oss-cn-hongkong.aliyuncs.com" + "/" + uid + "/" + uid + "-" + version + ".tar.xz"
+	downloadFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
+
+	err := DownloadFile(downloadUrl, downloadFile)
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Successfully downloaded ", downloadUrl, " to ", downloadFile)
+
+	DecompressTarXZ(downloadFile, downloadPath)
+
+	realVersion := version
+	if version == "latest" {
+		realVersion, _, err = MostRecentSubFolder(downloadPath)
+	}
+
+	destPath := filepath.Join(homeDir, "ocp", uid, realVersion)
+	srcPath := filepath.Join(downloadPath, "ocp", uid, realVersion)
+	CopyDir(srcPath, destPath)
+	latestDir := filepath.Join(homeDir, "ocp", "sdk", "latest")
+	realDir := filepath.Join(homeDir, "ocp", "sdk", realVersion)
+	executeCommand("rm -f " + latestDir)
+	executeCommand("ln -sf " + realDir + " " + latestDir)
+
+	log.Println("Successfully decompressed ", downloadFile, " to ", destPath)
+
+	return selectedPackage, err
+} // ! TODO need to run the Download recursively on config dependencies
 func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 	t := selectedPackage.Type
 	id := selectedPackage.ID
@@ -34,10 +71,6 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 
 	destPath := filepath.Join(homeDir, "ocp", t, uid, version)
 	srcPath := filepath.Join(downloadPath, "ocp", t, uid, version)
-	if uid == "sdk" {
-		destPath = filepath.Join(homeDir, "ocp", uid, version)
-		srcPath = filepath.Join(downloadPath, "ocp", uid, version)
-	}
 	CopyDir(srcPath, destPath)
 	log.Println("Successfully decompressed ", downloadFile, " to ", destPath)
 
