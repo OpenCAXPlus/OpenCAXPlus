@@ -40,10 +40,10 @@ add_subdirectory(framework/interface)
 #   and tool_target are empty now
 # ##############################################################################
 
-add_subdirectory(toolkit)
+# add_subdirectory(toolkit)
 
 add_subdirectory(framework/lifecycle)
-add_subdirectory(starter)
+# add_subdirectory(starter)
 # add_subdirectory(docs)
 
 cmake_host_system_information(RESULT Ncpu QUERY NUMBER_OF_PHYSICAL_CORES)

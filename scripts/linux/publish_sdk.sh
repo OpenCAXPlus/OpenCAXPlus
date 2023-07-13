@@ -31,12 +31,13 @@ publish() {
 
   cp -r out/install/linux-gnu-Release/* $dir
 
-  today=$(date +"%Y%m%d")
+  # today=$(date +"%Y%m%d")
+  version=$current_date.$short_hash
   distro_version=$(. $script_dir/distro_version.sh)
-  tar -cJf ocp-sdk-$today-$distro_version.tar.xz ocp/
+  tar -cJf ocp-sdk-$version-$distro_version.tar.xz ocp/
   tar -cJf ocp-sdk-latest-$distro_version.tar.xz ocp/
 
-  rclone copy -P ocp-sdk-$today-$distro_version.tar.xz ali:ocp-download
+  rclone copy -P ocp-sdk-$version-$distro_version.tar.xz ali:ocp-download
   rclone copy -P ocp-sdk-latest-$distro_version.tar.xz ali:ocp-download
   rm -rf ocp
   rm ocp-*.tar.xz
