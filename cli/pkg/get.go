@@ -34,6 +34,10 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 
 	destPath := filepath.Join(homeDir, "ocp", t, uid, version)
 	srcPath := filepath.Join(downloadPath, "ocp", t, uid, version)
+	if uid == "sdk" {
+		destPath = filepath.Join(homeDir, "ocp", uid, version)
+		srcPath = filepath.Join(downloadPath, "ocp", uid, version)
+	}
 	CopyDir(srcPath, destPath)
 	log.Println("Successfully decompressed ", downloadFile, " to ", destPath)
 
@@ -50,18 +54,20 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 }
 
 func Install(selectedPackage InstallPackage) {
-	depPackages := GetConfigurationDependencies(selectedPackage)
-	for _, dep := range depPackages {
-		log.Debug("dependency", dep)
-		Install(dep)
+	if selectedPackage.Configuration != "" {
+		depPackages := GetConfigurationDependencies(selectedPackage)
+		for _, dep := range depPackages {
+			log.Debug("dependency", dep)
+			Install(dep)
+		}
+		// log.Debug("depPackage", depPackages)
+		// log.Debug("Selected", selectedPackage)
+		script, err := InstallConfigurationExists(selectedPackage)
+		if err != nil {
+			panic(err)
+		}
+		RunScript(script)
 	}
-	// log.Debug("depPackage", depPackages)
-	// log.Debug("Selected", selectedPackage)
-	script, err := InstallConfigurationExists(selectedPackage)
-	if err != nil {
-		panic(err)
-	}
-	RunScript(script)
 }
 
 func RunScript(script Script) {
