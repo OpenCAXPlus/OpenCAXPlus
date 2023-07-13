@@ -37,7 +37,7 @@ publish() {
   rclone copy -P cli-latest-$distro_version.tar.xz ali:ocp-download/cli
   echo "Upload compressed files"
   rm -rf ocp
-  rm ocp-*.tar.xz
+  rm cli*.tar.xz
 }
 
 if check_git; then

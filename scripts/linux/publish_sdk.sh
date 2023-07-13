@@ -40,7 +40,7 @@ publish() {
   rclone copy -P sdk-$version-$distro_version.tar.xz ali:ocp-download/sdk
   rclone copy -P sdk-latest-$distro_version.tar.xz ali:ocp-download/sdk
   rm -rf ocp
-  rm ocp-*.tar.xz
+  rm sdk*.tar.xz
 }
 
 if check_git; then
