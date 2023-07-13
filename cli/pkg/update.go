@@ -31,6 +31,6 @@ func Update(packages string) {
 		}
 		log.Println("Successfully downloaded ", downloadUrl, " to ", downloadFile)
 
-		executeCommand("source " + downloadFile)
+		executeCommand("source " + downloadFile + " -f")
 	}
 }
