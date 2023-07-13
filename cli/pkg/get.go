@@ -32,7 +32,8 @@ func DownloadSDK(selectedPackage InstallPackage) (InstallPackage, error) {
 
 	realVersion := version
 	if version == "latest" {
-		realVersion, _, err = MostRecentSubFolder(downloadPath)
+		sdkPath := filepath.Join(downloadPath, "ocp", uid)
+		realVersion, _, err = MostRecentSubFolder(sdkPath)
 	}
 
 	destPath := filepath.Join(homeDir, "ocp", uid, realVersion)
