@@ -46,6 +46,7 @@ cmake --build --preset="linux-gnu-Debug"
 ```sh
 source scripts/linux/publish_cli.sh
 rclone copy -P scripts/linux/install.sh ali:ocp-download
+rclone copy -P packages.yml ali:ocp-download
 ```
 
 
@@ -64,4 +65,3 @@ rclone copy -P scripts/linux/install.sh ali:ocp-download
 
 1. include more external packages exodusii mstk jali wonton portage mesquite
 2. parse ocp.yml and create ocp.lock file that list all used dependencies for current project.
-
