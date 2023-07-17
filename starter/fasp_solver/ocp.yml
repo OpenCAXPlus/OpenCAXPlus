@@ -1,4 +1,0 @@
-app:
-  build: Debug
-  compiler: gnu
-  target: all

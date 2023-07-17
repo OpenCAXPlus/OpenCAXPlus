@@ -1,8 +1,0 @@
-include(OCPStarterInstall)
-ocp_starter_install(NAME fasp_solver)
-ocp_starter_install(NAME basic_console)
-ocp_starter_install(NAME basic_gui)
-ocp_starter_install(NAME fengsim)
-ocp_starter_install(NAME m++)
-ocp_starter_install(NAME oce)
-ocp_starter_install(NAME vtk)
