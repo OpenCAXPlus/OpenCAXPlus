@@ -1,3 +1,4 @@
 [submodule "starter"]
 	path = starter
-	url = https://github.com/OpenCAXPlus/ocpstarter.git
+	url = ../ocpstarter.git
+	branch = main
