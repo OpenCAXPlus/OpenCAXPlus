@@ -1,0 +1,28 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+cmake_path(IS_RELATIVE OCP_DIR OCP_DIR_RELATIVE)
+
+if(${OCP_DIR_RELATIVE})
+    cmake_path(ABSOLUTE_PATH OCP_DIR NORMALIZE)
+    message(STATUS "The OCP_DIR is a relative path, converting to absolute path ${OCP_DIR}")
+else()
+    message(STATUS "The OCP_DIR is a ${OCP_DIR}")
+endif()
+
+cmake_path(SET OCP_LIFECYCLE NORMALIZE "../../../src/lifecycle")
+cmake_path(SET OCP_INCLUDE NORMALIZE "../../../include")
+
+
+cmake_path(ABSOLUTE_PATH OCP_LIFECYCLE BASE_DIRECTORY ${OCP_DIR} NORMALIZE)
+cmake_path(ABSOLUTE_PATH OCP_INCLUDE BASE_DIRECTORY ${OCP_DIR} NORMALIZE)
+
+message(STATUS "OCP_LIFECYCLE: ${OCP_LIFECYCLE}")
+message(STATUS "OCP_INCLUDE: ${OCP_INCLUDE}")
+
+
+set(Interface_DIR ${OCP_DIR})
+find_dependency(Interface)
+
+# include("${CMAKE_CURRENT_LIST_DIR}/OCPTargets.cmake")
+check_required_components(OCP)

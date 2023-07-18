@@ -12,5 +12,7 @@ _deps
 
 out/
 
-ocp
 *~
+# only ignore a file called ocp but not a folder called ocp
+ocp
+!ocp/*

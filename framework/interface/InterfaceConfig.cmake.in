@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# set(ENABLE_CDFT ON)
+# set(ENABLE_BLACS ON)
+# set(MKL_INTERFACE "ilp64")
+# find_package(MPI REQUIRED)
+# find_package(MKL CONFIG REQUIRED)
+
+include("${CMAKE_CURRENT_LIST_DIR}/InterfaceTargets.cmake")
+
+check_required_components(Interface)

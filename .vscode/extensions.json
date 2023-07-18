@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "josetr.cmake-language-support-vscode",
+        "ms-dotnettools.vscode-dotnet-runtime"
+    ]
+}
