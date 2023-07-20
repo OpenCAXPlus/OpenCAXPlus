@@ -76,5 +76,22 @@ func SourcePackageExist(id string, version string) (SourcePackage, error) {
 		}
 	}
 
-	return SourcePackage{}, errors.New("Package not found") // return nil when nothing found
+	return SourcePackage{}, errors.New("package not found") // return nil when nothing found
+}
+
+func GetPackageSourcePath(selectedPackage InstallPackage) string {
+	homeDir, _ := os.UserHomeDir()
+	t := selectedPackage.Type
+	uid := selectedPackage.UID
+	v := selectedPackage.Version
+	return filepath.Join(homeDir, "ocp", t, uid, v)
+}
+
+func GetPackageInstallPath(selectedPackage InstallPackage) string {
+	homeDir, _ := os.UserHomeDir()
+	t := selectedPackage.Type
+	uid := selectedPackage.UID
+	v := selectedPackage.Version
+	c := selectedPackage.Configuration
+	return filepath.Join(homeDir, "ocp", t, uid, v, "install", c)
 }

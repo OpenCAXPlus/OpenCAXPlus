@@ -104,15 +104,7 @@ func parseArguments(args []string, p InstallPackage, dependencies []InstallPacka
 	return out
 }
 
-func GetConfigurationDependencies(selectedPackage InstallPackage) []InstallPackage {
-	homeDir, _ := os.UserHomeDir()
-	t := selectedPackage.Type
-	uid := selectedPackage.UID
-	v := selectedPackage.Version
-	c := selectedPackage.Configuration
-	// srcPath := filepath.Join(homeDir, "ocp", t, uid, v, "source")
-	ocpPath := filepath.Join(homeDir, "ocp", t, uid, v)
-	// Read the ocp.yml file
+func ParseOCPYaml(ocpPath string) (YamlOCP, error) {
 	data, err := ioutil.ReadFile(filepath.Join(ocpPath, "ocp.yml"))
 	if err != nil {
 		log.Fatal(err)
@@ -123,6 +115,29 @@ func GetConfigurationDependencies(selectedPackage InstallPackage) []InstallPacka
 	if err != nil {
 		panic(err)
 	}
+	return yml, err
+}
+
+func GetOCPAsInstallPackage(path string) InstallPackage {
+	if path == "" {
+		path, _ = os.Getwd()
+	}
+	// Read the packages.yml file
+	yml, _ := ParseOCPYaml(path)
+	return InstallPackage{
+		ID:            yml.Name,
+		UID:           yml.UID,
+		Type:          yml.Type,
+		Version:       yml.Default.Version,
+		Configuration: yml.Default.Configuration,
+	}
+}
+
+func GetConfigurationDependencies(ocpPath string, selectedPackage InstallPackage) []InstallPackage {
+	c := selectedPackage.Configuration
+
+	// Read the ocp.yml file
+	yml, _ := ParseOCPYaml(ocpPath)
 
 	var out []InstallPackage
 	// the load the dependencies of configurations
@@ -208,7 +223,9 @@ func InstallConfigurationExists(selectedPackage InstallPackage) (Script, error) 
 							log.Debug("Find configuration details")
 							foundCF = true
 							// prepare the arguments array
-							dependencies := GetConfigurationDependencies(selectedPackage)
+							ocpPath := GetPackageSourcePath(selectedPackage)
+
+							dependencies := GetConfigurationDependencies(ocpPath, selectedPackage)
 							parsedArgs := parseArguments(cf.Args, selectedPackage, dependencies)
 							return Script{Path: ocpPath, Run: cf.Run, Args: parsedArgs}, nil
 						}

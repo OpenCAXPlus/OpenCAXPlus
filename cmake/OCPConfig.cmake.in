@@ -12,14 +12,18 @@ endif()
 
 cmake_path(SET OCP_LIFECYCLE NORMALIZE "../../../src/lifecycle")
 cmake_path(SET OCP_INCLUDE NORMALIZE "../../../include")
-
+cmake_path(SET OCP_ROOT NORMALIZE "../../..")
+cmake_path(SET OCP_HOME NORMALIZE "../../../../..")
 
 cmake_path(ABSOLUTE_PATH OCP_LIFECYCLE BASE_DIRECTORY ${OCP_DIR} NORMALIZE)
 cmake_path(ABSOLUTE_PATH OCP_INCLUDE BASE_DIRECTORY ${OCP_DIR} NORMALIZE)
+cmake_path(ABSOLUTE_PATH OCP_ROOT BASE_DIRECTORY ${OCP_DIR} NORMALIZE)
+cmake_path(ABSOLUTE_PATH OCP_HOME BASE_DIRECTORY ${OCP_DIR} NORMALIZE)
 
+message(STATUS "OCP_HOME: ${OCP_HOME}")
+message(STATUS "OCP_ROOT: ${OCP_ROOT}")
 message(STATUS "OCP_LIFECYCLE: ${OCP_LIFECYCLE}")
 message(STATUS "OCP_INCLUDE: ${OCP_INCLUDE}")
-
 
 set(Interface_DIR ${OCP_DIR})
 find_dependency(Interface)

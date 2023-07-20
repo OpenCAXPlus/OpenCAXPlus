@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/ulikunitz/xz"
 )
 
@@ -132,6 +133,7 @@ func CopyFile(src string, dst string) error {
 }
 
 func CopyDir(src string, dst string) error {
+	log.Debug("src", src, dst)
 	return filepath.Walk(src, func(srcPath string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err

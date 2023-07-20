@@ -78,7 +78,8 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 	//! TODO go to the source folder and find dependencies
 	// need to
 	if selectedPackage.Configuration != "" {
-		depPackages := GetConfigurationDependencies(selectedPackage)
+		ocpPath := GetPackageSourcePath(selectedPackage)
+		depPackages := GetConfigurationDependencies(ocpPath, selectedPackage)
 		for _, dep := range depPackages {
 			Download(dep)
 		}
@@ -89,7 +90,8 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 
 func Install(selectedPackage InstallPackage) {
 	if selectedPackage.Configuration != "" {
-		depPackages := GetConfigurationDependencies(selectedPackage)
+		ocpPath := GetPackageSourcePath(selectedPackage)
+		depPackages := GetConfigurationDependencies(ocpPath, selectedPackage)
 		for _, dep := range depPackages {
 			log.Debug("dependency", dep)
 			Install(dep)
