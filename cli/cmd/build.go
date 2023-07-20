@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -21,50 +20,30 @@ var buildCmd = &cobra.Command{
 You can specify the build type, compiler, build target name, 
 current system type, and the cmake bin directory.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		build_type := viper.GetString("build.build_type")
-		compiler := viper.GetString("build.compiler")
+		preset := viper.GetString("build.preset")
 		target := viper.GetString("build.target")
-		// system := viper.GetString("build.system")
-		cmake_dir := viper.GetString("build.cmake_dir")
-		app_path := viper.GetString("build.path")
+		app_path := viper.GetString("build.src")
 		log.Debug("build called")
-		log.Debug("Build type is ", build_type)
+		// log.Debug("Build type is ", build_type)
 		log.Debug("System is ", runtime.GOOS)
-		log.Debug("Compiler is ", compiler)
+		// log.Debug("Compiler is ", compiler)
+		log.Debug("Preset is ", preset)
 		log.Debug("Target is ", target)
-		log.Debug("Cmake dir is ", cmake_dir)
 		log.Debug("App Path is ", app_path)
-		pkg.Build(build_type, compiler, target, cmake_dir, app_path)
+		pkg.Build(preset, target, app_path)
 
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(buildCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// buildCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// buildCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	buildCmd.Flags().StringP("build_type", "b", "Debug", "Set the build type for your OpenCAXPlus app.")
-	viper.BindPFlag("build.build_type", buildCmd.Flags().Lookup("build_type"))
-	viper.SetDefault("build.build_type", "Debug")
-	buildCmd.Flags().StringP("compiler", "c", "gnu", "Set the compiler for your OpenCAXPlus app. ")
-	viper.BindPFlag("build.compiler", buildCmd.Flags().Lookup("compiler"))
-	viper.SetDefault("build.compiler", "gnu")
+	buildCmd.Flags().StringP("preset", "p", "linux-gnu-Debug", "Set the preset for your OpenCAXPlus app.")
+	viper.BindPFlag("build.preset", buildCmd.Flags().Lookup("preset"))
+	viper.SetDefault("build.preset", "linux-gnu-Debug")
 	buildCmd.Flags().StringP("target", "t", "all", "Set the build target for your OpenCAXPlus app. ")
 	viper.BindPFlag("build.target", buildCmd.Flags().Lookup("target"))
 	viper.SetDefault("build.target", "all")
-	buildCmd.Flags().StringP("path", "p", ".", "Set the path for your OpenCAXPlus app to be built. ")
-	viper.BindPFlag("build.path", buildCmd.Flags().Lookup("path"))
-	viper.SetDefault("build.path", ".")
-	buildCmd.Flags().StringP("cmake_dir", "d", "default", "Set the cmake command directory.")
-	viper.BindPFlag("build.cmake_dir", buildCmd.Flags().Lookup("cmake_dir"))
-	viper.SetDefault("build.cmake_dir", "default")
-
+	buildCmd.Flags().StringP("src", "s", ".", "Set the path for your OpenCAXPlus app to be built. ")
+	viper.BindPFlag("build.src", buildCmd.Flags().Lookup("path"))
+	viper.SetDefault("build.src", ".")
 }
