@@ -56,7 +56,7 @@ install(
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/OCPConfig.cmake.in
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/OCPConfig.cmake.in
   "OCPConfig.cmake"
     INSTALL_DESTINATION
   ${CMAKE_INSTALL_LIBDIR}/cmake/ocp)
