@@ -13,6 +13,7 @@ import (
 )
 
 type YamlOCPDefault struct {
+	Preset        string   `yaml:"preset"`
 	Version       string   `yaml:"version"`
 	Configuration string   `yaml:"configuration"`
 	Scripts       []string `yaml:"scripts"`

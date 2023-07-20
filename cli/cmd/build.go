@@ -23,6 +23,12 @@ current system type, and the cmake bin directory.`,
 		preset := viper.GetString("build.preset")
 		target := viper.GetString("build.target")
 		app_path := viper.GetString("build.src")
+
+		yml, _ := pkg.ParseOCPYaml(app_path)
+		if preset == "" {
+			preset = yml.Default.Preset
+		}
+
 		log.Debug("build called")
 		// log.Debug("Build type is ", build_type)
 		log.Debug("System is ", runtime.GOOS)
@@ -37,9 +43,9 @@ current system type, and the cmake bin directory.`,
 
 func init() {
 	rootCmd.AddCommand(buildCmd)
-	buildCmd.Flags().StringP("preset", "p", "linux-gnu-Debug", "Set the preset for your OpenCAXPlus app.")
+	buildCmd.Flags().StringP("preset", "p", "", "Set the preset for your OpenCAXPlus app.")
 	viper.BindPFlag("build.preset", buildCmd.Flags().Lookup("preset"))
-	viper.SetDefault("build.preset", "linux-gnu-Debug")
+	viper.SetDefault("build.preset", "")
 	buildCmd.Flags().StringP("target", "t", "all", "Set the build target for your OpenCAXPlus app. ")
 	viper.BindPFlag("build.target", buildCmd.Flags().Lookup("target"))
 	viper.SetDefault("build.target", "all")
