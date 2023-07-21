@@ -44,12 +44,18 @@ install(
   COMPONENT ${PROJECT_NAME})
 
 install(
-  FILES scripts/CMakePresets.json scripts/CMakeLists.txt
+  FILES 
+    scripts/CMakePresets.json 
+    scripts/CMakeLists.txt
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}
   COMPONENT ${PROJECT_NAME})
 
 install(
-  FILES scripts/setvars.sh
+  FILES 
+    scripts/setvars.sh
+    ocp.schema.json
+    packages.schema.json
+    LICENSE
   DESTINATION .
   COMPONENT ${PROJECT_NAME})
 
