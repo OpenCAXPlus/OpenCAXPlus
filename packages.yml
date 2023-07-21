@@ -14,3 +14,8 @@
   uid: fasp
   type: external
   versions: ["2.2.1"]
+- id: external-blas
+  uid: blas
+  type: external
+  versions: [0.3.23"]
+- id: starter-
