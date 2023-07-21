@@ -112,5 +112,6 @@ else
         echo "export PATH=\$PATH:$HOME/ocp/cli/latest" >> ~/.bashrc
     fi
 
+    rm -f "$HOME/ocp/packages.yml"
     wget -P $HOME/ocp https://ocp-download.oss-cn-hongkong.aliyuncs.com/packages.yml
 fi
