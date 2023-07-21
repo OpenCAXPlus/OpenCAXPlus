@@ -1,0 +1,16 @@
+- id: ocp-sdk
+  uid: sdk
+  type: download
+  versions: ["latest","2023.0713.992bd4c"]
+- id: external-spdlog
+  uid: spdlog
+  type: external
+  versions: ["1.11.0"]
+- id: external-superlu
+  uid: superlu
+  type: external
+  versions: ["6.0.0"]
+- id: external-fasp
+  uid: fasp
+  type: external
+  versions: ["2.2.1"]

@@ -61,7 +61,7 @@ else
 fi
 
 if [ ! -f "$download_dir/$filename" ]; then
-    echo "Could find the $filename in $download_dir."
+    echo "No $filename in $download_dir."
     echo "Stop without any installation."
     echo
 else
@@ -108,5 +108,10 @@ else
     # remove the extracted folder in /tmp
     rm -rf "$download_dir/ocp/"
 
-    echo "export PATH=\$PATH:$HOME/ocp/cli/latest" >> ~/.bashrc
+    if ! grep -q "export PATH=\$PATH:$HOME/ocp/cli/latest" ~/.bashrc; then
+        echo "export PATH=\$PATH:$HOME/ocp/cli/latest" >> ~/.bashrc
+    fi
+
+    wget -p $HOME/ocp https://ocp-download.oss-cn-hongkong.aliyuncs.com/packages.yml
+
 fi
