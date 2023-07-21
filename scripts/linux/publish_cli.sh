@@ -23,7 +23,7 @@ publish() {
   short_hash=$(git rev-parse --short HEAD)
   dir="ocp/cli/$current_date.$short_hash"
   mkdir -p "$dir"
-  go build -o $dir/ocp
+  go build -o $dir/ocp -ldflags "-X OpenCAXPlusCli/cmd.version=$current_date.$short_hash"
 
   echo "Build the cli tool $dir/ocp"
 

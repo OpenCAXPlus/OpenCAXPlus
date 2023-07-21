@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 Xiaoxing Cheng hello@chengxiaoxing.me
-
 */
 package cmd
 
@@ -8,11 +7,15 @@ import (
 	"fmt"
 	"os"
 
+	log "github.com/sirupsen/logrus"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var cfgFile string
+
+var version = "Developer didn't pass compile time flags for version, contact the developer to fix this."
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -26,6 +29,12 @@ ocp <command> -h to get help for each subcommand`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
+	Run: func(cmd *cobra.Command, args []string) {
+		v := viper.GetBool("version")
+		if v {
+			log.Info("ocp version : ", version)
+		}
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -48,6 +57,13 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
+
+	rootCmd.Flags().BoolP("version", "v", false, "get version of the package")
+	viper.BindPFlag("version", rootCmd.Flags().Lookup("version"))
+	rootCmd.Flags().Lookup("version").NoOptDefVal = "true"
+	viper.SetDefault("version", false)
+
+	//golang, the -v and --version flag for version
 
 }
 
