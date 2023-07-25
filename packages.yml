@@ -18,3 +18,7 @@
   uid: openblas
   type: external
   versions: [0.3.23"]
+- id: external-qt
+  uid: qt
+  type: external
+  versions: [6.3.0]
