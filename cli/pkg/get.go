@@ -106,19 +106,22 @@ func Install(selectedPackage InstallPackage) {
 	}
 }
 
-func RunScript(script Script) {
-
+func ScriptToString(script Script) string {
 	ext := ""
 	call := ""
+	cd := ""
 	switch runtime.GOOS {
 	case "linux":
 		ext = "sh"
 		call = "source"
+		cd = "cd"
 	case "windows":
 		ext = "bat"
 		call = "call"
+		cd = "chdir"
 	}
-	command := fmt.Sprintf("%v %v.%v", call, script.Run, ext)
+	command := fmt.Sprintf("%v %v\n", cd, script.Path)
+	command = command + fmt.Sprintf("%v %v.%v", call, script.Run, ext)
 	for _, arg := range script.Args {
 		command = fmt.Sprintf("%v %v", command, arg)
 	}
@@ -127,16 +130,15 @@ func RunScript(script Script) {
 	if err != nil {
 		panic(err)
 	}
+	command = command + fmt.Sprintf("\n%v %v", cd, cwdPath)
 
-	err = os.Chdir(script.Path)
-	if err != nil {
-		panic(err)
-	}
+	return command
 
+}
+
+func RunScript(script Script) {
+
+	command := ScriptToString(script)
 	executeCommand(command)
 
-	err = os.Chdir(cwdPath)
-	if err != nil {
-		panic(err)
-	}
 }

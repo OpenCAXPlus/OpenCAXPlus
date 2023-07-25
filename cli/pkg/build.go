@@ -7,7 +7,7 @@ import (
 
 func commandBuild(preset string, target string) string {
 	// system := runtime.GOOS
-	return fmt.Sprintf("cmake --preset=\"%s\" -S \".\""+newline()+"cmake --build --preset=\"%s\" --target %s"+newline(), preset, preset, target)
+	return fmt.Sprintf("cmake --build --preset=\"%s\" --target %s"+newline(), preset, target)
 }
 
 func Build(preset string, target string, path string) {

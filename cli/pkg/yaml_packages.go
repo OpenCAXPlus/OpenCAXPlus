@@ -28,6 +28,7 @@ type SourcePackage struct {
 type InstallPackage struct {
 	ID            string
 	UID           string
+	Builder       string
 	Type          string
 	Version       string
 	Configuration string

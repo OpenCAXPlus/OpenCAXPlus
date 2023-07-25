@@ -58,6 +58,7 @@ type YamlOCP struct {
 	Name           string                 `yaml:"name"`
 	UID            string                 `yaml:"uid"`
 	Type           string                 `yaml:"type"`
+	Builder        string                 `yaml:"builder"`
 	Licenses       []string               `yaml:"licenses"`
 	Default        YamlOCPDefault         `yaml:"default"`
 	Versions       []YamlOCPVersion       `yaml:"versions"`

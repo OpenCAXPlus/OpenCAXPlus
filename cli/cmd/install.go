@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 Xiaoxing Cheng <hello@chengxiaoxing.me>
 */
 package cmd
 
@@ -42,25 +42,6 @@ var installCmd = &cobra.Command{
 		depPackages := pkg.GetConfigurationDependencies(cwd, ocp)
 		log.Debug("Install called for", ocp)
 		log.Debug("List of dependencies: ", depPackages)
-		for _, dep := range depPackages {
-			log.Debug("Installing dependency: ", dep)
-			//check if the package is already installed
-			path := pkg.GetPackageInstallPath(dep)
-			if _, err := os.Stat(path); os.IsNotExist(err) {
-				pkg.Download(dep)
-				pkg.Install(dep)
-			} else {
-				log.Debug("Package already installed ", path)
-			}
-			// copy the necessary cmake files
-			if ocp.Type == "starter" {
-				srcPath := pkg.GetPackageSourcePath(dep)
-				srcFile := filepath.Join(srcPath, "cmake", dep.Configuration+".cmake")
-				dstFile := filepath.Join(cwd, "cmake", dep.UID+"-"+dep.Configuration+".cmake")
-				log.Debug("Copying cmake files from ", srcFile, " to ", dstFile)
-				pkg.CopyFile(srcFile, dstFile)
-			}
-		}
 		if ocp.Type == "starter" {
 			// prepare the cmake/Dependencies.cmake file
 			file, err := os.Create(filepath.Join(cwd, "cmake", "Dependencies.cmake"))
@@ -86,6 +67,25 @@ var installCmd = &cobra.Command{
 			fmt.Fprintf(file, ")\n\n")
 			fmt.Fprintf(file, "target_link_libraries(${StarterLibraryName} PUBLIC OCP::Interface OCP::Dependencies)\n")
 			fmt.Fprintf(file, "target_include_directories(${StarterLibraryName} PUBLIC ${OCP_LIFECYCLE}/${LifeCycleName})\n")
+		}
+		for _, dep := range depPackages {
+			log.Debug("Installing dependency: ", dep)
+			//check if the package is already installed
+			// copy the necessary cmake files
+			if ocp.Type == "starter" {
+				srcPath := pkg.GetPackageSourcePath(dep)
+				srcFile := filepath.Join(srcPath, "cmake", dep.Configuration+".cmake")
+				dstFile := filepath.Join(cwd, "cmake", dep.UID+"-"+dep.Configuration+".cmake")
+				log.Debug("Copying cmake files from ", srcFile, " to ", dstFile)
+				pkg.CopyFile(srcFile, dstFile)
+			}
+			path := pkg.GetPackageInstallPath(dep)
+			if _, err := os.Stat(path); os.IsNotExist(err) {
+				pkg.Download(dep)
+				pkg.Install(dep)
+			} else {
+				log.Debug("Package already installed ", path)
+			}
 		}
 	},
 }
