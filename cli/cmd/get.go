@@ -70,12 +70,14 @@ var getCmd = &cobra.Command{
 				if selectedSourcePackage.UID == "sdk" {
 					pkg.DownloadSDK(selectedPackage)
 				} else {
+					log.Debug("Download ", selectedPackage)
 					pkg.Download(selectedPackage)
 				}
 			}
 		}
 
 		if install && (config != "") {
+			log.Debug("Install ", selectedPackage)
 			pkg.Install(selectedPackage)
 		}
 	},

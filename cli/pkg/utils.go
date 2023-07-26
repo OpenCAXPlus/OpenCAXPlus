@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/schollz/progressbar/v3"
 	log "github.com/sirupsen/logrus"
 	"github.com/ulikunitz/xz"
 )
@@ -40,23 +41,22 @@ func DownloadFile(url string, filepathStr string) error {
 		return err
 	}
 
-	// Create the file
-	out, err := os.Create(filepathStr)
-	if err != nil {
-		return err
-	}
-	defer out.Close()
-
-	// Get the data
-	resp, err := http.Get(url)
-	if err != nil {
-		return err
-	}
+	tempDestinationPath := filepathStr + ".tmp"
+	req, _ := http.NewRequest("GET", url, nil)
+	resp, _ := http.DefaultClient.Do(req)
 	defer resp.Body.Close()
 
-	// Write the body to file
-	_, err = io.Copy(out, resp.Body)
-	return err
+	f, _ := os.OpenFile(tempDestinationPath, os.O_CREATE|os.O_WRONLY, 0644)
+
+	bar := progressbar.DefaultBytes(
+		resp.ContentLength,
+		"downloading",
+	)
+
+	io.Copy(io.MultiWriter(f, bar), resp.Body)
+	os.Rename(tempDestinationPath, filepathStr)
+
+	return nil
 }
 
 func DecompressTarXZ(src, dst string) error {

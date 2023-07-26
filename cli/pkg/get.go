@@ -93,7 +93,7 @@ func Install(selectedPackage InstallPackage) {
 		ocpPath := GetPackageSourcePath(selectedPackage)
 		depPackages := GetConfigurationDependencies(ocpPath, selectedPackage)
 		for _, dep := range depPackages {
-			log.Debug("dependency", dep)
+			log.Debug("Dependency", dep)
 			Install(dep)
 		}
 		// log.Debug("depPackage", depPackages)
