@@ -21,4 +21,8 @@
 - id: external-qt
   uid: qt
   type: external
-  versions: [6.3.0]
+  versions: [6.5.2]
+- id: external-qt_minimal
+  uid: qt_minimal
+  type: external
+  versions: [6.5.2]
