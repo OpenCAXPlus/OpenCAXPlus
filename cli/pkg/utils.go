@@ -83,15 +83,17 @@ func DecompressTarXZ(src, dst string) error {
 		}
 
 		outPath := filepath.Join(dst, hdr.Name)
+		info := hdr.FileInfo()
 		switch hdr.Typeflag {
 		case tar.TypeDir:
 			if _, err := os.Stat(outPath); err != nil {
-				if err := os.MkdirAll(outPath, 0755); err != nil {
+				if err := os.MkdirAll(outPath, info.Mode()); err != nil {
 					return fmt.Errorf("failed to mkdir %s: %w", outPath, err)
 				}
 			}
 		case tar.TypeReg:
-			outFile, err := os.Create(outPath)
+			outFile, err := os.OpenFile(outPath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, info.Mode())
+
 			if err != nil {
 				return fmt.Errorf("failed to create file %s: %w", outPath, err)
 			}
@@ -99,8 +101,13 @@ func DecompressTarXZ(src, dst string) error {
 				return fmt.Errorf("failed to copy file content: %w", err)
 			}
 			outFile.Close()
+		case tar.TypeSymlink:
+			err := os.Symlink(hdr.Linkname, outPath)
+			if err != nil {
+				return err
+			}
 		default:
-			return fmt.Errorf("unsupported type: %s", hdr.Typeflag)
+			return fmt.Errorf("unsupported type: %v", hdr.Typeflag)
 		}
 	}
 
@@ -133,7 +140,7 @@ func CopyFile(src string, dst string) error {
 }
 
 func CopyDir(src string, dst string) error {
-	log.Debug("src", src, dst)
+	log.Debug("Copying ", src, " to ", dst)
 	return filepath.Walk(src, func(srcPath string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err

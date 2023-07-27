@@ -55,20 +55,23 @@ func Download(selectedPackage InstallPackage) (InstallPackage, error) {
 	version := selectedPackage.Version
 
 	// Read the packages.yml file
-	homeDir, _ := os.UserHomeDir()
+	homeDir, err := os.UserHomeDir()
 	downloadPath := filepath.Join(homeDir, "ocp", "download")
 
 	downloadUrl := "https://ocp-" + t + ".oss-cn-hongkong.aliyuncs.com" + "/" + uid + "/" + uid + "-" + version + ".tar.xz"
 	downloadFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
 
-	err := DownloadFile(downloadUrl, downloadFile)
+	err = DownloadFile(downloadUrl, downloadFile)
 	if err != nil {
 		panic(err)
 	}
 	log.Println("Successfully downloaded ", downloadUrl, " to ", downloadFile)
 
 	// xzFile := filepath.Join(downloadPath, id+"-"+version+".tar.xz")
-	DecompressTarXZ(downloadFile, downloadPath)
+	err = DecompressTarXZ(downloadFile, downloadPath)
+	if err != nil {
+		panic(err)
+	}
 
 	destPath := filepath.Join(homeDir, "ocp", t, uid, version)
 	srcPath := filepath.Join(downloadPath, "ocp", t, uid, version)
