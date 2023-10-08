@@ -7,11 +7,11 @@
 [![Github pages](https://github.com/OpenCAXPlus/OCP-SDK/actions/workflows/gh_page.yml/badge.svg)](https://github.com/OpenCAXPlus/OCP-SDK/actions/workflows/gh_page.yml)
 
 # Install
-	1. Navigate to the OpenDigitalTwin-main/cli directory in your terminal/command prompt.
-    2. Run the install script by entering: ./install.sh
-    3. Once installation is complete, launch QtCreator with: ./qtcreator.sh
-    4. In QtCreator, open the FENGSim.pro project file located at: starters/FENGSim/FENGSim.pro
-    5. Build the prepost module project in QtCreator.
+1. Navigate to the OpenDigitalTwin-main/cli directory in your terminal/command prompt.
+2. Run the install script by entering: ./install.sh
+3. Once installation is complete, launch QtCreator with: ./qtcreator.sh
+4. In QtCreator, open the FENGSim.pro project file located at: starters/FENGSim/FENGSim.pro
+5. Build the prepost module project in QtCreator.
 	
 # Showcases
 
