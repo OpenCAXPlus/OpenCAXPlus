@@ -1,6 +1,29 @@
 # OpenCAXPlusCLI
 
 The OpenCAXPlus CLI
+## Prepare
+```
+sudo apt install golang-go
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+```
+
+
+
+If on 18.04 the default go version is not correct. You need to download the latest go from official website.
+```
+wget https://studygolang.com/dl/golang/go1.21.3.linux-amd64.tar.gz
+tar -xvf go1.21.3.linux-amd64.tar.gz
+export GOROOT=$HOME/go
+export GOPATH=$HOME/PATH/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+```
+
+## build
+```
+cd cli
+go build 
+```
 
 ### Common go command
 ```
