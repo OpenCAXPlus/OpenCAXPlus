@@ -64,3 +64,18 @@ The cli has three subcommends:
 - cmd contains the cli main package, parsing the arguments etc., each subcommand get its own go file 
 - pkg contains the actual functions for doing the hard work, each subcommand is a package within its own folder 
 - docs contains the documentation
+
+## For SDK admin
+Set up the rclone.conf file in ~/.config/rclone
+```
+sudo apt unzip
+curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
+unzip rclone-current-linux-amd64.zip
+cd rclone-*-linux-amd64
+cp rclone ~/PATH
+```
+
+Then when publish the cli
+```
+source ../scripts/linux/publish_sdk.sh
+```
