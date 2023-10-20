@@ -110,6 +110,7 @@ else
 
     if ! grep -q "export PATH=\$PATH:$HOME/ocp/cli/latest" ~/.bashrc; then
         echo "export PATH=\$PATH:$HOME/ocp/cli/latest" >> ~/.bashrc
+        source ~/.bashrc
     fi
 
     rm -f "$HOME/ocp/packages.yml"
