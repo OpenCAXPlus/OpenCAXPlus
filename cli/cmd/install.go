@@ -12,6 +12,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+
 )
 
 // buildCmd represents the build command
@@ -35,6 +37,8 @@ var installCmd = &cobra.Command{
 			}
 			fmt.Printf("Directory %s created\n", path)
 		}
+
+		install := viper.GetBool("get.install")
 
 		// parse the config file
 		ocp := pkg.GetOCPAsInstallPackage(cwd)
