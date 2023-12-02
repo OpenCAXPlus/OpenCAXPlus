@@ -38,7 +38,7 @@ var installCmd = &cobra.Command{
 			fmt.Printf("Directory %s created\n", path)
 		}
 
-		install := viper.GetBool("get.install")
+		download := viper.GetBool("install.download-only")
 
 		// parse the config file
 		ocp := pkg.GetOCPAsInstallPackage(cwd)
@@ -86,7 +86,7 @@ var installCmd = &cobra.Command{
 			path := pkg.GetPackageInstallPath(dep)
 			if _, err := os.Stat(path); os.IsNotExist(err) {
 				pkg.Download(dep)
-				if install {
+				if !download {
 					pkg.Install(dep)
 				}
 			} else {
@@ -98,10 +98,9 @@ var installCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(installCmd)
-
 	// install
-	getCmd.Flags().BoolP("install", "i", true, "turn on install step for the package.")
-	viper.BindPFlag("get.install", getCmd.Flags().Lookup("install"))
-	getCmd.Flags().Lookup("install").NoOptDefVal = "true"
-	viper.SetDefault("get.install", true)
+	installCmd.Flags().BoolP("download-only", "d", false, "only download, no install")
+	viper.BindPFlag("install.download-only", installCmd.Flags().Lookup("download-only"))
+	installCmd.Flags().Lookup("download-only").NoOptDefVal = "false"
+	viper.SetDefault("install.download-only", false)
 }
