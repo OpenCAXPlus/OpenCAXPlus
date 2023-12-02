@@ -39,6 +39,7 @@ var installCmd = &cobra.Command{
 		}
 
 		download := viper.GetBool("install.download-only")
+		log.Debug("Download only: ", download)
 
 		// parse the config file
 		ocp := pkg.GetOCPAsInstallPackage(cwd)
@@ -101,6 +102,6 @@ func init() {
 	// install
 	installCmd.Flags().BoolP("download-only", "d", false, "only download, no install")
 	viper.BindPFlag("install.download-only", installCmd.Flags().Lookup("download-only"))
-	installCmd.Flags().Lookup("download-only").NoOptDefVal = "false"
+	installCmd.Flags().Lookup("download-only").NoOptDefVal = "true"
 	viper.SetDefault("install.download-only", false)
 }
