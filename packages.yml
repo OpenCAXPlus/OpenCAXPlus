@@ -29,4 +29,8 @@
 - id: external-petsc
   uid: petsc
   type: external
-  versions: ["3.20.0"]
+  versions: ["3.20.0","3.20.1"]
+- id: external-lapack
+  uid: lapack
+  type: external
+  versions: ["3.11.0"]
