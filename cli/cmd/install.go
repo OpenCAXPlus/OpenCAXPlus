@@ -86,9 +86,10 @@ var installCmd = &cobra.Command{
 			}
 			path := pkg.GetPackageInstallPath(dep)
 			if _, err := os.Stat(path); os.IsNotExist(err) {
-				pkg.Download(dep)
 				if !download {
 					pkg.Install(dep)
+				}else{
+					pkg.Download(dep)
 				}
 			} else {
 				log.Debug("Package already installed ", path)
