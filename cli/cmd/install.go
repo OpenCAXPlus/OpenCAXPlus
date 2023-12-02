@@ -82,7 +82,9 @@ var installCmd = &cobra.Command{
 			path := pkg.GetPackageInstallPath(dep)
 			if _, err := os.Stat(path); os.IsNotExist(err) {
 				pkg.Download(dep)
-				pkg.Install(dep)
+				if install {
+					pkg.Install(dep)
+				}
 			} else {
 				log.Debug("Package already installed ", path)
 			}
@@ -92,4 +94,10 @@ var installCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(installCmd)
+
+	// install
+	getCmd.Flags().BoolP("install", "i", true, "turn on install step for the package.")
+	viper.BindPFlag("get.install", getCmd.Flags().Lookup("install"))
+	getCmd.Flags().Lookup("install").NoOptDefVal = "true"
+	viper.SetDefault("get.install", true)
 }
