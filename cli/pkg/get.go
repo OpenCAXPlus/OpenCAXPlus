@@ -105,7 +105,16 @@ func Install(selectedPackage InstallPackage) {
 		if err != nil {
 			panic(err)
 		}
-		RunScript(script)
+
+		ocpCompiler := os.Getenv("OCP_COMPILER")
+
+		installDir:=filepath.Join(ocpPath, "install", ocpCompiler, selectedPackage.Configuration)
+
+		if FolderExists(installDir) {
+			log.Debug("Configuration already installed ", installDir)
+		} else {
+			RunScript(script)
+		}
 	}
 }
 
