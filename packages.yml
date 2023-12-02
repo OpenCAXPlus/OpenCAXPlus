@@ -42,3 +42,7 @@
   uid: parmetis
   type: external
   versions: ["4.0.3"]
+- id: toolkit-poro_petsc_solver
+  uid: poro_petsc_solver
+  type: toolkit
+  versions: ["0.1.0"]
