@@ -21,8 +21,7 @@ done
 shift "$((OPTIND-1))"
 
 version=${1:-"latest"}
-# system=${2:-"$distro_version"}
-system=${2:-"$distro"}
+system=${2:-"$distro_version"}
 
 # prepare some variables
 url="http://ocp-download.oss-cn-hongkong.aliyuncs.com/$software/$software-$version-$system.tar.xz"
